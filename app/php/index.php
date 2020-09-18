@@ -7,12 +7,11 @@ use PHPMailer\PHPMailer\Exception;
 
 
 ?>
- <from>
+ <form>
 	 <input name="email" type="email"/>
 	 <input name="checknum" type="number"/>
- </from>
+ </form>
 <?
-
 if (isset($_POST['email']) && $_POST['checknum'] == 2021 ) {
 
 		$emailCopy = 'test@awsd.cc';
