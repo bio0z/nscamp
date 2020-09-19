@@ -16,7 +16,7 @@ Vue.directive('phone', {
     }
 });
 
-var router = new VueRouter({
+let router = new VueRouter({
     mode: 'history',
     routes: []
 });
@@ -62,7 +62,7 @@ let vm = new Vue({
             },
             passVDetailsFull:{
                 'ru':'<p class="mb-2">проживание в выбранном отеле с завтраками</p>\n' +
-                    '<p class="mb-2">VIP-браслет участника NSW</p>\n' +
+                    '<p class="mb-2">VIP-браслет участника NSC</p>\n' +
                     '<p class="mb-2">прогулочный билет на канатные дороги курорта «Роза Хутор» на все дни\n' +
                     'фестиваля</p>\n' +
                     '<p class="mb-2">зона VIP на вечеринках</p>\n' +
@@ -76,7 +76,7 @@ let vm = new Vue({
             },
             passSDetailsFull:{
                 'ru':'<p class="mb-2">проживание в выбранном отеле с завтраками</p>\n' +
-                    '<p class="mb-2">браслет участника NSW</p>\n' +
+                    '<p class="mb-2">браслет участника NSC</p>\n' +
                     '<p class="mb-2">прогулочный билет на канатные дороги курорта «Роза Хутор» на все дни\n' +
                     'фестиваля</p>\n' +
                     '<p class="mb-2">сувениры первым 500</p>\n' +
@@ -214,10 +214,10 @@ let vm = new Vue({
                     '<a href="#">try again</a>.</p>'
             },
             newStarDesc:{
-                'ru':'ООО «Нью Стар» — организатор спортивно-музыкального фестиваля New Star Weekend, который пройдёт 2-4\n' +
-                    'октября 2020 года на всесезонном горном курорте «Роза Хутор» (Сочи).',
+                'ru':'ООО «Нью Стар» — организатор спортивно-музыкального фестиваля New Star Weekend, который пройдёт 26 марта -\n' +
+                    '4 апреля 2021 года на всесезонном горном курорте «Роза Хутор» (Сочи).',
                 'en':'“New Star” LLC is the organizer of “New Star Weekend” sports and music festival, that will\n' +
-                    ' be held on October 2-4, 2020 at Russian ski resort “Rosa Khutor” (Sochi).'
+                    ' be held on March 26 - 4 April, 2020 at Russian ski resort “Rosa Khutor” (Sochi).'
             }
         },
         sent: false,
@@ -295,7 +295,7 @@ let vm = new Vue({
             pass: null,
 
             hotel: 'RIL',
-            hotelname: null,
+            hotelName: null,
             address: null,
             room: null,
 
@@ -409,11 +409,11 @@ let vm = new Vue({
                         ' Красной Поляне. Помимо медицинского центра, все проживающие могут\n' +
                         ' посещать спа-комплекс с крытым плавательным бассейном и банями.\n' +
                         ' Отель находится всего в 5 минутах ходьбы от Штаба фестиваля и в\n' +
-                        ' непосредственной близости от многих вечеринок NSW, подъёмника\n' +
+                        ' непосредственной близости от многих вечеринок NSC, подъёмника\n' +
                         ' Олимпия, а также магазинов, кафе, баров и ресторанов, среди которых\n' +
                         ' Груша и Surf Coffee.',
                     'en':'This hotel was made especially for those who want to have a cool vacation but also retreat health after numerous parties during the festival. Rosa Springs is the first balneological hotel in Krasnaya Polyana mountainside. In addition to the medical center, all residents can visit its spa complex with an indoor swimming pool and baths.\n' +
-                        'The hotel is just a 5-minute walk from Festival Headquarters and in close proximity to many NSW parties, Olympia cable lifts, as well as shops, cafes, bars, and restaurants, including Grusha restaurant and Surf Coffee cafe.\n'
+                        'The hotel is just a 5-minute walk from Festival Headquarters and in close proximity to many NSC parties, Olympia cable lifts, as well as shops, cafes, bars, and restaurants, including Grusha restaurant and Surf Coffee cafe.\n'
                 }
             },
             {
@@ -457,9 +457,9 @@ let vm = new Vue({
             return this.form.fname + ' ' + this.form.sname;
         },
         roomName() {
-            if (this.form.room == 'S') {
+            if (this.form.room === 'S') {
                 return 'Single';
-            } else if (this.form.room == 'D') {
+            } else if (this.form.room === 'D') {
                 return 'Double';
             }
         },
@@ -469,7 +469,8 @@ let vm = new Vue({
         //   return this.form.tourNumber;
         // },
         setTourName() {
-            this.form.tourName = 'New Star Weekend ' + this.passes[this.form.pass].name + ' tour, hotel: ' + this.form.hotelname;
+//            this.form.tourName = 'New Star Weekend ' + this.passes[this.form.pass].name + ' tour, hotel: ' + this.form.hotelName;
+            this.form.tourName = 'New Star Weekend ' + ' tour, hotel: ' + this.form.hotelName;
             return this.form.tourName;
         },
         calcTourPrice() {
@@ -606,28 +607,28 @@ let vm = new Vue({
         },
         nextStep() {
 
-            if (this.step == 1) {
+            if (this.step === 1) {
                 if (!this.form.pass) {
                     this.errors = this.translations.errorChoosePass[this.selectedLocale];
                     return false;
                 } else {
                     this.errors = null;
                 }
-            } else if (this.step == 2) {
-                if (this.form.hotel == 'RIL') {
-                    this.form.hotelname = 'Riders Lodge **';
+            } else if (this.step === 2) {
+                if (this.form.hotel === 'RIL') {
+                    this.form.hotelName = 'Riders Lodge **';
                     this.form.address = 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 6';
-                } else if (this.form.hotel == 'AYS') {
-                    this.form.hotelname = 'AYS Design Hotel **';
+                } else if (this.form.hotel === 'AYS') {
+                    this.form.hotelName = 'AYS Design Hotel **';
                     this.form.address = 'Роза Хутор, п. Эсто-Садок, ул. Сулимовка, 5';
-                } else if (this.form.hotel == 'GRF') {
-                    this.form.hotelname = 'Green Flow ****';
+                } else if (this.form.hotel === 'GRF') {
+                    this.form.hotelName = 'Green Flow ****';
                     this.form.address = 'Роза Хутор, п. Эсто-Садок, ул. Сулимовка, 9';
-                } else if (this.form.hotel == 'ROS') {
-                    this.form.hotelname = 'Rosa Springs ****';
+                } else if (this.form.hotel === 'ROS') {
+                    this.form.hotelName = 'Rosa Springs ****';
                     this.form.address = 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 4';
-                } else if (this.form.hotel == 'RSI') {
-                    this.form.hotelname = 'Rosa Ski Inn ****';
+                } else if (this.form.hotel === 'RSI') {
+                    this.form.hotelName = 'Rosa Ski Inn ****';
                     this.form.address = 'Роза Хутор, п. Эсто-Садок, ул. Пихтовая аллея, д. 1';
                 }
 
@@ -757,7 +758,7 @@ let vm = new Vue({
                 fdata.append('email', this.form.email);
                 fdata.append('phone', this.form.phone);
                 fdata.append('room', this.form.room);
-                fdata.append('hotel', this.form.hotelname);
+                fdata.append('hotel', this.form.hotelName);
                 fdata.append('address', this.form.address);
                 fdata.append('passname', this.form.pass);
                 fdata.append('gname', this.form.gfname);

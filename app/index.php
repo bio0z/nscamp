@@ -10,7 +10,7 @@ $tourNumber = time();
 	<meta charset="UTF-8">
 	<base href="/">
 
-  <title>New Star Weekend 2020</title>
+  <title>New Star Camp 2021</title>
   <meta name="description" content="">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,10 +20,10 @@ $tourNumber = time();
   <!-- Template Basic Images Start -->
   <meta property="og:image" content="/images/meta-image.jpg">
   <meta
-      content="Фестиваль New Star Weekend пройдет 2-4 октября 2020 года на всесезонном горном курорте «Роза Хутор» (Сочи)."
+      content="Фестиваль New Star Camp пройдет 26 марта - 4 апреля 2021 года на всесезонном горном курорте «Роза Хутор» (Сочи)."
       property="description">
-  <meta content="New Star Weekend 2020" property="og:site_name">
-  <meta content="New Star Weekend 2020" property="og:title">
+  <meta content="New Star Camp 2021" property="og:site_name">
+  <meta content="New Star Camp 2021" property="og:title">
 
   <link rel="icon" href="images/favicon.ico">
   <link rel="apple-touch-icon" sizes="140x140" href="images/apple-touch-icon.png">
@@ -93,7 +93,7 @@ $tourNumber = time();
     <div class="col"><h1>{{ translations.title[selectedLocale] }}</h1></div>
     <div class="col text-right nsc-logo">
       <a href="#">
-        <img src="images/svg/wnsc-logo.svg">
+        <img src="images/svg/nsc-logo.svg">
       </a>
     </div>
   </header>
@@ -515,7 +515,7 @@ $tourNumber = time();
           <div class="col-12 col-md-8 col-lg-8 order-12 order-md-1">
             <div class="row">
               <div class="col-1 p-0 text-center">
-                <img src="images/svg/wnsc-logo.svg" class="mb-2 nsc-logo">
+                <img src="images/svg/nsc-logo.svg" class="mb-2 nsc-logo">
                 <p>ООО «НЬЮ СТАР»</p>
               </div>
               <div class="col-10 col-sm-6 col-md-6 col-lg-6">
@@ -526,7 +526,7 @@ $tourNumber = time();
                 <p>Телефон 8 (812) 670-10-17</p>
               </div>
               <div class="col-12 col-sm-5 col-md-5 col-lg-5">
-                <p>{{ translations.newStarDesc[selectedLocale] }}</p>
+<!--                <p>{{ translations.newStarDesc[selectedLocale] }}</p>-->
               </div>
             </div>
           </div>
