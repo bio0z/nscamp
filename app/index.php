@@ -33,7 +33,7 @@ $tourNumber = time();
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="css/app.min.css?rev=4ef9cd2617a7765e7313af50d0ebbc31">
+  <link rel="stylesheet" href="css/app.min.css?rev=b451c340783f387462b9d1181af39547">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -1127,7 +1127,7 @@ $tourNumber = time();
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-<script src="js/app.min.js?rev=4ef9cd2617a7765e7313af50d0ebbc31"></script>
+<script src="js/app.min.js?rev=aaeb0b6b1f4c6245d5eff31cc3b13c53"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"
