@@ -36,7 +36,7 @@ let vm = new Vue({
                 'ru':'Купить тур',
                 'en':'Tour Booking',
             },
-            stepOne:{
+            stepTour:{
                 'ru':'Выберите категорию размещения',
                 'en':'Choose your tour',
             },
@@ -131,29 +131,53 @@ let vm = new Vue({
                 'en':'user agreement'
             },
             stepThree:{
-                'ru':'Заполните, пожалуйста, персональные данные и оставьте контактную информацию',
-                'en':'Please, fill the personal information'
+                'ru':'Заполните, пожалуйста, персональные данные и оставьте контактную информацию.',
+                'en':'Please, fill the personal information.'
             },
             stepFour:{
                 'ru':'Проверьте введенные данные, подтвердите согласие на их обработку, введите промокод, если имеется и\n' +
-                    'нажмите кнопку «Купить тур»',
-                'en':'Check your details, enter promocode'
+                    'нажмите кнопку «Купить тур».',
+                'en':'Check your details, enter promocode.'
             },
-            stepTwo:{
-                'ru':'Выберите отель и тип номера',
-                'en':'Please, choose your accommodation'
+            stepDates:{
+                'ru':'Выберите даты',
+                'en':'Please, choose dates'
+            },
+            dateFrom:{
+                'ru':'Даты заезда',
+                'en':'Date in'
+            },
+            dateTill:{
+                'ru':'Даты выезда',
+                'en':'Date out'
+            },
+            dateNote:{
+                'ru':'* Туры длительностью менее десяти дней станут доступны с 01.01.2021',
+                'en':'* Туры длительностью менее десяти дней станут доступны с 01.01.2021',
+            },
+            tourAdults:{
+                'ru':'Количество взрослых',
+                'en':'Number of adults',
+            },
+            tourKids:{
+                'ru':'Количество детей',
+                'en':'Number of children',
+            },
+            stepHotel:{
+                'ru':'Выберите отель и тип номера.',
+                'en':'Please, choose your accommodation.'
             },
             errorChoosePass:{
                 'ru':'Вы забыли выбрать вариант размещения.',
-                'en':'Please, choose your pass'
+                'en':'Please, choose your pass.'
             },
             errorChooseRoom:{
                 'ru':'Вы забыли выбрать отель.',
-                'en':'Please, choose your hotel'
+                'en':'Please, choose your hotel.'
             },
             errorFillFIO:{
                 'ru':'Вы забыли заполнить Имя или Фамилию.',
-                'en':'Please, fill Name and Surname'
+                'en':'Please, fill Name and Surname.'
             },
             errorFillEmail:{
                 'ru':'Укажите электронную почту.',
@@ -224,10 +248,9 @@ let vm = new Vue({
         showModal: false,
         showOffer: false,
         step: 1,
-        totalsteps: 4,
+        totalsteps: 5,
         errors: null,
         guests: 1,
-        maxguests: 2,
         error: null,
 
         steps: [
@@ -235,41 +258,51 @@ let vm = new Vue({
                 active: true,
                 id: 1,
                 name: {
-                    'ru':'Выбор категории',
-                    'en': 'Choose your tour'
+                    'ru':'Выбор<br> категории',
+                    'en': 'Choose<br> your tour'
                 },
                 text: 'text-left',
-                col: 'col-2',
+                col: 'col',
             },
             {
                 active: false,
                 id: 2,
                 name: {
-                    'ru':'Выбор отеля',
-                    'en':'Choose accommodation'
+                    'ru':'Выбор<br> даты',
+                    'en':'Choose<br> dates'
                 },
                 text: 'text-center',
-                col: 'col-4',
+                col: 'col-3',
             },
             {
                 active: false,
                 id: 3,
                 name: {
-                    'ru':'Персональные данные',
-                    'en':'Personal details'
+                    'ru':'Выбор<br> отеля',
+                    'en':'Choose<br> accommodation'
                 },
                 text: 'text-center',
-                col: 'col-4',
+                col: 'col-3',
             },
             {
                 active: false,
                 id: 4,
                 name: {
-                    'ru': 'Покупка тура',
-                    'en': 'Tour purchasing'
+                    'ru':'Персональные<br> данные',
+                    'en':'Personal<br> details'
+                },
+                text: 'text-center',
+                col: 'col-3',
+            },
+            {
+                active: false,
+                id: 5,
+                name: {
+                    'ru': 'Покупка<br> тура',
+                    'en': 'Tour<br> purchasing'
                 },
                 text: 'text-right',
-                col: 'col-2',
+                col: 'col',
             }
         ],
 
@@ -293,6 +326,11 @@ let vm = new Vue({
 
         form: {
             pass: null,
+
+            dateFrom: new Date("03/26/2021"),
+            dateTill: new Date("04/04/2021"),
+            adults: null,
+            kids: null,
 
             hotel: 'RIL',
             hotelName: null,
@@ -443,11 +481,11 @@ let vm = new Vue({
     },
     mounted: function () {
         get_parameters = this.$route.query
-        if (get_parameters.step === 5 && get_parameters.payed !== 1) {
-            this.step = 5;
+        if (get_parameters.step === 6 && get_parameters.payed !== 1) {
+            this.step = 6;
             this.form.payed = 0;
-        } else if (get_parameters.step === 5 && get_parameters.payed === 1) {
-            this.step = 5;
+        } else if (get_parameters.step === 6 && get_parameters.payed === 1) {
+            this.step = 6;
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
         }
@@ -614,7 +652,7 @@ let vm = new Vue({
                 } else {
                     this.errors = null;
                 }
-            } else if (this.step === 2) {
+            } else if (this.step === 3) {
                 if (this.form.hotel === 'RIL') {
                     this.form.hotelName = 'Riders Lodge **';
                     this.form.address = 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 6';
@@ -638,7 +676,7 @@ let vm = new Vue({
                 } else {
                     this.errors = null;
                 }
-            } else if (this.step === 3) {
+            } else if (this.step === 4) {
                 if (!this.form.fname || !this.form.sname) {
                     this.errors = this.translations.errorFillFIO[this.selectedLocale];
                     return false;

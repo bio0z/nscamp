@@ -44,6 +44,7 @@ let paths = {
 // LOGIC
 
 const { src, dest, parallel, series, watch } = require('gulp');
+const gulp         = require('gulp');
 const sass         = require('gulp-sass');
 const scss         = require('gulp-sass');
 const less         = require('gulp-less');
@@ -56,7 +57,8 @@ const autoprefixer = require('gulp-autoprefixer');
 const imagemin     = require('gulp-imagemin');
 const newer        = require('gulp-newer');
 const rsync        = require('gulp-rsync');
-const revts        = require('gulp-rev-timestamp');
+//const version = require('gulp-version-number');
+const rev       = require('gulp-rev-timestamp');
 const del          = require('del');
 
 function browsersync() {
@@ -121,8 +123,9 @@ function startwatch() {
 
 function revtimestamp() {
 	return src(baseDir + '/' + "_index.html")
-		.pipe(revts())
-		.pipe(dest(baseDir + '/'))
+		.pipe(rev())
+		// .pipe(dest(baseDir + '/'))
+		.pipe(gulp.dest('app'))
 }
 
 exports.browsersync = browsersync;
