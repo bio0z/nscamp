@@ -48,6 +48,10 @@ let vm = new Vue({
                 'ru':'Отель',
                 'en':'Hotel',
             },
+            hotelDinner:{
+                'ru':'Завтраки',
+                'en':'Dinner',
+            },
             passDetails:{
                 'ru':'Подробнее',
                 'en':'More'
@@ -334,6 +338,7 @@ let vm = new Vue({
 
             hotel: 'RIL',
             hotelName: null,
+            hotelDinner: null,
             address: null,
             room: null,
 
