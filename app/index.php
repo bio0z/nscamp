@@ -33,7 +33,7 @@ $tourNumber = time();
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="css/app.min.css?rev=b451c340783f387462b9d1181af39547">
+  <link rel="stylesheet" href="css/app.min.css?rev=5941ae2f69bafe23082e113e2a3d634f">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -111,7 +111,7 @@ $tourNumber = time();
             <div class="col-12 col-sm-12 col-md-3 col-lg-2">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="images/svg/step2.svg"/>
+                  <img src="images/svg/step1.svg"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8">
                   {{ translations.stepTour[selectedLocale] }}
@@ -274,7 +274,7 @@ $tourNumber = time();
                     </select>
                   </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 pb-2">
                   <div>
                     <select v-model.trim="form.room" class="custom-select rounded-0 nsc-select"
                             required>
@@ -1133,7 +1133,7 @@ $tourNumber = time();
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-<script src="js/app.min.js?rev=aaeb0b6b1f4c6245d5eff31cc3b13c53"></script>
+<script src="js/app.min.js?rev=4892defb7616903c2c150df32a22fefd"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"
