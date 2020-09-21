@@ -114,6 +114,10 @@ let vm = new Vue({
                 'ru':'Имя',
                 'en':'Name'
             },
+            guestsName:{
+                'ru':'Гости',
+                'en':'Guests'
+            },
             guestSurname:{
                 'ru':'Фамилия',
                 'en':'Surname'
@@ -220,7 +224,7 @@ let vm = new Vue({
             },
             guestOfferAccept:{
                 'ru':'<p>Я согласен c <span class="btn btn-link border-0 p-0"\n' +
-                    '@click.prevent="showOffer = true">договором оферты</span></p>',
+                    '@click.prevent="showOffer = true">политикой конфиденциальности</span></p>',
                 'en':'<p>I accept <span class="btn btn-link border-0 p-0"\n' +
                     '@click.prevent="showOffer = true">offer.</span></p>'
             },
@@ -498,6 +502,9 @@ let vm = new Vue({
     computed: {
         userFIO() {
             return this.form.fname + ' ' + this.form.sname;
+        },
+        guestsNum(){
+            return '2 взрослых / 2 детей';
         },
         roomName() {
             if (this.form.room === 'S') {

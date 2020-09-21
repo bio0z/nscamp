@@ -399,7 +399,11 @@ $tourNumber = time();
                          required>
                 </div>
               </div>
-              <div class="form-row" v-if="form.room === 'D'">
+              <div class="form-row" v-if="form.room !== 'S'">
+                <div class="col-md-12 mb-4">
+                  <span class="nsc-button guest-plus">+</span>
+                  <p>Добавить гостя</p>
+                </div>
                 <h5>{{ translations.secondGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.gfname" name="gfname" type="text"
@@ -431,12 +435,12 @@ $tourNumber = time();
         </section>
         <section v-if="step === 5">
           <div class="row">
-            <div class="col-12 col-sm-12 col-md-8 col-lg-5">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row step-num">
-                <div class="col-2 col-sm-2 col-md-2 col-lg-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
+                <div class="col-2 col-sm-2 col-md-1 col-lg-1 d-flex align-items-start flex-column p-0 nsc-step-num">
                   <img src="images/svg/step5.svg"/>
                 </div>
-                <div class="col-9 col-sm-8 col-md-8 col-lg-9">
+                <div class="col-10">
                   {{ translations.stepFour[selectedLocale] }}
                 </div>
               </div>
@@ -444,16 +448,19 @@ $tourNumber = time();
           </div>
           <div clas="row">
             <div class="row p-2">
-              <div class="col-12 col-sm-12 col-md-1 col-lg-1"></div>
-              <div class="col-12 col-sm-12 col-md-7 col-lg-5 mr-md-3 mr-5 m-sm-0 tour-final-v"
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6"
                    v-bind:class="[ form.pass === 'V' ? 'tour-final-v' : 'tour-final-s']">
-                <div class="tour-final p-3">
+                <div class="tour-final tourIncluded p-3">
                   <h5 v-if="form.pass === 'V'">VIP TOUR</h5>
                   <h5 v-if="form.pass === 'S'">STANDARD TOUR</h5>
                   <div class="row">
                     <label class="col-4" for="tourPersonName">{{ translations.guestName[selectedLocale] }}</label>
                     <input class="col-6 border-0" type="text" id="tourPersonName"
                            :value="userFIO" readonly></div>
+                  <div class="row">
+                    <label class="col-4" for="tourPersonGuests">{{ translations.guestsName[selectedLocale] }}</label>
+                    <input class="col-6 border-0" type="text" id="tourPersonGuests"
+                           :value="guestsNum" readonly></div>
                   <div class="row">
                     <label class="col-4" for="tourPersonEmail">E-mail</label>
                     <input class="col-6 border-0" type="email" class="tourClientEmail" id="tourPersonEmail"
@@ -465,7 +472,7 @@ $tourNumber = time();
                   <div class="row">
                     <label class="col-4" for="tourPersonHotel">{{ translations.guestHotel[selectedLocale] }}</label>
                     <input class="col-6 border-0" type="text" id="tourPersonHotel"
-                           :value="form.hotelname" readonly>
+                           :value="form.hotelName" readonly>
                     <!--                                                <input v-for="(val, key) in hotels" v-if="key == form.hotel" :some-data="key" class="col-8 border-0" type="text" id="tourPersonHotel"-->
                     <!--                                                       :value="val" readonly>-->
                   </div>
@@ -475,24 +482,19 @@ $tourNumber = time();
                            :value="roomName" readonly></div>
                 </div>
               </div>
-              <div class="col pt-3" v-html="translations.tourIncluded[selectedLocale]">
-              </div>
-            </div>
-            <div class="row p-2">
-              <div class="col-1"></div>
-              <div class="col-12 col-sm-12 col-md-8 col-lg-5 p-0">
-                <div class="col-12 col-sm-12 col-md-9 col-lg-9 p-0">
+              <div class="col-12 col-sm-12 col-md-1 col-lg-1"></div>
+              <div class="col pt-3">
+                <div class="tourIncluded" v-html="translations.tourIncluded[selectedLocale]">
+                </div>
+                <div>
                   <input type="text" class="form-control rounded-0"
                          v-model.trim="form.promocode"
                          :placeholder="translations.guestPromoCode[selectedLocale]">
                 </div>
               </div>
-              <div class="col-4"></div>
             </div>
             <div class="row p-2">
-              <div class="col-1"></div>
-              <div class="col-12 col-sm-12 col-md-7 col-lg-5 form-check">
-                <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 form-check">
                   <label class="row">
                     <input v-model.trim="form.consent"
                            class="custom-control-input"
@@ -500,29 +502,22 @@ $tourNumber = time();
                            required>
                     <div class="border-0 mr-1 nsc-checkbox"
                          :class="[form.consent ? ' active' : '']"></div>
-                    <div class="col" v-html="translations.guestAgreement[selectedLocale]"></div>
+                    <div class="col-9" v-html="translations.guestAgreement[selectedLocale]"></div>
                   </label>
-                </div>
               </div>
-              <div class="col-4"></div>
-            </div>
-            <div class="row p-2">
-              <div class="col-1"></div>
-              <div class="col-12 col-sm-12 col-md-7 col-lg-5 form-check">
-                <div class="row">
+              <div class="col-12 col-sm-12 col-md-1 col-lg-1"></div>
+              <div class="col-12 col-sm-12 col-md-5 col-lg-5 form-check">
                   <label class="row">
                     <input v-model.trim="form.offer"
                            class="custom-control-input"
                            type="checkbox"
                            required>
-                    <div class="border-0 mr-1 nsc-checkbox"
+                    <div class="border-0 nsc-checkbox"
                          :class="[form.offer ? ' active' : '']"></div>
-                    <div class="col" v-html="translations.guestOfferAccept[selectedLocale]">
+                    <div class="col-9" v-html="translations.guestOfferAccept[selectedLocale]">
                     </div>
                   </label>
-                </div>
               </div>
-              <div class="col-4"></div>
             </div>
           </div>
         </section>
