@@ -33,7 +33,7 @@ $tourNumber = time();
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="css/app.min.css?rev=5941ae2f69bafe23082e113e2a3d634f">
+  <link rel="stylesheet" href="css/app.min.css?rev=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -108,7 +108,7 @@ $tourNumber = time();
         </ul>
         <section v-if="step === 1">
           <div class="row">
-            <div class="col-12 col-sm-12 col-md-3 col-lg-2">
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img src="images/svg/step1.svg"/>
@@ -118,7 +118,7 @@ $tourNumber = time();
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-9 col-lg-10 mb-2 pl-0 pr-0">
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 mb-2 pl-0 pr-0">
               <div class="row justify-content-end">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
                   <label class="m-1 nsc-pass-label p-0"
@@ -188,9 +188,16 @@ $tourNumber = time();
             <div class="col-12 col-sm-12 col-md-8 col-lg-8 p-sm-2">
               <div class="row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <input class="form-control rounded-0 nsc-select"
-                         type="date" v-model="form.dateFrom"
-                         :placeholder="translations.dateFrom[selectedLocale]"/>
+                  <datepicker class="form-control rounded-0 nsc-select"
+                              v-model="form.dateFrom"
+                              :placeholder="translations.dateFrom[selectedLocale]"
+                              min="2021-03-26"
+                              init="2021-03-26"
+                              selected="2021-03-26">
+                  </datepicker>
+<!--                  <input class="form-control rounded-0 nsc-select"-->
+<!--                         type="date" v-model="form.dateFrom"-->
+<!--                         :placeholder="translations.dateFrom[selectedLocale]"/>-->
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
                   <input class="form-control rounded-0 nsc-select"
@@ -354,7 +361,7 @@ $tourNumber = time();
         </section>
         <section v-if="step === 4">
           <div class="row">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img src="images/svg/step4.svg"/>
@@ -364,7 +371,7 @@ $tourNumber = time();
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-9 pt-sm-2" id="Guests">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-8 pt-sm-2" id="Guests">
               <div class="form-row">
                 <h5>{{ translations.firstGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
@@ -1133,7 +1140,7 @@ $tourNumber = time();
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-<script src="js/app.min.js?rev=4892defb7616903c2c150df32a22fefd"></script>
+<script src="js/app.min.js?rev=1"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"

@@ -2,7 +2,7 @@
 
 let preprocessor = 'sass', // Preprocessor (sass, scss, less, styl)
     fileswatch   = 'html,htm,txt,json,md,woff2', // List of files extensions for watching & hard reload (comma separated)
-    imageswatch  = 'jpg,jpeg,png,webp,svg', // List of images extensions for watching & compression (comma separated)
+    // imageswatch  = 'jpg,jpeg,png,webp,svg', // List of images extensions for watching & compression (comma separated)
     baseDir      = 'app', // Base directory path without «/» at the end
     online       = true; // If «false» - Browsersync will work offline without internet connection
 
@@ -25,10 +25,10 @@ let paths = {
 		dest: baseDir + '/css',
 	},
 
-	images: {
-		src:  baseDir + '/images/src/**/*',
-		dest: baseDir + '/images/dest',
-	},
+	// images: {
+	// 	src:  baseDir + '/images/src/**/*',
+	// 	dest: baseDir + '/images/dest',
+	// },
 
 	deploy: {
 		// hostname:    'iobez@http://84.201.175.62/', // Deploy hostname
@@ -54,7 +54,7 @@ const concat       = require('gulp-concat');
 const browserSync  = require('browser-sync').create();
 const uglify       = require('gulp-uglify-es').default;
 const autoprefixer = require('gulp-autoprefixer');
-const imagemin     = require('gulp-imagemin');
+// const imagemin     = require('gulp-imagemin');
 const newer        = require('gulp-newer');
 const rsync        = require('gulp-rsync');
 //const version = require('gulp-version-number');
@@ -115,11 +115,10 @@ function deploy() {
 
 function startwatch() {
 	watch(baseDir  + '/**/' + preprocessor + '/**/*', styles);
-	watch(baseDir  + '/**/*.{' + imageswatch + '}', images);
+	// watch(baseDir  + '/**/*.{' + imageswatch + '}', images);
 	watch(baseDir  + '/**/*.{' + fileswatch + '}').on('change', browserSync.reload);
 	watch([baseDir + '/**/*.js', '!' + paths.scripts.dest + '/*.min.js'], scripts);
 }
-
 
 function revtimestamp() {
 	return src(baseDir + '/' + "_index.html")
@@ -129,10 +128,10 @@ function revtimestamp() {
 }
 
 exports.browsersync = browsersync;
-exports.assets      = series(cleanimg, styles, scripts, images);
+exports.assets      = series(styles, scripts);
 exports.styles      = styles;
 exports.scripts     = scripts;
-exports.images      = images;
-exports.cleanimg    = cleanimg;
+// exports.images      = images;
+// exports.cleanimg    = cleanimg;
 exports.deploy      = deploy;
-exports.default     = parallel(images, styles, scripts, browsersync, revtimestamp, startwatch);
+exports.default     = parallel(styles, scripts, browsersync, revtimestamp, startwatch);

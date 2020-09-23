@@ -335,8 +335,8 @@ let vm = new Vue({
         form: {
             pass: null,
 
-            dateFrom: new Date("03/26/2021"),
-            dateTill: new Date("04/04/2021"),
+            dateFrom: null,
+            dateTill: null,
             adults: null,
             kids: null,
 
@@ -656,7 +656,6 @@ let vm = new Vue({
             this.form.consent = null
         },
         nextStep() {
-
             if (this.step === 1) {
                 if (!this.form.pass) {
                     this.errors = this.translations.errorChoosePass[this.selectedLocale];
@@ -833,8 +832,7 @@ let vm = new Vue({
     },
 
     submit() {
-
-    }
+    },
 
     //   onSubmit(e) {
     //     e.preventDefault();
@@ -848,17 +846,7 @@ let vm = new Vue({
     //            this.sent = true;
     //        });
     // },
-    // components:{
-    //     'nsc-pass':{
-    //         methods: {
-    //             setActiveClass() {
-    //                 this.$emit('active',this.index);
-    //             },
-    //         }
-    //     }
-    // }
+     components: {
+         datepicker
+     }
 });
-
-// document.getElementById("externalButton").onclick = function () {
-//     vm.$refs.modal.showUserOffer();
-// };
