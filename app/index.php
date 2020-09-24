@@ -7,8 +7,8 @@ $tourNumber = time();
 <html lang="ru">
 <head>
 
-	<meta charset="UTF-8">
-	<base href="/">
+  <meta charset="UTF-8">
+  <base href="/">
 
   <title>New Star Camp 2021</title>
   <meta name="description" content="">
@@ -33,7 +33,7 @@ $tourNumber = time();
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="css/app.min.css?rev=1">
+  <link rel="stylesheet" href="css/app.min.css?rev=1.2">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -188,21 +188,34 @@ $tourNumber = time();
             <div class="col-12 col-sm-12 col-md-8 col-lg-8 p-sm-2">
               <div class="row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <datepicker class="form-control rounded-0 nsc-select"
-                              v-model="form.dateFrom"
-                              :placeholder="translations.dateFrom[selectedLocale]"
-                              min="2021-03-26"
-                              init="2021-03-26"
-                              selected="2021-03-26">
-                  </datepicker>
-<!--                  <input class="form-control rounded-0 nsc-select"-->
-<!--                         type="date" v-model="form.dateFrom"-->
-<!--                         :placeholder="translations.dateFrom[selectedLocale]"/>-->
+                  <vuejs-datepicker
+                      input-class="form-control rounded-0 nsc-select"
+                      v-model="form.dateFrom"
+                      :placeholder="translations.dateFrom[selectedLocale]"
+                      open-date="2021-03-26"
+                      monday-first="true"
+                      bootstrap-styling="true"
+                      :disabled-dates=disabledDates
+                  >
+                  </vuejs-datepicker>
+                  <!--                  <input class="form-control rounded-0 nsc-select"-->
+                  <!--                         type="date" v-model="form.dateFrom"-->
+                  <!--                         :placeholder="translations.dateFrom[selectedLocale]"/>-->
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <input class="form-control rounded-0 nsc-select"
-                        type="date" v-model="form.dateTill"
-                        :placeholder="translations.dateTill[selectedLocale]"/>
+                  <!--                  <input class="form-control rounded-0 nsc-select"-->
+                  <!--                        type="date" v-model="form.dateTill"-->
+                  <!--                        :placeholder="translations.dateTill[selectedLocale]"/>-->
+                  <vuejs-datepicker
+                      input-class="form-control rounded-0 nsc-select"
+                      v-model="form.dateTill"
+                      :placeholder="translations.dateTill[selectedLocale]"
+                      open-date="2021-04-01"
+                      monday-first="true"
+                      bootstrap-styling="true"
+                      :disabled-dates=disabledDates
+                  >
+                  </vuejs-datepicker>
                 </div>
               </div>
               <div class="row">
@@ -218,9 +231,9 @@ $tourNumber = time();
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-<!--                  <input class="form-control custom-select rounded-0 nsc-select"-->
-<!--                         type="text" v-model.number="form.adults"-->
-<!--                         :placeholder="translations.tourAdults[selectedLocale]"/>-->
+                  <!--                  <input class="form-control custom-select rounded-0 nsc-select"-->
+                  <!--                         type="text" v-model.number="form.adults"-->
+                  <!--                         :placeholder="translations.tourAdults[selectedLocale]"/>-->
                   <select v-model.number="form.adults"
                           class="custom-select rounded-0 nsc-select"
                           :placeholder="translations.tourAdults[selectedLocale]"
@@ -238,9 +251,9 @@ $tourNumber = time();
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-<!--                  <input class="form-control custom-select rounded-0 nsc-select"-->
-<!--                         type="text" v-model.number="form.kids"-->
-<!--                         :placeholder="translations.tourKids[selectedLocale]"/>-->
+                  <!--                  <input class="form-control custom-select rounded-0 nsc-select"-->
+                  <!--                         type="text" v-model.number="form.kids"-->
+                  <!--                         :placeholder="translations.tourKids[selectedLocale]"/>-->
                   <select v-model.number="form.kids"
                           class="custom-select rounded-0 nsc-select"
                           :placeholder="translations.tourKids[selectedLocale]"
@@ -296,13 +309,13 @@ $tourNumber = time();
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                   <label class="row m-0">
-                    <input v-model.trim="form.hotelDinner"
+                    <input v-model.trim="form.hotelBreakfast"
                            class="custom-control-input"
                            type="checkbox"
                            required/>
-                    <div class="border-0 mr-1 nsc-checkbox"
-                         :class="[form.hotelDinner ? ' active' : '']"></div>
-                    <div class="col" v-html="translations.hotelDinner[selectedLocale]"></div>
+                    <div class="border-0 mr-1 nsc-bf-checkbox"
+                         :class="[form.hotelBreakfast ? ' active' : '']"></div>
+                    <div class="col" v-html="translations.hotelBreakfast[selectedLocale]"></div>
                   </label>
                 </div>
               </div>
@@ -337,19 +350,19 @@ $tourNumber = time();
                   </button>
                   <div v-if="form.hotel === 'RIL'" hotel-id="0" ref="hotelDiv" class="hotel-gallery">
                     <img image-id='0' class="img-fluid active" ref="hotelImage"
-                         :id="hotels[0].code" :src="hotels[0].gallery[0]" :alt="hotels[1].name" />
+                         :id="hotels[0].code" :src="hotels[0].gallery[0]" :alt="hotels[1].name"/>
                   </div>
                   <div v-if="form.hotel === 'AYS'" hotel-id="1" ref="hotelDiv" class="hotel-gallery">
                     <img image-id='0' class="img-fluid active" ref="hotelImage"
-                         :id="hotels[1].code" :src="hotels[1].gallery[0]" :alt="hotels[1].name" />
+                         :id="hotels[1].code" :src="hotels[1].gallery[0]" :alt="hotels[1].name"/>
                   </div>
                   <div v-if="form.hotel === 'GRF'" hotel-id="2" ref="hotelDiv" class="hotel-gallery">
                     <img image-id='0' class="img-fluid active" ref="hotelImage"
-                         :id="hotels[2].code" :src="hotels[2].gallery[0]" :alt="hotels[1].name" />
+                         :id="hotels[2].code" :src="hotels[2].gallery[0]" :alt="hotels[1].name"/>
                   </div>
                   <div v-if="form.hotel === 'ROS'" hotel-id="3" ref="hotelDiv" class="hotel-gallery">
                     <img image-id='0' class="img-fluid active" ref="hotelImage"
-                         :id="hotels[3].code" :src="hotels[3].gallery[0]" :alt="hotels[1].name" />
+                         :id="hotels[3].code" :src="hotels[3].gallery[0]" :alt="hotels[1].name"/>
                   </div>
                   <button type="button" aria-label="Next Photo" class="gallery next" @click="nextPhoto()">
                     >
@@ -407,10 +420,10 @@ $tourNumber = time();
                 </div>
               </div>
               <div class="form-row" v-if="form.room !== 'S'">
-                <div class="col-md-12 mb-4">
-                  <span class="nsc-button guest-plus">+</span>
-                  <p>Добавить гостя</p>
-                </div>
+                <!--                <div class="col-md-12 mb-4">-->
+                <!--                  <span class="nsc-button guest-plus">+</span>-->
+                <!--                  <p>Добавить гостя</p>-->
+                <!--                </div>-->
                 <h5>{{ translations.secondGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.gfname" name="gfname" type="text"
@@ -502,28 +515,28 @@ $tourNumber = time();
             </div>
             <div class="row p-2">
               <div class="col-12 col-sm-12 col-md-6 col-lg-6 form-check">
-                  <label class="row">
-                    <input v-model.trim="form.consent"
-                           class="custom-control-input"
-                           type="checkbox"
-                           required>
-                    <div class="border-0 mr-1 nsc-checkbox"
-                         :class="[form.consent ? ' active' : '']"></div>
-                    <div class="col-9" v-html="translations.guestAgreement[selectedLocale]"></div>
-                  </label>
+                <label class="row">
+                  <input v-model.trim="form.consent"
+                         class="custom-control-input"
+                         type="checkbox"
+                         required>
+                  <div class="border-0 mr-1 nsc-checkbox"
+                       :class="[form.consent ? ' active' : '']"></div>
+                  <div class="col-9" v-html="translations.guestAgreement[selectedLocale]"></div>
+                </label>
               </div>
               <div class="col-12 col-sm-12 col-md-1 col-lg-1"></div>
               <div class="col-12 col-sm-12 col-md-5 col-lg-5 form-check">
-                  <label class="row">
-                    <input v-model.trim="form.offer"
-                           class="custom-control-input"
-                           type="checkbox"
-                           required>
-                    <div class="border-0 nsc-checkbox"
-                         :class="[form.offer ? ' active' : '']"></div>
-                    <div class="col-9" v-html="translations.guestOfferAccept[selectedLocale]">
-                    </div>
-                  </label>
+                <label class="row">
+                  <input v-model.trim="form.offer"
+                         class="custom-control-input"
+                         type="checkbox"
+                         required>
+                  <div class="border-0 nsc-checkbox"
+                       :class="[form.offer ? ' active' : '']"></div>
+                  <div class="col-9" v-html="translations.guestOfferAccept[selectedLocale]">
+                  </div>
+                </label>
               </div>
             </div>
           </div>
@@ -563,7 +576,7 @@ $tourNumber = time();
               v-if="step !== totalsteps"
               @click.prevent="nextStep">{{ translations.stepNext[selectedLocale] }}
           </button>
-          <?php $host == 'nswpay.ru' ? $token='qlsnf995gkvurbqpc3qm4nbvqs' : $token='5ul0u41eam2n3qpsuicfjim7fj' ?>
+          <?php $host == 'nswpay.ru' ? $token = 'qlsnf995gkvurbqpc3qm4nbvqs' : $token = '5ul0u41eam2n3qpsuicfjim7fj' ?>
           <div
               class="col-4 col-sm-7 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
               v-show="form.consent && form.offer"
@@ -599,18 +612,19 @@ $tourNumber = time();
                 <p>Телефон 8 (812) 670-10-17</p>
               </div>
               <div class="col-12 col-sm-5 col-md-5 col-lg-5">
-<!--                <p>{{ translations.newStarDesc[selectedLocale] }}</p>-->
+                <!--                <p>{{ translations.newStarDesc[selectedLocale] }}</p>-->
               </div>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 pr-0 text-md-right text-sm-left mb-3 order-1 order-md-12">
-              <button id="externalButton" @click.prevent="showModal = true" class="btn btn-link p-0 link f1">
-                <img src="images/svg/user-offer.svg" class="nsc-user-offer">{{ translations.userAgreement[selectedLocale] }}
-              </button>
+            <button id="externalButton" @click.prevent="showModal = true" class="btn btn-link p-0 link f1">
+              <img src="images/svg/user-offer.svg" class="nsc-user-offer">{{ translations.userAgreement[selectedLocale]
+              }}
+            </button>
             <button class="btn btn-link p-0 link">
-                <p v-for="(locale,code) in locales">
-                  <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>
-                </p>
+              <p v-for="(locale,code) in locales">
+                <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>
+              </p>
             </button>
           </div>
         </div>
@@ -1137,10 +1151,11 @@ $tourNumber = time();
   <footer class="row p-3 mb-5">
   </footer>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-<script src="js/app.min.js?rev=1"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="js/app.min.js?rev=1.2"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"

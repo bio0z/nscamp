@@ -41,16 +41,16 @@ let vm = new Vue({
                 'en':'Choose your tour',
             },
             roomType:{
-                'ru':'Выберите категорию размещения',
+                'ru':'Тип номера',
                 'en':'Choose your tour',
             },
             hotelType:{
                 'ru':'Отель',
                 'en':'Hotel',
             },
-            hotelDinner:{
+            hotelBreakfast:{
                 'ru':'Завтраки',
-                'en':'Dinner',
+                'en':'Breakfast',
             },
             passDetails:{
                 'ru':'Подробнее',
@@ -331,20 +331,24 @@ let vm = new Vue({
                 price: 15000,
             }
         ],
+        disabledDates: {
+            to: new Date(2021, 2, 26),
+            from: new Date(2021, 3, 5),
+        },
 
         form: {
             pass: null,
 
             dateFrom: null,
             dateTill: null,
-            adults: null,
-            kids: null,
+            adults: '',
+            kids: '',
 
             hotel: 'RIL',
-            hotelName: null,
-            hotelDinner: null,
+            hotelName: '',
+            hotelBreakfast: null,
             address: null,
-            room: null,
+            room: '',
 
             fname: null,
             sname: null,
@@ -847,6 +851,6 @@ let vm = new Vue({
     //        });
     // },
      components: {
-         datepicker
+         vuejsDatepicker
      }
 });
