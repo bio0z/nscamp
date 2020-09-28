@@ -1,6 +1,7 @@
 <?php
 $tourID = count(scandir('sent/')) + 1;
 $host = $_SERVER['HTTP_HOST'];
+$host == 'localhost' ? $path = 'nscamp/app/': '';
 $tourNumber = time();
 ?>
 
@@ -18,22 +19,22 @@ $tourNumber = time();
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
 
   <!-- Template Basic Images Start -->
-  <meta property="og:image" content="/images/meta-image.jpg">
+  <meta property="og:image" content="<?=$path?>/images/meta-image.jpg">
   <meta
       content="Фестиваль New Star Camp пройдет 26 марта - 4 апреля 2021 года на всесезонном горном курорте «Роза Хутор» (Сочи)."
       property="description">
   <meta content="New Star Camp 2021" property="og:site_name">
   <meta content="New Star Camp 2021" property="og:title">
 
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="apple-touch-icon" sizes="140x140" href="images/apple-touch-icon.png">
+  <link rel="icon" href="<?=$path?>images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="140x140" href="<?=$path?>images/apple-touch-icon.png">
   <!-- Template Basic Images End -->
 
   <!-- Custom Browsers Color Start -->
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="css/app.min.css?rev=1.2">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=1.2">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -93,7 +94,7 @@ $tourNumber = time();
     <div class="col"><h1>{{ translations.title[selectedLocale] }}</h1></div>
     <div class="col text-right nsc-logo">
       <a href="#">
-        <img src="images/svg/nsc-logo.svg">
+        <img src="<?=$path?>images/svg/nsc-logo.svg">
       </a>
     </div>
   </header>
@@ -111,7 +112,7 @@ $tourNumber = time();
             <div class="col-12 col-sm-12 col-md-3 col-lg-3">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="images/svg/step1.svg"/>
+                  <img src="<?=$path?>images/svg/step1.svg"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8">
                   {{ translations.stepTour[selectedLocale] }}
@@ -178,7 +179,7 @@ $tourNumber = time();
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="images/svg/step2.svg"/>
+                  <img src="<?=$path?>images/svg/step2.svg"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8">
                   {{ translations.stepDates[selectedLocale] }}
@@ -275,7 +276,7 @@ $tourNumber = time();
             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="images/svg/step3.svg"/>
+                  <img src="<?=$path?>images/svg/step3.svg"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8">
                   {{ translations.stepHotel[selectedLocale] }}
@@ -290,7 +291,7 @@ $tourNumber = time();
                             class="custom-select rounded-0 nsc-select"
                             required>
                       <option value="" disabled selected>{{ translations.hotelType[selectedLocale] }}</option>
-                      <option v-for="hotel in hotels" v-if="hotel.active" :value=hotel.code>{{ hotel.name }}</option>
+                      <option v-for="hotel in activeHotels" :value=hotel.code>{{ hotel.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -299,7 +300,7 @@ $tourNumber = time();
                     <select v-model.trim="form.room" class="custom-select rounded-0 nsc-select"
                             required>
                       <option value="" disabled selected>{{ translations.roomType[selectedLocale] }}</option>
-                      <option v-for="room in rooms" v-if="room.active" :value=room.code>{{ room.name }}</option>
+                      <option v-for="room in activeHotelRooms" :value=room.code>{{ room.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -327,42 +328,18 @@ $tourNumber = time();
             <div class="col-12 col-sm-12 col-md-11 col-lg-11">
               <div class="row hotel mainbg">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-4 order-12 order-lg-1">
-                  <div v-if="form.hotel === 'RIL'">
-                    <h3>{{ hotels[0].name }}</h3>
-                    <p class="f1">{{ hotels[0].desc[selectedLocale] }}</p>
-                  </div>
-                  <div v-if="form.hotel === 'AYS'">
-                    <h3>{{ hotels[1].name }}</h3>
-                    <p class="f1">{{ hotels[1].desc[selectedLocale] }}</p>
-                  </div>
-                  <div v-if="form.hotel === 'GRF'">
-                    <h3>{{ hotels[2].name }}</h3>
-                    <p class="f1">{{ hotels[2].desc[selectedLocale] }}</p>
-                  </div>
-                  <div v-if="form.hotel === 'ROS'">
-                    <h3>{{ hotels[3].name }}</h3>
-                    <p class="f1">{{ hotels[3].desc[selectedLocale] }}</p>
+                  <div :data-val="currentHotel">
+                    <h3>{{ hotels[currentHotel].name }}</h3>
+                    <p class="f1">{{ hotels[currentHotel].desc[selectedLocale] }}</p>
                   </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-0 text-right order-1 order-lg-12">
                   <button type="button" aria-label="Previous Photo" class="gallery previous" @click="previousPhoto()">
                     <
                   </button>
-                  <div v-if="form.hotel === 'RIL'" hotel-id="0" ref="hotelDiv" class="hotel-gallery">
+                  <div v-if="form.hotel === 'RIL'" :hotel-id="currentHotel" ref="hotelDiv" class="hotel-gallery">
                     <img image-id='0' class="img-fluid active" ref="hotelImage"
-                         :id="hotels[0].code" :src="hotels[0].gallery[0]" :alt="hotels[1].name"/>
-                  </div>
-                  <div v-if="form.hotel === 'AYS'" hotel-id="1" ref="hotelDiv" class="hotel-gallery">
-                    <img image-id='0' class="img-fluid active" ref="hotelImage"
-                         :id="hotels[1].code" :src="hotels[1].gallery[0]" :alt="hotels[1].name"/>
-                  </div>
-                  <div v-if="form.hotel === 'GRF'" hotel-id="2" ref="hotelDiv" class="hotel-gallery">
-                    <img image-id='0' class="img-fluid active" ref="hotelImage"
-                         :id="hotels[2].code" :src="hotels[2].gallery[0]" :alt="hotels[1].name"/>
-                  </div>
-                  <div v-if="form.hotel === 'ROS'" hotel-id="3" ref="hotelDiv" class="hotel-gallery">
-                    <img image-id='0' class="img-fluid active" ref="hotelImage"
-                         :id="hotels[3].code" :src="hotels[3].gallery[0]" :alt="hotels[1].name"/>
+                         :id="hotels[currentHotel].code" :src="hotels[currentHotel].gallery[0]" :alt="hotels[currentHotel].name"/>
                   </div>
                   <button type="button" aria-label="Next Photo" class="gallery next" @click="nextPhoto()">
                     >
@@ -377,7 +354,7 @@ $tourNumber = time();
             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="images/svg/step4.svg"/>
+                  <img src="<?=$path?>images/svg/step4.svg"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8">
                   {{ translations.stepThree[selectedLocale] }}
@@ -458,7 +435,7 @@ $tourNumber = time();
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row step-num">
                 <div class="col-2 col-sm-2 col-md-1 col-lg-1 d-flex align-items-start flex-column p-0 nsc-step-num">
-                  <img src="images/svg/step5.svg"/>
+                  <img src="<?=$path?>images/svg/step5.svg"/>
                 </div>
                 <div class="col-10">
                   {{ translations.stepFour[selectedLocale] }}
@@ -601,7 +578,7 @@ $tourNumber = time();
           <div class="col-12 col-md-8 col-lg-8 order-12 order-md-1">
             <div class="row">
               <div class="col-1 p-0 text-center">
-                <img src="images/svg/wnsc-logo.svg" class="mb-2 nsc-logo">
+                <img src="<?=$path?>images/svg/wnsc-logo.svg" class="mb-2 nsc-logo">
                 <p>ООО «НЬЮ СТАР»</p>
               </div>
               <div class="col-10 col-sm-6 col-md-6 col-lg-6">
@@ -618,7 +595,7 @@ $tourNumber = time();
           </div>
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 pr-0 text-md-right text-sm-left mb-3 order-1 order-md-12">
             <button id="externalButton" @click.prevent="showModal = true" class="btn btn-link p-0 link f1">
-              <img src="images/svg/user-offer.svg" class="nsc-user-offer">{{ translations.userAgreement[selectedLocale]
+              <img src="<?=$path?>images/svg/user-offer.svg" class="nsc-user-offer">{{ translations.userAgreement[selectedLocale]
               }}
             </button>
             <button class="btn btn-link p-0 link">
@@ -1155,7 +1132,7 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="js/app.min.js?rev=1.2"></script>
+<script src="<?=$path?>js/app.min.js?rev=1.3"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"
