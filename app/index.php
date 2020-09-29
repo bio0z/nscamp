@@ -34,7 +34,7 @@ $tourNumber = time();
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=1.2">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=1.3">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -289,6 +289,7 @@ $tourNumber = time();
                   <div class="btn-group input-group-prepend">
                     <select v-model.trim="form.hotel"
                             class="custom-select rounded-0 nsc-select"
+                            @change="showHotelPhoto"
                             required>
                       <option value="" disabled selected>{{ translations.hotelType[selectedLocale] }}</option>
                       <option v-for="hotel in activeHotels" :value=hotel.code>{{ hotel.name }}</option>
@@ -297,7 +298,9 @@ $tourNumber = time();
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pb-2">
                   <div>
-                    <select v-model.trim="form.room" class="custom-select rounded-0 nsc-select"
+                    <select v-model.trim="form.room"
+                            class="custom-select rounded-0 nsc-select"
+                            @change="showRoomPhoto"
                             required>
                       <option value="" disabled selected>{{ translations.roomType[selectedLocale] }}</option>
                       <option v-for="room in activeHotelRooms" :value=room.code>{{ room.name }}</option>
@@ -330,14 +333,14 @@ $tourNumber = time();
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-4 order-12 order-lg-1">
                   <div :data-val="currentHotel">
                     <h3>{{ hotels[currentHotel].name }}</h3>
-                    <p class="f1">{{ hotels[currentHotel].desc[selectedLocale] }}</p>
+                    <p class="f1" ref="hotelText">{{ hotels[currentHotel].desc[selectedLocale] }}</p>
                   </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-0 text-right order-1 order-lg-12">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-0 hotel-photo text-right order-1 order-lg-12">
                   <button type="button" aria-label="Previous Photo" class="gallery previous" @click="previousPhoto()">
                     <
                   </button>
-                  <div v-if="form.hotel === 'RIL'" :hotel-id="currentHotel" ref="hotelDiv" class="hotel-gallery">
+                  <div :hotel-id="currentHotel" ref="hotelDiv" class="hotel-gallery">
                     <img image-id='0' class="img-fluid active" ref="hotelImage"
                          :id="hotels[currentHotel].code" :src="hotels[currentHotel].gallery[0]" :alt="hotels[currentHotel].name"/>
                   </div>
@@ -1132,7 +1135,7 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=1.3"></script>
+<script src="<?=$path?>js/app.min.js?rev=1.5"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"

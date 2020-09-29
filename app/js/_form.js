@@ -378,26 +378,30 @@ let vm = new Vue({
                 gallery:
                     [
                         'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-1.jpg',
-                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2.JPG',
-                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-3.jpg',
-                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-4.jpg',
-                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-5.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-3-dorm-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-4-family-1.jpg',
                     ],
                 rooms:[
                     {
                         active: true,
                         name: 'Стандарт',
                         code: 'S',
-                        desc: '"- +/- 30 кв. м. \n' +
-                            '- Вместимость до 3-х человек\n' +
-                            '- Вид на горы\n' +
-                            '- WI-FI\n' +
-                            '- Телефон\n' +
-                            '- Фен\n' +
-                            '- Светильник\n' +
-                            '- Гигиенические средства\n' +
-                            '- Полотенца\n' +
-                            '- Сушилка для белья"',
+                        desc: {
+                            'ru': '- +/- 30 кв. м. \n' +
+                                '- Вместимость до 3-х человек \n' +
+                                '- Вид на горы \n' +
+                                '- WI-FI \n' +
+                                '- Телефон \n' +
+                                '- Фен \n' +
+                                '- Светильник \n' +
+                                '- Гигиенические средства \n' +
+                                '- Полотенца \n' +
+                                '- Сушилка для белья',
+                            'en': ''
+                        },
                         gallery:[
 
                         ]
@@ -406,8 +410,11 @@ let vm = new Vue({
                         active: true,
                         name: 'Dorm',
                         code: 'D',
-                        desc: '"- +/- 30 кв. м. \n' +
-                            '- Сместимость до 4-х человек"',
+                        desc: {
+                            'ru':'- +/- 30 кв. м. \n' +
+                                '- Сместимость до 4-х человек',
+                            'en': ''
+                        },
                         gallery:[
 
                         ]
@@ -416,12 +423,15 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандарт улучшенный (до 3-х гостей)',
                         code: 'S3',
-                        desc: '"- +/- 35 кв. м. \n' +
-                            '- Вместимость до 3-х человек\n' +
-                            '- Вид на горы\n' +
-                            '- Халат и тапочки\n' +
-                            '- Чайная и кофейная станция\n' +
-                            '- Холодильник"',
+                        desc: {
+                            'ru': '- +/- 35 кв. м. \n' +
+                                '- Вместимость до 3-х человек\n' +
+                                '- Вид на горы\n' +
+                                '- Халат и тапочки\n' +
+                                '- Чайная и кофейная станция\n' +
+                                '- Холодильник"',
+                            'en': ''
+                        },
                         gallery:[
 
                         ]
@@ -430,12 +440,15 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандарт улучшенный (до 5-ти гостей)',
                         code: 'S5',
-                        desc: '"- +/- 50 кв. м. \n' +
-                            '- Вместимость до 5-ти человек\n' +
-                            '- Вид на горы\n' +
-                            '- Халат и тапочки\n' +
-                            '- Чайная и кофейная станция\n' +
-                            '- Холодильник"',
+                        desc:{
+                            'ru': '- +/- 50 кв. м. \n' +
+                                '- Вместимость до 5-ти человек\n' +
+                                '- Вид на горы\n' +
+                                '- Халат и тапочки\n' +
+                                '- Чайная и кофейная станция\n' +
+                                '- Холодильник',
+                            'en': ''
+                        },
                         gallery:[
 
                         ]
@@ -444,14 +457,17 @@ let vm = new Vue({
                         active: true,
                         name: 'Двухкомнатный номер',
                         code: 'D2',
-                        desc: '"- +/- 60 кв. м. \n' +
-                            '- Вместимость до 4-х человек\n' +
-                            '- 2 раздельные/одна большая кровать\n' +
-                            '- Диван кровать\n' +
-                            '- Гостевой туалет\n' +
-                            '- Халат и тапочки\n' +
-                            '- Чайная и кофейная станция\n' +
-                            '- Холодильник"',
+                        desc: {
+                            'ru': '- +/- 60 кв. м. \n' +
+                                '- Вместимость до 4-х человек\n' +
+                                '- 2 раздельные/одна большая кровать\n' +
+                                '- Диван кровать\n' +
+                                '- Гостевой туалет\n' +
+                                '- Халат и тапочки\n' +
+                                '- Чайная и кофейная станция\n' +
+                                '- Холодильник',
+                            'en': ''
+                        },
                         gallery:[
 
                         ]
@@ -627,148 +643,62 @@ let vm = new Vue({
                 active: true,
                 name: 'Отель Radisson Rosa Khutor 5*',
                 code: 'RRK5',
-                gallery: [],
+                gallery: [
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-2-standard-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-3-premium-balcony-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-4-half-lux-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-5-lux-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-6-president-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-6-president-1.jpg',
+                ],
                 rooms: [
                     {
                         active: true,
                         name: 'Стандарт',
                         code: 'S',
-                        desc:'"- +/- 27 кв. м. \n' +
-                            '- Халат и тапочки\n' +
-                            '- Чайный и кофейный набор\n' +
-                            '- ЖК-телевизор\n' +
-                            '- Сейф в номере\n' +
-                            '- Увеличительное зеркало\n' +
-                            '- Профессиональный фен\n' +
-                            '- Тропический душ\n' +
-                            '- Бесплатная вода\n' +
-                            '- Бесплатный WI-FI"'
+                        desc: {
+                            'ru': '- +/- 27 кв. м. \n' +
+                                '- Халат и тапочки\n' +
+                                '- Чайный и кофейный набор\n' +
+                                '- ЖК-телевизор\n' +
+                                '- Сейф в номере\n' +
+                                '- Увеличительное зеркало\n' +
+                                '- Профессиональный фен\n' +
+                                '- Тропический душ\n' +
+                                '- Бесплатная вода\n' +
+                                '- Бесплатный WI-FI',
+                            'en': '- +/- 27 м2 \n' +
+                                '- Bathrobe and slippers\n' +
+                                '- Tea and Coffe\n' +
+                                '- TV\n' +
+                                '- Safe\n' +
+                                '- Mirror\n' +
+                                '- Hair Dryer\n' +
+                                '- Tropic bath\n' +
+                                '- Water\n' +
+                                '-  WI-FI'
+                        }
                     },
                     {
                         active: true,
                         name: 'Премиум с балконом',
                         code: 'PB',
-                        desc:'"- +/- 29 кв. м. \n' +
-                            '- Балкон \n' +
-                            '- Высокий этаж\n' +
-                            '- Халат и тапочки\n' +
-                            '- Эспрессо-машина, чайник в номере\n' +
-                            '- Утюг и гладильная доска\n' +
-                            '- ЖК-телевизор\n' +
-                            '- Сейф в номера\n' +
-                            '- Увеличительное зеркало\n' +
-                            '- Профессиональный фен\n' +
-                            '- Тропический душ\n' +
-                            '- Бесплатная вода\n' +
-                            '- Бесплатныцй WI-FI"'
-                    },
-                    {
-                        active: true,
-                        name: 'Полулюкс с видом на площадь',
-                        code: 'HLV',
-                        desc:'"- +/- 46 кв. м. \n' +
-                            '- Вид на площадь\n' +
-                            '- Спальня и отдельная гостиная комната в стиле особняка Нью-Йорка\n' +
-                            '- Халат и тапочки\n' +
-                            '- Дополнительные косметические принадлежности\n' +
-                            '- Эспрессо-машина, сайник в номере\n' +
-                            '- Утюг и гладильная доска\n' +
-                            '- ЖК-телевизор\n' +
-                            '- Сейф в номере\n' +
-                            '- Увеличительное зеркало\n' +
-                            '- Профессиональный фен\n' +
-                            '- Тропический душ\n' +
-                            '- Бесплатная вода\n' +
-                            '- Бесплатный WI-FI"'
-                    },
-                    {
-                        active: true,
-                        name: 'Люкс',
-                        code: 'L',
-                        desc:'"- +/- 50 кв. м. \n' +
-                            '- Вид на реку или на горы\n' +
-                            '- Спальня и отдельная гостинная комната в стиле особняка Нью-Йорка\n' +
-                            '- Халат и тапочки\n' +
-                            '- Дополнительные косметические принадлежности\n' +
-                            '- Эспрессо-машина, чайник в номере\n' +
-                            '- Утюг и гладильная доска\n' +
-                            '- ЖК-телевизор\n' +
-                            '- Сейф в номере\n' +
-                            '- Увеличительное зеркало\n' +
-                            '- Профессиональный фен\n' +
-                            '- Тропический душ\n' +
-                            '- Бесплатная вода\n' +
-                            '- Бесплатный WI-FI"'
-                    },
-                    {
-                        active: true,
-                        name: 'Президентский люкс',
-                        code: 'PREL',
-                        desc:'"- +/- 115 кв. м. \n' +
-                            '- Вид на реку\n' +
-                            '- 2 спальни и отдельная гостиная комната в стиле особняка Нью-Йорка\n' +
-                            '- Ванная и душ в каждой спальне\n' +
-                            '- Халат и тапочки\n' +
-                            '- Дополнительные косметические принадлежности\n' +
-                            '- Эспрессо-машина, чайник в номере\n' +
-                            '- Утюг и гладильная доска\n' +
-                            '- ЖК-телевизор\n' +
-                            '- Сейф в номере\n' +
-                            '- Увеличительное зеркало\n' +
-                            '- Профессиональный фен\n' +
-                            '- Тропический душ\n' +
-                            '- Бесплатная вода\n' +
-                            '- Бесплатный WI-FI"'
-                    },
-                    {
-                        active: true,
-                        name: 'Семейный номер',
-                        code: 'FAML',
-                        desc:'"- +/- 28 кв. м. \n' +
-                            '- Дверь в номер категории Люкс\n' +
-                            '- Вид на реку\n' +
-                            '- Халат и тапочки\n' +
-                            '- Чайный и кофейный набор\n' +
-                            '- Утюг и гладильная дооска\n' +
-                            '- ЖК-телевизор\n' +
-                            '- Сейф в номере\n' +
-                            '- Увеличительное зеркало\n' +
-                            '- Профессиональный фен\n' +
-                            '- Тропический душ\n' +
-                            '- Бесплатная вода\n' +
-                            '- Бесплатный WI-FI "'
-                    }
-                ],
-                desc: {
-                    'ru': 'Расположенный среди знаменитых Кавказских гор на знаменитом российском горном курорте "Роза Хутор", отель Radisson Rosa Khutor 5* предлагает первоклассный сервис, комфортное проживание и широкий спектр дополнительных услуг.Гостям отеля Radisson Hotel Rosa Khutor представится возможность не только увидеть поразительные горные вершины Кавказа, но и заняться самыми популярными в мире зимними видами спорта. В шаговой доступности от отеля находятся подъемники «Олимпия» и «Стрела».Отель Radisson Hotel Rosa Khutor предлагает своим гостям комфортабельные номера различных категорий, оснащённых всем необходимым согласно международным стандартам Radisson Hotel Group, как для деловых поездок, так и для отдыха.Гордостью отеля является открытая терраса Mercedes Sky Lounge с двумя подогреваемыми джакузи и панорамным баром, расположенная на высоте птичьего полёта.',
-                    'en': '"The best hotel at Rosa Khutor Resort, named The Best Ski Resort Hotel by the World Ski Awards in 2014 and 2015. All the rooms in the hotel are designed by Swedish designer Christian Lundwall and furnished in full compliance with world-class standards. Two restaurants and an amazing spa area are available in the hotel. For the guests’ convenience, the hotel offers a fully equipped room for storage and drying of the sports equipment. The major benefit of the hotel is its convenient location within a few steps from «Olympia» and «Strela» ropeways.\n' +
-                        'Rosa Dolina, \n' +
-                        'level 560"'
-                }
-            },
-            {
-                active: true,
-                name: 'Отель Park Inn by Radisson Rosa Khutor 4*',
-                code: 'PIRRS4',
-                gallery: [],
-                rooms: [
-                    {
-                        active: true,
-                        name: 'Стандарт',
-                        code: 'S',
                         desc:{
-                            'ru':'"- +/- 28 кв. м.\n' +
-                                '- Принадлежности для приготовления чая/кофе\n' +
-                                '- Сейф\n' +
-                                '- Мини-бар по требованию\n' +
-                                '- Увеличительное заркало\n' +
-                                '- Тапочки\n' +
-                                '- Фен\n' +
+                            'ru': '- +/- 29 кв. м. \n' +
+                                '- Балкон \n' +
+                                '- Высокий этаж\n' +
+                                '- Халат и тапочки\n' +
+                                '- Эспрессо-машина, чайник в номере\n' +
+                                '- Утюг и гладильная доска\n' +
+                                '- ЖК-телевизор\n' +
+                                '- Сейф в номера\n' +
+                                '- Увеличительное зеркало\n' +
+                                '- Профессиональный фен\n' +
                                 '- Тропический душ\n' +
-                                '- ЖК-телевизор \n' +
-                                '-Бесплатная вода\n' +
-                                '- Бесплатный Wi-Fi"',
-                            'en':'"""- +/- 29 m2\n' +
+                                '- Бесплатная вода\n' +
+                                '- Бесплатныцй WI-FI',
+                            'en': '- +/- 29 m2\n' +
                                 '- Balcony \n' +
                                 '- High floor\n' +
                                 '- Халат и тапочки\n' +
@@ -780,7 +710,194 @@ let vm = new Vue({
                                 '- Tropic bath\n' +
                                 '- Hair Dryer\n' +
                                 '- Water\n' +
-                                '- WI-FI"""'
+                                '- WI-FI'
+                        }
+                    },
+                    {
+                        active: true,
+                        name: 'Полулюкс с видом на площадь',
+                        code: 'HLV',
+                        desc:{
+                            'ru':'- +/- 46 кв. м. \n' +
+                                '- Вид на площадь\n' +
+                                '- Спальня и отдельная гостиная комната в стиле особняка Нью-Йорка\n' +
+                                '- Халат и тапочки\n' +
+                                '- Дополнительные косметические принадлежности\n' +
+                                '- Эспрессо-машина, сайник в номере\n' +
+                                '- Утюг и гладильная доска\n' +
+                                '- ЖК-телевизор\n' +
+                                '- Сейф в номере\n' +
+                                '- Увеличительное зеркало\n' +
+                                '- Профессиональный фен\n' +
+                                '- Тропический душ\n' +
+                                '- Бесплатная вода\n' +
+                                '- Бесплатный WI-FI',
+                            'en': '- +/- 29 m2\n' +
+                                '- Balcony \n' +
+                                '- High floor\n' +
+                                '- Халат и тапочки\n' +
+                                '- Espresso machine, Teapot\n' +
+                                '- Iron\n' +
+                                '- TV\n' +
+                                '- Safe\n' +
+                                '- Mirror\n' +
+                                '- Tropic bath\n' +
+                                '- Hair Dryer\n' +
+                                '- Water\n' +
+                                '- WI-FI'
+                        }
+                    },
+                    {
+                        active: true,
+                        name: 'Люкс',
+                        code: 'L',
+                        desc:{
+                            'ru':'- +/- 50 кв. м. \n' +
+                                '- Вид на реку или на горы\n' +
+                                '- Спальня и отдельная гостинная комната в стиле особняка Нью-Йорка\n' +
+                                '- Халат и тапочки\n' +
+                                '- Дополнительные косметические принадлежности\n' +
+                                '- Эспрессо-машина, чайник в номере\n' +
+                                '- Утюг и гладильная доска\n' +
+                                '- ЖК-телевизор\n' +
+                                '- Сейф в номере\n' +
+                                '- Увеличительное зеркало\n' +
+                                '- Профессиональный фен\n' +
+                                '- Тропический душ\n' +
+                                '- Бесплатная вода\n' +
+                                '- Бесплатный WI-FI"',
+                            'en': '- +/- 50 m2\n' +
+                                '- Balcony \n' +
+                                '- High floor\n' +
+                                '- Халат и тапочки\n' +
+                                '- Espresso machine, Teapot\n' +
+                                '- Iron\n' +
+                                '- TV\n' +
+                                '- Safe\n' +
+                                '- Mirror\n' +
+                                '- Tropic bath\n' +
+                                '- Hair Dryer\n' +
+                                '- Water\n' +
+                                '- WI-FI'
+                        }
+                    },
+                    {
+                        active: true,
+                        name: 'Президентский люкс',
+                        code: 'PREL',
+                        desc:{
+                            'ru': '- +/- 115 кв. м. \n' +
+                                '- Вид на реку\n' +
+                                '- 2 спальни и отдельная гостиная комната в стиле особняка Нью-Йорка\n' +
+                                '- Ванная и душ в каждой спальне\n' +
+                                '- Халат и тапочки\n' +
+                                '- Дополнительные косметические принадлежности\n' +
+                                '- Эспрессо-машина, чайник в номере\n' +
+                                '- Утюг и гладильная доска\n' +
+                                '- ЖК-телевизор\n' +
+                                '- Сейф в номере\n' +
+                                '- Увеличительное зеркало\n' +
+                                '- Профессиональный фен\n' +
+                                '- Тропический душ\n' +
+                                '- Бесплатная вода\n' +
+                                '- Бесплатный WI-FI',
+                            'en': '- +/- 115 m2\n' +
+                                '- Balcony \n' +
+                                '- High floor\n' +
+                                '- Халат и тапочки\n' +
+                                '- Espresso machine, Teapot\n' +
+                                '- Iron\n' +
+                                '- TV\n' +
+                                '- Safe\n' +
+                                '- Mirror\n' +
+                                '- Tropic bath\n' +
+                                '- Hair Dryer\n' +
+                                '- Water\n' +
+                                '- WI-FI'
+                        }
+                    },
+                    {
+                        active: true,
+                        name: 'Семейный номер',
+                        code: 'FAML',
+                        desc:{
+                            'ru': '- +/- 28 кв. м. \n' +
+                                    '- Дверь в номер категории Люкс\n' +
+                                '- Вид на реку\n' +
+                                '- Халат и тапочки\n' +
+                                '- Чайный и кофейный набор\n' +
+                                '- Утюг и гладильная дооска\n' +
+                                '- ЖК-телевизор\n' +
+                                '- Сейф в номере\n' +
+                                '- Увеличительное зеркало\n' +
+                                '- Профессиональный фен\n' +
+                                '- Тропический душ\n' +
+                                '- Бесплатная вода\n' +
+                                '- Бесплатный WI-FI',
+                            'en': '- +/- 29 m2\n' +
+                                '- Balcony \n' +
+                                '- High floor\n' +
+                                '- Халат и тапочки\n' +
+                                '- Espresso machine, Teapot\n' +
+                                '- Iron\n' +
+                                '- TV\n' +
+                                '- Safe\n' +
+                                '- Mirror\n' +
+                                '- Tropic bath\n' +
+                                '- Hair Dryer\n' +
+                                '- Water\n' +
+                                '- WI-FI'
+                        }
+                    }
+                ],
+                desc: {
+                    'ru': 'Расположенный среди знаменитых Кавказских гор на знаменитом российском горном курорте "Роза Хутор", отель Radisson Rosa Khutor 5* предлагает первоклассный сервис, комфортное проживание и широкий спектр дополнительных услуг.Гостям отеля Radisson Hotel Rosa Khutor представится возможность не только увидеть поразительные горные вершины Кавказа, но и заняться самыми популярными в мире зимними видами спорта. В шаговой доступности от отеля находятся подъемники «Олимпия» и «Стрела».Отель Radisson Hotel Rosa Khutor предлагает своим гостям комфортабельные номера различных категорий, оснащённых всем необходимым согласно международным стандартам Radisson Hotel Group, как для деловых поездок, так и для отдыха.Гордостью отеля является открытая терраса Mercedes Sky Lounge с двумя подогреваемыми джакузи и панорамным баром, расположенная на высоте птичьего полёта.',
+                    'en': 'The best hotel at Rosa Khutor Resort, named The Best Ski Resort Hotel by the World Ski Awards in 2014 and 2015. All the rooms in the hotel are designed by Swedish designer Christian Lundwall and furnished in full compliance with world-class standards. Two restaurants and an amazing spa area are available in the hotel. For the guests’ convenience, the hotel offers a fully equipped room for storage and drying of the sports equipment. The major benefit of the hotel is its convenient location within a few steps from «Olympia» and «Strela» ropeways.\n' +
+                        'Rosa Dolina, level 560'
+                }
+            },
+            {
+                active: true,
+                name: 'Отель Park Inn by Radisson Rosa Khutor 4*',
+                code: 'PIRRS4',
+                gallery: [
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-3-family-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-4-half-lux-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-5-lux-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-6-president-lux-1.jpg',
+                ],
+                rooms: [
+                    {
+                        active: true,
+                        name: 'Стандарт',
+                        code: 'S',
+                        desc:{
+                            'ru':'- +/- 28 кв. м.\n' +
+                                '- Принадлежности для приготовления чая/кофе\n' +
+                                '- Сейф\n' +
+                                '- Мини-бар по требованию\n' +
+                                '- Увеличительное заркало\n' +
+                                '- Тапочки\n' +
+                                '- Фен\n' +
+                                '- Тропический душ\n' +
+                                '- ЖК-телевизор \n' +
+                                '-Бесплатная вода\n' +
+                                '- Бесплатный Wi-Fi',
+                            'en':'- +/- 29 m2\n' +
+                                '- Balcony \n' +
+                                '- High floor\n' +
+                                '- Халат и тапочки\n' +
+                                '- Espresso machine, Teapot\n' +
+                                '- Iron\n' +
+                                '- TV\n' +
+                                '- Safe\n' +
+                                '- Mirror\n' +
+                                '- Tropic bath\n' +
+                                '- Hair Dryer\n' +
+                                '- Water\n' +
+                                '- WI-FI'
                         }
                     },
                     {
@@ -788,7 +905,7 @@ let vm = new Vue({
                         name: 'Семейнный номер - софа',
                         code: 'FS',
                         desc:{
-                            'ru':'"- +/- 32 кв.м.\n' +
+                            'ru':'- +/- 32 кв.м.\n' +
                                 '- Софа\n' +
                                 '- Халат и тапочки\n' +
                                 '- Принадлежности для приготовления чая/кофе\n' +
@@ -799,7 +916,7 @@ let vm = new Vue({
                                 '- Тропический душ\n' +
                                 '- ЖК-телевизор\n' +
                                 '- Бесплатная вода\n' +
-                                '- Бесплатный Wi-Fi"',
+                                '- Бесплатный Wi-Fi',
                             'en':''
                         }
                     },
@@ -876,6 +993,147 @@ let vm = new Vue({
             },
             {
                 active: true,
+                name: 'Отель Mercure Rosa Khutor 4*',
+                code: 'MRK4',
+                gallery: [
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-2-standard-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-3-suite-1.jpg',
+                ],
+                rooms: [
+                    {
+                        active: true,
+                        name: 'Стандарт',
+                        code: 'S',
+                        desc:{
+                            'ru':'- +/- 26 кв. м. \n' +
+                                '- Вид на реку\n' +
+                                '- Высоокий этаж \n' +
+                                '- Кофе-машина\n' +
+                                '- Дополнительные удобства в номере',
+                            'en':''
+                        }
+                    },
+                    {
+                        active: true,
+                        name: '2-х комнатный сьюит',
+                        code: 'S2',
+                        desc:{
+                            'ru':'- +/- 48 кв. м. \n' +
+                                '- Вид на реку\n' +
+                                '- Спальня и гостиная\n' +
+                                '- Кофе-машина\n' +
+                                '- Дополнительные удобства в номере',
+                            'en':''
+                        }
+                    }
+                ],
+                desc: {
+                    'ru': '«Mercure» Роза Хутор расположен в курортном поселке Эсто-Садок. Отель является дочерним проектом сети гостиниц «Mercure Hotel», имеющей представительство в 68 странах.     «Меркюр» Роза соответствует стандартам крупной отельной цепочки и идеально подходит как для отдыха, так и для бизнеса.                                                                                                      «Меркюр Роза Хутор» имеет удобное расположение в 150 м от горнолыжного подъемника. В 1 км от отеля находятся центр санного спорта и биатлонный комплекс «Лаура».                           После катания на лыжах гости могут попариться в банном комплексе отеля и поплавать в бассейне 25x5 м со стеклянным куполом, потренироваться в тренажерном зале или в современном фитнес-центре.\n' +
+                        'Современная конференц-зона подойдет для проведения конференций, семинаров, банкетов любого уровня.',
+                    'en': 'The only hotel on the lower level of Rosa Khutor Resort with its own swimming pool — you should definitely take the opportunity to cool down after an eventful day or night. The hotel also offers a spacious room to store and dry your equipment. The distance to the lower ropeway stations is 500 m.'
+                }
+            },
+            {
+                active: true,
+                name: 'Приют Панды',
+                code: 'PP',
+                gallery: [
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-2-small.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-3-standard.jpg',
+                ],
+                rooms: [
+                    {
+                        active: true,
+                        name: '',
+                        code: '',
+                        desc:{
+                            'ru':'',
+                            'en':''
+                        }
+                    },
+                    {
+                        active: true,
+                        name: '',
+                        code: '',
+                        desc:{
+                            'ru':'',
+                            'en':''
+                        }
+                    }
+                ],
+                desc: {
+                    'ru': 'Небольшой и уютный отель, расположен в самом начале горной олимпийской деревни, в непосредственной близости от бесплатной гостевой парковки. Комфортная и яркая зона отдыха с настольными играми, кафе и большим экраном позволит отдохнуть после насыщенного катального дня.',
+                    'en': 'A cozy, little hotel located at the entrance of the Olympic village right next to the free parking lots for guests. A colorful and comfortable recreation area where you can find table-top games, cafes and a large screen to relax after a hectic day on the slopes.'
+                }
+            },
+            {
+                active: true,
+                name: 'Отель «28»',
+                code: 'H28',
+                gallery: [
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-1.jpg',
+                ],
+                rooms: [
+                    {
+                        active: true,
+                        name: '',
+                        code: '',
+                        desc:{
+                            'ru':'',
+                            'en':''
+                        }
+                    },
+                    {
+                        active: true,
+                        name: '',
+                        code: '',
+                        desc:{
+                            'ru':'',
+                            'en':''
+                        }
+                    }
+                ],
+                desc: {
+                    'ru': 'Благодаря разнообразию номеров и доступной стоимости проживания, отель пользуется популярностью у участников фестиваля. Для гостей доступны как стандартные номера, так и номера в блоке из 2-3 комнат, которые отлично подходят для больших и дружных компаний. На территории отеля расположена уютная и современная столовая «28» с завтраками, обедами и ужинами в формате шведского стола по очень доступным ценам.',
+                    'en': 'Great variety of rooms and affordable pricing make this hotel extremely popular among festival participants. The hotel offers both standard rooms and rooms in 2- or 3-room blocks that will suit large groups of friends perfectly. The Hotel 28 canteen offers a buffet breakfast, lunch and dinner at a really affordable prices.'
+                }
+            },
+            {
+                active: true,
+                name: 'Rosa Village',
+                code: 'ROV',
+                gallery: [
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-1.jpg',
+                ],
+                rooms: [
+                    {
+                        active: true,
+                        name: '',
+                        code: '',
+                        desc:{
+                            'ru':'',
+                            'en':''
+                        }
+                    },
+                    {
+                        active: true,
+                        name: '',
+                        code: '',
+                        desc:{
+                            'ru':'',
+                            'en':''
+                        }
+                    }
+                ],
+                desc: {
+                    'ru': 'Rosa Village - это комфортабельный и современный гостиничный комплекс состоящий из 15 небольших коттеджей, которые оснащены всем необходимым для комфортного отдыха с семьей или большой компанией. Общая зона отдыха, детский уголок, оборудование для хранения и сушки горнолыжного инвентаря. Для больших и дружный компаний есть возможность аренды коттеджа полностью.',
+                    'en': 'Rosa Village is a state-of-the-art hotel complex including 15 small cottages fully equipped to offer you a most comfortable stay whether with your family or with a crowd of friends. Common recreation area, kids\' corner, ski equipment storage and drying facilities. To large groups of friends, we offer an opportunity to rent a whole cottage.'
+                }
+            },
+            {
+                active: false,
                 name: '',
                 code: '',
                 gallery: [],
@@ -943,6 +1201,11 @@ let vm = new Vue({
         },
         activeHotelRooms() {
             return this.hotels.find(hotel => hotel.code === this.form.hotel).rooms
+        },
+        currentRoom() {
+            let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
+            let curRoom = this.hotels[curHotel].rooms.find(room => room.code === this.form.room)
+            return this.hotels.indexOf(curRoom)+1
         },
         calcTourPrice() {
             let totalPrice = 0;
@@ -1153,7 +1416,25 @@ let vm = new Vue({
                 this.$refs.passSLabel.classList.remove("active");
             }
         },
-
+        showHotelPhoto(){
+            console.log('showHotelPhoto');
+            let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
+            let curHotelIndex = this.hotels.indexOf(curHotel)
+            console.log(this.hotels[curHotelIndex].gallery[0]);
+            console.log(this.$refs.hotelImage.src);
+            this.$refs.hotelImage.src = this.hotels[curHotelIndex].gallery[0];
+            this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].desc[this.selectedLocale];
+        },
+        showRoomPhoto(){
+            console.log('showRoomPhoto');
+            let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
+            let curHotelIndex = this.hotels.indexOf(curHotel)
+            let curPhoto = this.hotels[curHotelIndex].rooms.find(room => room.code === this.form.room)
+            let curRoomIndex = this.hotels[curHotelIndex].rooms.indexOf(curPhoto)
+            console.log(this.hotels[curHotelIndex].gallery[curRoomIndex+1]);
+            this.$refs.hotelImage.src = this.hotels[curHotelIndex].gallery[curRoomIndex+1];
+            this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].rooms[curRoomIndex].desc[this.selectedLocale];
+        },
         nextPhoto() {
             let imgId = this.$refs.hotelImage.getAttribute('image-id');
             let hotelId = this.$refs.hotelDiv.getAttribute('hotel-id');
