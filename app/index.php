@@ -242,9 +242,6 @@ $tourNumber = time();
                     <option value="" disabled selected>{{ translations.tourAdults[selectedLocale] }}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="5">4</option>
-                    <option value="5">5</option>
                   </select>
                 </div>
               </div>
@@ -260,11 +257,9 @@ $tourNumber = time();
                           :placeholder="translations.tourKids[selectedLocale]"
                           required>
                     <option value="" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>
+                    <option value="1">без детей</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="5">4</option>
-                    <option value="5">5</option>
                   </select>
                 </div>
               </div>
@@ -538,7 +533,7 @@ $tourNumber = time();
                   v-if="step !== 1"
                   @click.prevent="prevStep">{{ translations.stepPrevious[selectedLocale] }}
           </button>
-          <div v-if="step > 1 && step < 5" class="row col-5 col-sm-7 col-lg-6 text-right nsc-tour-sum">
+          <div v-if="step > 2 && step < 5" class="row col-5 col-sm-7 col-lg-6 text-right nsc-tour-sum">
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
@@ -1135,7 +1130,7 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=1.5"></script>
+<script src="<?=$path?>js/app.min.js?rev=1.7"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"
