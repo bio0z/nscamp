@@ -27,8 +27,8 @@ let vm = new Vue({
     component: {},
     data: {
         locales : {
-            'ru': "русская версия",
-            'en': "english version",
+            'ru': "RU",
+            'en': "EN",
         },
         selectedLocale : 'ru',
         translations : {
@@ -57,37 +57,35 @@ let vm = new Vue({
                 'en':'More'
             },
             passSDetails:{
-                'ru':'от 9900 <span>₽ </span> 3 дня 2 ночи',
-                'en':'from 9900 <span>₽ </span> 3 days 2 nights'
+                'ru':'от 54 230 <span>₽ </span> за 10 дней',
+                'en':'from 54 230 <span>₽ </span> for 10 days'
             },
             passVDetails:{
-                'ru':'от 19900<span>₽</span> 3 дня 2 ночи ',
-                'en':'from 19900 <span>₽ </span> 3 days 2 nights'
+                'ru':'от 67 760<span>₽</span> за 10 дней ',
+                'en':'from 67 760 <span>₽ </span> for 10 days'
+            },
+            passSDetailsFull:{
+                'ru':'<p class="mb-2">Доступ ко всем площадкам</p>\n' +
+                    '<p class="mb-2">Доступ ко всей программе </p>\n' +
+                    '<p class="mb-2">Скидки и привелегии участника фестиваля</p>\n' +
+                    '<p class="mb-2">Перевые 500 покупателей получают футболку кэмпа</p>\n',
+                'en': '<p class="mb-2">Hotel accommodation</p>\n' +
+                    '<p class="mb-2">Festival PASS</p>\n' +
+                    '<p class="mb-2">Cable lifts pass</p>\n' +
+                    '<p class="mb-2">Branded gifts for the first 500 guests</p>\n' +
+                    '<p class="mb-2">Special offers in resort restaurants</p>\n'
             },
             passVDetailsFull:{
-                'ru':'<p class="mb-2">проживание в выбранном отеле с завтраками</p>\n' +
-                    '<p class="mb-2">VIP-браслет участника NSC</p>\n' +
-                    '<p class="mb-2">прогулочный билет на канатные дороги курорта «Роза Хутор» на все дни\n' +
-                    'фестиваля</p>\n' +
-                    '<p class="mb-2">зона VIP на вечеринках</p>\n' +
-                    '<p class="mb-2">сувениры первым 500</p>\n' +
-                    '<p class="mb-2">бонусы и скидки в заведениях курорта</p>',
+                'ru':'<p class="mb-2">Все опции STANDARD TOUR</p>\n' +
+                    '<p class="mb-2">+ Доступ в VIP-Зоны на концертах и уровне 1600</p>\n' +
+                    '<p class="mb-2">+ Расширенное меню в VIP-Зонах</p>\n' +
+                    '<p class="mb-2">+ Индивидуальный пакет участника с футболкой</p>\n' +
+                    '<p class="mb-2">+ Priority pass в штабе при регистрации</p>\n' +
+                    '<p class="mb-2">+ Возможность брони столов на всех площадках</p>',
                 'en':'<p class="mb-2">Hotel accommodation</p>\n' +
                     '<p class="mb-2">Festival VIP PASS</p>\n' +
                     '<p class="mb-2">Cable lifts pass</p>\n' +
                     '<p class="mb-2">VIP zone access</p>\n' +
-                    '<p class="mb-2">Special offers in resort restaurants</p>\n'
-            },
-            passSDetailsFull:{
-                'ru':'<p class="mb-2">проживание в выбранном отеле с завтраками</p>\n' +
-                    '<p class="mb-2">браслет участника NSC</p>\n' +
-                    '<p class="mb-2">прогулочный билет на канатные дороги курорта «Роза Хутор» на все дни\n' +
-                    'фестиваля</p>\n' +
-                    '<p class="mb-2">сувениры первым 500</p>\n' +
-                    '<p class="mb-2">бонусы и скидки в заведениях курорта</p>',
-                'en':'<p class="mb-2">Hotel accommodation</p>\n' +
-                    '<p class="mb-2">Festival PASS</p>\n' +
-                    '<p class="mb-2">Cable lifts pass</p>\n' +
                     '<p class="mb-2">Special offers in resort restaurants</p>\n'
             },
             stepNext:{
@@ -139,7 +137,7 @@ let vm = new Vue({
                 'en':'user agreement'
             },
             stepThree:{
-                'ru':'Заполните, пожалуйста, персональные данные и оставьте контактную информацию.',
+                'ru':'Заполните, персональные данные и оставьте контактную информацию.',
                 'en':'Please, fill the personal information.'
             },
             stepFour:{
@@ -179,12 +177,20 @@ let vm = new Vue({
                 'ru':'Вы забыли выбрать вариант размещения.',
                 'en':'Please, choose your pass.'
             },
+            errorChooseDates:{
+                'ru':'Вы забыли выбрать даты заезда.',
+                'en':'Please, choose your the dates of tour.'
+            },
+            errorChooseAdults:{
+                'ru':'Вы забыли выбрать количество человек.',
+                'en':'Please, choose number of people.'
+            },
             errorChooseRoom:{
                 'ru':'Вы забыли выбрать отель.',
                 'en':'Please, choose your hotel.'
             },
             errorFillFIO:{
-                'ru':'Вы забыли заполнить Имя или Фамилию.',
+                'ru':'Вы забыли заполнить персональные данные.',
                 'en':'Please, fill Name and Surname.'
             },
             errorFillEmail:{
@@ -334,6 +340,16 @@ let vm = new Vue({
         disabledDates: {
             to: new Date(2021, 2, 26),
             from: new Date(2021, 3, 5),
+            dates: [
+                new Date(2021, 2, 27),
+                new Date(2021, 2, 28),
+                new Date(2021, 2, 29),
+                new Date(2021, 2, 30),
+                new Date(2021, 2, 31),
+                new Date(2021, 3, 1),
+                new Date(2021, 3, 2),
+                new Date(2021, 3, 3),
+            ],
         },
 
         form: {
@@ -679,7 +695,7 @@ let vm = new Vue({
             },
             {
                 active: true,
-                name: 'Отель Radisson Rosa Khutor 5*',
+                name: 'Отель Radisson Rosa Khutor *****',
                 code: 'RRK5',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-1.jpg',
@@ -906,7 +922,7 @@ let vm = new Vue({
             },
             {
                 active: true,
-                name: 'Отель Park Inn by Radisson Rosa Khutor 4*',
+                name: 'Отель Park Inn by Radisson Rosa Khutor ****',
                 code: 'PIRRS4',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.jpg',
@@ -1046,7 +1062,7 @@ let vm = new Vue({
             },
             {
                 active: true,
-                name: 'Отель Mercure Rosa Khutor 4*',
+                name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-1.jpg',
@@ -1400,6 +1416,16 @@ let vm = new Vue({
             if (this.step === 1) {
                 if (!this.form.pass) {
                     this.errors = this.translations.errorChoosePass[this.selectedLocale];
+                    return false;
+                } else {
+                    this.errors = null;
+                }
+            } else if (this.step === 2) {
+                if (!this.form.dateTill || !this.form.dateFrom) {
+                    this.errors = this.translations.errorChooseDates[this.selectedLocale];
+                    return false;
+                } else if (!this.form.adults) {
+                    this.errors = this.translations.errorChooseAdults[this.selectedLocale];
                     return false;
                 } else {
                     this.errors = null;

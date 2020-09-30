@@ -34,7 +34,7 @@ $tourNumber = time();
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=1.3">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=1.4">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -96,6 +96,13 @@ $tourNumber = time();
       <a href="#">
         <img src="<?=$path?>images/svg/nsc-logo.svg">
       </a>
+    </div>
+    <div class="col-1">
+      <button class="btn btn-link p-0 link">
+        <div v-for="(locale,code) in locales">
+          <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>
+        </div>
+      </button>
     </div>
   </header>
   <main class="row">
@@ -595,11 +602,6 @@ $tourNumber = time();
             <button id="externalButton" @click.prevent="showModal = true" class="btn btn-link p-0 link f1">
               <img src="<?=$path?>images/svg/user-offer.svg" class="nsc-user-offer">{{ translations.userAgreement[selectedLocale]
               }}
-            </button>
-            <button class="btn btn-link p-0 link">
-              <p v-for="(locale,code) in locales">
-                <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>
-              </p>
             </button>
           </div>
         </div>
