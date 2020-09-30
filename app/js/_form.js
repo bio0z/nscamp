@@ -158,8 +158,8 @@ let vm = new Vue({
                 'en':'Date out'
             },
             dateNote:{
-                'ru':'* Туры длительностью менее десяти дней станут доступны с 01.01.2021',
-                'en':'* Туры длительностью менее десяти дней станут доступны с 01.01.2021',
+                'ru':'* Туры длительностью менее 9 дней станут доступны с 01.01.2021',
+                'en':'* Туры длительностью менее 9 дней станут доступны с 01.01.2021',
             },
             tourAdults:{
                 'ru':'Количество взрослых',
@@ -180,6 +180,10 @@ let vm = new Vue({
             errorChooseDates:{
                 'ru':'Вы забыли выбрать даты заезда.',
                 'en':'Please, choose your the dates of tour.'
+            },
+            errorChoose9Dates:{
+                'ru':'Минимальный early bird тур - 9 дней.',
+                'en':'Minimal tour 9 days.'
             },
             errorChooseAdults:{
                 'ru':'Вы забыли выбрать количество человек.',
@@ -341,14 +345,12 @@ let vm = new Vue({
             to: new Date(2021, 2, 26),
             from: new Date(2021, 3, 5),
             dates: [
-                new Date(2021, 2, 27),
                 new Date(2021, 2, 28),
                 new Date(2021, 2, 29),
                 new Date(2021, 2, 30),
                 new Date(2021, 2, 31),
                 new Date(2021, 3, 1),
                 new Date(2021, 3, 2),
-                new Date(2021, 3, 3),
             ],
         },
 
@@ -384,6 +386,7 @@ let vm = new Vue({
             tourNumber: null,
             tourID: null,
             tourPrice: 0,
+            tourDays: 0,
             payed: null,
         },
         hotels: [
@@ -1364,6 +1367,11 @@ let vm = new Vue({
             let curRoom = this.hotels[curHotel].rooms.find(room => room.code === this.form.room)
             return this.hotels.indexOf(curRoom)+1
         },
+        calcTourDays() {
+            let tourDays = (this.form.dateTill-this.form.dateFrom)/1000/60/60/24
+            this.form.tourDays = tourDays
+            return tourDays
+        },
         calcTourPrice() {
             let totalPrice = 0;
             let skiPass = 1470;
@@ -1371,7 +1379,7 @@ let vm = new Vue({
             let curHotel = this.hotels.indexOf(this.hotels.find(hotel => hotel.code === this.form.hotel))
             let curRoom = this.hotels[curHotel].rooms.indexOf(this.hotels[curHotel].rooms.find(room => room.code === this.form.room))
             if (curRoom < 0) { curRoom = 0 }
-            let daysTour = (this.form.dateTill-this.form.dateFrom)/1000/60/60/24
+            let daysTour = this.calcTourDays
             console.log('How days ' + daysTour)
             console.log('price pass ' + this.passes[curPass].price)
             console.log('price hotel ' + this.hotels[curHotel].rooms[curRoom].price[this.form.adults])
@@ -1390,7 +1398,6 @@ let vm = new Vue({
         }
     },
     watch: {
-
     },
     methods: {
         setLocale : function (locale)
@@ -1426,6 +1433,9 @@ let vm = new Vue({
                     return false;
                 } else if (!this.form.adults) {
                     this.errors = this.translations.errorChooseAdults[this.selectedLocale];
+                    return false;
+                } else if (!this.form.tourDays < 9) {
+                    this.errors = this.translations.errorChoose9Dates[this.selectedLocale];
                     return false;
                 } else {
                     this.errors = null;
