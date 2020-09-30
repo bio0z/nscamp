@@ -34,7 +34,7 @@ $tourNumber = time();
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=1.4">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=1.5">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -133,7 +133,7 @@ $tourNumber = time();
                          v-bind:class="[!passSDetails ? 'nsc-pass-s' : 'nsc-pass-s-back']"
                          @click="setPassActive('S')"
                          ref="passSLabel">
-                    <div class="col m-4 text-left">
+                    <div class="m-4 text-left">
                       <div class="row f1 pr-5 pass-detail" v-if="passSDetails"
                            v-html="translations.passSDetailsFull[selectedLocale]">
                       </div>
@@ -157,7 +157,7 @@ $tourNumber = time();
                          v-bind:class="[!passVDetails ? 'nsc-pass-v' : 'nsc-pass-v-back']"
                          @click="setPassActive('V')"
                          ref="passVLabel">
-                    <div class="col mr-4 ml-4 mt-4 mb-3 text-left">
+                    <div class="mr-4 ml-4 mt-4 mb-3 text-left">
                       <div class="row f1 pr-5 pass-detail"
                            v-if="passVDetails"
                            v-html="translations.passVDetailsFull[selectedLocale]">
@@ -335,7 +335,7 @@ $tourNumber = time();
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-4 order-12 order-lg-1">
                   <div :data-val="currentHotel">
                     <h3>{{ hotels[currentHotel].name }}</h3>
-                    <p class="f1" ref="hotelText">{{ hotels[currentHotel].desc[selectedLocale] }}</p>
+                    <div class="f1" ref="hotelText">{{ hotels[currentHotel].desc[selectedLocale] }}</div>
                   </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-0 hotel-photo text-right order-1 order-lg-12">
@@ -401,11 +401,7 @@ $tourNumber = time();
                          required>
                 </div>
               </div>
-              <div class="form-row" v-if="form.room !== 'S'">
-                <!--                <div class="col-md-12 mb-4">-->
-                <!--                  <span class="nsc-button guest-plus">+</span>-->
-                <!--                  <p>Добавить гостя</p>-->
-                <!--                </div>-->
+              <div class="form-row" v-if="form.adults > 1">
                 <h5>{{ translations.secondGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.gfname" name="gfname" type="text"
@@ -535,23 +531,26 @@ $tourNumber = time();
             </div>
           </div>
         </section>
+        <div class="invalid-feedback" v-if="errors != null">{{ errors }}</div>
         <div class="row col-12 d-flex pl-0 pr-0 ml-0 mr-0 mb-3 mt-sm-3 mt-3 mt-md-0 mt-lg-0 bg-nsc-grey">
           <button class="col-3 col-sm-3 col-md-2 col-lg-2 p-2 bd-highlight form-control col-2 rounded-0 nsc-button"
                   v-if="step !== 1"
                   @click.prevent="prevStep">{{ translations.stepPrevious[selectedLocale] }}
           </button>
-          <div v-if="step > 2 && step < 5" class="row col-5 col-sm-7 col-lg-6 text-right nsc-tour-sum">
+          <div v-if="step > 2 && step < 6" class="row col-5 col-sm-7 col-lg-6 text-right nsc-tour-sum">
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
             <label for="toursum" class="col-8 col-sm-8 col-md-6 col-lg-8 align-middle">
               {{ translations.tourPriceText[selectedLocale] }}
             </label>
-            <input class="col-4 border-0 nsw-toursum" type="text"
+            <input class="col-4 border-0 nsw-toursum"
+                   type="text"
                    id="toursum"
                    name="toursum"
                    :value="calcTourPrice"
-                   readonly/>
+                   readonly
+            />
           </div>
           <button
               class="col-3 col-sm-3 col-md-2 col-lg-2 ml-auto p-2 bd-highlight form-control col-2 rounded-0 nsc-button"
@@ -578,7 +577,6 @@ $tourNumber = time();
               @click="saveVaucher(<?= $tourNumber ?>,<?= $tourID ?>)">
           </div>
         </div>
-        <div class="invalid-feedback text-right" v-if="errors != null">{{ errors }}</div>
         <div class="row mb-3 ml-0 mr-0 footer">
           <div class="col-12 col-md-8 col-lg-8 order-12 order-md-1">
             <div class="row">
@@ -1132,7 +1130,7 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=1.8"></script>
+<script src="<?=$path?>js/app.min.js?rev=2"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"

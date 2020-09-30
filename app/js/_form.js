@@ -31,6 +31,42 @@ let vm = new Vue({
             'en': "EN",
         },
         selectedLocale : 'ru',
+        form: {
+            pass: null,
+
+            dateFrom: null,
+            dateTill: null,
+            adults: '',
+            kids: '',
+
+            hotel: 'RIL',
+            hotelName: '',
+            hotelBreakfast: null,
+            address: null,
+            room: '',
+
+            fname: null,
+            sname: null,
+            email: null,
+            phone: null,
+
+            gfname: null,
+            gsname: null,
+            gphone: null,
+            gemail: null,
+
+            promocode: null,
+            consent: null,
+            offer: null,
+
+            tourName: null,
+            tourNumber: null,
+            tourID: null,
+            tourPrice: 0,
+            tourDays: 0,
+            payed: null,
+        },
+
         translations : {
             title:{
                 'ru':'Купить тур',
@@ -182,16 +218,16 @@ let vm = new Vue({
                 'en':'Please, choose your the dates of tour.'
             },
             errorChoose9Dates:{
-                'ru':'Минимальный early bird тур - 9 дней.',
-                'en':'Minimal tour 9 days.'
+                'ru':'Минимальный early bird тур - 9 дней. Вы выбрали - ' + this.calcTourDays + '.',
+                'en':'Minimal tour 9 days. Your choose - ' + this.calcTourDays + '.'
             },
             errorChooseAdults:{
                 'ru':'Вы забыли выбрать количество человек.',
                 'en':'Please, choose number of people.'
             },
             errorChooseRoom:{
-                'ru':'Вы забыли выбрать отель.',
-                'en':'Please, choose your hotel.'
+                'ru':'Вы забыли выбрать тип номера.',
+                'en':'Please, choose your accommodation.'
             },
             errorFillFIO:{
                 'ru':'Вы забыли заполнить персональные данные.',
@@ -353,42 +389,6 @@ let vm = new Vue({
                 new Date(2021, 3, 2),
             ],
         },
-
-        form: {
-            pass: null,
-
-            dateFrom: null,
-            dateTill: null,
-            adults: '',
-            kids: '',
-
-            hotel: 'RIL',
-            hotelName: '',
-            hotelBreakfast: null,
-            address: null,
-            room: '',
-
-            fname: null,
-            sname: null,
-            email: null,
-            phone: null,
-
-            gfname: null,
-            gsname: null,
-            gphone: null,
-            gemail: null,
-
-            promocode: null,
-            consent: null,
-            offer: null,
-
-            tourName: null,
-            tourNumber: null,
-            tourID: null,
-            tourPrice: 0,
-            tourDays: 0,
-            payed: null,
-        },
         hotels: [
             {
                 active: true,
@@ -427,9 +427,7 @@ let vm = new Vue({
                                 '- Сушилка для белья',
                             'en': ''
                         },
-                        gallery:[
-
-                        ]
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg'
                     },
                     {
                         active: true,
@@ -453,9 +451,7 @@ let vm = new Vue({
                                 '- Сушилка для белья',
                             'en': ''
                         },
-                        gallery:[
-
-                        ]
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg'
                     },
                     {
                         active: false,
@@ -466,9 +462,7 @@ let vm = new Vue({
                                 '- Сместимость до 4-х человек',
                             'en': ''
                         },
-                        gallery:[
-
-                        ]
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-3-dorm-1.jpg'
                     },
                     {
                         active: false,
@@ -500,9 +494,7 @@ let vm = new Vue({
                                 '- Холодильник',
                             'en': ''
                         },
-                        gallery:[
-
-                        ]
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg'
                     },
                     {
                         active: true,
@@ -513,19 +505,19 @@ let vm = new Vue({
                             '2': 12000
                         },
                         desc: {
-                            'ru': '- +/- 60 кв. м. \n' +
-                                '- Вместимость до 4-х человек\n' +
-                                '- 2 раздельные/одна большая кровать\n' +
-                                '- Диван кровать\n' +
-                                '- Гостевой туалет\n' +
-                                '- Халат и тапочки\n' +
-                                '- Чайная и кофейная станция\n' +
-                                '- Холодильник',
+                            'ru': '<ul>' +
+                                '<li>- +/- 60 кв. м. </li>' +
+                                '<li>- Вместимость до 4-х человек </li>' +
+                                '<li>- 2 раздельные/одна большая кровать </li>' +
+                                '<li>- Диван кровать </li>' +
+                                '<li>- Гостевой туалет </li>' +
+                                '<li>- Халат и тапочки </li>' +
+                                '<li>- Чайная и кофейная станция </li>' +
+                                '<li>- Холодильник </li>' +
+                                '</ul>',
                             'en': ''
                         },
-                        gallery:[
-
-                        ]
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-4-family-1.jpg',
                     }
                 ],
                 desc:{
@@ -740,7 +732,8 @@ let vm = new Vue({
                                 '- Tropic bath\n' +
                                 '- Water\n' +
                                 '-  WI-FI'
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-2-standard-1.jpg'
                     },
                     {
                         active: true,
@@ -778,7 +771,8 @@ let vm = new Vue({
                                 '- Hair Dryer\n' +
                                 '- Water\n' +
                                 '- WI-FI'
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-3-premium-balcony-1.jpg'
                     },
                     {
                         active: false,
@@ -970,7 +964,8 @@ let vm = new Vue({
                                 '- Hair Dryer\n' +
                                 '- Water\n' +
                                 '- WI-FI'
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg'
                     },
                     {
                         active: false,
@@ -990,7 +985,8 @@ let vm = new Vue({
                                 '- Бесплатная вода\n' +
                                 '- Бесплатный Wi-Fi',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-3-family-1.jpg'
                     },
                     {
                         active: false,
@@ -1089,7 +1085,8 @@ let vm = new Vue({
                                 '- Кофе-машина\n' +
                                 '- Дополнительные удобства в номере',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-2-standard-1.jpg'
                     },
                     {
                         active: true,
@@ -1107,7 +1104,8 @@ let vm = new Vue({
                                 '- Кофе-машина\n' +
                                 '- Дополнительные удобства в номере',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-2-standard-1.jpg'
                     },
                     {
                         active: true,
@@ -1125,7 +1123,8 @@ let vm = new Vue({
                                 '- Кофе-машина\n' +
                                 '- Дополнительные удобства в номере',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-3-suite-1.jpg'
                     }
                 ],
                 desc: {
@@ -1156,7 +1155,8 @@ let vm = new Vue({
                         desc:{
                             'ru':'',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-2-small.jpg',
                     },
                     {
                         active: true,
@@ -1170,7 +1170,8 @@ let vm = new Vue({
                         desc:{
                             'ru':'',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-3-standard.jpg'
                     }
                 ],
                 desc: {
@@ -1184,6 +1185,8 @@ let vm = new Vue({
                 code: 'H28',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-2-double_block.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-3-standard.jpg',
                 ],
                 rooms: [
                     {
@@ -1198,7 +1201,8 @@ let vm = new Vue({
                         desc:{
                             'ru':'',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-2-double_block.jpg'
                     },
                     {
                         active: true,
@@ -1212,7 +1216,8 @@ let vm = new Vue({
                         desc:{
                             'ru':'',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-3-standard.jpg'
                     }
                 ],
                 desc: {
@@ -1226,6 +1231,9 @@ let vm = new Vue({
                 code: 'ROV',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-2-standard.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-3-triple.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-4-standard_better.jpg',
                 ],
                 rooms: [
                     {
@@ -1240,7 +1248,8 @@ let vm = new Vue({
                         desc:{
                             'ru':'',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-2-standard.jpg'
                     },
                     {
                         active: true,
@@ -1254,7 +1263,8 @@ let vm = new Vue({
                         desc:{
                             'ru':'',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-3-triple.jpg'
                     },
                     {
                         active: true,
@@ -1268,7 +1278,8 @@ let vm = new Vue({
                         desc:{
                             'ru':'',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-4-standard_better.jpg'
                     },
                     {
                         active: true,
@@ -1282,7 +1293,8 @@ let vm = new Vue({
                         desc:{
                             'ru':'',
                             'en':''
-                        }
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-3-triple.jpg'
                     }
                 ],
                 desc: {
@@ -1369,8 +1381,8 @@ let vm = new Vue({
         },
         calcTourDays() {
             let tourDays = (this.form.dateTill-this.form.dateFrom)/1000/60/60/24
-            this.form.tourDays = tourDays
-            return tourDays
+            this.form.tourDays = tourDays + 1
+            return tourDays + 1
         },
         calcTourPrice() {
             let totalPrice = 0;
@@ -1383,15 +1395,18 @@ let vm = new Vue({
             console.log('How days ' + daysTour)
             console.log('price pass ' + this.passes[curPass].price)
             console.log('price hotel ' + this.hotels[curHotel].rooms[curRoom].price[this.form.adults])
-            console.log('ski pass all days ' + (skiPass * (daysTour - 1)))
-            if (this.form.adults > 0 && daysTour > 0) {
+            console.log('ski pass all days ' + (skiPass * (daysTour - 2)))
+            if (this.form.adults > 0 && daysTour > 8) {
                 totalPrice =
                     (this.passes[curPass].price * this.form.adults)
                     + (this.hotels[curHotel].rooms[curRoom].price[this.form.adults] * daysTour)
-                    + (skiPass * (daysTour - 1))
+                    + (skiPass * (daysTour - 2))
                 console.log('this.form.hotelBreakfast ' + this.form.hotelBreakfast)
                 if ( this.form.hotelBreakfast === true ) {
                     totalPrice = totalPrice + (this.hotels[curHotel].rooms[curRoom].breakfast * this.form.adults * daysTour)
+                }
+                if (this.form.promocode === 'usi' ) {
+                    totalPrice = Math.round(totalPrice*0.0001)
                 }
                 return totalPrice + '₽';
             }
@@ -1428,15 +1443,16 @@ let vm = new Vue({
                     this.errors = null;
                 }
             } else if (this.step === 2) {
+                this.form.tourDays = this.calcTourDays
                 if (!this.form.dateTill || !this.form.dateFrom) {
                     this.errors = this.translations.errorChooseDates[this.selectedLocale];
                     return false;
                 } else if (!this.form.adults) {
                     this.errors = this.translations.errorChooseAdults[this.selectedLocale];
                     return false;
-                } else if (!this.form.tourDays < 9) {
-                    this.errors = this.translations.errorChoose9Dates[this.selectedLocale];
-                    return false;
+                // } else if (!this.form.tourDays < 8) {
+                //     this.errors = this.translations.errorChoose9Dates[this.selectedLocale];
+                //     return false;
                 } else {
                     this.errors = null;
                 }
@@ -1507,7 +1523,7 @@ let vm = new Vue({
             let curHotelIndex = this.hotels.indexOf(curHotel)
             let curPhoto = this.hotels[curHotelIndex].rooms.find(room => room.code === this.form.room)
             let curRoomIndex = this.hotels[curHotelIndex].rooms.indexOf(curPhoto)
-            this.$refs.hotelImage.src = this.hotels[curHotelIndex].gallery[curRoomIndex+1];
+            this.$refs.hotelImage.src = this.hotels[curHotelIndex].rooms[curRoomIndex].photo;
             this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].rooms[curRoomIndex].desc[this.selectedLocale];
         },
         nextPhoto() {
