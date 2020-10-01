@@ -94,12 +94,12 @@ if (isset($_GET['num'])){
       $mail->setLanguage('ru');
       // $mail->Encoding = 'base64';
       // $mail->addCustomHeader('Content-Type', 'text/html;charset=UTF-8');
-      $mail->Subject = 'NewStar Weekend vaucher';
-      // $mail->Subject = "=?UTF-8?B?".base64_encode('Ваш ваучер на NewStarWeekend')."?=";
+      $mail->Subject = 'New Star Camp 2021 Vaucher';
+      // $mail->Subject = "=?UTF-8?B?".base64_encode('Ваш ваучер на NewStarCamp')."?=";
       $mail->Body      = $body;
-      $mail->AltBody = 'Ваш ваучер на NewStarWeekend';
+      $mail->AltBody = 'Ваш ваучер на New Star Camp';
 
-      $mail->SetFrom($emailFrom, 'New Star Weekend');
+      $mail->SetFrom($emailFrom, 'New Star Camp');
       $mail->AddAddress($emailTo);
       $mail->addReplyTo('info@newstarcamp.ru', 'Information');
       // $mail->addCC($emailCopy);

@@ -79,10 +79,10 @@ if (isset($_POST['email']) && $_POST['checknum'] == 2021 ) {
 			$mail->setLanguage('ru');
 			// $mail->Encoding = 'base64';
 			// $mail->addCustomHeader('Content-Type', 'text/html;charset=UTF-8');
-			$mail->Subject = 'NewStar Camp vaucher';
-			// $mail->Subject = "=?UTF-8?B?".base64_encode('Ваш ваучер на NewStarWeekend')."?=";
+			$mail->Subject = 'NewStar Camp 2021 Vaucher';
+			// $mail->Subject = "=?UTF-8?B?".base64_encode('Ваш ваучер на New Star Camp')."?=";
 			$mail->Body = $body;
-			$mail->AltBody = 'Ваш ваучер на NewStar Camp';
+			$mail->AltBody = 'Ваш ваучер на New Star Camp';
 
 			$mail->SetFrom($emailFrom, 'New Star Camp');
 			$mail->AddAddress($emailTo);
