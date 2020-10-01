@@ -10,6 +10,16 @@ if ($_GET['num']) $_POST['tourNumber'] = $_GET['num'];
 
 if(isset($_POST['tourNumber'])) {
 
+  $host = $_SERVER['HTTP_HOST'];
+
+  if ($host == 'nswpay.ru') {
+    $emailFrom = 'send@nswpay.ru';
+    $passwrd = 'RvEiWiXBvX';
+  } else {
+    $emailFrom = 'pool@awsd.cc';
+    $passwrd = 'uS3BwxOGqA';
+  }
+
   $tourNumber = $_POST['tourNumber'];
 	$file = '../sent/vaucher_num_' . $tourNumber . '.json';
 	$json = file_get_contents($file);
@@ -73,7 +83,6 @@ if(isset($_POST['tourNumber'])) {
     }
 
     $mail = new PHPMailer();
-    $emailFrom = 'pool@awsd.cc';
 
     try {
       // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
@@ -81,7 +90,7 @@ if(isset($_POST['tourNumber'])) {
       $mail->Host       = 'mail.hostland.ru';                    // Set the SMTP server to send through
       $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
       $mail->Username   = $emailFrom;                     // SMTP username
-      $mail->Password   = 'uS3BwxOGqA';                               // SMTP password
+      $mail->Password   = $passwrd;                               // SMTP password
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
       $mail->Port       = 587;
 
@@ -104,6 +113,8 @@ if(isset($_POST['tourNumber'])) {
       $mail->AddAttachment( $filename );
 
       $mail->Send();
+
+      echo "Sended to " . $emailTo;
 
 		} catch (Exception $e) {
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

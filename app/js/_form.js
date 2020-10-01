@@ -280,11 +280,12 @@ let vm = new Vue({
                 'en':'Buy tour'
             },
             tourSuccess:{
-                'ru':'<p>Вы успешно оформили тур New Star Weekend.</p>\n' +
+                'ru':'<p>Вы успешно оформили тур New Star Camp.</p>\n' +
                     '<p>Ваучер отправлен на email.</p>\n' +
                     '<p>Скоро увидимся ;)</p>\n',
-                'en':'<p>I accept <span class="btn btn-link border-0 p-0"\n' +
-                    '@click.prevent="showOffer = true">offer.</span></p>'
+                'en':'<p>You win! :)</p>' +
+                    '<p>Vaucher goes to email right now.</p>\n' +
+                    '<p>See you soon ;)</p>\n',
             },
             tourFail:{
                 'ru':'<p>Возникла ошибка при проведении платежа,\n' +
@@ -293,9 +294,9 @@ let vm = new Vue({
                     '<a href="#">try again</a>.</p>'
             },
             newStarDesc:{
-                'ru':'ООО «Нью Стар» — организатор спортивно-музыкального фестиваля New Star Weekend, который пройдёт 26 марта -\n' +
+                'ru':'ООО «Нью Стар» — организатор спортивно-музыкального фестиваля New Star Camp, который пройдёт 26 марта -\n' +
                     '4 апреля 2021 года на всесезонном горном курорте «Роза Хутор» (Сочи).',
-                'en':'“New Star” LLC is the organizer of “New Star Weekend” sports and music festival, that will\n' +
+                'en':'“New Star” LLC is the organizer of “New Star Camp” sports and music festival, that will\n' +
                     ' be held on March 26 - 4 April, 2020 at Russian ski resort “Rosa Khutor” (Sochi).'
             }
         },
@@ -1413,14 +1414,14 @@ let vm = new Vue({
             return this.form.fname + ' ' + this.form.sname;
         },
         guestsNum(){
-            return '2 взрослых / 2 детей';
+            return this.form.adults + ' взрослых / ' + this.form.kids + ' детей';
         },
         roomName() {
             return this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
         },
         setTourName() {
-//            this.form.tourName = 'New Star Weekend ' + this.passes[this.form.pass].name + ' tour, hotel: ' + this.form.hotelName;
-            this.form.tourName = 'New Star Weekend ' + ' tour, hotel: ' + this.form.hotelName;
+//            this.form.tourName = 'New Star Camp ' + this.passes[this.form.pass].name + ' tour, hotel: ' + this.form.hotelName;
+            this.form.tourName = 'New Star Camp ' + ' tour, hotel: ' + this.form.hotelName;
             return this.form.tourName;
         },
         calcTourDays() {
