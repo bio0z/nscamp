@@ -8,7 +8,8 @@ use PHPMailer\PHPMailer\Exception;
 
 if ($_GET['num']) $_POST['tourNumber'] = $_GET['num'];
 
-if(isset($_POST['tourNumber'])) {
+//if(isset($_POST['tourNumber'])) {
+if (isset($_GET['num'])){
 
   $host = $_SERVER['HTTP_HOST'];
 
@@ -32,13 +33,7 @@ if(isset($_POST['tourNumber'])) {
     $body = file_get_contents('../html/mail.html');
     $body = preg_replace("/#HTTP_HOST#/",'http://'.$_SERVER["HTTP_HOST"],$body);
 
-	  $vaucher = file_get_contents('../html/vaucher.html');
-
-    if ($ar['passname'] == 'VIP TOUR') {
-      $pass = 'VIP';
-    } elseif ($ar['passname'] == 'STANDARD TOUR'){
-      $pass = 'STANDARD';
-    }
+	  $vaucher = file_get_contents('../html/vaucher2.html');
 
 	  $vaucher = preg_replace("/#FIO#/",$ar['name'],$vaucher);
 	  $vaucher = preg_replace("/#HTTP_HOST#/",'http://'.$_SERVER["HTTP_HOST"],$vaucher);

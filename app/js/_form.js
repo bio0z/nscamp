@@ -162,8 +162,8 @@ let vm = new Vue({
                 'en':'Phone num'
             },
             guestHotel:{
-                'ru':'Телефон',
-                'en':'Phone num'
+                'ru':'Отель',
+                'en':'Hotel'
             },
             guestPromoCode:{
                 'ru':'Промокод',
