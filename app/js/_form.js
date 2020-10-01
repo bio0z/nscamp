@@ -94,12 +94,12 @@ let vm = new Vue({
                 'en':'More'
             },
             passSDetails:{
-                'ru':'от 54 230 <span>₽ </span> за 10 дней',
-                'en':'from 54 230 <span>₽ </span> for 10 days'
+                'ru':'от 52 190 <span>₽ </span> от 9 дней',
+                'en':'from 52 190 <span>₽ </span> from 9 days'
             },
             passVDetails:{
-                'ru':'от 67 760<span>₽</span> за 10 дней ',
-                'en':'from 67 760 <span>₽ </span> for 10 days'
+                'ru':'от 64 190<span>₽</span> от 9 дней ',
+                'en':'from 64 190 <span>₽ </span> from 9 days'
             },
             passSDetailsFull:{
                 'ru':'<p class="mb-2">Доступ ко всем площадкам</p>\n' +
