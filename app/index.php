@@ -541,10 +541,11 @@ $tourNumber = time();
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
-            <label for="toursum" class="col-8 col-sm-8 col-md-6 col-lg-8 align-middle">
+            <label v-if="this.form.room" for="toursum" class="col-8 col-sm-8 col-md-6 col-lg-8 align-middle">
               {{ translations.tourPriceText[selectedLocale] }}
             </label>
             <input class="col-4 border-0 nsw-toursum"
+                   v-if="this.form.room"
                    type="text"
                    id="toursum"
                    name="toursum"
@@ -1130,7 +1131,7 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=2"></script>
+<script src="<?=$path?>js/app.min.js?rev=3.9"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"

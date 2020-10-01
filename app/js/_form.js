@@ -33,7 +33,6 @@ let vm = new Vue({
         selectedLocale : 'ru',
         form: {
             pass: null,
-
             dateFrom: null,
             dateTill: null,
             adults: '',
@@ -42,6 +41,7 @@ let vm = new Vue({
             hotel: 'RIL',
             hotelName: '',
             hotelBreakfast: null,
+            hotelPrices: null,
             address: null,
             room: '',
 
@@ -64,6 +64,7 @@ let vm = new Vue({
             tourID: null,
             tourPrice: 0,
             tourDays: 0,
+            arrTourDays: null,
             payed: null,
         },
 
@@ -395,6 +396,7 @@ let vm = new Vue({
                 name: 'Riders Lodge **',
                 code: 'RIL',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 6',
+                formula: 0,
                 gallery:
                     [
                         'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-1.jpg',
@@ -457,6 +459,7 @@ let vm = new Vue({
                         active: false,
                         name: 'Dorm',
                         code: 'D',
+                        breakfast: 0,
                         desc: {
                             'ru':'- +/- 30 кв. м. \n' +
                                 '- Сместимость до 4-х человек',
@@ -477,9 +480,7 @@ let vm = new Vue({
                                 '- Холодильник"',
                             'en': ''
                         },
-                        gallery:[
-
-                        ]
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg'
                     },
                     {
                         active: false,
@@ -500,6 +501,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Семейный номер с завтраком',
                         code: 'FAM',
+                        breakfast: 0,
                         price: {
                             '1': 11500,
                             '2': 12000
@@ -692,6 +694,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Отель Radisson Rosa Khutor *****',
                 code: 'RRK5',
+                formula: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-2-standard-1.jpg',
@@ -706,11 +709,14 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандартный двухместный номер',
                         code: 'S2',
-                        price: {
-                            '1': 8800,
-                            '2': 9200
+                        price: [8800,8800,7000,7000,7000,7000,7000,4900,4900,4900],
+                        price10: 67300,
+                        price91: 58500,
+                        price92: 62400,
+                        breakfast: {
+                            '1': 800,
+                            '2': 2000
                         },
-                        breakfast: 800,
                         desc: {
                             'ru': '- +/- 27 кв. м. \n' +
                                 '- Халат и тапочки\n' +
@@ -739,11 +745,14 @@ let vm = new Vue({
                         active: true,
                         name: 'Премиум с балконом',
                         code: 'PB',
-                        price: {
-                            '1': 8800,
-                            '2': 9200
+                        price: [8800,8800,7000,7000,7000,7000,7000,4900,4900,4900],
+                        price10: 67300,
+                        price91: 58500,
+                        price92: 62400,
+                        breakfast: {
+                            '1': 800,
+                            '2': 2000
                         },
-                        breakfast: 800,
                         desc:{
                             'ru': '- +/- 29 кв. м. \n' +
                                 '- Балкон \n' +
@@ -806,7 +815,8 @@ let vm = new Vue({
                                 '- Hair Dryer\n' +
                                 '- Water\n' +
                                 '- WI-FI'
-                        }
+                        },
+                        photo: ''
                     },
                     {
                         active: false,
@@ -840,7 +850,8 @@ let vm = new Vue({
                                 '- Hair Dryer\n' +
                                 '- Water\n' +
                                 '- WI-FI'
-                        }
+                        },
+                        photo:''
                     },
                     {
                         active: false,
@@ -875,7 +886,8 @@ let vm = new Vue({
                                 '- Hair Dryer\n' +
                                 '- Water\n' +
                                 '- WI-FI'
-                        }
+                        },
+                        photo: ''
                     },
                     {
                         active: false,
@@ -908,7 +920,8 @@ let vm = new Vue({
                                 '- Hair Dryer\n' +
                                 '- Water\n' +
                                 '- WI-FI'
-                        }
+                        },
+                        photo:''
                     }
                 ],
                 desc: {
@@ -921,6 +934,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Отель Park Inn by Radisson Rosa Khutor ****',
                 code: 'PIRRS4',
+                formula: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg',
@@ -934,11 +948,14 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандартный двухместный номер',
                         code: 'S2',
-                        price:{
-                            '1': 4700,
-                            '2': 5000
+                        price:[4700,4700,3500,3500,3500,3500,3500,3500,3500,3500],
+                        price10: 37400,
+                        price91: 32700,
+                        price92: 33900,
+                        breakfast: {
+                            '1':900,
+                            '2':1800
                         },
-                        breakfast: 600,
                         desc:{
                             'ru':'- +/- 28 кв. м.\n' +
                                 '- Принадлежности для приготовления чая/кофе\n' +
@@ -1063,6 +1080,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
+                formula: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-2-standard-1.jpg',
@@ -1073,11 +1091,14 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандарт',
                         code: 'S',
-                        price: {
-                            '1': 5040,
-                            '2': 5040
+                        price: [5040,5040,5040,4270,4270,4270,4270,2940,2940,2940],
+                        price10: 38080,
+                        price91: 33040,
+                        price92: 35140,
+                        breakfast: {
+                            '1':630,
+                            '2':1260
                         },
-                        breakfast: 630,
                         desc:{
                             'ru':'- +/- 26 кв. м. \n' +
                                 '- Вид на реку\n' +
@@ -1092,11 +1113,14 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандарт Привелегия',
                         code: 'SP',
-                        price: {
-                            '1': 6900,
-                            '2': 6900
+                        price: [6900,6900,6900,5320,5320,5320,5320,3640,3640,3640],
+                        price10: 50470,
+                        price91: 44380,
+                        price92: 46830,
+                        breakfast: {
+                            '1':630,
+                            '2':1260
                         },
-                        breakfast: 630,
                         desc:{
                             'ru':'- +/- 26 кв. м. \n' +
                                 '- Вид на реку\n' +
@@ -1111,11 +1135,14 @@ let vm = new Vue({
                         active: true,
                         name: '2-х комнатный сьюит',
                         code: 'SS2',
-                        price: {
-                            '1': 8540,
-                            '2': 8540
+                        price: [8540,8540,8540,7770,7770,7770,7770,3900,5740,5740],
+                        price10: 72080,
+                        price91: 63540,
+                        price92: 66340,
+                        breakfast: {
+                            '1':630,
+                            '2':1260
                         },
-                        breakfast: 630,
                         desc:{
                             'ru':'- +/- 48 кв. м. \n' +
                                 '- Вид на реку\n' +
@@ -1137,10 +1164,11 @@ let vm = new Vue({
                 active: true,
                 name: 'Приют Панды',
                 code: 'PP',
+                formula: 0,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-1.jpg',
-                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-2-small.jpg',
-                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-3-standard.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-2-small-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-3-standard-1.jpg',
                 ],
                 rooms: [
                     {
@@ -1151,12 +1179,15 @@ let vm = new Vue({
                             '1': 3200,
                             '2': 3200
                         },
-                        breakfast: 400,
+                        breakfast: {
+                            '1':400,
+                            '2':800
+                        },
                         desc:{
                             'ru':'',
                             'en':''
                         },
-                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-2-small.jpg',
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-2-small-1.jpg',
                     },
                     {
                         active: true,
@@ -1166,12 +1197,15 @@ let vm = new Vue({
                             '1': 3600,
                             '2': 3600
                         },
-                        breakfast: 400,
+                        breakfast: {
+                            '1':400,
+                            '2':800
+                        },
                         desc:{
                             'ru':'',
                             'en':''
                         },
-                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-3-standard.jpg'
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-3-standard-1.jpg'
                     }
                 ],
                 desc: {
@@ -1183,6 +1217,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Отель «28»',
                 code: 'H28',
+                formula: 0,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-2-double_block.jpg',
@@ -1197,7 +1232,10 @@ let vm = new Vue({
                             '1': 3600,
                             '2': 3600
                         },
-                        breakfast: 500,
+                        breakfast: {
+                            '1':500,
+                            '2':1000
+                        },
                         desc:{
                             'ru':'',
                             'en':''
@@ -1212,7 +1250,10 @@ let vm = new Vue({
                             '1': 3600,
                             '2': 3600
                         },
-                        breakfast: 500,
+                        breakfast: {
+                            '1':500,
+                            '2':1000
+                        },
                         desc:{
                             'ru':'',
                             'en':''
@@ -1229,6 +1270,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Rosa Village',
                 code: 'ROV',
+                formula: 0,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-2-standard.jpg',
@@ -1244,7 +1286,10 @@ let vm = new Vue({
                             '1': 5000,
                             '2': 5000
                         },
-                        breakfast: 500,
+                        breakfast: {
+                            '1':500,
+                            '2':1000
+                        },
                         desc:{
                             'ru':'',
                             'en':''
@@ -1259,7 +1304,10 @@ let vm = new Vue({
                             '1': 6000,
                             '2': 6000
                         },
-                        breakfast: 500,
+                        breakfast: {
+                            '1':500,
+                            '2':1000
+                        },
                         desc:{
                             'ru':'',
                             'en':''
@@ -1274,7 +1322,10 @@ let vm = new Vue({
                             '1': 6000,
                             '2': 6000
                         },
-                        breakfast: 500,
+                        breakfast: {
+                            '1':500,
+                            '2':1000
+                        },
                         desc:{
                             'ru':'',
                             'en':''
@@ -1289,7 +1340,10 @@ let vm = new Vue({
                             '1': 7500,
                             '2': 7500
                         },
-                        breakfast: 500,
+                        breakfast: {
+                            '1':500,
+                            '2':1000
+                        },
                         desc:{
                             'ru':'',
                             'en':''
@@ -1360,6 +1414,14 @@ let vm = new Vue({
             this.form.tourName = 'New Star Weekend ' + ' tour, hotel: ' + this.form.hotelName;
             return this.form.tourName;
         },
+        calcTourDays() {
+            let tourDays = 0
+            if (this.form.dateFrom && this.form.dateTill)  {
+                tourDays = ((this.form.dateTill-this.form.dateFrom)/1000/60/60/24) + 1
+                this.form.tourDays = tourDays
+            }
+            return tourDays
+        },
         currentHotel() {
             let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
             return this.hotels.indexOf(curHotel)
@@ -1379,37 +1441,91 @@ let vm = new Vue({
             let curRoom = this.hotels[curHotel].rooms.find(room => room.code === this.form.room)
             return this.hotels.indexOf(curRoom)+1
         },
-        calcTourDays() {
-            let tourDays = (this.form.dateTill-this.form.dateFrom)/1000/60/60/24
-            this.form.tourDays = tourDays + 1
-            return tourDays + 1
-        },
         calcTourPrice() {
             let totalPrice = 0;
             let skiPass = 1470;
             let curPass = this.passes.indexOf(this.passes.find(pass => pass.code === this.form.pass))
             let curHotel = this.hotels.indexOf(this.hotels.find(hotel => hotel.code === this.form.hotel))
             let curRoom = this.hotels[curHotel].rooms.indexOf(this.hotels[curHotel].rooms.find(room => room.code === this.form.room))
-            if (curRoom < 0) { curRoom = 0 }
-            let daysTour = this.calcTourDays
-            console.log('How days ' + daysTour)
-            console.log('price pass ' + this.passes[curPass].price)
-            console.log('price hotel ' + this.hotels[curHotel].rooms[curRoom].price[this.form.adults])
-            console.log('ski pass all days ' + (skiPass * (daysTour - 2)))
-            if (this.form.adults > 0 && daysTour > 8) {
-                totalPrice =
-                    (this.passes[curPass].price * this.form.adults)
-                    + (this.hotels[curHotel].rooms[curRoom].price[this.form.adults] * daysTour)
-                    + (skiPass * (daysTour - 2))
-                console.log('this.form.hotelBreakfast ' + this.form.hotelBreakfast)
-                if ( this.form.hotelBreakfast === true ) {
-                    totalPrice = totalPrice + (this.hotels[curHotel].rooms[curRoom].breakfast * this.form.adults * daysTour)
+            // if (curRoom < 0) { curRoom = 0 }
+            let daysTour = this.form.tourDays
+            let arrPricesSum = 0
+            let hotelTotalPrice = 0
+            let allBreakfasts = 0
+            let arrPricesForTour =  []
+
+            if ( this.form.room !== undefined ) {
+                let formula = this.hotels[curHotel].formula
+
+                let arrPrices = this.hotels[curHotel].rooms[curRoom].price
+                console.log('arrPrices ' + arrPrices)
+
+                if (formula === 1){
+                    console.log('start -------------- ')
+                    console.log('daysTour ' + daysTour)
+
+
+                    if ( this.form.hotelBreakfast === true ) {
+                        console.log('breakfast')
+                        console.log(this.hotels[curHotel].rooms[curRoom].breakfast)
+                        allBreakfasts = this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults] * daysTour
+                    } else {
+                        allBreakfasts = 0
+                    }
+                    console.log('prices curHotel ')
+                    console.log(this.hotels[curHotel])
+                    console.log('prices curRoom ')
+                    console.log(this.hotels[curHotel].rooms[curRoom])
+                    console.log('prices hotel ' + this.hotels[curHotel].rooms[curRoom].price)
+
+
+                    arrPricesForTour.length = 0
+
+                    if (arrPrices.length > 0) {
+                        if (daysTour === 9 && arrPrices.length > 9){
+                            console.log('arrPrices.length '+ arrPrices.length)
+                            if (this.form.dateFrom > new Date(2021, 2, 26)) {
+                                // arrPricesForTour = arrPrices.splice(1,8)
+                                arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price92
+                                console.log('arrPricesForTour 1 8 ='+ arrPricesForTour)
+                            } else if (this.form.dateTill === new Date(2021, 2, 26)) {
+                                // arrPricesForTour = arrPrices.splice(0,8)
+                                arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price91
+                                console.log('arrPricesForTour 0 8 ='+ arrPricesForTour)
+                            }
+                        } else if (daysTour === 10){
+                            arrPricesForTour = arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price10
+                        }
+                        console.log('arrPricesForTour ' + arrPricesForTour)
+
+                        // for(let i=0; i < arrPricesForTour.length; i++){
+                        //     arrPricesSum = arrPricesSum + parseInt(arrPricesForTour[i]);
+                        // }
+                        // hotelTotalPrice = arrPricesSum
+                        hotelTotalPrice = arrPricesForTour
+                    }
+                } else if (formula === 0){
+                    hotelTotalPrice = this.hotels[curHotel].rooms[curRoom].price[this.form.adults] * daysTour
+                } else if (formula === 2) {
+                    // TODO: welcome to HELL
                 }
-                if (this.form.promocode === 'usi' ) {
-                    totalPrice = Math.round(totalPrice*0.0001)
+                if (this.form.adults > 0 && daysTour > 8) {
+                    totalPrice =
+                        (this.passes[curPass].price * this.form.adults)
+                        + hotelTotalPrice
+                        + (skiPass * (daysTour - 2))
+                        + allBreakfasts
+
+                    console.log('totalPrice ' + totalPrice)
+                    console.log('this.form.hotelBreakfast ' + this.form.hotelBreakfast)
+
+                    if (this.form.promocode === 'usi' ) {
+                        totalPrice = Math.round(totalPrice*0.0001)
+                    }
+                    return totalPrice + '₽';
                 }
-                return totalPrice + '₽';
             }
+            return false;
         }
     },
     watch: {
@@ -1443,7 +1559,10 @@ let vm = new Vue({
                     this.errors = null;
                 }
             } else if (this.step === 2) {
+                console.log('calcTourDays before')
                 this.form.tourDays = this.calcTourDays
+                console.log('calcTourDays after')
+                console.log('calcTourDays this.form.tourDays' +this.form.tourDays)
                 if (!this.form.dateTill || !this.form.dateFrom) {
                     this.errors = this.translations.errorChooseDates[this.selectedLocale];
                     return false;
@@ -1515,16 +1634,20 @@ let vm = new Vue({
         showHotelPhoto(){
             let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
             let curHotelIndex = this.hotels.indexOf(curHotel)
+            this.form.room = null;
             this.$refs.hotelImage.src = this.hotels[curHotelIndex].gallery[0];
             this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].desc[this.selectedLocale];
         },
         showRoomPhoto(){
             let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
             let curHotelIndex = this.hotels.indexOf(curHotel)
-            let curPhoto = this.hotels[curHotelIndex].rooms.find(room => room.code === this.form.room)
-            let curRoomIndex = this.hotels[curHotelIndex].rooms.indexOf(curPhoto)
-            this.$refs.hotelImage.src = this.hotels[curHotelIndex].rooms[curRoomIndex].photo;
-            this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].rooms[curRoomIndex].desc[this.selectedLocale];
+            console.log('this.form.room'+this.form.room)
+            if (this.form.room !== undefined){
+                let curRoom = this.hotels[curHotelIndex].rooms.find(room => room.code === this.form.room)
+                let curRoomIndex = this.hotels[curHotelIndex].rooms.indexOf(curRoom)
+                this.$refs.hotelImage.src = this.hotels[curHotelIndex].rooms[curRoomIndex].photo;
+                this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].rooms[curRoomIndex].desc[this.selectedLocale];
+            }
         },
         nextPhoto() {
             let imgId = this.$refs.hotelImage.getAttribute('image-id');
@@ -1554,10 +1677,9 @@ let vm = new Vue({
                 this.$refs.hotelImage.setAttribute('image-id', String(imgImageNum));
             }
         },
-
         sendMail(tourNumber) {
             this.errors = null;
-            var sdata = new FormData();
+            let sdata = new FormData();
 
             sdata.append('tourNumber', tourNumber);
 
@@ -1614,7 +1736,7 @@ let vm = new Vue({
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 })
                     .then(response => {
-                        this.from.payed = true;
+                        this.form.payed = true;
                     })
                     // .then(response => this.responseData = response.data)
                     .catch(e => {
