@@ -415,7 +415,10 @@ let vm = new Vue({
                             '1': 4700,
                             '2': 5300
                         },
-                        breakfast: 0,
+                        breakfast: {
+                            '1':0,
+                            '2':0
+                        },
                         desc: {
                             'ru': '- +/- 30 кв. м. \n' +
                                 '- Вместимость до 3-х человек \n' +
@@ -439,7 +442,10 @@ let vm = new Vue({
                             '1': 5200,
                             '2': 5800
                         },
-                        breakfast: 0,
+                        breakfast: {
+                            '1':0,
+                            '2':0
+                        },
                         desc: {
                             'ru': '- +/- 30 кв. м. \n' +
                                 '- Вместимость до 3-х человек \n' +
@@ -501,7 +507,10 @@ let vm = new Vue({
                         active: true,
                         name: 'Семейный номер с завтраком',
                         code: 'FAM',
-                        breakfast: 0,
+                        breakfast: {
+                            '1':0,
+                            '2':0
+                        },
                         price: {
                             '1': 11500,
                             '2': 12000
@@ -1460,18 +1469,18 @@ let vm = new Vue({
                 let arrPrices = this.hotels[curHotel].rooms[curRoom].price
                 console.log('arrPrices ' + arrPrices)
 
+                if ( this.form.hotelBreakfast === true ) {
+                    allBreakfasts = this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults] * daysTour
+                } else {
+                    allBreakfasts = 0
+                }
+
                 if (formula === 1){
                     console.log('start -------------- ')
                     console.log('daysTour ' + daysTour)
 
 
-                    if ( this.form.hotelBreakfast === true ) {
-                        console.log('breakfast')
-                        console.log(this.hotels[curHotel].rooms[curRoom].breakfast)
-                        allBreakfasts = this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults] * daysTour
-                    } else {
-                        allBreakfasts = 0
-                    }
+
                     console.log('prices curHotel ')
                     console.log(this.hotels[curHotel])
                     console.log('prices curRoom ')
