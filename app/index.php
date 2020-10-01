@@ -564,7 +564,7 @@ $tourNumber = time();
               v-show="form.consent && form.offer"
               id="alfa-payment-button"
               data-token="<?= $token ?>"
-              data-return-url="http://<?= $host ?>/?step=6&payed=1&tourNumber=<?= $tourNumber ?>"
+              data-return-url="http://<?= $host ?>/?step=6&par=0&tourNumber=<?= $tourNumber ?>"
               data-fail-url="http://<?= $host ?>/?step=6"
               data-language="ru"
               data-stages="1"
@@ -1131,7 +1131,7 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=4.1"></script>
+<script src="<?=$path?>js/app.min.js?rev=4.2"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"
