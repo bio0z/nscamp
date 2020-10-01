@@ -1471,7 +1471,6 @@ let vm = new Vue({
 
             if ( this.form.room !== undefined ) {
                 let formula = this.hotels[curHotel].formula
-
                 let arrPrices = this.hotels[curHotel].rooms[curRoom].price
 
                 if ( this.form.hotelBreakfast === true ) {
@@ -1507,11 +1506,15 @@ let vm = new Vue({
                 } else if (formula === 2) {
                     // TODO: welcome to HELL
                 }
+                console.log('passes' + this.passes[curPass].price * this.form.adults)
+                console.log('hotelTotalPrice ' + hotelTotalPrice)
+                console.log('skiPass ' + ((skiPass * (daysTour - 2)) * this.form.adults))
+                console.log('allBreakfasts ' + allBreakfasts)
                 if (this.form.adults > 0 && daysTour > 8) {
                     totalPrice =
                         (this.passes[curPass].price * this.form.adults)
                         + hotelTotalPrice
-                        + (skiPass * (daysTour - 2))
+                        + ((skiPass * (daysTour - 2)) * this.form.adults)
                         + allBreakfasts
                     this.form.hotelPrices = totalPrice
                     return totalPrice + '₽'
