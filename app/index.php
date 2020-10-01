@@ -34,7 +34,7 @@ $tourNumber = time();
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=1.5">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=1.7">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -453,23 +453,23 @@ $tourNumber = time();
                   <h5 v-if="form.pass === 'S'">STANDARD TOUR</h5>
                   <div class="row">
                     <label class="col-4" for="tourPersonName">{{ translations.guestName[selectedLocale] }}</label>
-                    <input class="col-6 border-0" type="text" id="tourPersonName"
+                    <input class="col-8 border-0" type="text" id="tourPersonName"
                            :value="userFIO" readonly></div>
                   <div class="row">
                     <label class="col-4" for="tourPersonGuests">{{ translations.guestsName[selectedLocale] }}</label>
-                    <input class="col-6 border-0" type="text" id="tourPersonGuests"
+                    <input class="col-8 border-0" type="text" id="tourPersonGuests"
                            :value="guestsNum" readonly></div>
                   <div class="row">
                     <label class="col-4" for="tourPersonEmail">E-mail</label>
-                    <input class="col-6 border-0" type="email" class="tourClientEmail" id="tourPersonEmail"
+                    <input class="col-8 border-0" type="email" class="tourClientEmail" id="tourPersonEmail"
                            :value="form.email" readonly></div>
                   <div class="row">
                     <label class="col-4" for="tourPersonPhone">{{ translations.guestPhone[selectedLocale] }}</label>
-                    <input class="col-6 border-0" type="text" id="tourPersonPhone"
+                    <input class="col-8 border-0" type="text" id="tourPersonPhone"
                            :value="form.phone" readonly></div>
                   <div class="row">
                     <label class="col-4" for="tourPersonHotel">{{ translations.guestHotel[selectedLocale] }}</label>
-                    <input class="col-6 border-0" type="text" id="tourPersonHotel"
+                    <input class="col-8 border-0" type="text" id="tourPersonHotel"
                            :value="form.hotelName" readonly>
                     <!--                                                <input v-for="(val, key) in hotels" v-if="key == form.hotel" :some-data="key" class="col-8 border-0" type="text" id="tourPersonHotel"-->
                     <!--                                                       :value="val" readonly>-->
@@ -1129,7 +1129,7 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=4.3"></script>
+<script src="<?=$path?>js/app.min.js?rev=4.4"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"

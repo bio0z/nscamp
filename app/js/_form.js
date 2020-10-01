@@ -219,8 +219,8 @@ let vm = new Vue({
                 'en':'Please, choose your the dates of tour.'
             },
             errorChoose9Dates:{
-                'ru':'Минимальный early bird тур - 9 дней. Вы выбрали - ' + this.calcTourDays + '.',
-                'en':'Minimal tour 9 days. Your choose - ' + this.calcTourDays + '.'
+                'ru':'Туры менее 9 дней пока недоступны.',
+                'en':'Minimal tour 9 days at this moment.'
             },
             errorChooseAdults:{
                 'ru':'Вы забыли выбрать количество человек.',
@@ -1414,7 +1414,11 @@ let vm = new Vue({
             return this.form.fname + ' ' + this.form.sname;
         },
         guestsNum(){
-            return this.form.adults + ' взрослых / ' + this.form.kids + ' детей';
+            let kids = ''
+            let adults = ''
+            if (this.form.kids) { kids = '/ ' + this.form.kids + ' детей'}
+            if (this.form.adults > 1) { adults = this.form.adults + ' взрослых'} else { adults = this.form.adults + ' взрослый'}
+            return adults + kids;
         },
         roomName() {
             return this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
@@ -1468,7 +1472,6 @@ let vm = new Vue({
                 let formula = this.hotels[curHotel].formula
 
                 let arrPrices = this.hotels[curHotel].rooms[curRoom].price
-                console.log('arrPrices ' + arrPrices)
 
                 if ( this.form.hotelBreakfast === true ) {
                     allBreakfasts = this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults] * daysTour
@@ -1477,36 +1480,20 @@ let vm = new Vue({
                 }
 
                 if (formula === 1){
-                    console.log('start -------------- ')
-                    console.log('daysTour ' + daysTour)
-
-
-
-                    console.log('prices curHotel ')
-                    console.log(this.hotels[curHotel])
-                    console.log('prices curRoom ')
-                    console.log(this.hotels[curHotel].rooms[curRoom])
-                    console.log('prices hotel ' + this.hotels[curHotel].rooms[curRoom].price)
-
-
                     arrPricesForTour.length = 0
 
                     if (arrPrices.length > 0) {
                         if (daysTour === 9 && arrPrices.length > 9){
-                            console.log('arrPrices.length '+ arrPrices.length)
                             if (this.form.dateFrom > new Date(2021, 2, 26)) {
                                 // arrPricesForTour = arrPrices.splice(1,8)
                                 arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price92
-                                console.log('arrPricesForTour 1 8 ='+ arrPricesForTour)
                             } else if (this.form.dateTill === new Date(2021, 2, 26)) {
                                 // arrPricesForTour = arrPrices.splice(0,8)
                                 arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price91
-                                console.log('arrPricesForTour 0 8 ='+ arrPricesForTour)
                             }
                         } else if (daysTour === 10){
                             arrPricesForTour = arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price10
                         }
-                        console.log('arrPricesForTour ' + arrPricesForTour)
 
                         // for(let i=0; i < arrPricesForTour.length; i++){
                         //     arrPricesSum = arrPricesSum + parseInt(arrPricesForTour[i]);
@@ -1525,13 +1512,6 @@ let vm = new Vue({
                         + hotelTotalPrice
                         + (skiPass * (daysTour - 2))
                         + allBreakfasts
-
-                    console.log('totalPrice ' + totalPrice)
-                    console.log('this.form.hotelBreakfast ' + this.form.hotelBreakfast)
-
-                    if (this.form.promocode === 'usi' ) {
-                        totalPrice = Math.round(totalPrice*0.0001)
-                    }
                     return totalPrice + '₽';
                 }
             }
@@ -1569,19 +1549,16 @@ let vm = new Vue({
                     this.errors = null;
                 }
             } else if (this.step === 2) {
-                console.log('calcTourDays before')
                 this.form.tourDays = this.calcTourDays
-                console.log('calcTourDays after')
-                console.log('calcTourDays this.form.tourDays' +this.form.tourDays)
                 if (!this.form.dateTill || !this.form.dateFrom) {
                     this.errors = this.translations.errorChooseDates[this.selectedLocale];
                     return false;
                 } else if (!this.form.adults) {
                     this.errors = this.translations.errorChooseAdults[this.selectedLocale];
                     return false;
-                // } else if (!this.form.tourDays < 8) {
-                //     this.errors = this.translations.errorChoose9Dates[this.selectedLocale];
-                //     return false;
+                } else if (this.calcTourDays < 9) {
+                    this.errors = this.translations.errorChoose9Dates[this.selectedLocale];
+                    return false;
                 } else {
                     this.errors = null;
                 }
@@ -1651,7 +1628,6 @@ let vm = new Vue({
         showRoomPhoto(){
             let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
             let curHotelIndex = this.hotels.indexOf(curHotel)
-            console.log('this.form.room'+this.form.room)
             if (this.form.room !== undefined){
                 let curRoom = this.hotels[curHotelIndex].rooms.find(room => room.code === this.form.room)
                 let curRoomIndex = this.hotels[curHotelIndex].rooms.indexOf(curRoom)
