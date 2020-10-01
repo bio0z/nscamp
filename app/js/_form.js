@@ -1513,7 +1513,8 @@ let vm = new Vue({
                         + hotelTotalPrice
                         + (skiPass * (daysTour - 2))
                         + allBreakfasts
-                    return totalPrice + '₽';
+                    this.form.hotelPrices = totalPrice
+                    return totalPrice + '₽'
                 }
             }
             return false;
@@ -1714,7 +1715,16 @@ let vm = new Vue({
                 fdata.append('passname', this.form.pass);
                 fdata.append('gname', this.form.gfname);
                 fdata.append('glastname', this.form.gsname);
+                fdata.append('gphone', this.form.gphone);
+                fdata.append('gemail', this.form.gemail);
                 fdata.append('promocode', this.form.promocode);
+                fdata.append('dateFrom', this.form.dateFrom);
+                fdata.append('dateTill', this.form.dateTill);
+                fdata.append('adults', this.form.adults);
+                fdata.append('kids', this.form.kids);
+                fdata.append('hotelBreakfast', this.form.hotelBreakfast);
+                fdata.append('hotelPrices', this.form.hotelPrices);
+                fdata.append('tourDays', this.form.tourDays);
 
                 axios({
                     method: 'post',
