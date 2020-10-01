@@ -99,7 +99,7 @@ if(isset($_POST['tourNumber'])) {
       $mail->AddAddress($emailTo);
       $mail->addReplyTo('info@newstarcamp.ru', 'Information');
       // $mail->addCC($emailCopy);
-      $mail->addBCC('bezsnow@gmail.com');
+      $mail->addBCC('pool@awsd.cc');
 
       $mail->AddAttachment( $filename );
 

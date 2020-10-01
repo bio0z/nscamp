@@ -254,13 +254,13 @@ let vm = new Vue({
                 'ru':'<p><b>В тур включено:</b></p>\n' +
                     '<ul>\n' +
                     '<li> Браслет участника</li>\n' +
-                    '<li> Проживание в отеле с завтраками</li>\n' +
-                    '<li> Прогулочный билет на подъемники фестиваля на все дни фестиваля</li>\n' +
+                    '<li> Проживание в отеле</li>\n' +
+                    '<li> Ски-пасс</li>\n' +
                     '</ul>',
                 'en':'<p><b>Tour details:</b></p>\n' +
                     '<ul>\n' +
                     '<li> Festival PASS</li>\n' +
-                    '<li> Hotel accommodation + breakfast</li>\n' +
+                    '<li> Hotel accommodation</li>\n' +
                     '<li> Cable lifts ticket(s)</li>\n' +
                     '</ul>',
             },
@@ -409,7 +409,7 @@ let vm = new Vue({
                 rooms:[
                     {
                         active: true,
-                        name: 'Стандарт с завтраком',
+                        name: 'Стандартный',
                         code: 'S',
                         price: {
                             '1': 4700,
@@ -436,7 +436,7 @@ let vm = new Vue({
                     },
                     {
                         active: true,
-                        name: 'Стандарт с балконом с завтраком',
+                        name: 'Стандарт с балконом',
                         code: 'SB',
                         price: {
                             '1': 5200,
@@ -505,7 +505,7 @@ let vm = new Vue({
                     },
                     {
                         active: true,
-                        name: 'Семейный номер с завтраком',
+                        name: 'Семейный номер',
                         code: 'FAM',
                         breakfast: {
                             '1':0,
@@ -1142,7 +1142,7 @@ let vm = new Vue({
                     },
                     {
                         active: true,
-                        name: '2-х комнатный сьюит',
+                        name: 'Двухкомнатный номер',
                         code: 'SS2',
                         price: [8540,8540,8540,7770,7770,7770,7770,3900,5740,5740],
                         price10: 72080,
@@ -1170,7 +1170,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Приют Панды',
                 code: 'PP',
                 formula: 0,
@@ -1223,7 +1223,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Отель «28»',
                 code: 'H28',
                 formula: 0,
@@ -1276,7 +1276,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Rosa Village',
                 code: 'ROV',
                 formula: 0,

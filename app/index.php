@@ -522,11 +522,9 @@ $tourNumber = time();
         <section v-if="step === 6">
           <div class="row">
             <div class="col text-center">
-              <div v-if="form.payed === 1">
-                {{ translations.tourSuccess[selectedLocale] }}
+              <div v-if="form.payed === 1" v-html="translations.tourSuccess[selectedLocale]">
               </div>
-              <div v-if="form.payed !== 1">
-                {{ translations.tourFail[selectedLocale] }}
+              <div v-if="form.payed !== 1" v-html="translations.tourFail[selectedLocale]">
               </div>
             </div>
           </div>
