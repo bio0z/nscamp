@@ -53,11 +53,16 @@ if (isset($_GET['num'])){
     if ($ar['guest2'] == 'null') $ar['guest2'] = '';
     $voucher = preg_replace("/#GUEST2#/",$ar['guest2'],$voucher);
 	  $voucher = preg_replace("/#ROOM#/",$ar['room'],$voucher);
+	  $voucher = preg_replace("/#BREAKFAST#/",$ar['hotelBreakfast'],$voucher); #todo breakfast text
 	  $voucher = preg_replace("/#HOTEL#/",$ar['hotel'],$voucher);
 	  $voucher = preg_replace("/#ADDRESS#/",$ar['address'],$voucher);
     if ($pass == 'VIP') $vipZona = '— Зона VIP на вечеринках';
 	  $voucher = preg_replace("/#VIP_ZONA#/",$vipZona,$voucher);
 	  $voucher = preg_replace("/#TOUR_NUMBER#/",$ar['tourNumber'],$voucher);
+	  $voucher = preg_replace("/#TOUR_DAYS#/",$ar['tourDays'],$voucher);
+	  $voucher = preg_replace("/#DATEFROM#/",$ar['dateFrom'],$voucher);
+	  $voucher = preg_replace("/#DATETILL#/",$ar['dateTill'],$voucher);
+	  $voucher = preg_replace("/#ADULTS#/",$ar['dateTill'],$voucher);
 
     $voucher = mb_convert_encoding($voucher, 'HTML-ENTITIES', "UTF-8");
 

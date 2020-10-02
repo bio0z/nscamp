@@ -104,7 +104,9 @@ let vm = new Vue({
                 'en':'from 64 190 <span>₽ </span> from 9 days'
             },
             passSDetailsFull:{
-                'ru':'<p class="mb-2">Доступ ко всем площадкам</p>\n' +
+                'ru':'<p class="mb-2">Браслет участника</p>\n' +
+                    '<p class="mb-2">Доступ ко всем площадкам</p>\n' +
+                    '<p class="mb-2">Проживание в выбранном отеле</p>\n' +
                     '<p class="mb-2">Доступ ко всей программе </p>\n' +
                     '<p class="mb-2">Скидки и привелегии участника фестиваля</p>\n' +
                     '<p class="mb-2">Ски пасс ( 7 дней из 9 / 8 дней из 10)</p>\n' +
@@ -155,6 +157,18 @@ let vm = new Vue({
             guestsName:{
                 'ru':'Гости',
                 'en':'Guests'
+            },
+            guestsMail:{
+                'ru':'гостя',
+                'en':'guests'
+            },
+            guestMail:{
+                'ru':'гость',
+                'en':'guest'
+            },
+            hotelMailBreakfast:{
+                'ru':'с завтраком',
+                'en':'with breakfast'
             },
             guestSurname:{
                 'ru':'Фамилия',
@@ -708,6 +722,7 @@ let vm = new Vue({
                 name: 'Отель Radisson Rosa Khutor *****',
                 code: 'RRK5',
                 formula: 1,
+                address:'',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-2-standard-1.jpg',
@@ -947,6 +962,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Отель Park Inn by Radisson Rosa Khutor ****',
                 code: 'PIRRS4',
+                address: '',
                 formula: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.jpg',
@@ -1094,6 +1110,7 @@ let vm = new Vue({
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 formula: 1,
+                address: '',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-2-standard-1.jpg',
@@ -1704,7 +1721,11 @@ let vm = new Vue({
                 this.form.tourNumber = tournumber;
                 this.form.tourID = tourid;
 
-                var fdata = new FormData();
+                let fdata = new FormData();
+
+                let guests = this.form.adults === 1 ? this.form.adults + ' ' + this.translations.guestMail[this.selectedLocale]
+                    : this.form.adults + ' ' + this.translations.guestsMail[this.selectedLocale]
+                let breakfast = this.form.hotelBreakfast === true ? this.translations.hotelMailBreakfast[this.selectedLocale] : false
 
                 fdata.append('tourNumber', this.form.tourNumber);
                 fdata.append('tourID', this.form.tourID);
@@ -1724,9 +1745,9 @@ let vm = new Vue({
                 fdata.append('promocode', this.form.promocode);
                 fdata.append('dateFrom', this.form.dateFrom);
                 fdata.append('dateTill', this.form.dateTill);
-                fdata.append('adults', this.form.adults);
+                fdata.append('adults', guests);
                 fdata.append('kids', this.form.kids);
-                fdata.append('hotelBreakfast', this.form.hotelBreakfast);
+                fdata.append('hotelBreakfast', breakfast);
                 fdata.append('hotelPrices', this.form.hotelPrices);
                 fdata.append('tourDays', this.form.tourDays);
 
