@@ -34,7 +34,7 @@ $tourNumber = time();
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=2">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=2.1">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -66,25 +66,19 @@ $tourNumber = time();
     </transition>
   </script>
   <?php if ($host == 'nswpay.ru') { ?>
-    <script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () {
-                (m[i].a = m[i].a || []).push(arguments)
-            };
-            m[i].l = 1 * new Date();
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(66145342, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
         });
     </script>
-    <noscript>
-      <div><img src="https://mc.yandex.ru/watch/66145342" style="position:absolute; left:-9999px;" alt=""/></div>
-    </noscript>
+    <noscript><div><img src="https://mc.yandex.ru/watch/66145342" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <?php } ?>
 </head>
 
@@ -1129,7 +1123,7 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=5"></script>
+<script src="<?=$path?>js/app.min.js?rev=5.3"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"
