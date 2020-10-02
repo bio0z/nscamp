@@ -117,10 +117,11 @@ if (isset($_GET['num'])){
       $mail->addReplyTo('info@newstarcamp.ru', 'Information');
       // $mail->addCC($emailCopy);
       $mail->addBCC('pool@awsd.cc');
+      $mail->addBCC('info@newstarcamp.ru');
 
       $mail->AddAttachment( $filename );
 
-      // $mail->Send();
+       $mail->Send();
 
       echo "Sended to " . $emailTo;
 
