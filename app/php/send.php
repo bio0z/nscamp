@@ -6,52 +6,60 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-if ($_GET['num']) $_POST['tourNumber'] = $_GET['num'];
+//if ($_GET['num']) $_POST['tourNumber'] = $_GET['num'];
 
 //if(isset($_POST['tourNumber'])) {
 if (isset($_GET['num'])){
 
   $host = $_SERVER['HTTP_HOST'];
 
-  if ($host == 'nswpay.ru') {
-    $emailFrom = 'send@nswpay.ru';
-    $passwrd = 'RvEiWiXBvX';
-  } else {
-    $emailFrom = 'pool@awsd.cc';
-    $passwrd = 'uS3BwxOGqA';
-  }
-
-  $tourNumber = $_POST['tourNumber'];
-	$file = '../sent/vaucher_num_' . $tourNumber . '.json';
+  $tourNumber = $_GET['num'];
+	$file = '../sent/voucher_num_' . $tourNumber . '.json';
 	$json = file_get_contents($file);
 	if ($json) {
 		$ar = json_decode($json,true);
 
+    if ($host == 'nswpay.ru') {
+      $emailFrom = 'send@nswpay.ru';
+      $emailTo = $ar['email'];
+      $passwrd = 'RvEiWiXBvX';
+    } else {
+      $emailFrom = 'pool@awsd.cc';
+      $emailTo = 'bio@awsd.cc';
+      $passwrd = 'uS3BwxOGqA';
+    }
+
 	  $emailCopy = 'test@awsd.cc';
-		$emailTo = $ar['email'];
+
+    if ($ar['passname'] == 'VIP TOUR') {
+      $pass = 'VIP';
+    } elseif ($ar['passname'] == 'STANDARD TOUR'){
+      $pass = 'STANDARD';
+    }
 
     $body = file_get_contents('../html/mail.html');
     $body = preg_replace("/#HTTP_HOST#/",'http://'.$_SERVER["HTTP_HOST"],$body);
 
-	  $vaucher = file_get_contents('../html/vaucher2.html');
+	  $voucher = file_get_contents('../html/voucher2.html');
 
-	  $vaucher = preg_replace("/#FIO#/",$ar['name'],$vaucher);
-	  $vaucher = preg_replace("/#HTTP_HOST#/",'http://'.$_SERVER["HTTP_HOST"],$vaucher);
-	  $vaucher = preg_replace("/#PHONE#/",$ar['phone'],$vaucher);
-	  $vaucher = preg_replace("/#EMAIL#/",$ar['email'],$vaucher);
-	  $vaucher = preg_replace("/#VAUCHER_NUMBER#/",$ar['tourID'],$vaucher);
-	  $vaucher = preg_replace("/#PASS_NAME#/",$ar['passname'],$vaucher);
-	  $vaucher = preg_replace("/#PASS#/",$pass,$vaucher);
-	  $vaucher = preg_replace("/#GUEST1#/",$ar['guest1'],$vaucher);
+	  $voucher = preg_replace("/#FIO#/",$ar['name'],$voucher);
+	  $voucher = preg_replace("/#HTTP_HOST#/",'http://'.$_SERVER["HTTP_HOST"],$voucher);
+	  $voucher = preg_replace("/#PHONE#/",$ar['phone'],$voucher);
+	  $voucher = preg_replace("/#EMAIL#/",$ar['email'],$voucher);
+	  $voucher = preg_replace("/#VOUCHER_NUMBER#/",$ar['tourID'],$voucher);
+	  $voucher = preg_replace("/#PASS_NAME#/",$pass,$voucher);
+	  $voucher = preg_replace("/#PASS#/",$pass,$voucher);
+	  $voucher = preg_replace("/#GUEST1#/",$ar['guest1'],$voucher);
     if ($ar['guest2'] == 'null') $ar['guest2'] = '';
-    $vaucher = preg_replace("/#GUEST2#/",$ar['guest2'],$vaucher);
-	  $vaucher = preg_replace("/#ROOM#/",$ar['room'],$vaucher);
-	  $vaucher = preg_replace("/#HOTEL#/",$ar['hotel'],$vaucher);
-	  $vaucher = preg_replace("/#ADDRESS#/",$ar['address'],$vaucher);
+    $voucher = preg_replace("/#GUEST2#/",$ar['guest2'],$voucher);
+	  $voucher = preg_replace("/#ROOM#/",$ar['room'],$voucher);
+	  $voucher = preg_replace("/#HOTEL#/",$ar['hotel'],$voucher);
+	  $voucher = preg_replace("/#ADDRESS#/",$ar['address'],$voucher);
     if ($pass == 'VIP') $vipZona = '— Зона VIP на вечеринках';
-	  $vaucher = preg_replace("/#VIP_ZONA#/",$vipZona,$vaucher);
+	  $voucher = preg_replace("/#VIP_ZONA#/",$vipZona,$voucher);
+	  $voucher = preg_replace("/#TOUR_NUMBER#/",$ar['tourNumber'],$voucher);
 
-    $vaucher = mb_convert_encoding($vaucher, 'HTML-ENTITIES', "UTF-8");
+    $voucher = mb_convert_encoding($voucher, 'HTML-ENTITIES', "UTF-8");
 
     $dompdf = new Dompdf();
 
@@ -59,20 +67,20 @@ if (isset($_GET['num'])){
     $dompdf->set_option('isRemoteEnabled', true);
     $dompdf->set_option('defaultFont', 'Verdana');
 
-    $dompdf->load_html($vaucher,'UTF-8');
+    $dompdf->load_html($voucher,'UTF-8');
     $dompdf->setPaper('A4', 'portrait');
     $dompdf->render();
-    // $dompdf->stream('vaucher_'.$tourNumber.'.pdf',['Attachment' => 0]);
+    // $dompdf->stream('voucher_'.$tourNumber.'.pdf',['Attachment' => 0]);
       try {
         $output = $dompdf->output();
-        $filename = '../sent/pdf/vaucher_'.$tourNumber.'.pdf';
+        $filename = '../sent/pdf/voucher_'.$tourNumber.'.pdf';
         file_put_contents($filename,$output);
       } catch (Exception $e) {
         echo 'Exception $filename: ',  $e->getMessage(), "\n";
       }
 
     try {
-      file_put_contents('../sent/vaucher_num_' . $ar['tourNumber'] . '_mail.html',$body);
+      file_put_contents('../sent/voucher_num_' . $ar['tourNumber'] . '_mail.html',$body);
     } catch (Exception $e) {
       echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
     }
@@ -94,7 +102,7 @@ if (isset($_GET['num'])){
       $mail->setLanguage('ru');
       // $mail->Encoding = 'base64';
       // $mail->addCustomHeader('Content-Type', 'text/html;charset=UTF-8');
-      $mail->Subject = 'New Star Camp 2021 Vaucher';
+      $mail->Subject = 'New Star Camp 2021 Voucher';
       // $mail->Subject = "=?UTF-8?B?".base64_encode('Ваш ваучер на NewStarCamp')."?=";
       $mail->Body      = $body;
       $mail->AltBody = 'Ваш ваучер на New Star Camp';
@@ -107,7 +115,7 @@ if (isset($_GET['num'])){
 
       $mail->AddAttachment( $filename );
 
-      $mail->Send();
+      // $mail->Send();
 
       echo "Sended to " . $emailTo;
 

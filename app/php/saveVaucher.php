@@ -25,10 +25,10 @@ if(isset($_POST)) {
   $ar['tourPrice'] = $_POST['tourPrice'];
   $ar['tourDays'] = $_POST['tourDays'];
 
-  $vaucher = json_encode($ar);
+  $voucher = json_encode($ar);
 
   try {
-    file_put_contents('../sent/vaucher_num_' . $ar['tourNumber'] . '.json',$vaucher);
+    file_put_contents('../sent/voucher_num_' . $ar['tourNumber'] . '.json',$voucher);
   } catch (Exception $e) {
     echo 'Exception: ',  $e->getMessage(), "\n";
   }

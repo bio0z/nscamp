@@ -567,7 +567,7 @@ $tourNumber = time();
               data-email-selector='.tourClientEmail'
               data-redirect=true
               :data-button-text="translations.buyTour[selectedLocale]"
-              @click="saveVaucher(<?php echo $tourNumber ?>,<?php echo $tourID ?>)">
+              @click="saveVoucher(<?php echo $tourNumber ?>,<?php echo $tourID ?>)">
           </div>
         </div>
         <div class="row mb-3 ml-0 mr-0 footer">

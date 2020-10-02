@@ -287,7 +287,7 @@ let vm = new Vue({
                     '<p>Ваучер отправлен на email.</p>\n' +
                     '<p>Скоро увидимся ;)</p>\n',
                 'en':'<p>You win! :)</p>' +
-                    '<p>Vaucher goes to email right now.</p>\n' +
+                    '<p>Voucher goes to email right now.</p>\n' +
                     '<p>See you soon ;)</p>\n',
             },
             tourFail:{
@@ -1693,7 +1693,7 @@ let vm = new Vue({
             this.errors = null;
         },
 
-        saveVaucher(tournumber, tourid) {
+        saveVoucher(tournumber, tourid) {
 
             if (!this.form.consent) {
                 this.errors = 'Без согласия на обработку персональных данных мы не сможем принять ваш запрос.';
@@ -1732,7 +1732,7 @@ let vm = new Vue({
 
                 axios({
                     method: 'post',
-                    url: 'php/saveVaucher.php',
+                    url: 'php/saveVoucher.php',
                     data: fdata,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 })
