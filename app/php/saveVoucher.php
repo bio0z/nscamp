@@ -13,8 +13,10 @@ if(isset($_POST)) {
   $ar['guest1'] = $_POST['name'] . ' ' . $_POST['lastname'];
   $ar['guest2'] = $_POST['gname'] . ' ' . $_POST['glastname'];
   $ar['hotel'] = $_POST['hotel'];
-  $ar['dateFrom'] = date("d-m-Y", $_POST['dateFrom']);
-  $ar['dateTill'] = date("d-m-Y", $_POST['dateTill']);
+//  $ar['dateFrom'] = date("d-m-Y", $_POST['dateFrom']);
+  $ar['dateFrom'] = $_POST['dateFrom'];
+//  $ar['dateTill'] = date("d-m-Y", $_POST['dateTill']);
+  $ar['dateTill'] = $_POST['dateTill'];
   $ar['adults'] = $_POST['adults'];
   $ar['kids'] = $_POST['kids'];
   $ar['hotelName'] = $_POST['hotelName'];

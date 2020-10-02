@@ -258,7 +258,7 @@ $tourNumber = time();
                           :placeholder="translations.tourKids[selectedLocale]"
                           required>
                     <option value="" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>
-                    <option value="1">без детей</option>
+                    <option value="0">без детей</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                   </select>
