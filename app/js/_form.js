@@ -411,7 +411,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Riders Lodge **',
                 code: 'RIL',
-                address: 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 6',
+                address: 'Улица Медовея 6, Эсто-Садок, Россия\n',
                 formula: 0,
                 gallery:
                     [
@@ -720,7 +720,7 @@ let vm = new Vue({
                 name: 'Отель Radisson Rosa Khutor *****',
                 code: 'RRK5',
                 formula: 1,
-                address:'',
+                address:'Набережная Лаванды, 4 , Эсто-Садок, Росси',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-2-standard-1.jpg',
@@ -960,7 +960,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Отель Park Inn by Radisson Rosa Khutor ****',
                 code: 'PIRRS4',
-                address: '',
+                address: 'Улица Олимпийская 35, Эсто-Садок, Россия',
                 formula: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.jpg',
@@ -1108,7 +1108,7 @@ let vm = new Vue({
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 formula: 1,
-                address: '',
+                address: 'Набережная Лаванды, 4, Эсто-Садок, Россия',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-2-standard-1.jpg',
@@ -1725,6 +1725,8 @@ let vm = new Vue({
                     : this.form.adults + ' ' + this.translations.guestsMail[this.selectedLocale]
                 let breakfast = this.form.hotelBreakfast === true ? this.translations.hotelMailBreakfast[this.selectedLocale] : false
 
+                let roomName = this.form.roomName
+
                 fdata.append('tourNumber', this.form.tourNumber);
                 fdata.append('tourID', this.form.tourID);
                 fdata.append('tourName', this.form.tourName);
@@ -1733,6 +1735,7 @@ let vm = new Vue({
                 fdata.append('email', this.form.email);
                 fdata.append('phone', this.form.phone);
                 fdata.append('room', this.form.room);
+                fdata.append('roomName', roomName);
                 fdata.append('hotel', this.form.hotelName);
                 fdata.append('address', this.form.address);
                 fdata.append('passname', this.form.pass);

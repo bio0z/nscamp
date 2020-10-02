@@ -24,6 +24,7 @@ if(isset($_POST)) {
   $ar['hotelPrices'] = $_POST['hotelPrices'];
   $ar['address'] = $_POST['address'];
   $ar['room'] = $_POST['room'];
+  $ar['roomName'] = $_POST['roomName'];
   $ar['tourPrice'] = $_POST['tourPrice'];
   $ar['tourDays'] = $_POST['tourDays'];
 
