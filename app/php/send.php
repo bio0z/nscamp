@@ -46,7 +46,7 @@ if (isset($_GET['num'])){
 	  $voucher = preg_replace("/#HTTP_HOST#/",'http://'.$_SERVER["HTTP_HOST"],$voucher);
 	  $voucher = preg_replace("/#PHONE#/",$ar['phone'],$voucher);
 	  $voucher = preg_replace("/#EMAIL#/",$ar['email'],$voucher);
-	  $voucher = preg_replace("/#VOUCHER_NUMBER#/",$ar['tourID'],$voucher);
+	  $voucher = preg_replace("/#VOUCHER_NUMBER#/",$ar['tourNumber'],$voucher);
 	  $voucher = preg_replace("/#PASS_NAME#/",$pass,$voucher);
 	  $voucher = preg_replace("/#PASS#/",$pass,$voucher);
 	  $voucher = preg_replace("/#GUEST1#/",$ar['guest1'],$voucher);

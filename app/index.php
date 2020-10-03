@@ -1123,7 +1123,7 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=5.3"></script>
+<script src="<?=$path?>js/app.min.js?rev=5.5"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"

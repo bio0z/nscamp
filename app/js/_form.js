@@ -1727,6 +1727,12 @@ let vm = new Vue({
 
                 let roomName = this.form.roomName
 
+                let options = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                }
+
                 fdata.append('tourNumber', this.form.tourNumber);
                 fdata.append('tourID', this.form.tourID);
                 fdata.append('tourName', this.form.tourName);
@@ -1744,8 +1750,8 @@ let vm = new Vue({
                 fdata.append('gphone', this.form.gphone);
                 fdata.append('gemail', this.form.gemail);
                 fdata.append('promocode', this.form.promocode);
-                fdata.append('dateFrom', this.form.dateFrom);
-                fdata.append('dateTill', this.form.dateTill);
+                fdata.append('dateFrom', this.form.dateFrom.toLocaleString("ru",options))
+                fdata.append('dateTill', this.form.dateTill.toLocaleString("ru",options));
                 fdata.append('adults', guests);
                 fdata.append('kids', this.form.kids);
                 fdata.append('hotelBreakfast', breakfast);
