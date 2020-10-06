@@ -8,18 +8,22 @@
             font-family: Verdana;
             src: url(http://nswpay.ru/fonts/Verdana.ttf);
         }
+
         @font-face {
             font-family: Verdana;
             font-weight: bold;
             src: url(http://nswpay.ru/fonts/Verdana_Bold.ttf);
         }
+
         * {
             font-family: Verdana;
         }
+
         html {
             margin: auto;
         }
-        p{
+
+        p {
             padding: 0;
             margin: 0;
         }
@@ -36,7 +40,8 @@
             <table border="0" cellspacing="0" cellpadding="0" width="700px">
                 <tr>
                     <td>
-                        <img style="height:100px; margin-top:30px; padding: 10px" src="http://nswpay.ru/images/mail-hlogo.png">
+                        <img style="height:100px; margin-top:30px; padding: 0 10px 10px"
+                             src="http://nswpay.ru/images/mail-hlogo.png">
                     </td>
                     <td style="text-align:left;">
                         <p style="font-style: normal;font-size: 45px;line-height: 100%;"><b>#PASS_NAME#
@@ -51,36 +56,37 @@
                         <table border="0" cellspacing="0" cellpadding="0" width="700px"
                                style="background-color: #F2D046; border: 1px solid #fff;">
                             <tr>
-                                <td colspan="2" height="20px" style="text-align:left; padding: 0 10px;  border: 1px solid #fff; ">
-                                        <p style="font-size: 24px; margin:0"><b>Ваучер №#VOUCHER_NUMBER#</b></p>
+                                <td colspan="2" height="20px"
+                                    style="text-align:left; padding: 0 10px;  border: 1px solid #fff; ">
+                                    <p style="font-size: 24px; margin:0"><b>Ваучер №#VOUCHER_NUMBER#</b></p>
                                 </td>
-                                <td bgcolor="#ffffff" rowspan="2">
-                                    <img src="https://chart.googleapis.com/chart?chs=163x163&amp;cht=qr&amp;chl=http://nswpay.ru/wowcher/?id=#UNIQUE_CODE#&amp;choe=UTF-8">
-
+                                <td bgcolor="#ffffff" rowspan="2" width="110px">
+                                    <img src="https://chart.googleapis.com/chart?chs=110x110&amp;cht=qr&amp;chl=http://nswpay.ru/wowcher/?id=#VOUCHER_NUMBER#&amp;choe=UTF-8">
                                 </td>
                             </tr>
                             <tr>
-                                <td height="90px" style="font-size:18px; text-align:left; padding: 0 10px;  border: 1px solid #fff; ">
-                                        <p>
-                                            ФИО брони:
-                                        </p>
-                                        <p>
-                                            Телефон:
-                                        </p>
-                                        <p>
-                                            E-mail:
-                                        </p>
+                                <td height="90px"
+                                    style="font-size:18px; text-align:left; padding: 0 10px;  border: 1px solid #fff; ">
+                                    <p>
+                                        ФИО брони:
+                                    </p>
+                                    <p>
+                                        Телефон:
+                                    </p>
+                                    <p>
+                                        E-mail:
+                                    </p>
                                 </td>
                                 <td style="font-size:18px; text-align:left; padding: 10px;  border: 1px solid #fff; ">
-                                        <p>
-                                            #FIO#
-                                        </p>
-                                        <p>
-                                            #PHONE#
-                                        </p>
-                                        <p >
-                                            #EMAIL#
-                                        </p>
+                                    <p>
+                                        #FIO#
+                                    </p>
+                                    <p>
+                                        #PHONE#
+                                    </p>
+                                    <p>
+                                        #EMAIL#
+                                    </p>
                                 </td>
                             </tr>
                         </table>
@@ -94,19 +100,21 @@
                         <table border="0" cellspacing="0" cellpadding="0" width="700px"
                                style="background-color: #F2D046; border: #fff solid 1px; ">
                             <tr>
-                                <td height="30px" style="font-size: 24px; text-align:left; padding: 0 10px;  border: 1px solid #fff; ">
+                                <td height="30px"
+                                    style="font-size: 24px; text-align:left; padding: 0 10px;  border: 1px solid #fff; ">
                                     <p><b>Гости</b></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td height="90px" style="font-size:18px; text-align:left; padding:10px;  border: 1px solid #fff; ">
-                                        <p><b>ФИО</b></p>
-                                        <p>
-                                            #GUEST1#
-                                        </p>
-                                        <p>
-                                            #GUEST2#
-                                        </p>
+                                <td height="70px"
+                                    style="font-size:18px; text-align:left; padding:10px;  border: 1px solid #fff; ">
+                                    <p><b>ФИО</b></p>
+                                    <p>
+                                        #GUEST1#
+                                    </p>
+                                    <p>
+                                        #GUEST2#
+                                    </p>
                                 </td>
                             </tr>
                         </table>
@@ -120,16 +128,19 @@
                         <table border="0" cellspacing="0" cellpadding="0" width="700px"
                                style="background-color: #F2D046; border: #fff solid 1px;">
                             <tr>
-                                <td height="30px" colspan="4" style="text-align:left; padding: 0 10px;  border: 1px solid #fff;">
+                                <td height="30px" colspan="4"
+                                    style="text-align:left; padding: 0 10px;  border: 1px solid #fff;">
                                     <div><p style="font-size: 24px;"><b>Отель</b></p></div>
                                 </td>
                             </tr>
                             <tr>
-                                <td height="30px" style="font-size:18px; text-align:left; width: 40%; padding: 0 10px;  border: 1px solid #fff;">
+                                <td height="30px"
+                                    style="font-size:18px; text-align:left; width: 40%; padding: 0 10px;  border: 1px solid #fff;">
                                     <p><b>Название отеля:</b></p>
                                     <p>Адрес:</p>
                                 </td>
-                                <td colspan="3" style="font-size:18px; text-align:left; width: 60%; padding: 0 10px;  border: 1px solid #fff;">
+                                <td colspan="3"
+                                    style="font-size:18px; text-align:left; width: 60%; padding: 0 10px;  border: 1px solid #fff;">
                                     <p><b>#HOTEL#</b></p>
                                     <p>#ADDRESS#</p>
                                 </td>
@@ -144,7 +155,8 @@
                                 <td width="20%" style="font-size: 18px; text-align:left; padding: 0 10px; ">
                                     <p><b>Выезд</b></p>
                                 </td>
-                                <td width="20%" style="font-size: 18px; text-align:left; text-align:right; padding: 0 10px;  ">
+                                <td width="20%"
+                                    style="font-size: 18px; text-align:left; text-align:right; padding: 0 10px;  ">
                                     <p><b>Ночей</b></p>
                                 </td>
                             </tr>
@@ -172,30 +184,45 @@
                 </tr>
                 <tr>
                     <td>
-                        <table border="0" cellspacing="0" cellpadding="0" width="700px"
-                               style="background-color: #F2D046; border: 1px #fff solid;">
+                        <table border="0" cellspacing="0" cellpadding="0" height="150px" width="700px"
+                               style="font-size:12px; background-color: #F2D046; border: 1px #fff solid;">
                             <tr>
-                                <td height="150px" style="padding: 0 10px;">
-                                    <div style="font-size:12px; line-height: 150%">
-                                        <p style="">
-                                            <b>* В #PASS# Tour включено:</b>
-                                        </p>
-                                        <ul style="">
-                                            <li>Браслет участника фестиваля</li>
-                                            <li>Проживание в отеле</li>
-                                            <li>Ски-пасс</li>
-                                        </ul>
-                                        <p style="">
-                                            <b>** Для заселения потребуется паспорт или свидетельство о рождении</b>
-                                        </p>
-                                        <p style="">
-                                            <b>*** Браслет участника</b>
-                                        </p>
-                                        <ul style="">
-                                            <li>Браслет участника выдается в штабе фестиваля в дни его проведения.</li>
-                                            <li>Адрес штаба: Круглогодичный курорт «Роза Хутор»,</li>
-                                            <li>Олимпийская деревня, ул. Пасека, д. 3, Аллея Флагов</li>
-                                        </ul>
+                                <td style="vertical-align: top; padding: 10px;">
+                                    <b>*</b>
+                                </td>
+                                <td style="vertical-align: top; padding: 10px;">
+                                    <p style="">
+                                        <b>В #PASS# Tour включено:</b>
+                                    </p>
+                                    <div style="padding-left:10px">
+                                        <p>— Браслет участника фестиваля</p>
+                                        <p>— Проживание в отеле</p>
+                                        <p>— Ски-пасс</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: top; padding:0 10px;">
+                                    <b>** </b>
+                                </td>
+                                <td style="vertical-align:top;padding:0 10px;">
+                                    <p>
+                                        <b>Для заселения потребуется паспорт или свидетельство о рождении</b>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: top; padding: 10px;">
+                                    <b>***</b>
+                                </td>
+                                <td style="vertical-align:top;padding: 10px;">
+                                    <p>
+                                        <b>Браслет участника</b>
+                                    </p>
+                                    <div style="padding-left:10px;">
+                                        <p>Браслет участника выдается в штабе фестиваля в дни его проведения.</p>
+                                        <p>Адрес штаба: Круглогодичный курорт «Роза Хутор»,</p>
+                                        <p>Олимпийская деревня, ул. Пасека, д. 3, Аллея Флагов</p>
                                     </div>
                                 </td>
                             </tr>

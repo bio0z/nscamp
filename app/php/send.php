@@ -50,7 +50,7 @@ if (isset($_GET['num'])){
 	  $voucher = preg_replace("/#PASS_NAME#/",$pass,$voucher);
 	  $voucher = preg_replace("/#PASS#/",$pass,$voucher);
 	  $voucher = preg_replace("/#GUEST1#/",$ar['guest1'],$voucher);
-    if ($ar['guest2'] == 'null') $ar['guest2'] = '';
+    if ($ar['guest2'] == 'null null') $ar['guest2'] = '';
     $voucher = preg_replace("/#GUEST2#/",$ar['guest2'],$voucher);
 	  $voucher = preg_replace("/#ROOM#/",$ar['roomName'],$voucher);
 	  $voucher = preg_replace("/#BREAKFAST#/",$ar['hotelBreakfast'],$voucher); #todo breakfast text
