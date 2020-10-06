@@ -255,7 +255,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                           class="custom-select rounded-0 nsc-select"
                           :placeholder="translations.tourKids[selectedLocale]"
                           required>
-                    <option value="0" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>
+                    <option value="" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>
                     <option value="0">без детей</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -554,7 +554,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           <?php $env == 'prod' ? $token = 'qlsnf995gkvurbqpc3qm4nbvqs' : $token = '5ul0u41eam2n3qpsuicfjim7fj' ?>
           <?php if ($env == 'prod') {?>
           <div
-              class="col-4 col-sm-7 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
+              class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
               v-show="form.consent && form.offer"
               id="alfa-payment-button"
               data-token="<?= $token ?>"
@@ -574,10 +574,15 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           <?php } ?>
           <?php if ($env == 'test') {?>
             <div v-show="form.consent && form.offer"
-               class="col-4 col-sm-7 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
+               class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
                @click="saveVoucher(<?php echo $tourNumber ?>,<?php echo $tourID ?>)">
-            Отправить ваучер
+            Создать ваучер
           </div>
+            <div v-show="form.consent && form.offer"
+                 class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
+                 @click="sendMail(<?php echo $tourNumber ?>)">
+              Отправить письмо
+            </div>
           <?php } ?>
         </div>
         <div class="row mb-3 ml-0 mr-0 footer">
@@ -1133,7 +1138,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=6"></script>
+<script src="<?=$path?>js/app.min.js?rev=6.4"></script>
 <?php if ($env == 'prod') {?>
 <script
     id="alfa-payment-script"

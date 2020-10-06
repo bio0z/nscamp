@@ -12,7 +12,7 @@ if(isset($_POST['tourNumber'])) {
 
   $host = $_SERVER['HTTP_HOST'];
 
-  $tourNumber = $_GET['num'];
+  $tourNumber = $_POST['tourNumber'];
 	$file = '../sent/voucher_num_' . $tourNumber . '.json';
 	$json = file_get_contents($file);
 	if ($json) {
@@ -25,7 +25,7 @@ if(isset($_POST['tourNumber'])) {
       $emailCopy = 'info@newstarcamp.ru';
     } else {
       $emailFrom = 'pool@awsd.cc';
-      $emailTo = 'bezsnow@gmail.com';
+      $emailTo = $ar['email'];
       $passwrd = 'uS3BwxOGqA';
       $emailCopy = 'pool@awsd.cc';
     }

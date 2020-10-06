@@ -2,6 +2,7 @@
 
 if(isset($_POST)) {
 
+  $ar['dateCreate'] = date('d M Y H:i:s', $_POST['tourNumber']);
   $ar['tourNumber'] = $_POST['tourNumber'];
   $ar['tourName'] = $_POST['tourName'];
   $ar['name'] = $_POST['name'] . ' ' . $_POST['lastname'];

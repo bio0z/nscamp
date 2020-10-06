@@ -1755,6 +1755,8 @@ let vm = new Vue({
 
                 let roomName = this.form.roomName
 
+                let kids = this.form.kids !== 1 || this.form.kids !== 2 ? 0 : this.form.kids
+
                 let options = {
                     year: 'numeric',
                     month: 'long',
@@ -1781,7 +1783,7 @@ let vm = new Vue({
                 fdata.append('dateFrom', this.form.dateFrom.toLocaleString("ru",options))
                 fdata.append('dateTill', this.form.dateTill.toLocaleString("ru",options));
                 fdata.append('adults', guests);
-                fdata.append('kids', this.form.kids);
+                fdata.append('kids', kids);
                 fdata.append('hotelBreakfast', breakfast);
                 fdata.append('hotelPrice', this.form.hotelPrice);
                 fdata.append('tourPrice', this.form.tourPrice);

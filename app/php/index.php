@@ -11,7 +11,9 @@
 //    foreach ($ar as $prop){
 //      echo '<p>'. $prop . '</p>';
 //    }
-
+$timestamp = 1601479956;
+echo date('d M Y H:i:s', $timestamp);
+/*
     $files1 = '../sent/vaucher_num_1601568580.json';
     $json1 = file_get_contents($files1);
 
@@ -32,7 +34,6 @@
 
     $files3 = '../sent/vaucher_num_1601570524.json';
     $json3 = file_get_contents($files3);
-
     $ar3 = json_decode($json3,true);
 
     foreach ($ar3 as $prop3){
@@ -57,7 +58,7 @@
       echo '<p>'. $prop5 . '</p>';
     }
 
-
+*/
 
 
 
