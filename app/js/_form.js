@@ -91,6 +91,10 @@ let vm = new Vue({
                 'ru':'Завтраки',
                 'en':'Breakfast',
             },
+            hotelBreakfastIncluded:{
+                'ru':'Завтрак включен',
+                'en':'Breakfast included',
+            },
             passDetails:{
                 'ru':'Подробнее',
                 'en':'More'
@@ -548,7 +552,16 @@ let vm = new Vue({
                     }
                 ],
                 desc:{
-                    'ru':'Riders Lodge современный отель с дружелюбной атмосферой, концептуальным дизайном и с бесконечной чередой разнообразных активностей.                                                                              Это первый в России отель для райдеров и любителей активного отдыха, где можно отлично отдохнуть в компании друзей или в кругу семьи, а также со своими домашними питомцами.           Отель расположен в Горной Олимпийской деревне на курорте «Роза Хутор» на высоте 1170 метров над уровнем моря, в шаговой доступности от подъемника «Олимпия» (первая очередь) и в непосредственной близости к трассе «Шале» и кресельному подъемнику. Riders Lodge является центральным местом для отдыха чемпионов России и мира по сноубордингу, популярных блогеров в области туризма и активного спорта, а также любимым местом для индивидуальных путешественников и семейных пар, предпочитающих совмещать экотуризм и активный досуг.',
+                    'ru':'Riders Lodge современный отель с дружелюбной атмосферой, концептуальным дизайном и ' +
+                        'с бесконечной чередой разнообразных активностей. Это первый в России отель для райдеров ' +
+                        'и любителей активного отдыха, где можно отлично отдохнуть в компании друзей или в кругу семьи, ' +
+                        'а также со своими домашними питомцами. Отель расположен в Горной Олимпийской деревне на курорте ' +
+                        '«Роза Хутор» на высоте 1170 метров над уровнем моря, в шаговой доступности от ' +
+                        'подъемника «Олимпия» (первая очередь) и в непосредственной близости к трассе «Шале» ' +
+                        'и кресельному подъемнику. Riders Lodge является центральным местом для отдыха ' +
+                        'чемпионов России и мира по сноубордингу, популярных блогеров в области туризма и ' +
+                        'активного спорта, а также любимым местом для индивидуальных путешественников и ' +
+                        'семейных пар, предпочитающих совмещать экотуризм и активный досуг.',
                     'en':'Do you want to live at the festival epicenter at an affordable price? Riders Lodge is the first hotel in Russia for riders and a friendly gathering and hang out, and very closely located relative to all activities and to the Festival Headquarters and the Olympia cable lift. The hotel lobby deserves special attention - cause it’s full of fun from morning to late night that life: convenient chill-out zone with a fast internet connection, a games area, a cinema, and the Surf Coffee cafe inside.'
                 }
             },
@@ -1434,7 +1447,13 @@ let vm = new Vue({
         guestsNum(){
             let kids = ''
             let adults = ''
-            if (this.form.kids) { kids = '/ ' + this.form.kids + ' детей'}
+            if (this.form.kids) {
+                if (this.form.kids === 1) {
+                    kids = ' / ' + this.form.kids + ' ребенок'
+                } else if (this.form.kids > 1) {
+                    kids = ' / ' + this.form.kids + ' детей'
+                }
+            }
             if (this.form.adults > 1) { adults = this.form.adults + ' взрослых'} else { adults = this.form.adults + ' взрослый'}
             return adults + kids;
         },

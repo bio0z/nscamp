@@ -308,7 +308,7 @@ $tourNumber = time();
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                  <label class="row m-0">
+                  <label v-if="form.hotel !== 'RIL'" class="row m-0">
                     <input v-model.trim="form.hotelBreakfast"
                            class="custom-control-input"
                            type="checkbox"
@@ -316,6 +316,9 @@ $tourNumber = time();
                     <div class="border-0 mr-1 nsc-bf-checkbox"
                          :class="[form.hotelBreakfast ? ' active' : '']"></div>
                     <div class="col" v-html="translations.hotelBreakfast[selectedLocale]"></div>
+                  </label>
+                  <label v-if="form.hotel === 'RIL'" class="row m-0">
+                    <div class="col" v-html="translations.hotelBreakfastIncluded[selectedLocale]"></div>
                   </label>
                 </div>
               </div>
@@ -1123,7 +1126,7 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=5.5"></script>
+<script src="<?=$path?>js/app.min.js?rev=5.6"></script>
 <script
     id="alfa-payment-script"
     type="text/javascript"
