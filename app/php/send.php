@@ -6,10 +6,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//if ($_GET['num']) $_POST['tourNumber'] = $_GET['num'];
+if ($_GET['num']) $_POST['tourNumber'] = $_GET['num'];
 
-//if(isset($_POST['tourNumber'])) {
-if (isset($_GET['num'])){
+if(isset($_POST['tourNumber'])) {
 
   $host = $_SERVER['HTTP_HOST'];
 

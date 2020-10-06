@@ -529,14 +529,14 @@ $tourNumber = time();
                   v-if="step !== 1"
                   @click.prevent="prevStep">{{ translations.stepPrevious[selectedLocale] }}
           </button>
-          <div v-if="step > 2 && step < 6" class="row col-5 col-sm-7 col-lg-6 text-right nsc-tour-sum">
+          <div v-if="step > 2 && step < 6" class="row col-5 col-sm-6 col-lg-6 text-right nsc-tour-sum">
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
-            <label v-if="this.form.room" for="toursum" class="col-8 col-sm-8 col-md-6 col-lg-8 align-middle">
+            <label v-if="this.form.room" for="toursum" class="col-7 col-sm-7 col-md-7 col-lg-7 align-middle">
               {{ translations.tourPriceText[selectedLocale] }}
             </label>
-            <input class="col-4 border-0 nsw-toursum"
+            <input class="col-5 border-0 nsw-toursum"
                    v-if="this.form.room"
                    type="text"
                    id="toursum"
