@@ -42,7 +42,7 @@ let vm = new Vue({
             hotelName: '',
             hotelBreakfast: null,
             hotelBreakfastPrice: null,
-            hotelPrices: null,
+            hotelPrice: null,
             address: null,
             room: '',
             roomName: '',
@@ -65,6 +65,7 @@ let vm = new Vue({
             tourNumber: null,
             tourID: null,
             tourPrice: 0,
+            skipassPrice: 0,
             tourDays: 0,
             arrTourDays: null,
             payed: null,
@@ -171,6 +172,10 @@ let vm = new Vue({
             hotelMailBreakfast:{
                 'ru':'с завтраком',
                 'en':'with breakfast'
+            },
+            hotelMailNoBreakfast:{
+                'ru':'без завтрака',
+                'en':'no breakfast'
             },
             guestSurname:{
                 'ru':'Фамилия',
@@ -1551,7 +1556,11 @@ let vm = new Vue({
                         + hotelTotalPrice
                         + ((skiPass * (daysTour - 2)) * this.form.adults)
                         + allBreakfasts
-                    this.form.hotelPrices = totalPrice
+                    this.form.hotelPrice = hotelTotalPrice
+                    this.form.skipassPrice = ((skiPass * (daysTour - 2)) * this.form.adults)
+                    this.form.hotelBreakfastPrice = hotelTotalPrice
+                    this.form.hotelPrice = allBreakfasts
+                    this.form.tourPrice = totalPrice
                     return totalPrice + '₽'
                 }
             }
@@ -1742,7 +1751,7 @@ let vm = new Vue({
 
                 let guests = this.form.adults === 1 ? this.form.adults + ' ' + this.translations.guestMail[this.selectedLocale]
                     : this.form.adults + ' ' + this.translations.guestsMail[this.selectedLocale]
-                let breakfast = this.form.hotelBreakfast === true ? this.translations.hotelMailBreakfast[this.selectedLocale] : false
+                let breakfast = this.form.hotelBreakfast === true ? this.translations.hotelMailBreakfast[this.selectedLocale] : this.translations.hotelMailNoBreakfast[this.selectedLocale]
 
                 let roomName = this.form.roomName
 
@@ -1774,7 +1783,10 @@ let vm = new Vue({
                 fdata.append('adults', guests);
                 fdata.append('kids', this.form.kids);
                 fdata.append('hotelBreakfast', breakfast);
-                fdata.append('hotelPrices', this.form.hotelPrices);
+                fdata.append('hotelPrice', this.form.hotelPrice);
+                fdata.append('tourPrice', this.form.tourPrice);
+                fdata.append('skipassPrice', this.form.skipassPrice);
+                fdata.append('breakfastPrice', this.form.hotelBreakfastPrice);
                 fdata.append('tourDays', this.form.tourDays);
 
                 axios({

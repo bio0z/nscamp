@@ -22,18 +22,20 @@ if(isset($_POST['tourNumber'])) {
       $emailFrom = 'send@nswpay.ru';
       $emailTo = $ar['email'];
       $passwrd = 'RvEiWiXBvX';
+      $emailCopy = 'info@newstarcamp.ru';
     } else {
       $emailFrom = 'pool@awsd.cc';
-      $emailTo = 'bio@awsd.cc';
+      $emailTo = 'bezsnow@gmail.com';
       $passwrd = 'uS3BwxOGqA';
+      $emailCopy = 'pool@awsd.cc';
     }
 
-	  $emailCopy = 'test@awsd.cc';
-
-    if ($ar['passname'] == 'VIP TOUR') {
+    if ($ar['passcode'] == 'V') {
       $pass = 'VIP';
-    } elseif ($ar['passname'] == 'STANDARD TOUR'){
+      $backColor = '#F2D046';
+    } elseif ($ar['passcode'] == 'S'){
       $pass = 'STANDARD';
+      $backColor = '#DB9EA7';
     }
 
     $body = file_get_contents('../html/mail.html');
@@ -47,21 +49,20 @@ if(isset($_POST['tourNumber'])) {
 	  $voucher = preg_replace("/#EMAIL#/",$ar['email'],$voucher);
 	  $voucher = preg_replace("/#VOUCHER_NUMBER#/",$ar['tourNumber'],$voucher);
 	  $voucher = preg_replace("/#PASS_NAME#/",$pass,$voucher);
-	  $voucher = preg_replace("/#PASS#/",$pass,$voucher);
+	  $voucher = preg_replace("/#PASS#/",$ar['passcode'],$voucher);
 	  $voucher = preg_replace("/#GUEST1#/",$ar['guest1'],$voucher);
     if ($ar['guest2'] == 'null null') $ar['guest2'] = '';
     $voucher = preg_replace("/#GUEST2#/",$ar['guest2'],$voucher);
 	  $voucher = preg_replace("/#ROOM#/",$ar['roomName'],$voucher);
-	  $voucher = preg_replace("/#BREAKFAST#/",$ar['hotelBreakfast'],$voucher); #todo breakfast text
+	  $voucher = preg_replace("/#BREAKFAST#/",$ar['hotelBreakfast'],$voucher);
 	  $voucher = preg_replace("/#HOTEL#/",$ar['hotel'],$voucher);
 	  $voucher = preg_replace("/#ADDRESS#/",$ar['address'],$voucher);
-    if ($pass == 'VIP') $vipZona = '— Зона VIP на вечеринках';
-	  $voucher = preg_replace("/#VIP_ZONA#/",$vipZona,$voucher);
 	  $voucher = preg_replace("/#TOUR_NUMBER#/",$ar['tourNumber'],$voucher);
 	  $voucher = preg_replace("/#TOUR_DAYS#/",$ar['tourDays'],$voucher);
 	  $voucher = preg_replace("/#DATEFROM#/",$ar['dateFrom'],$voucher);
 	  $voucher = preg_replace("/#DATETILL#/",$ar['dateTill'],$voucher);
 	  $voucher = preg_replace("/#ADULTS#/",$ar['adults'],$voucher);
+    $voucher = preg_replace("/#BACKCOLOR#/",$backColor,$voucher);
 
     $voucher = mb_convert_encoding($voucher, 'HTML-ENTITIES', "UTF-8");
 
@@ -114,13 +115,11 @@ if(isset($_POST['tourNumber'])) {
       $mail->SetFrom($emailFrom, 'New Star Camp');
       $mail->AddAddress($emailTo);
       $mail->addReplyTo('info@newstarcamp.ru', 'Information');
-      // $mail->addCC($emailCopy);
-      $mail->addBCC('pool@awsd.cc');
-      $mail->addBCC('info@newstarcamp.ru');
+      $mail->addBCC($emailCopy);
 
-      $mail->AddAttachment( $filename );
+      $mail->AddAttachment($filename);
 
-       $mail->Send();
+      $mail->Send();
 
       echo "Sended to " . $emailTo;
 

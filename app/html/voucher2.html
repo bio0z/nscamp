@@ -25,7 +25,7 @@
         }
     </style>
 </head>
-<body style="background:#F2D046; max-width: 839px; background-image:url(http://nswpay.ru/images/mail-voucher-back.jpg); background-position: 50% 0%;background-repeat: no-repeat; color:#232559; font-size:24px; font-style:normal; font-weight:normal; margin:auto;">
+<body style="background:#BACKCOLOR#; max-width: 839px; background-image:url(http://nswpay.ru/images/mail-voucher-back-#PASS#.jpg); background-position: 50% 0%;background-repeat: no-repeat; color:#232559; font-size:24px; font-style:normal; font-weight:normal; margin:auto;">
 <table align="center" border="0" cellspacing="0" cellpadding="0" width="700px" height="1100px">
     <tr>
         <td height="80px">
@@ -50,18 +50,18 @@
                 <tr>
                     <td>
                         <table border="0" cellspacing="0" cellpadding="0" width="700px"
-                               style="background-color: #F2D046; border: 1px solid #fff;">
+                               style="background-color: #BACKCOLOR#; border: 1px solid #fff;">
                             <tr>
                                 <td colspan="2" height="20px"
                                     style="text-align:left; padding: 0 10px;  border: 1px solid #fff; ">
                                     <p style="font-size: 24px; margin:0"><b>Ваучер №#VOUCHER_NUMBER#</b></p>
                                 </td>
-                                <td bgcolor="#ffffff" rowspan="2" width="90px">
-                                    <img src="https://chart.googleapis.com/chart?chs=130x130&amp;cht=qr&amp;chl=http://nswpay.ru/wowcher/?id=#VOUCHER_NUMBER#&amp;choe=UTF-8">
+                                <td bgcolor="#ffffff" rowspan="2" width="80px">
+                                    <img src="https://chart.googleapis.com/chart?chs=130x120&amp;cht=qr&amp;chl=http://nswpay.ru/wowcher/?id=#VOUCHER_NUMBER#&amp;choe=UTF-8">
                                 </td>
                             </tr>
                             <tr>
-                                <td height="80px"
+                                <td height="70px"
                                     style="font-size:16px; text-align:left; padding: 5px 10px;  border: 1px solid #fff; ">
                                     <p>
                                         ФИО брони:
@@ -94,7 +94,7 @@
                 <tr>
                     <td>
                         <table border="0" cellspacing="0" cellpadding="0" width="700px"
-                               style="background-color: #F2D046; border: #fff solid 1px; ">
+                               style="background-color: #BACKCOLOR#; border: #fff solid 1px; ">
                             <tr>
                                 <td height="30px"
                                     style="font-size: 24px; text-align:left; padding: 0 10px;  border: 1px solid #fff; ">
@@ -122,7 +122,7 @@
                 <tr>
                     <td>
                         <table border="0" cellspacing="0" cellpadding="0" width="700px"
-                               style="background-color: #F2D046; border: #fff solid 1px;">
+                               style="background-color: #BACKCOLOR#; border: #fff solid 1px;">
                             <tr>
                                 <td height="30px" colspan="4"
                                     style="text-align:left; padding: 5px 10px;  border: 1px solid #fff;">
@@ -141,7 +141,7 @@
                                     <p>#ADDRESS#</p>
                                 </td>
                             <tr>
-                                <td height="20px" width="40%"
+                                <td height="10px" width="40%"
                                     style="font-size:16px; text-align:left; padding: 5px 10px;  border-left: 1px solid #fff; border-right: 1px solid #fff;">
                                     <p><b>Номер</b></p>
                                 </td>
@@ -152,15 +152,15 @@
                                     <p><b>Выезд</b></p>
                                 </td>
                                 <td width="20%"
-                                    style="font-size:16px; text-align:left; text-align:right; padding: 5px 10px;  ">
+                                    style="font-size:16px; text-align:right; padding: 5px 10px;">
                                     <p><b>Ночей</b></p>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="40%"
                                     style="font-size:16px; padding: 5px 10px;  border-left: 1px solid #fff; border-right: 1px solid #fff;">
-                                    <p>#ROOM#</p>
-                                    <p>#BREAKFAST# #ADULTS#</p>
+                                    <p>#ROOM# #BREAKFAST# </p>
+                                    <p>#ADULTS#</p>
                                 </td>
                                 <td width="20%">
                                     <p style="font-size:16px; padding: 5px 10px;">#DATEFROM#</p>
@@ -181,14 +181,14 @@
                 <tr>
                     <td>
                         <table border="0" cellspacing="0" cellpadding="0" height="150px" width="700px"
-                               style="font-size:12px; background-color: #F2D046; border: 1px #fff solid;">
+                               style="font-size:12px; background-color: #BACKCOLOR#; border: 1px #fff solid;">
                             <tr>
                                 <td style="vertical-align: top; padding: 10px;">
                                     <b>*</b>
                                 </td>
                                 <td style="vertical-align: top; padding: 10px;">
                                     <p style="">
-                                        <b>В #PASS# Tour включено:</b>
+                                        <b>В #PASS_NAME# Tour включено:</b>
                                     </p>
                                     <div style="padding-left:10px">
                                         <p>— Браслет участника фестиваля</p>

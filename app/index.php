@@ -3,6 +3,7 @@ $tourID = count(scandir('sent/')) + 1;
 $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp/app/': '';
 $tourNumber = time();
+$env = $host == 'nswpay.ru' ? 'prod' : 'test';
 ?>
 
 <html lang="ru">
@@ -65,7 +66,7 @@ $tourNumber = time();
       </div>
     </transition>
   </script>
-  <?php if ($host == 'nswpay.ru') { ?>
+  <?php if ($env == 'prod') { ?>
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
@@ -250,14 +251,11 @@ $tourNumber = time();
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <!--                  <input class="form-control custom-select rounded-0 nsc-select"-->
-                  <!--                         type="text" v-model.number="form.kids"-->
-                  <!--                         :placeholder="translations.tourKids[selectedLocale]"/>-->
                   <select v-model.number="form.kids"
                           class="custom-select rounded-0 nsc-select"
                           :placeholder="translations.tourKids[selectedLocale]"
                           required>
-                    <option value="" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>
+                    <option value="0" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>
                     <option value="0">без детей</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -553,7 +551,8 @@ $tourNumber = time();
               v-if="step !== totalsteps"
               @click.prevent="nextStep">{{ translations.stepNext[selectedLocale] }}
           </button>
-          <?php $host == 'nswpay.ru' ? $token = 'qlsnf995gkvurbqpc3qm4nbvqs' : $token = '5ul0u41eam2n3qpsuicfjim7fj' ?>
+          <?php $env == 'prod' ? $token = 'qlsnf995gkvurbqpc3qm4nbvqs' : $token = '5ul0u41eam2n3qpsuicfjim7fj' ?>
+          <?php if ($env == 'prod') {?>
           <div
               class="col-4 col-sm-7 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
               v-show="form.consent && form.offer"
@@ -572,6 +571,14 @@ $tourNumber = time();
               :data-button-text="translations.buyTour[selectedLocale]"
               @click="saveVoucher(<?php echo $tourNumber ?>,<?php echo $tourID ?>)">
           </div>
+          <?php } ?>
+          <?php if ($env == 'test') {?>
+            <div v-show="form.consent && form.offer"
+               class="col-4 col-sm-7 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
+               @click="saveVoucher(<?php echo $tourNumber ?>,<?php echo $tourID ?>)">
+            Отправить ваучер
+          </div>
+          <?php } ?>
         </div>
         <div class="row mb-3 ml-0 mr-0 footer">
           <div class="col-12 col-md-8 col-lg-8 order-12 order-md-1">
@@ -1126,11 +1133,13 @@ $tourNumber = time();
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=5.6"></script>
+<script src="<?=$path?>js/app.min.js?rev=6"></script>
+<?php if ($env == 'prod') {?>
 <script
     id="alfa-payment-script"
     type="text/javascript"
     src="https://pay2.alfabank.ru/assets/alfa-payment.js">
 </script>
+<?php  } ?>
 </body>
 </html>
