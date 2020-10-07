@@ -26,11 +26,12 @@ let vm = new Vue({
     el: "#orderForm",
     component: {},
     data: {
-        locales : {
+        locales: {
             'ru': "RU",
             'en': "EN",
         },
-        selectedLocale : 'ru',
+        selectedLocale: 'ru',
+        promocode: '',
         form: {
             pass: null,
             dateFrom: null,
@@ -192,6 +193,10 @@ let vm = new Vue({
             guestPromoCode:{
                 'ru':'Промокод',
                 'en':'Promocode'
+            },
+            guestPromoCodeApply:{
+                'ru':'Применить',
+                'en':'Apply'
             },
             userAgreement:{
                 'ru':'пользовательское соглашение',
@@ -1219,8 +1224,8 @@ let vm = new Vue({
                 rooms: [
                     {
                         active: true,
-                        name: 'Небольшой двухместный номер с 2 отдельными кроватями',
-                        code: 'SS2',
+                        name: 'Стандартный двухместный',
+                        code: 'S2',
                         price:{
                             '1': 3200,
                             '2': 3200
@@ -1230,15 +1235,21 @@ let vm = new Vue({
                             '2':800
                         },
                         desc:{
-                            'ru':'',
+                            'ru':'- +/- 17 кв. м \n' +
+                                '- Вместимость до 3-х человек\n' +
+                                '- Двуспальная/две односпальные кровати\n' +
+                                '- Балкон\n' +
+                                '- Душ и туалет в номере\n' +
+                                '- Телевизор \n' +
+                                '- Сушилка для одежды',
                             'en':''
                         },
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-2-small-1.jpg',
                     },
                     {
                         active: true,
-                        name: 'Стандартный двухместный номер',
-                        code: 'S2',
+                        name: 'Эконом двухместный',
+                        code: 'S2E',
                         price:{
                             '1': 3600,
                             '2': 3600
@@ -1248,7 +1259,59 @@ let vm = new Vue({
                             '2':800
                         },
                         desc:{
-                            'ru':'',
+                            'ru':'- +/- 15 кв. м \n' +
+                                '- Вместимость до 3-х человек\n' +
+                                '- Двуспальная/две односпальные кровати\n' +
+                                '- Душ и туалет общий в блоке\n' +
+                                '- Телевизор \n' +
+                                '- Сушилка для одежды',
+                            'en':''
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-3-standard-1.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Эконом трехместный',
+                        code: 'S3E',
+                        price:{
+                            '1': 3600,
+                            '2': 3600
+                        },
+                        breakfast: {
+                            '1':400,
+                            '2':800
+                        },
+                        desc:{
+                            'ru':'- +/- 17 кв. м \n' +
+                                '- Вместимость до 3-х человек\n' +
+                                '- Три односпальные кровати\n' +
+                                '- Балкон\n' +
+                                '- Душ и туалет общий в блоке\n' +
+                                '- Телевизор \n' +
+                                '- Сушилка для одежды',
+                            'en':''
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-3-standard-1.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Эконом одноместный',
+                        code: 'S1E',
+                        price:{
+                            '1': 3600,
+                            '2': 3600
+                        },
+                        breakfast: {
+                            '1':400,
+                            '2':800
+                        },
+                        desc:{
+                            'ru':'- +/- 17 кв. м \n' +
+                                '- Вместимость до 1-го человека\n' +
+                                '- Одна односпальня кровать\n' +
+                                '- Душ и туалет общий в блоке\n' +
+                                '- Телевизор \n' +
+                                '- Сушилка для одежды',
                             'en':''
                         },
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-3-standard-1.jpg'
@@ -1283,14 +1346,23 @@ let vm = new Vue({
                             '2':1000
                         },
                         desc:{
-                            'ru':'',
+                            'ru':'- +/- 15 кв. м \n' +
+                                '- Вместимость до 2-х человек\n' +
+                                '- Двуспальная / две односпальные \n' +
+                                '- общий санузел\n' +
+                                '- Телевизор\n' +
+                                '- Чайник\n' +
+                                '- Банные пренадлежности\n' +
+                                '- Банные полотенца\n' +
+                                '- Тапочки\n' +
+                                '- Фен',
                             'en':''
                         },
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-2-double_block.jpg'
                     },
                     {
                         active: true,
-                        name: 'Стандартный двухместный номер',
+                        name: 'Семейный двухкомнатный',
                         code: 'S2',
                         price:{
                             '1': 3600,
@@ -1301,7 +1373,45 @@ let vm = new Vue({
                             '2':1000
                         },
                         desc:{
-                            'ru':'',
+                            'ru':'- +/- 38 кв. м \n' +
+                                '- Вместимость до 4-х человек\n' +
+                                '- Двуспальная / две односпальные кровати в каждой спальне\n' +
+                                '- Один санузел\n' +
+                                '- Телевизор\n' +
+                                '- Чайник\n' +
+                                '- Банные пренадлежности\n' +
+                                '- Банные полотенца\n' +
+                                '- Тапочки\n' +
+                                '- Балкон в одной спальне\n' +
+                                '- Фен',
+                            'en':''
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-3-standard.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Семейный трехкомнатный',
+                        code: 'S3',
+                        price:{
+                            '1': 3600,
+                            '2': 3600
+                        },
+                        breakfast: {
+                            '1':500,
+                            '2':1000
+                        },
+                        desc:{
+                            'ru':'- +/- 60 кв. м \n' +
+                                '- Вместимость до 6-и человек\n' +
+                                '- Двуспальная / две односпальные кровати в каждой спальне\n' +
+                                '- Два санузла\n' +
+                                '- Телевизор\n' +
+                                '- Чайник\n' +
+                                '- Банные пренадлежности\n' +
+                                '- Банные полотенца\n' +
+                                '- Тапочки\n' +
+                                '- Балкон в одной спальне\n' +
+                                '- Фен',
                             'en':''
                         },
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-3-standard.jpg'
@@ -1711,6 +1821,9 @@ let vm = new Vue({
                 this.$refs.hotelImage.src = this.hotels[hotelId].gallery[imgImageNum];
                 this.$refs.hotelImage.setAttribute('image-id', String(imgImageNum));
             }
+        },
+        applyPromoCode(){
+            this.form.promocode = this.promocode
         },
         sendMail(tourNumber) {
             this.errors = null;

@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=2.1">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=2.2">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -479,10 +479,14 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
               <div class="col pt-3">
                 <div class="tourIncluded" v-html="translations.tourIncluded[selectedLocale]">
                 </div>
-                <div>
-                  <input type="text" class="form-control rounded-0"
-                         v-model.trim="form.promocode"
+                <div class="row">
+                  <input type="text" class="form-control col rounded-0"
+                         v-model.trim="promocode"
                          :placeholder="translations.guestPromoCode[selectedLocale]">
+                  <div class="form-control col rounded-0 nsc-button"
+                    @click="applyPromoCode()">
+                    {{ translations.guestPromoCodeApply[selectedLocale] }}
+                  </div>
                 </div>
               </div>
             </div>
