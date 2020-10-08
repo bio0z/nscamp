@@ -23,6 +23,7 @@ if(isset($_POST['tourNumber'])) {
       $emailTo = $ar['email'];
       $passwrd = 'RvEiWiXBvX';
       $emailCopy = 'info@newstarcamp.ru';
+      $emailCopy2 = 'pool@awsd.cc';
     } else {
       $emailFrom = 'pool@awsd.cc';
       $emailTo = $ar['email'];
@@ -116,6 +117,7 @@ if(isset($_POST['tourNumber'])) {
       $mail->AddAddress($emailTo);
       $mail->addReplyTo('info@newstarcamp.ru', 'Information');
       $mail->addBCC($emailCopy);
+      $mail->addBCC($emailCopy2);
 
       $mail->AddAttachment($filename);
 

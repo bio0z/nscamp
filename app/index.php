@@ -251,15 +251,15 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <select v-model.number="form.kids"
-                          class="custom-select rounded-0 nsc-select"
-                          :placeholder="translations.tourKids[selectedLocale]"
-                          required>
-                    <option value="" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>
-                    <option value="0">без детей</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                  </select>
+<!--                  <select v-model.number="form.kids"-->
+<!--                          class="custom-select rounded-0 nsc-select"-->
+<!--                          :placeholder="translations.tourKids[selectedLocale]"-->
+<!--                          required>-->
+<!--                    <option value="" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>-->
+<!--                    <option value="0">без детей</option>-->
+<!--                    <option value="1">1</option>-->
+<!--                    <option value="2">2</option>-->
+<!--                  </select>-->
                 </div>
               </div>
             </div>
@@ -1142,7 +1142,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=6.4"></script>
+<script src="<?=$path?>js/app.min.js?rev=6."></script>
 <?php if ($env == 'prod') {?>
 <script
     id="alfa-payment-script"
