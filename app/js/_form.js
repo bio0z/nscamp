@@ -2393,8 +2393,7 @@ let vm = new Vue({
 
                     this.form.hotelPrice = hotelTotalPrice
                     this.form.skipassPrice = ((skiPass * (daysTour - 1)) * this.form.adults)
-                    this.form.hotelBreakfastPrice = hotelTotalPrice
-                    this.form.hotelPrice = allBreakfasts
+                    this.form.hotelBreakfastPrice = allBreakfasts
                     this.form.tourPrice = Math.ceil(totalPrice)
                     return Math.ceil(totalPrice) + '₽'
                 }
