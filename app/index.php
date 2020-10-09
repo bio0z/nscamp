@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=2.2">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=2.3">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -86,15 +86,15 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <body>
 <div id="orderForm" class="container">
   <header class="row mt-2">
-    <div class="col"><h1>{{ translations.title[selectedLocale] }}</h1></div>
+    <div class="col"><h1 v-cloak>{{ translations.title[selectedLocale] }}</h1></div>
     <div class="col text-right nsc-logo">
-      <a href="#">
+      <a href="https://newstarcamp.ru">
         <img src="<?=$path?>images/svg/nsc-logo.svg">
       </a>
     </div>
     <div class="col-1">
       <button class="btn btn-link p-0 link">
-        <div v-for="(locale,code) in locales">
+        <div v-for="(locale,code) in locales" v-cloak>
           <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>
         </div>
       </button>
@@ -116,7 +116,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img src="<?=$path?>images/svg/step1.svg"/>
                 </div>
-                <div class="col-6 col-sm-6 col-md-8 col-lg-8">
+                <div class="col-6 col-sm-6 col-md-8 col-lg-8" v-cloak>
                   {{ translations.stepTour[selectedLocale] }}
                 </div>
               </div>
@@ -144,7 +144,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                            required>
                   </label>
                   <div class="btn rounded-0 nsc-button btn-more"
-                       @click="showPassSDetail()">{{ translations.passDetails[selectedLocale] }}
+                       @click="showPassSDetail()" v-cloak>{{ translations.passDetails[selectedLocale] }}
                   </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
@@ -169,7 +169,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                            required>
                   </label>
                   <div class="btn rounded-0 nsc-button btn-more"
-                       @click="showPassVDetail()">{{ translations.passDetails[selectedLocale] }}
+                       @click="showPassVDetail()" v-cloak>{{ translations.passDetails[selectedLocale] }}
                   </div>
                 </div>
               </div>
@@ -183,7 +183,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img src="<?=$path?>images/svg/step2.svg"/>
                 </div>
-                <div class="col-6 col-sm-6 col-md-8 col-lg-8">
+                <div class="col-6 col-sm-6 col-md-8 col-lg-8" v-cloak>
                   {{ translations.stepDates[selectedLocale] }}
                 </div>
               </div>
@@ -226,7 +226,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                   <div class="pt-2 pb-2 nsc-datesnote">
-                    <span>{{ translations.dateNote[selectedLocale] }}</span>
+                    <span v-cloak>{{ translations.dateNote[selectedLocale] }}</span>
                   </div>
                 </div>
               </div>
@@ -272,7 +272,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img src="<?=$path?>images/svg/step3.svg"/>
                 </div>
-                <div class="col-6 col-sm-6 col-md-8 col-lg-8">
+                <div class="col-6 col-sm-6 col-md-8 col-lg-8" v-cloak>
                   {{ translations.stepHotel[selectedLocale] }}
                 </div>
               </div>
@@ -532,7 +532,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
         <div class="row col-12 d-flex pl-0 pr-0 ml-0 mr-0 mb-3 mt-sm-3 mt-3 mt-md-0 mt-lg-0 bg-nsc-grey">
           <button class="col-3 col-sm-3 col-md-2 col-lg-2 p-2 bd-highlight form-control col-2 rounded-0 nsc-button"
                   v-if="step !== 1"
-                  @click.prevent="prevStep">{{ translations.stepPrevious[selectedLocale] }}
+                  @click.prevent="prevStep" v-cloak>{{ translations.stepPrevious[selectedLocale] }}
           </button>
           <div v-if="step > 2 && step < 6" class="row col-5 col-sm-6 col-lg-6 text-right nsc-tour-sum">
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
@@ -553,7 +553,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           <button
               class="col-3 col-sm-3 col-md-2 col-lg-2 ml-auto p-2 bd-highlight form-control col-2 rounded-0 nsc-button"
               v-if="step !== totalsteps"
-              @click.prevent="nextStep">{{ translations.stepNext[selectedLocale] }}
+              @click.prevent="nextStep" v-cloak>{{ translations.stepNext[selectedLocale] }}
           </button>
           <?php $env == 'prod' ? $token = 'qlsnf995gkvurbqpc3qm4nbvqs' : $token = '5ul0u41eam2n3qpsuicfjim7fj' ?>
           <?php if ($env == 'prod') {?>
@@ -610,7 +610,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           </div>
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 pr-0 text-md-right text-sm-left mb-3 order-1 order-md-12">
             <button id="externalButton" @click.prevent="showModal = true" class="btn btn-link p-0 link f1">
-              <img src="<?=$path?>images/svg/user-offer.svg" class="nsc-user-offer">{{ translations.userAgreement[selectedLocale]
+              <img src="<?=$path?>images/svg/user-offer.svg" class="nsc-user-offer" v-cloak>{{ translations.userAgreement[selectedLocale]
               }}
             </button>
           </div>
@@ -1142,7 +1142,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=6."></script>
+<script src="<?=$path?>js/app.min.js?rev=6.2"></script>
 <?php if ($env == 'prod') {?>
 <script
     id="alfa-payment-script"
