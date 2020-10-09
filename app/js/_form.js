@@ -428,6 +428,7 @@ let vm = new Vue({
                 address: 'Улица Медовея 6, Эсто-Садок, Россия</li>',
                 formula: 0,
                 gain: 1.07,
+                maxGuests: 4,
                 gallery:
                     [
                         'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-1.jpg',
@@ -442,6 +443,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандартный',
                         code: 'S',
+                        maxGuests: 2,
                         price: {
                             '1': 4700,
                             '2': 5300
@@ -478,6 +480,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандарт с балконом',
                         code: 'SB',
+                        maxGuests: 2,
                         price: {
                             '1': 5200,
                             '2': 5800
@@ -505,6 +508,7 @@ let vm = new Vue({
                         active: false,
                         name: 'Стандарт улучшенный без балкона с завтраком (1-2 человека)',
                         code: 'SU',
+                        maxGuests: 2,
                         price: {
                             '1': 7100,
                             '2': 7800,
@@ -547,6 +551,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандарт улучшенный без балкона с завтраком (3-4 человека)',
                         code: 'S3',
+                        maxGuests: 4,
                         price: {
                             '1': 7100,
                             '2': 7800,
@@ -595,6 +600,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Двухкомнатный номер',
                         code: 'S2',
+                        maxGuests: 3,
                         price: {
                             '1': 7100,
                             '2': 7800,
@@ -629,6 +635,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Семейный номер',
                         code: 'FAM',
+                        maxGuests: 2,
                         breakfast: {
                             '1':0,
                             '2':0
@@ -836,6 +843,7 @@ let vm = new Vue({
                 code: 'RRK5',
                 gain: 1.07,
                 formula: 1,
+                maxGuests: 2,
                 address:'Набережная Лаванды, 4 , Эсто-Садок, Росси',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-1.jpg',
@@ -857,6 +865,7 @@ let vm = new Vue({
                         price10: 62400,
                         price91: 53600,
                         price92: 57500,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 800,
                             '2': 2000
@@ -893,6 +902,7 @@ let vm = new Vue({
                         price10: 62400,
                         price91: 53600,
                         price92: 57500,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 800,
                             '2': 2000
@@ -935,6 +945,7 @@ let vm = new Vue({
                         price10: 75900,
                         price91: 65600,
                         price92: 69500,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 800,
                             '2': 2000
@@ -977,6 +988,7 @@ let vm = new Vue({
                         price10: 129900,
                         price91: 113600,
                         price92: 117500,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 800,
                             '2': 2000
@@ -1020,6 +1032,7 @@ let vm = new Vue({
                         price10: 134400,
                         price91: 117600,
                         price92: 121500,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 800,
                             '2': 2000
@@ -1063,6 +1076,7 @@ let vm = new Vue({
                         price10: 143400,
                         price91: 125600,
                         price92: 129500,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 800,
                             '2': 2000
@@ -1106,6 +1120,7 @@ let vm = new Vue({
                         price10: 233400,
                         price91: 205600,
                         price92: 209500,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 800,
                             '2': 2000
@@ -1189,6 +1204,7 @@ let vm = new Vue({
                 code: 'PIRRS4',
                 address: 'Улица Олимпийская 35, Эсто-Садок, Россия',
                 formula: 1,
+                maxGuests: 2,
                 gain: 1.07,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.jpg',
@@ -1207,6 +1223,7 @@ let vm = new Vue({
                         price10: 37400,
                         price91: 32700,
                         price92: 33900,
+                        maxGuests: 2,
                         breakfast: {
                             '1':900,
                             '2':1800
@@ -1247,6 +1264,7 @@ let vm = new Vue({
                         price10: 33900,
                         price91: 29200,
                         price92: 30400,
+                        maxGuests: 2,
                         breakfast: {
                             '1':900,
                             '2':1800
@@ -1287,6 +1305,7 @@ let vm = new Vue({
                         price10: 38400,
                         price91: 33200,
                         price92: 34400,
+                        maxGuests: 2,
                         breakfast: {
                             '1':900,
                             '2':1800
@@ -1325,6 +1344,7 @@ let vm = new Vue({
                         price10: 42900,
                         price91: 37200,
                         price92: 38400,
+                        maxGuests: 2,
                         breakfast: {
                             '1':900,
                             '2':1800
@@ -1354,6 +1374,7 @@ let vm = new Vue({
                         price10: 47400,
                         price91: 41200,
                         price92: 42400,
+                        maxGuests: 2,
                         breakfast: {
                             '1':900,
                             '2':1800
@@ -1383,6 +1404,7 @@ let vm = new Vue({
                         price10: 92400,
                         price91: 81200,
                         price92: 82400,
+                        maxGuests: 2,
                         breakfast: {
                             '1':900,
                             '2':1800
@@ -1414,6 +1436,7 @@ let vm = new Vue({
                         price10: 101400,
                         price91: 89200,
                         price92: 90400,
+                        maxGuests: 2,
                         breakfast: {
                             '1':900,
                             '2':1800
@@ -1444,6 +1467,7 @@ let vm = new Vue({
                         price10: 137400,
                         price91: 121200,
                         price92: 122400,
+                        maxGuests: 2,
                         breakfast: {
                             '1':900,
                             '2':1800
@@ -1478,6 +1502,7 @@ let vm = new Vue({
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 formula: 1,
+                maxGuests: 2,
                 gain: 1.17,
                 address: 'Набережная Лаванды, 4, Эсто-Садок, Россия',
                 gallery: [
@@ -1494,6 +1519,7 @@ let vm = new Vue({
                         price10: 35980,
                         price91: 30940,
                         price92: 33040,
+                        maxGuests: 2,
                         breakfast: {
                             '1':630,
                             '2':1260
@@ -1516,6 +1542,7 @@ let vm = new Vue({
                         price10: 44380,
                         price91: 38290,
                         price92: 40740,
+                        maxGuests: 2,
                         breakfast: {
                             '1':630,
                             '2':1260
@@ -1538,6 +1565,7 @@ let vm = new Vue({
                         price10: 65380,
                         price91: 56840,
                         price92: 59640,
+                        maxGuests: 2,
                         breakfast: {
                             '1':630,
                             '2':1460
@@ -1564,6 +1592,7 @@ let vm = new Vue({
                 name: 'Приют Панды',
                 code: 'PP',
                 formula: 0,
+                maxGuests: 3,
                 gain: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-1.jpg',
@@ -1575,6 +1604,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандартный двухместный',
                         code: 'S2',
+                        maxGuests: 2,
                         price:{
                             '1': 3600,
                             '2': 3600
@@ -1599,6 +1629,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Эконом двухместный',
                         code: 'S2E',
+                        maxGuests: 2,
                         price:{
                             '1': 3200,
                             '2': 3200
@@ -1622,6 +1653,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Эконом трехместный',
                         code: 'S3E',
+                        maxGuests: 3,
                         price:{
                             '1': 4800,
                             '2': 4800,
@@ -1648,6 +1680,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Эконом одноместный',
                         code: 'S1E',
+                        maxGuests: 1,
                         price:{
                             '1': 1600,
                         },
@@ -1676,9 +1709,10 @@ let vm = new Vue({
             },
             {
                 active: true,
-                name: 'Отель «28»',
+                name: 'Отель «28» **',
                 code: 'H28',
                 formula: 0,
+                maxGuests: 4,
                 gain: 1.12,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-1.jpg',
@@ -1690,6 +1724,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Двухместный номер в блоке',
                         code: 'DB',
+                        maxGuests: 2,
                         price:{
                             '1': 3600,
                             '2': 3600
@@ -1717,6 +1752,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Семейный двухкомнатный',
                         code: 'S2',
+                        maxGuests: 3,
                         price:{
                             '1': 7500,
                             '2': 7500,
@@ -1747,6 +1783,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Семейный трехкомнатный',
                         code: 'S3',
+                        maxGuests: 4,
                         price:{
                             '1': 11000,
                             '2': 11000,
@@ -1783,10 +1820,11 @@ let vm = new Vue({
             },
             {
                 active: true,
-                name: 'Rosa Village',
+                name: 'Rosa Village **',
                 code: 'ROV',
                 formula: 0,
                 gain: 1.12,
+                maxGuests: 3,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-2-standard.jpg',
@@ -1798,6 +1836,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандарт',
                         code: 'S',
+                        maxGuests: 2,
                         price: {
                             '1': 5000,
                             '2': 5000
@@ -1826,6 +1865,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Трехместный',
                         code: 'T',
+                        maxGuests: 3,
                         price: {
                             '1': 6000,
                             '2': 6000,
@@ -1868,6 +1908,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандарт улучшенный',
                         code: 'SB',
+                        maxGuests: 3,
                         price: {
                             '1': 6000,
                             '2': 6000,
@@ -1910,6 +1951,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Семейный двухкомнатный',
                         code: 'FAM',
+                        maxGuests: 3,
                         price: {
                             '1': 7500,
                             '2': 7500,
@@ -1958,9 +2000,10 @@ let vm = new Vue({
             },
             {
                 active: true,
-                name: 'Tulip Inn',
+                name: 'Tulip Inn ***',
                 code: 'TINN',
                 formula: 1,
+                maxGuests: 2,
                 gain: 1.07,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-tinn-1.jpg',
@@ -1976,6 +2019,7 @@ let vm = new Vue({
                         price10: 30960,
                         price91: 27240,
                         price92: 27660,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 660,
                             '2': 1200,
@@ -2010,6 +2054,7 @@ let vm = new Vue({
                         price10: 37020,
                         price91: 32620,
                         price92: 33050,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 660,
                             '2': 1200,
@@ -2046,6 +2091,7 @@ let vm = new Vue({
                         price10: 42510,
                         price91: 37520,
                         price92: 37920,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 660,
                             '2': 1200,
@@ -2086,9 +2132,10 @@ let vm = new Vue({
             },
             {
                 active: true,
-                name: 'Golden Tulip',
+                name: 'Golden Tulip ****',
                 code: 'GTINN',
                 formula: 1,
+                maxGuests: 2,
                 gain: 1.07,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-gtinn-1.jpg',
@@ -2105,6 +2152,7 @@ let vm = new Vue({
                         price10: 37290,
                         price91: 32560,
                         price92: 33440,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 650,
                             '2': 1250,
@@ -2139,6 +2187,7 @@ let vm = new Vue({
                         price10: 46410,
                         price91: 41000,
                         price92: 41380,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 650,
                             '2': 1250,
@@ -2175,6 +2224,7 @@ let vm = new Vue({
                         price10: 49470,
                         price91: 43720,
                         price92: 44100,
+                        maxGuests: 2,
                         breakfast: {
                             '1': 650,
                             '2': 1250,
@@ -2306,11 +2356,16 @@ let vm = new Vue({
             return this.hotels.indexOf(curHotel)
         },
         activeHotels() {
-            return this.hotels.filter(function (hotel) {
-                return hotel.active
-            })
+            let arrHotels = this.hotels.filter(hotel => hotel.maxGuests >= this.form.adults)
+            // return arrHotels(function (hotel) {
+            //     return hotel.active
+            // })
+            console.log(this.form.adults)
+            console.log(arrHotels)
+            return arrHotels
         },
         activeHotelRooms() {
+
             return this.hotels.find(hotel => hotel.code === this.form.hotel).rooms.filter(function (room){
                 return room.active
             })
