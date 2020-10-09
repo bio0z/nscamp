@@ -511,8 +511,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          required>
                   <div class="border-0 nsc-checkbox"
                        :class="[form.offer ? ' active' : '']"></div>
-                  <div class="col-9" v-html="translations.guestOfferAccept[selectedLocale]">
-                  </div>
+                  <div class="col-9" v-html="translations.guestOfferAccept[selectedLocale]"></div>
                 </label>
               </div>
             </div>
@@ -610,8 +609,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           </div>
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 pr-0 text-md-right text-sm-left mb-3 order-1 order-md-12">
             <button id="externalButton" @click.prevent="showModal = true" class="btn btn-link p-0 link f1">
-              <img src="<?=$path?>images/svg/user-offer.svg" class="nsc-user-offer" v-cloak>{{ translations.userAgreement[selectedLocale]
-              }}
+              <img src="<?=$path?>images/svg/user-offer.svg" class="nsc-user-offer" v-cloak />
+              {{ translations.userAgreement[selectedLocale] }}
             </button>
           </div>
         </div>

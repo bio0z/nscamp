@@ -299,9 +299,9 @@ let vm = new Vue({
                 'en':'<p>I accept <span class="btn btn-link border-0 p-0" @click.prevent="showModal = true">Terms and Conditions</span></p>'
             },
             guestOfferAccept:{
-                'ru':'<p>Я согласен c <span class="btn btn-link border-0 p-0"</li>' +
+                'ru':'<p>Я согласен c <span class="btn btn-link border-0 p-0"' +
                     '@click.prevent="showOffer = true">политикой конфиденциальности</span></p>',
-                'en':'<p>I accept <span class="btn btn-link border-0 p-0"</li>' +
+                'en':'<p>I accept <span class="btn btn-link border-0 p-0"' +
                     '@click.prevent="showOffer = true">offer.</span></p>'
             },
             buyTour:{
