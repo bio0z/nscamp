@@ -1143,7 +1143,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=6.2"></script>
+<script src="<?=$path?>js/app.min.js?rev=6.5"></script>
 <?php if ($env == 'prod') {?>
 <script
     id="alfa-payment-script"

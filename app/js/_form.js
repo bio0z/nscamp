@@ -425,7 +425,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Riders Lodge **',
                 code: 'RIL',
-                address: 'Улица Медовея 6, Эсто-Садок, Россия</li>',
+                address: 'Улица Медовея 6, Эсто-Садок, Россия',
                 formula: 0,
                 gain: 1.07,
                 maxGuests: 4,
@@ -544,7 +544,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-5-standard-2.jpg'
                     },
                     {
-                        active: false,
+                        active: true,
                         name: 'Стандарт улучшенный без балкона с завтраком (3-4 человека)',
                         code: 'S3',
                         maxGuests: 4,
@@ -1130,7 +1130,7 @@ let vm = new Vue({
                         code: 'FAML',
                         desc:{
                             'ru': '<li>+/- 28 кв. м. </li>' +
-                                    '<li>Дверь в номер категории Люкс</li>' +
+                                '<li>Дверь в номер категории Люкс</li>' +
                                 '<li>Вид на реку</li>' +
                                 '<li>Халат и тапочки</li>' +
                                 '<li>Чайный и кофейный набор</li>' +
@@ -2205,10 +2205,10 @@ let vm = new Vue({
     },
     mounted: function () {
         get_parameters = this.$route.query
-        if (get_parameters.step == 6 && get_parameters.par != 0) {
+        if (get_parameters.step === 6 && get_parameters.par !== 0) {
             this.step = 6;
             this.form.payed = 0;
-        } else if (get_parameters.step == 6 && get_parameters.par == 0) {
+        } else if (get_parameters.step === 6 && get_parameters.par === 0) {
             this.step = 6;
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
@@ -2253,18 +2253,15 @@ let vm = new Vue({
             return this.hotels.indexOf(curHotel)
         },
         activeHotels() {
-            let arrHotels = this.hotels.filter(hotel => hotel.maxGuests >= this.form.adults)
-            // return arrHotels(function (hotel) {
-            //     return hotel.active
-            // })
-            console.log(this.form.adults)
-            console.log(arrHotels)
-            return arrHotels
+            return this.hotels.filter(hotel => {
+                return hotel.maxGuests >= this.form.adults && hotel.active
+            })
         },
         activeHotelRooms() {
-
-            return this.hotels.find(hotel => hotel.code === this.form.hotel).rooms.filter(function (room){
-                return room.active
+            let adults = this.form.adults
+            let arRooms = this.hotels.find(hotel => hotel.code === this.form.hotel)
+            return arRooms.rooms.filter(function (room){
+                return room.maxGuests >= adults  && room.active
             })
         },
         currentRoom() {
@@ -2336,12 +2333,12 @@ let vm = new Vue({
                         + ((skiPass * (daysTour - 1)) * this.form.adults)
                         + allBreakfasts)*gain
 
-                    console.log('daysTour ' + daysTour)
-                    console.log('passPrice ' + (this.passes[curPass].price * this.form.adults))
-                    console.log('hotelTotalPrice ' + hotelTotalPrice)
-                    console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
-                    console.log('allBreakfasts ' + allBreakfasts)
-                    console.log('gain ' + gain)
+                    // console.log('daysTour ' + daysTour)
+                    // console.log('passPrice ' + (this.passes[curPass].price * this.form.adults))
+                    // console.log('hotelTotalPrice ' + hotelTotalPrice)
+                    // console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
+                    // console.log('allBreakfasts ' + allBreakfasts)
+                    // console.log('gain ' + gain)
 
                     this.form.hotelPrice = hotelTotalPrice
                     this.form.skipassPrice = ((skiPass * (daysTour - 1)) * this.form.adults)
