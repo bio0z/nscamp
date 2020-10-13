@@ -398,7 +398,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          required>
                 </div>
               </div>
-              <div class="form-row" v-if="form.adults > 1">
+              <div class="form-row" v-if="form.adults >= 2">
                 <h5>{{ translations.secondGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.gfname" name="gfname" type="text"
@@ -412,16 +412,34 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          :placeholder="translations.guestSurname[selectedLocale]"
                          required>
                 </div>
+              </div>
+              <div class="form-row" v-if="form.adults >= 3">
+                <h5>{{ translations.thirdGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
-                  <input type="email" v-model.trim="form.gemail"
+                  <input v-model.trim="form.g3fname" type="text"
                          class="form-control rounded-0"
-                         placeholder="E-Mail"
+                         :placeholder="translations.guestName[selectedLocale]"
                          required>
                 </div>
                 <div class="col-md-12 mb-4">
-                  <input type="phone" v-model.trim="form.gphone"
+                  <input v-model.trim="form.g3sname" type="text"
                          class="form-control rounded-0"
-                         :placeholder="translations.guestPhone[selectedLocale]"
+                         :placeholder="translations.guestSurname[selectedLocale]"
+                         required>
+                </div>
+              </div>
+              <div class="form-row" v-if="form.adults === 4">
+                <h5>{{ translations.fourthGuest[selectedLocale] }}</h5>
+                <div class="col-md-12 mb-4">
+                  <input v-model.trim="form.g4fname" type="text"
+                         class="form-control rounded-0"
+                         :placeholder="translations.guestName[selectedLocale]"
+                         required>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <input v-model.trim="form.g4sname" type="text"
+                         class="form-control rounded-0"
+                         :placeholder="translations.guestSurname[selectedLocale]"
                          required>
                 </div>
               </div>

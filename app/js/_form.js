@@ -58,6 +58,11 @@ let vm = new Vue({
             gphone: null,
             gemail: null,
 
+            g3sname: null,
+            g3fname: null,
+            g4fname: null,
+            g4sname: null,
+
             promocode: null,
             consent: null,
             offer: null,
@@ -153,6 +158,14 @@ let vm = new Vue({
             secondGuest:{
                 'ru':'Второй гость',
                 'en':'Second guest'
+            },
+            thirdGuest:{
+                'ru':'Третий гость',
+                'en':'Third guest'
+            },
+            fourthGuest:{
+                'ru':'Четвертый гость',
+                'en':'Fourth guest'
             },
             guestName:{
                 'ru':'Имя',
@@ -2526,6 +2539,10 @@ let vm = new Vue({
                 fdata.append('passname', this.form.pass);
                 fdata.append('gname', this.form.gfname);
                 fdata.append('glastname', this.form.gsname);
+                fdata.append('g3fname', this.form.g3fname);
+                fdata.append('g3sname', this.form.g3sname);
+                fdata.append('g4fname', this.form.g4fname);
+                fdata.append('g4sname', this.form.g4sname);
                 fdata.append('gphone', this.form.gphone);
                 fdata.append('gemail', this.form.gemail);
                 fdata.append('promocode', this.form.promocode);
