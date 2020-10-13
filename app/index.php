@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=2.5">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=3.1">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -89,7 +89,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
     <div class="col"><h1 v-cloak>{{ translations.title[selectedLocale] }}</h1></div>
     <div class="col text-right nsc-logo">
       <a href="https://newstarcamp.ru">
-        <img src="<?=$path?>images/svg/nsc-logo.svg">
+        <img src="<?=$path?>images/svg/nsc-logo.svg?v=2">
       </a>
     </div>
     <div class="col-1">
@@ -114,7 +114,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-3 col-lg-3">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?=$path?>images/svg/step1.svg"/>
+                  <img src="<?=$path?>images/svg/step1.svg?v=2"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8" v-cloak>
                   {{ translations.stepTour[selectedLocale] }}
@@ -129,7 +129,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          @click="setPassActive('S')"
                          ref="passSLabel">
                     <div class="m-4 text-left">
-                      <div class="row f1 pr-5 pass-detail" v-if="passSDetails"
+                      <div class="row f1 pass-detail" v-if="passSDetails"
                            v-html="translations.passSDetailsFull[selectedLocale]">
                       </div>
                       <p class="row m-1 pass-price"
@@ -153,7 +153,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          @click="setPassActive('V')"
                          ref="passVLabel">
                     <div class="mr-4 ml-4 mt-4 mb-3 text-left">
-                      <div class="row f1 pr-5 pass-detail"
+                      <div class="row f1 pass-detail"
                            v-if="passVDetails"
                            v-html="translations.passVDetailsFull[selectedLocale]">
                       </div>
@@ -181,7 +181,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?=$path?>images/svg/step2.svg"/>
+                  <img src="<?=$path?>images/svg/step2.svg?v=2"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8" v-cloak>
                   {{ translations.stepDates[selectedLocale] }}
@@ -192,7 +192,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
               <div class="row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
                   <vuejs-datepicker
-                      input-class="form-control  nsc-select"
+                      input-class="form-control nsc-select"
+                      calendar-class="datepicker"
                       v-model="form.dateFrom"
                       :placeholder="translations.dateFrom[selectedLocale]"
                       open-date="2021-03-26"
@@ -211,6 +212,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                   <!--                        :placeholder="translations.dateTill[selectedLocale]"/>-->
                   <vuejs-datepicker
                       input-class="form-control  nsc-select"
+                      calendar-class="datepicker"
                       v-model="form.dateTill"
                       :placeholder="translations.dateTill[selectedLocale]"
                       open-date="2021-04-01"
@@ -272,7 +274,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?=$path?>images/svg/step3.svg"/>
+                  <img src="<?=$path?>images/svg/step3.svg?v=2"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8" v-cloak>
                   {{ translations.stepHotel[selectedLocale] }}
@@ -356,7 +358,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?=$path?>images/svg/step4.svg"/>
+                  <img src="<?=$path?>images/svg/step4.svg?v=2"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8">
                   {{ translations.stepThree[selectedLocale] }}
@@ -433,7 +435,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row step-num">
                 <div class="col-2 col-sm-2 col-md-1 col-lg-1 d-flex align-items-start flex-column p-0 nsc-step-num">
-                  <img src="<?=$path?>images/svg/step5.svg"/>
+                  <img src="<?=$path?>images/svg/step5.svg?v=2"/>
                 </div>
                 <div class="col-10">
                   {{ translations.stepFour[selectedLocale] }}
@@ -482,7 +484,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="tourIncluded" v-html="translations.tourIncluded[selectedLocale]">
                 </div>
                 <div class="row">
-                  <input type="text" class="form-control col "
+                  <input type="text" class="form-control col promocode"
                          v-model.trim="promocode"
                          :placeholder="translations.guestPromoCode[selectedLocale]">
                   <div class="form-control col  nsc-button"
@@ -539,7 +541,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
-            <label v-if="this.form.room" for="toursum" class="col-7 col-sm-7 col-md-7 col-lg-7 align-middle">
+            <label v-if="this.form.room" for="toursum" class="col-7 col-sm-7 col-md-7 col-lg-7 align-middle nsw-toursum-label">
               {{ translations.tourPriceText[selectedLocale] }}
             </label>
             <input class="col-5 border-0 nsw-toursum"
@@ -594,7 +596,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           <div class="col-12 col-md-8 col-lg-8 order-12 order-md-1">
             <div class="row">
               <div class="col-1 p-0 text-center">
-                <img src="<?=$path?>images/svg/wnsc-logo.svg" class="mb-2 nsc-logo">
+                <img src="<?=$path?>images/svg/wnsc-logo.svg?v=2" class="mb-2 nsc-logo">
                 <p>ООО «НЬЮ СТАР»</p>
               </div>
               <div class="col-10 col-sm-6 col-md-6 col-lg-6">
@@ -610,9 +612,9 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 pr-0 text-md-right text-sm-left mb-3 order-1 order-md-12">
-            <button id="externalButton" @click.prevent="showModal = true" class="btn btn-link p-0 link f1">
-              <img src="<?=$path?>images/svg/user-offer.svg" class="nsc-user-offer" v-cloak />
-              {{ translations.userAgreement[selectedLocale] }}
+            <button id="externalButton" @click.prevent="showModal = true" class="btn nsc-btn-link p-0 link f1">
+              <img src="<?=$path?>images/svg/user-offer.svg?v=2" class="nsc-user-offer" v-cloak/>
+                {{ translations.userAgreement[selectedLocale] }}
             </button>
           </div>
         </div>

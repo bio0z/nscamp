@@ -294,14 +294,14 @@ let vm = new Vue({
                     '</ul>',
             },
             guestAgreement:{
-                'ru':'<p>Я даю <span class="btn btn-link border-0 p-0" @click.prevent="showModal = true">согласие</span></li>' +
+                'ru':'<p>Я даю <span class="nsc-btn-link" @click.prevent="showModal = true">согласие</span></li>' +
                     'на обработку персональных данных</p>',
-                'en':'<p>I accept <span class="btn btn-link border-0 p-0" @click.prevent="showModal = true">Terms and Conditions</span></p>'
+                'en':'<p>I accept <span class="nsc-btn-link" @click.prevent="showModal = true">Terms and Conditions</span></p>'
             },
             guestOfferAccept:{
-                'ru':'<p>Я согласен c <span class="btn btn-link border-0 p-0"' +
+                'ru':'<p>Я согласен c <span class="nsc-btn-link"' +
                     '@click.prevent="showOffer = true">политикой конфиденциальности</span></p>',
-                'en':'<p>I accept <span class="btn btn-link border-0 p-0"' +
+                'en':'<p>I accept <span class="nsc-btn-link"' +
                     '@click.prevent="showOffer = true">offer.</span></p>'
             },
             buyTour:{
