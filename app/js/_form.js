@@ -2518,7 +2518,8 @@ let vm = new Vue({
                 fdata.append('phone', this.form.phone);
                 fdata.append('room', this.form.room);
                 fdata.append('roomName', roomName);
-                fdata.append('hotel', this.form.hotelName);
+                fdata.append('hotel', this.form.hotel);
+                fdata.append('hotelName', this.form.hotelName);
                 fdata.append('address', this.form.address);
                 fdata.append('passname', this.form.pass);
                 fdata.append('gname', this.form.gfname);
