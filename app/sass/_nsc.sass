@@ -1,6 +1,5 @@
 h1
   font-weight: bold
-  color: #777FA8
 h3
   font-weight: 700
 
@@ -9,9 +8,6 @@ h3
 
 [v-cloak]
   display: none
-
-.mainbg
-  background-color: #777FA8
 
 input.form-control, button.form-control
   background-color: #f4f4f4
@@ -52,14 +48,11 @@ header .btn-link a
   line-height: 19px
   color: #000
 
-
 #progressbar
   overflow: hidden
-  color: #C4C4C4
   padding-inline-start: 0
 
 #progressbar .active
-  color: #777FA8
   font-weight: bold
 
 #progressbar li
@@ -77,8 +70,9 @@ header .btn-link a
   line-height: 45px
   display: block
   font-size: 18px
-  color: #C4C4C4
-  background: #C4C4C4
+  color: #000
+  background: #F6D000
+  border: 1px solid #000
   border-radius: 50%
   margin: 0 auto 10px auto
   padding: 2px
@@ -102,24 +96,24 @@ header .btn-link a
   content: ''
   width: 100%
   height: 1px
-  background: #C4C4C4
+  background: #000
   position: absolute
   left: 0
   top: 5px
   z-index: -1
 
 #progressbar li.active:before
-  background: #777FA8
+  background: #000
 
 #progressbar li.active:after
-  background: #C4C4C4
+  background: #000
 
 .invalid-feedback
   display: block
   text-align: center
 
 main
-  color: #777fa8
+  color: #000
   padding: 20px 0px
 
   .nsc-step-num svg
@@ -227,6 +221,11 @@ main
     background-color: #777fa8
     color: #fff
     border: none
+    border-radius: 30px
+    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
+    width: 156px
+    height: 40px
+    text-transform: uppercase
 
   .nsc-datesnote
     font-size: 12px
@@ -260,6 +259,10 @@ main
     background: #f4f4f4 url("../images/svg/nsc-select-dropdown.svg") 99% center no-repeat
     border: none
     color: #777fa8
+    border-radius: 30px
+    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
+    width: 227px
+    height: 40px
 
   .nsc-select option[value=""][disabled]
     display: contents
@@ -390,17 +393,15 @@ main
   font-weight: 700
 
 .bg-nsc-grey
-  background-color: #f4f4f4
+  background: rgba(229, 229, 229, 0.5)
 
 .bg-nsc-grey label
   margin: auto
 
 .bg-nsc-grey input[readonly]
   background: none
-  color: #777fa8
 
 .footer .btn-link
-  color: #777fa8
   margin-bottom: 10px
   margin-top: 10px
   text-decoration: underline
@@ -422,12 +423,8 @@ main
 .footer p, footer a
   font-size: 8px
   line-height: 10px
-  color: #777fa8
   padding: 0
   margin: 0
 
 .footer .nsc-logo
   max-width: 34px
-
-footer
-  color: #777fa8

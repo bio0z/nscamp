@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=2.3">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=2.5">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -56,7 +56,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 
             <div class="modal-footer">
               <slot name="footer">
-                <button class="btn modal-default-button rounded-0 nsc-button" @click.prevent="$emit('close')">
+                <button class="btn modal-default-button  nsc-button" @click.prevent="$emit('close')">
                   Согласен
                 </button>
               </slot>
@@ -137,13 +137,13 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          v-html="translations.passSDetails[selectedLocale]">
                       </p>
                     </div>
-                    <input type="radio" class="form-control rounded-0"
+                    <input type="radio" class="form-control "
                            v-model.trim="form.pass"
                            value="S"
                            hidden
                            required>
                   </label>
-                  <div class="btn rounded-0 nsc-button btn-more"
+                  <div class="btn  nsc-button btn-more"
                        @click="showPassSDetail()" v-cloak>{{ translations.passDetails[selectedLocale] }}
                   </div>
                 </div>
@@ -162,13 +162,13 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          v-html="translations.passVDetails[selectedLocale]">
                       </p>
                     </div>
-                    <input type="radio" class="form-control rounded-0"
+                    <input type="radio" class="form-control "
                            v-model.trim="form.pass"
                            value="V"
                            hidden
                            required>
                   </label>
-                  <div class="btn rounded-0 nsc-button btn-more"
+                  <div class="btn  nsc-button btn-more"
                        @click="showPassVDetail()" v-cloak>{{ translations.passDetails[selectedLocale] }}
                   </div>
                 </div>
@@ -192,7 +192,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
               <div class="row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
                   <vuejs-datepicker
-                      input-class="form-control rounded-0 nsc-select"
+                      input-class="form-control  nsc-select"
                       v-model="form.dateFrom"
                       :placeholder="translations.dateFrom[selectedLocale]"
                       open-date="2021-03-26"
@@ -201,16 +201,16 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                       :disabled-dates=disabledDates
                   >
                   </vuejs-datepicker>
-                  <!--                  <input class="form-control rounded-0 nsc-select"-->
+                  <!--                  <input class="form-control  nsc-select"-->
                   <!--                         type="date" v-model="form.dateFrom"-->
                   <!--                         :placeholder="translations.dateFrom[selectedLocale]"/>-->
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <!--                  <input class="form-control rounded-0 nsc-select"-->
+                  <!--                  <input class="form-control  nsc-select"-->
                   <!--                        type="date" v-model="form.dateTill"-->
                   <!--                        :placeholder="translations.dateTill[selectedLocale]"/>-->
                   <vuejs-datepicker
-                      input-class="form-control rounded-0 nsc-select"
+                      input-class="form-control  nsc-select"
                       v-model="form.dateTill"
                       :placeholder="translations.dateTill[selectedLocale]"
                       open-date="2021-04-01"
@@ -234,11 +234,11 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <!--                  <input class="form-control custom-select rounded-0 nsc-select"-->
+                  <!--                  <input class="form-control custom-select  nsc-select"-->
                   <!--                         type="text" v-model.number="form.adults"-->
                   <!--                         :placeholder="translations.tourAdults[selectedLocale]"/>-->
                   <select v-model.number="form.adults"
-                          class="custom-select rounded-0 nsc-select"
+                          class="custom-select  nsc-select"
                           :placeholder="translations.tourAdults[selectedLocale]"
                           required>
                     <option value="" disabled selected>{{ translations.tourAdults[selectedLocale] }}</option>
@@ -254,7 +254,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
 <!--                  <select v-model.number="form.kids"-->
-<!--                          class="custom-select rounded-0 nsc-select"-->
+<!--                          class="custom-select  nsc-select"-->
 <!--                          :placeholder="translations.tourKids[selectedLocale]"-->
 <!--                          required>-->
 <!--                    <option value="" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>-->
@@ -284,7 +284,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pb-2 input-group">
                   <div class="btn-group input-group-prepend">
                     <select v-model.trim="form.hotel"
-                            class="custom-select rounded-0 nsc-select"
+                            class="custom-select  nsc-select"
                             @change="showHotelPhoto"
                             required>
                       <option value="" disabled selected>{{ translations.hotelType[selectedLocale] }}</option>
@@ -295,7 +295,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pb-2">
                   <div>
                     <select v-model.trim="form.room"
-                            class="custom-select rounded-0 nsc-select"
+                            class="custom-select  nsc-select"
                             @change="showRoomPhoto"
                             required>
                       <option value="" disabled selected>{{ translations.roomType[selectedLocale] }}</option>
@@ -368,19 +368,19 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <h5>{{ translations.firstGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.fname" name="fname" type="text"
-                         class="form-control rounded-0"
+                         class="form-control "
                          :placeholder="translations.guestName[selectedLocale]"
                          required>
                 </div>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.sname" type="text"
-                         class="form-control rounded-0"
+                         class="form-control "
                          :placeholder="translations.guestSurname[selectedLocale]"
                          required>
                 </div>
                 <div class="col-md-12 mb-4">
                   <input type="email" v-model.trim="form.email"
-                         class="form-control rounded-0"
+                         class="form-control "
                          placeholder="E-Mail"
                          required>
                 </div>
@@ -390,7 +390,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          name="phone"
                          id="phone"
                          autocomplete="tel"
-                         class="form-control rounded-0"
+                         class="form-control "
                          :placeholder="translations.guestPhone[selectedLocale]"
                          maxlength="17"
                          v-phone
@@ -402,25 +402,25 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <h5>{{ translations.secondGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.gfname" name="gfname" type="text"
-                         class="form-control rounded-0"
+                         class="form-control "
                          :placeholder="translations.guestName[selectedLocale]"
                          required>
                 </div>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.gsname" type="text"
-                         class="form-control rounded-0"
+                         class="form-control "
                          :placeholder="translations.guestSurname[selectedLocale]"
                          required>
                 </div>
                 <div class="col-md-12 mb-4">
                   <input type="email" v-model.trim="form.gemail"
-                         class="form-control rounded-0"
+                         class="form-control "
                          placeholder="E-Mail"
                          required>
                 </div>
                 <div class="col-md-12 mb-4">
                   <input type="phone" v-model.trim="form.gphone"
-                         class="form-control rounded-0"
+                         class="form-control "
                          :placeholder="translations.guestPhone[selectedLocale]"
                          required>
                 </div>
@@ -482,10 +482,10 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="tourIncluded" v-html="translations.tourIncluded[selectedLocale]">
                 </div>
                 <div class="row">
-                  <input type="text" class="form-control col rounded-0"
+                  <input type="text" class="form-control col "
                          v-model.trim="promocode"
                          :placeholder="translations.guestPromoCode[selectedLocale]">
-                  <div class="form-control col rounded-0 nsc-button"
+                  <div class="form-control col  nsc-button"
                     @click="applyPromoCode()">
                     {{ translations.guestPromoCodeApply[selectedLocale] }}
                   </div>
@@ -531,7 +531,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
         </section>
         <div class="invalid-feedback" v-if="errors != null">{{ errors }}</div>
         <div class="row col-12 d-flex pl-0 pr-0 ml-0 mr-0 mb-3 mt-sm-3 mt-3 mt-md-0 mt-lg-0 bg-nsc-grey">
-          <button class="col-3 col-sm-3 col-md-2 col-lg-2 p-2 bd-highlight form-control col-2 rounded-0 nsc-button"
+          <button class="col-3 col-sm-3 col-md-2 col-lg-2 p-2 bd-highlight form-control col-2  nsc-button"
                   v-if="step !== 1"
                   @click.prevent="prevStep" v-cloak>{{ translations.stepPrevious[selectedLocale] }}
           </button>
@@ -552,14 +552,14 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             />
           </div>
           <button
-              class="col-3 col-sm-3 col-md-2 col-lg-2 ml-auto p-2 bd-highlight form-control col-2 rounded-0 nsc-button"
+              class="col-3 col-sm-3 col-md-2 col-lg-2 ml-auto p-2 bd-highlight form-control col-2  nsc-button"
               v-if="step !== totalsteps"
               @click.prevent="nextStep" v-cloak>{{ translations.stepNext[selectedLocale] }}
           </button>
           <?php $env == 'prod' ? $token = 'qlsnf995gkvurbqpc3qm4nbvqs' : $token = '5ul0u41eam2n3qpsuicfjim7fj' ?>
           <?php if ($env == 'prod') {?>
           <div
-              class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
+              class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control  nsc-button"
               v-show="form.consent && form.offer"
               id="alfa-payment-button"
               data-token="<?= $token ?>"
@@ -579,12 +579,12 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           <?php } ?>
           <?php if ($env == 'test') {?>
             <div v-show="form.consent && form.offer"
-               class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
+               class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control  nsc-button"
                @click="saveVoucher(<?php echo $tourNumber ?>,<?php echo $tourID ?>)">
             Создать ваучер
           </div>
             <div v-show="form.consent && form.offer"
-                 class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control rounded-0 nsc-button"
+                 class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control  nsc-button"
                  @click="sendMail(<?php echo $tourNumber ?>)">
               Отправить письмо
             </div>
