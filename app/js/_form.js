@@ -276,6 +276,18 @@ let vm = new Vue({
                 'ru':'Вы забыли заполнить персональные данные.',
                 'en':'Please, fill Name and Surname.'
             },
+            errorFillFIO2:{
+                'ru':'Вы забыли заполнить персональные данные второго гостя.',
+                'en':'Please, fill Name and Surname.'
+            },
+            errorFillFIO3:{
+                'ru':'Вы забыли заполнить персональные данные третьего гостя.',
+                'en':'Please, fill Name and Surname.'
+            },
+            errorFillFIO4:{
+                'ru':'Вы забыли заполнить персональные данные четвертого гостя.',
+                'en':'Please, fill Name and Surname.'
+            },
             errorFillEmail:{
                 'ru':'Укажите электронную почту.',
                 'en':'Please, fill Email'
@@ -2395,6 +2407,15 @@ let vm = new Vue({
                     return false;
                 } else if (!this.validPhone(this.form.phone)) {
                     this.errors = this.translations.errorFillCorrectPhone[this.selectedLocale];
+                    return false;
+                } else if (this.form.adults >= 2 && (!this.form.gfname || !this.form.gsname)) {
+                    this.errors = this.translations.errorFillFIO2[this.selectedLocale];
+                    return false;
+                } else if (this.form.adults >= 3 && (!this.form.g3fname || !this.form.g3sname)) {
+                    this.errors = this.translations.errorFillFIO3[this.selectedLocale];
+                    return false;
+                } else if (this.form.adults >= 4 && (!this.form.g4fname || !this.form.g4sname)) {
+                    this.errors = this.translations.errorFillFIO4[this.selectedLocale];
                     return false;
                 } else {
                     this.errors = null;
