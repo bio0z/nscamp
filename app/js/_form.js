@@ -588,7 +588,9 @@ let vm = new Vue({
                         maxGuests: 4,
                         breakfast: {
                             '1':0,
-                            '2':0
+                            '2':0,
+                            '3':0,
+                            '4':0
                         },
                         price: {
                             '1': 7000,
