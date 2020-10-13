@@ -141,8 +141,9 @@ main
   .nsc-pass-label
     width: 243px
     height: 355px
-    border-radius: 4%
     padding-top: 55px
+    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
+    border-radius: 9px
     @media (max-width: 576px)
       width: auto
       min-width: 350px
@@ -159,8 +160,9 @@ main
       padding-top: 35%
       padding-left: 52%
 
-  .nsc-pass-label:hover, .nsc-pass-label.active
-    box-shadow: 0 0 5px #000
+  .nsc-pass-label.active
+    box-sizing: border-box
+
 
   .nsc-pass-s
     background: url("../images/svg/tour-standard.svg") no-repeat
@@ -200,7 +202,8 @@ main
       font-family: Roboto
 
   .nsc-pass-v-back
-    background: url("../images/svg/tour-vip-back.svg") no-repeat
+    background: url("../images/svg/tour-vip-back.svg") no-repeat #777FA8
+    border: 1px solid #777FA8
     color: #ffffff
     @media (max-width: 576px)
       background: url("../images/svg/tour-vip-back-mob.svg") no-repeat
@@ -231,6 +234,9 @@ main
     font-size: 12px
 
   .btn-more
+    width: 156px
+    height: 40px
+    filter: drop-shadow(3px 3px 15px #D3AE14), drop-shadow(-3px -3px 15px rgba(255, 244, 186, 0.7))
     @media (max-width: 576px)
       margin: 20px 0 20px 0
 
@@ -401,7 +407,7 @@ main
 .bg-nsc-grey input[readonly]
   background: none
 
-.footer .btn-link
+.btn-link
   margin-bottom: 10px
   margin-top: 10px
   text-decoration: underline
