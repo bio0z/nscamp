@@ -133,9 +133,21 @@ main
       text-align: right
 
   .nsc-pass .pass-price
-      width: 150px
-      @media(max-width: 576px)
-        width: auto
+    width: auto
+    display: table
+    @media(max-width: 576px)
+      height: 189px
+
+  .nsc-pass-label .pass-price .padd
+    font-size: 18px
+    line-height: 21px
+    vertical-align: bottom
+    display: table-cell
+    padding-bottom: 10px
+    text-align: left
+    @media(max-width: 576px)
+      padding-left: 200px
+      padding-right: 10px
 
   .nsc-pass p
     line-height: 16px
@@ -155,17 +167,9 @@ main
       height: 196px
 
   .nsc-pass-label .pass-detail
-    padding: 55px 0 0 15px
+    margin: auto
+    padding: 10px
     @media(max-width: 576px)
-      padding-top: 190px
-
-  .nsc-pass-label .padd
-    padding-top: 250px
-    font-size: 18px
-    line-height: 21px
-    @media(max-width: 576px)
-      padding-top: 35%
-      padding-left: 52%
 
   .nsc-pass-label.active
     box-sizing: border-box
@@ -176,9 +180,29 @@ main
     background: url("../images/svg/tour-standard.svg?v=2") no-repeat
     color: #000000
     @media (max-width: 576px)
-      background: url("../images/svg/tour-standard-mob.svg?v=2") no-repeat
+      background: url("../images/svg/tour-standard-mob.svg?v=3") no-repeat
       background-size: contain
       background-origin: content-box
+      height: 216px
+      width: 243px
+
+  .nsc-pass-s-back
+    background: no-repeat #6BC9B9
+    color: #ffffff
+    @media (max-width: 576px)
+      background: #f6d000 url("../images/svg/tour-standard-mob.svg?v=3") no-repeat
+      background-size: contain
+      background-origin: content-box
+      color: #232559
+      height: 352px
+      width: 243px
+
+  .nsc-pass-s-back .pass-detail
+    @media (max-width: 576px)
+      background: no-repeat #6BC9B9
+
+  .nsc-pass-label .pass-price span
+      font-family: Roboto
 
   .nsc-pass-v
     background: url("../images/svg/tour-vip.svg?v=3") no-repeat
@@ -187,27 +211,6 @@ main
       background: url("../images/svg/tour-vip-mob.svg?v=2") no-repeat
       background-size: contain
       background-origin: content-box
-
-  .nsc-pass-s-back
-    background: url("../images/svg/tour-standard-back.svg?v=2") no-repeat #6BC9B9
-    color: #ffffff
-    @media (max-width: 576px)
-      background: url("../images/svg/tour-standard-back-mob.svg?v=2") no-repeat
-      background-size: contain
-      background-origin: content-box
-      color: #232559
-      height: 359px
-      width: -webkit-min-content
-
-  .nsc-pass-s-back .pass-price
-    @media (max-width: 576px)
-      position: absolute
-      top: 113px
-      right: 0
-      width: 160px
-
-  .nsc-pass-label .pass-price span
-      font-family: Roboto
 
   .nsc-pass-v-back
     background: url("../images/svg/tour-vip-back.svg?v=2") no-repeat #777FA8

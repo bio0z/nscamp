@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=3.1">
+  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=3.2">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -128,14 +128,13 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          v-bind:class="[!passSDetails ? 'nsc-pass-s' : 'nsc-pass-s-back']"
                          @click="setPassActive('S')"
                          ref="passSLabel">
-                    <div class="m-4 text-left">
-                      <div class="row f1 pass-detail" v-if="passSDetails"
-                           v-html="translations.passSDetailsFull[selectedLocale]">
-                      </div>
-                      <p class="row m-1 pass-price"
-                         v-bind:class="[passSDetails ? '' : 'padd']"
+                    <div class="row m-1 pass-price">
+                      <p class="padd"
                          v-html="translations.passSDetails[selectedLocale]">
                       </p>
+                    </div>
+                    <div class="row f1 pass-detail" v-if="passSDetails"
+                         v-html="translations.passSDetailsFull[selectedLocale]">
                     </div>
                     <input type="radio" class="form-control "
                            v-model.trim="form.pass"
