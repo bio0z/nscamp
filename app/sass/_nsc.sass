@@ -32,6 +32,16 @@ header
   max-height: 134px
   padding: 10px 0px
 
+header .lang-top
+  display: block
+  @media(max-width: 576px)
+    display: none
+
+header .lang-mob
+  display: none
+  @media(max-width: 576px)
+    display: block
+
 header .nsc-logo
   height: auto
   width: 120px
@@ -56,6 +66,7 @@ header .btn-link a
 #progressbar
   overflow: hidden
   padding-inline-start: 0
+  margin: 0
 
 #progressbar .active
   font-weight: bold
@@ -116,6 +127,15 @@ header .btn-link a
 .invalid-feedback
   display: block
   text-align: center
+  position: fixed
+  top: 10px
+  background: white
+  padding: 10px
+  z-index: 6
+
+.nsc-button:hover+ .invalid-feedback
+  opacity: 1
+  transition: 1s
 
 main
   color: #000
@@ -145,19 +165,24 @@ main
     border-radius: 11px
     position: relative
     @media (max-width: 576px)
-      width: auto
-      min-width: 350px
+      width: 432px
 
   .nsc-pass-label .pass-front
     width: 100%
-    height: 196px
+    height: 355px
     margin: 0
     display: table
     position: relative
     @media(max-width: 576px)
-      height: 216px
+      height: 242px
       box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
-      border-radius: 0 0 11px 11px
+      border-radius: 11px
+
+  #pass-front, #pass-front-v
+    z-index: 4
+
+  #pass-detail, #pass-detail-v
+    z-index: 2
 
   .nsc-pass-label .pass-price
     display: table-cell
@@ -168,18 +193,33 @@ main
     vertical-align: bottom
     @media(max-width: 576px)
       padding: 0 22px 25px 210px
-      z-index: 1
 
   .nsc-pass-label .pass-detail
     margin: auto
     padding: 10px
     position: relative
+    display: none
     @media(max-width: 576px)
       box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
       border-radius: 0 0 11px 11px
       height: 150px
       margin: -10px 0 auto
-      z-index: 2
+      padding: 25px
+      display: block
+
+  .nsc-pass-label .pass-detail-dt
+    display: block
+    text-align: left
+    padding: 90px 0 0 20px
+    @media(max-width: 576px)
+      display: none
+
+  .nsc-pass-label .pass-price-dt
+    font-size: 18px
+    line-height: 21px
+    position: absolute
+    bottom: 20px
+    padding: 0 100px 0 10px
 
   .nsc-pass-label.active
     box-sizing: border-box
@@ -193,15 +233,17 @@ main
       background-size: contain
       background-origin: content-box
 
-  .nsc-pass-s-back
-    background: no-repeat #6BC9B9
+  .nsc-pass-s-back .pass-front
+    background: #6BC9B9 url("../images/svg/tour-standard-back.svg?v=3") no-repeat
     color: #ffffff
+    box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
+    border-radius: 11px
     @media (max-width: 576px)
       background: #f6d000 url("../images/svg/tour-standard-mob.svg?v=3") no-repeat
       background-size: contain
       background-origin: content-box
       color: #232559
-      height: auto
+      height: 242px
 
   .nsc-pass-s-back .pass-detail
     @media (max-width: 576px)
@@ -214,20 +256,31 @@ main
     background: url("../images/svg/tour-vip.svg?v=3") no-repeat
     color: #000000
     @media (max-width: 576px)
-      background: url("../images/svg/tour-vip-mob.svg?v=2") no-repeat
+      background: url("../images/svg/tour-vip-mob.svg?v=3") no-repeat
       background-size: contain
       background-origin: content-box
 
-  .nsc-pass-v-back
+  .nsc-pass-v-back .pass-front
     background: url("../images/svg/tour-vip-back.svg?v=2") no-repeat #777FA8
     color: #ffffff
+    box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
+    border-radius: 11px
     @media (max-width: 576px)
-      background: url("../images/svg/tour-vip-back-mob.svg?v=2") no-repeat
+      background: #f6d000 url("../images/svg/tour-vip-mob.svg?v=3") no-repeat
       background-size: cover
       background-origin: content-box
       color: #232559
-      height: 405px
-      width: -webkit-min-content
+      height: 242px
+
+  .nsc-pass-v-back .pass-detail
+    @media (max-width: 576px)
+      background: no-repeat #777FA8
+      height: 170px
+
+  .nsc-pass-v-back .pass-price, .nsc-pass-s-back .pass-price
+    display: none
+    @media (max-width: 576px)
+      display: table-cell
 
   .nsc-button
     background-color: #777fa8
@@ -286,7 +339,7 @@ main
     background-color: rgba(229, 229, 229, 0.5)
 
   .datepicker
-    background: rgba(229, 229, 229, 0.5)
+    background: #f6d000
     color: #000
 
   .nsc-checkbox
@@ -310,7 +363,7 @@ main
     min-height: 450px
 
     .step-num
-      margin-bottom: 20px
+      margin: 0 0 20px 0
 
   .btn-group
     width: 100%

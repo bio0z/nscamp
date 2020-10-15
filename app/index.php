@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=6.1">
+  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=6.3">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -92,14 +92,21 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 
 <body>
 <div id="orderForm" class="container">
-  <header class="row mt-2">
-    <div class="col"><h1 v-cloak>{{ translations.title[selectedLocale] }}</h1></div>
-    <div class="col text-right nsc-logo">
+  <header class="row m-0 mt-2">
+    <div class="col-12 lang-mob">
+      <button class="btn btn-link p-0 link">
+        <div v-for="(locale,code) in locales" v-cloak>
+          <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>
+        </div>
+      </button>
+    </div>
+    <div class="col-8"><h1 v-cloak>{{ translations.title[selectedLocale] }}</h1></div>
+    <div class="col text-right pt-2 nsc-logo">
       <a href="https://newstarcamp.ru">
         <img src="<?= $path ?>images/svg/nsc-logo.svg?v=2">
       </a>
     </div>
-    <div class="col-1">
+    <div class="col-1 lang-top">
       <button class="btn btn-link p-0 link">
         <div v-for="(locale,code) in locales" v-cloak>
           <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>
@@ -135,10 +142,14 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          v-bind:class="[!passSDetails ? 'nsc-pass-s' : 'nsc-pass-s-back']"
                          @click="setPassActive('S')"
                          ref="passSLabel">
-                    <div class="row pass-front">
+                    <div class="row pass-front" id="pass-front">
+                      <div class="f1 pass-detail-dt" v-if="passSDetails">
+                        <div v-html="translations.passSDetailsFull[selectedLocale]"></div>
+                        <div class="pass-price-dt" v-html="translations.passSDetails[selectedLocale]"></div>
+                      </div>
                       <div class="pass-price" v-html="translations.passSDetails[selectedLocale]"></div>
                     </div>
-                    <div class="row f1 pass-detail" v-if="passSDetails"
+                    <div class="row f1 pass-detail" id="pass-detail" v-if="passSDetails"
                          v-html="translations.passSDetailsFull[selectedLocale]">
                     </div>
                     <input type="radio" class="form-control "
@@ -156,12 +167,14 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          v-bind:class="[!passVDetails ? 'nsc-pass-v' : 'nsc-pass-v-back']"
                          @click="setPassActive('V')"
                          ref="passVLabel">
-                    <div class="row pass-price" v-if="!passVDetails">
-                      <p class="padd"
-                         v-html="translations.passVDetails[selectedLocale]">
-                      </p>
+                    <div class="row pass-front" id="pass-front-v">
+                      <div class="f1 pass-detail-dt" v-if="passVDetails">
+                        <div v-html="translations.passVDetailsFull[selectedLocale]"></div>
+                        <div class="pass-price-dt" v-html="translations.passVDetails[selectedLocale]"></div>
+                      </div>
+                      <div class="pass-price" v-html="translations.passVDetails[selectedLocale]"></div>
                     </div>
-                    <div class="row f1 pass-detail" v-if="passVDetails"
+                    <div class="row f1 pass-detail" id="pass-detail-v" v-if="passVDetails"
                          v-html="translations.passVDetailsFull[selectedLocale]">
                     </div>
                     <input type="radio" class="form-control "
