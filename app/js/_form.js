@@ -102,12 +102,12 @@ let vm = new Vue({
                 'en':'More'
             },
             passSDetails:{
-                'ru':'от 52 190 <span>₽ </span> от 9 дней',
-                'en':'from 52 190 <span>₽ </span> from 9 days'
+                'ru':'от 52190<span>₽ </span> от 9 дней',
+                'en':'from 52190<span>₽ </span> from 9 days'
             },
             passVDetails:{
-                'ru':'от 64 190<span>₽</span> от 9 дней ',
-                'en':'from 64 190 <span>₽ </span> from 9 days'
+                'ru':'от 64190<span>₽ </span> от 9 дней ',
+                'en':'from 64190<span>₽ </span> from 9 days'
             },
             passSDetailsFull:{
                 'ru':'<p class="mb-2">Браслет участника</p></li>' +
@@ -119,7 +119,7 @@ let vm = new Vue({
                     '<p class="mb-2">Festival PASS</p></li>' +
                     '<p class="mb-2">Cable lifts pass</p></li>' +
                     '<p class="mb-2">Branded gifts for the first 500 guests</p></li>' +
-                    '<p class="mb-2">Special offers in resort restaurants</p></li>'
+                    '<p class="mb-2">Special offers in resort restaurants</p></li>',
             },
             passVDetailsFull:{
                 'ru':'<p class="mb-2">Все опции STANDARD TOUR</p></li>' +
@@ -132,7 +132,7 @@ let vm = new Vue({
                     '<p class="mb-2">Festival VIP PASS</p></li>' +
                     '<p class="mb-2">Cable lifts pass</p></li>' +
                     '<p class="mb-2">VIP zone access</p></li>' +
-                    '<p class="mb-2">Special offers in resort restaurants</p></li>'
+                    '<p class="mb-2">Special offers in resort restaurants</p></li>',
             },
             stepNext:{
                 'ru':'Далее',

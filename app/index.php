@@ -1,7 +1,7 @@
 <?php
 $tourID = count(scandir('sent/')) + 1;
 $host = $_SERVER['HTTP_HOST'];
-$host == 'localhost' ? $path = 'nscamp/app/': '';
+$host == 'localhost' ? $path = 'nscamp/app/' : '';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 ?>
@@ -20,22 +20,22 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
 
   <!-- Template Basic Images Start -->
-  <meta property="og:image" content="<?=$path?>/images/meta-image.jpg">
+  <meta property="og:image" content="<?= $path ?>/images/meta-image.jpg">
   <meta
       content="Фестиваль New Star Camp пройдет 26 марта - 4 апреля 2021 года на всесезонном горном курорте «Роза Хутор» (Сочи)."
       property="description">
   <meta content="New Star Camp 2021" property="og:site_name">
   <meta content="New Star Camp 2021" property="og:title">
 
-  <link rel="icon" href="<?=$path?>images/favicon.ico">
-  <link rel="apple-touch-icon" sizes="140x140" href="<?=$path?>images/apple-touch-icon.png">
+  <link rel="icon" href="<?= $path ?>images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="140x140" href="<?= $path ?>images/apple-touch-icon.png">
   <!-- Template Basic Images End -->
 
   <!-- Custom Browsers Color Start -->
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?=$path?>css/app.min.css?rev=3.2">
+  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=6.1">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -67,19 +67,26 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
     </transition>
   </script>
   <?php if ($env == 'prod') { ?>
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(66145342, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/66145342" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+      <div><img src="https://mc.yandex.ru/watch/66145342" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
   <?php } ?>
 </head>
 
@@ -89,7 +96,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
     <div class="col"><h1 v-cloak>{{ translations.title[selectedLocale] }}</h1></div>
     <div class="col text-right nsc-logo">
       <a href="https://newstarcamp.ru">
-        <img src="<?=$path?>images/svg/nsc-logo.svg?v=2">
+        <img src="<?= $path ?>images/svg/nsc-logo.svg?v=2">
       </a>
     </div>
     <div class="col-1">
@@ -114,7 +121,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-3 col-lg-3">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?=$path?>images/svg/step1.svg?v=2"/>
+                  <img src="<?= $path ?>images/svg/step1.svg?v=2"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8" v-cloak>
                   {{ translations.stepTour[selectedLocale] }}
@@ -128,10 +135,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          v-bind:class="[!passSDetails ? 'nsc-pass-s' : 'nsc-pass-s-back']"
                          @click="setPassActive('S')"
                          ref="passSLabel">
-                    <div class="row m-1 pass-price">
-                      <p class="padd"
-                         v-html="translations.passSDetails[selectedLocale]">
-                      </p>
+                    <div class="row pass-front">
+                      <div class="pass-price" v-html="translations.passSDetails[selectedLocale]"></div>
                     </div>
                     <div class="row f1 pass-detail" v-if="passSDetails"
                          v-html="translations.passSDetailsFull[selectedLocale]">
@@ -151,15 +156,13 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          v-bind:class="[!passVDetails ? 'nsc-pass-v' : 'nsc-pass-v-back']"
                          @click="setPassActive('V')"
                          ref="passVLabel">
-                    <div class="mr-4 ml-4 mt-4 mb-3 text-left">
-                      <div class="row f1 pass-detail"
-                           v-if="passVDetails"
-                           v-html="translations.passVDetailsFull[selectedLocale]">
-                      </div>
-                      <p class="row m-1 pass-price"
-                         v-bind:class="[passVDetails ? '' : 'padd']"
+                    <div class="row pass-price" v-if="!passVDetails">
+                      <p class="padd"
                          v-html="translations.passVDetails[selectedLocale]">
                       </p>
+                    </div>
+                    <div class="row f1 pass-detail" v-if="passVDetails"
+                         v-html="translations.passVDetailsFull[selectedLocale]">
                     </div>
                     <input type="radio" class="form-control "
                            v-model.trim="form.pass"
@@ -180,7 +183,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?=$path?>images/svg/step2.svg?v=2"/>
+                  <img src="<?= $path ?>images/svg/step2.svg?v=2"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8" v-cloak>
                   {{ translations.stepDates[selectedLocale] }}
@@ -254,15 +257,15 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-<!--                  <select v-model.number="form.kids"-->
-<!--                          class="custom-select  nsc-select"-->
-<!--                          :placeholder="translations.tourKids[selectedLocale]"-->
-<!--                          required>-->
-<!--                    <option value="" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>-->
-<!--                    <option value="0">без детей</option>-->
-<!--                    <option value="1">1</option>-->
-<!--                    <option value="2">2</option>-->
-<!--                  </select>-->
+                  <!--                  <select v-model.number="form.kids"-->
+                  <!--                          class="custom-select  nsc-select"-->
+                  <!--                          :placeholder="translations.tourKids[selectedLocale]"-->
+                  <!--                          required>-->
+                  <!--                    <option value="" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>-->
+                  <!--                    <option value="0">без детей</option>-->
+                  <!--                    <option value="1">1</option>-->
+                  <!--                    <option value="2">2</option>-->
+                  <!--                  </select>-->
                 </div>
               </div>
             </div>
@@ -273,7 +276,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?=$path?>images/svg/step3.svg?v=2"/>
+                  <img src="<?= $path ?>images/svg/step3.svg?v=2"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8" v-cloak>
                   {{ translations.stepHotel[selectedLocale] }}
@@ -342,7 +345,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                   </button>
                   <div :hotel-id="currentHotel" ref="hotelDiv" class="hotel-gallery">
                     <img image-id='0' class="img-fluid active" ref="hotelImage"
-                         :id="hotels[currentHotel].code" :src="hotels[currentHotel].gallery[0]" :alt="hotels[currentHotel].name"/>
+                         :id="hotels[currentHotel].code" :src="hotels[currentHotel].gallery[0]"
+                         :alt="hotels[currentHotel].name"/>
                   </div>
                   <button type="button" aria-label="Next Photo" class="gallery next" @click="nextPhoto()">
                     >
@@ -357,7 +361,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?=$path?>images/svg/step4.svg?v=2"/>
+                  <img src="<?= $path ?>images/svg/step4.svg?v=2"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8">
                   {{ translations.stepThree[selectedLocale] }}
@@ -434,7 +438,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row step-num">
                 <div class="col-2 col-sm-2 col-md-1 col-lg-1 d-flex align-items-start flex-column p-0 nsc-step-num">
-                  <img src="<?=$path?>images/svg/step5.svg?v=2"/>
+                  <img src="<?= $path ?>images/svg/step5.svg?v=2"/>
                 </div>
                 <div class="col-10">
                   {{ translations.stepFour[selectedLocale] }}
@@ -487,7 +491,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          v-model.trim="promocode"
                          :placeholder="translations.guestPromoCode[selectedLocale]">
                   <div class="form-control col  nsc-button"
-                    @click="applyPromoCode()">
+                       @click="applyPromoCode()">
                     {{ translations.guestPromoCodeApply[selectedLocale] }}
                   </div>
                 </div>
@@ -540,7 +544,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
-            <label v-if="this.form.room" for="toursum" class="col-7 col-sm-7 col-md-7 col-lg-7 align-middle nsw-toursum-label">
+            <label v-if="this.form.room" for="toursum"
+                   class="col-7 col-sm-7 col-md-7 col-lg-7 align-middle nsw-toursum-label">
               {{ translations.tourPriceText[selectedLocale] }}
             </label>
             <input class="col-5 border-0 nsw-toursum"
@@ -558,32 +563,32 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
               @click.prevent="nextStep" v-cloak>{{ translations.stepNext[selectedLocale] }}
           </button>
           <?php $env == 'prod' ? $token = 'qlsnf995gkvurbqpc3qm4nbvqs' : $token = '5ul0u41eam2n3qpsuicfjim7fj' ?>
-          <?php if ($env == 'prod') {?>
-          <div
-              class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control  nsc-button"
-              v-show="form.consent && form.offer"
-              id="alfa-payment-button"
-              data-token="<?= $token ?>"
-              data-return-url="http://<?= $host ?>/?step=6&par=0&tourNumber=<?= $tourNumber ?>"
-              data-fail-url="http://<?= $host ?>/?step=6"
-              data-language="ru"
-              data-stages="1"
-              data-amount-format="rubli"
-              data-order-number-selector=".nsw-tournumber"
-              data-amount-selector=".nsw-toursum"
-              data-description-selector=".nsw-tourname"
-              data-email-selector='.tourClientEmail'
-              data-redirect=true
-              :data-button-text="translations.buyTour[selectedLocale]"
-              @click="saveVoucher(<?php echo $tourNumber ?>,<?php echo $tourID ?>)">
-          </div>
+          <?php if ($env == 'prod') { ?>
+            <div
+                class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control  nsc-button"
+                v-show="form.consent && form.offer"
+                id="alfa-payment-button"
+                data-token="<?= $token ?>"
+                data-return-url="http://<?= $host ?>/?step=6&par=0&tourNumber=<?= $tourNumber ?>"
+                data-fail-url="http://<?= $host ?>/?step=6"
+                data-language="ru"
+                data-stages="1"
+                data-amount-format="rubli"
+                data-order-number-selector=".nsw-tournumber"
+                data-amount-selector=".nsw-toursum"
+                data-description-selector=".nsw-tourname"
+                data-email-selector='.tourClientEmail'
+                data-redirect=true
+                :data-button-text="translations.buyTour[selectedLocale]"
+                @click="saveVoucher(<?php echo $tourNumber ?>,<?php echo $tourID ?>)">
+            </div>
           <?php } ?>
-          <?php if ($env == 'test') {?>
+          <?php if ($env == 'test') { ?>
             <div v-show="form.consent && form.offer"
-               class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control  nsc-button"
-               @click="saveVoucher(<?php echo $tourNumber ?>,<?php echo $tourID ?>)">
-            Создать ваучер
-          </div>
+                 class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control  nsc-button"
+                 @click="saveVoucher(<?php echo $tourNumber ?>,<?php echo $tourID ?>)">
+              Создать ваучер
+            </div>
             <div v-show="form.consent && form.offer"
                  class="col-4 col-sm-4 col-md-4 ml-auto p-2 bd-highlight form-control  nsc-button"
                  @click="sendMail(<?php echo $tourNumber ?>)">
@@ -595,7 +600,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           <div class="col-12 col-md-8 col-lg-8 order-12 order-md-1">
             <div class="row">
               <div class="col-1 p-0 text-center">
-                <img src="<?=$path?>images/svg/wnsc-logo.svg?v=2" class="mb-2 nsc-logo">
+                <img src="<?= $path ?>images/svg/wnsc-logo.svg?v=2" class="mb-2 nsc-logo">
                 <p>ООО «НЬЮ СТАР»</p>
               </div>
               <div class="col-10 col-sm-6 col-md-6 col-lg-6">
@@ -612,8 +617,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           </div>
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 pr-0 text-md-right text-sm-left mb-3 order-1 order-md-12">
             <button id="externalButton" @click.prevent="showModal = true" class="btn nsc-btn-link p-0 link f1">
-              <img src="<?=$path?>images/svg/user-offer.svg?v=2" class="nsc-user-offer" v-cloak/>
-                {{ translations.userAgreement[selectedLocale] }}
+              <img src="<?= $path ?>images/svg/user-offer.svg?v=2" class="nsc-user-offer" v-cloak/>
+              {{ translations.userAgreement[selectedLocale] }}
             </button>
           </div>
         </div>
@@ -1144,13 +1149,13 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?=$path?>js/app.min.js?rev=6.6"></script>
-<?php if ($env == 'prod') {?>
-<script
-    id="alfa-payment-script"
-    type="text/javascript"
-    src="https://pay2.alfabank.ru/assets/alfa-payment.js">
-</script>
-<?php  } ?>
+<script src="<?= $path ?>js/app.min.js?rev=6.8"></script>
+<?php if ($env == 'prod') { ?>
+  <script
+      id="alfa-payment-script"
+      type="text/javascript"
+      src="https://pay2.alfabank.ru/assets/alfa-payment.js">
+  </script>
+<?php } ?>
 </body>
 </html>
