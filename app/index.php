@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=6.3">
+  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=6.4">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -611,7 +611,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
         </div>
         <div class="row mb-3 ml-0 mr-0 footer">
           <div class="col-12 col-md-8 col-lg-8 order-12 order-md-1">
-            <div class="row">
+            <div class="row m-0">
               <div class="col-1 p-0 text-center">
                 <img src="<?= $path ?>images/svg/wnsc-logo.svg?v=2" class="mb-2 nsc-logo">
                 <p>ООО «НЬЮ СТАР»</p>
@@ -629,10 +629,12 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 pr-0 text-md-right text-sm-left mb-3 order-1 order-md-12">
-            <button id="externalButton" @click.prevent="showModal = true" class="btn nsc-btn-link p-0 link f1">
-              <img src="<?= $path ?>images/svg/user-offer.svg?v=2" class="nsc-user-offer" v-cloak/>
-              {{ translations.userAgreement[selectedLocale] }}
-            </button>
+            <div class="row m-0 p-1">
+              <button id="externalButton" @click.prevent="showModal = true" class="btn nsc-btn-link p-0 link f1">
+                <img src="<?= $path ?>images/svg/user-offer.svg?v=2" class="nsc-user-offer" v-cloak/>
+                {{ translations.userAgreement[selectedLocale] }}
+              </button>
+            </div>
           </div>
         </div>
         <modal v-if="showModal" @close="showModal = false">
@@ -1162,7 +1164,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=6.8"></script>
+<script src="<?= $path ?>js/app.min.js?rev=6.9"></script>
 <?php if ($env == 'prod') { ?>
   <script
       id="alfa-payment-script"
