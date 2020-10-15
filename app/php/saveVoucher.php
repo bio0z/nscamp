@@ -41,5 +41,5 @@ if(isset($_POST)) {
   }
 
 } else {
-  return 'POST is epmty';
+  return 'POST is empty';
 }

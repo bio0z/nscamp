@@ -2192,10 +2192,15 @@ let vm = new Vue({
     },
     mounted: function () {
         get_parameters = this.$route.query
-        if (get_parameters.step === 6 && get_parameters.par !== 0) {
+        // console.log('before check pay');
+        // console.log('get_parameters ');
+        // console.log(get_parameters);
+        if (get_parameters.step == 6 && get_parameters.par != 0) {
+            // console.log('no pay');
             this.step = 6;
             this.form.payed = 0;
-        } else if (get_parameters.step === 6 && get_parameters.par === 0) {
+        } else if (get_parameters.step == 6 && get_parameters.par == 0) {
+            // console.log('payed');
             this.step = 6;
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
