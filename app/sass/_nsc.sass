@@ -1,5 +1,7 @@
 h1
   font-weight: bold
+  @media(max-width: 576px)
+    font-size: 30px
 h3
   font-weight: 700
 
@@ -47,6 +49,10 @@ header .nsc-logo
   width: 120px
   margin: -10px 0 -20px 0
 
+header .nsc-logo img
+  @media(max-width: 576px)
+    width: 80px
+
 header .nav-item
   text-align: center
   font-weight: 700
@@ -76,6 +82,9 @@ header .btn-link a
   width: 20%
   float: left
   position: relative
+  @media (max-width: 576px)
+    font-size: 8px
+    line-height: 12px
 
 #progressbar :before
   content: " "
@@ -92,6 +101,8 @@ header .btn-link a
   border-radius: 50%
   margin: 0 auto 10px auto
   padding: 2px
+  @media (max-width: 576px)
+    line-height: 12px
 
 #progressbar li.step1:before
   margin: 0 auto 10px 0
@@ -165,6 +176,7 @@ main
     border-radius: 11px
     position: relative
     @media (max-width: 576px)
+      width: auto
       min-width: 320px
 
   .nsc-pass-label .pass-front
@@ -177,6 +189,8 @@ main
       height: 217px
       box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
       border-radius: 11px
+    @media(max-width: 375px)
+      height: 193px
 
   #pass-front, #pass-front-v
     z-index: 4
@@ -202,10 +216,11 @@ main
     @media(max-width: 576px)
       box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
       border-radius: 0 0 11px 11px
-      height: 150px
+      height: 170px
       margin: -10px 0 auto
       padding: 25px
       display: block
+      text-align: left
 
   .nsc-pass-label .pass-detail-dt
     display: block
@@ -243,7 +258,9 @@ main
       background-size: contain
       background-origin: content-box
       color: #232559
-      height: 242px
+      height: 216px
+    @media (max-width: 375px)
+      height: 193px
 
   .nsc-pass-s-back .pass-detail
     @media (max-width: 576px)
@@ -270,12 +287,16 @@ main
       background-size: cover
       background-origin: content-box
       color: #232559
-      height: 242px
+      height: 216px
+    @media (max-width: 375px)
+      height: 193px
 
   .nsc-pass-v-back .pass-detail
     @media (max-width: 576px)
       background: no-repeat #777FA8
-      height: 170px
+      height: 193px
+    @media (max-width: 375px)
+      height: 230px
 
   .nsc-pass-v-back .pass-price, .nsc-pass-s-back .pass-price
     display: none
@@ -423,13 +444,15 @@ main
     background: #777FA8 url("../images/svg/tour-final-V.svg?v=4") no-repeat 0 100%
     box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
     border-radius: 11px
+    background-size: contain
     //min-height: 364px
 
   .tour-final-s
     background: #6BC9B9 url("../images/svg/tour-final-S.svg?v=4") no-repeat 0 100%
     box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
     border-radius: 11px
-    min-height: 364px
+    background-size: contain
+    //min-height: 364px
 
   .tour-final input
     background: transparent
@@ -458,7 +481,7 @@ main
     font-style: italic
     font-weight: bold
     font-size: 24px
-    color: #777FA8
+    color: #000
     line-height: 100%
     text-align: left
     padding-right: 5px
@@ -468,7 +491,7 @@ main
       text-align: right
 
   .nsw-toursum-label
-    color: #777FA8
+    color: #000
 
 .header
   color: #777fa8
@@ -494,6 +517,11 @@ main
     text-align: left
   img
     margin-right: 13px
+
+.form-check .nsc-btn-link
+  color: #777FA8
+  @media (max-width: 375px)
+    color: #000
 
 .footer .link p
   font-size: 12px

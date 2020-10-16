@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=6.4">
+  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=6.9">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -93,7 +93,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <body>
 <div id="orderForm" class="container">
   <header class="row m-0 mt-2">
-    <div class="col-12 lang-mob">
+    <div class="col-12 pb-3 lang-mob">
       <button class="btn btn-link p-0 link">
         <div v-for="(locale,code) in locales" v-cloak>
           <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>
@@ -119,7 +119,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
       <form class="needs-validation">
         <ul class="row p-3" id="progressbar">
           <li v-for="curStep in steps" :key="curStep.id"
-              :class="['step' + curStep.id, curStep.col , 'p-0' , 'f1' ,curStep.text, step === curStep.id ? 'active' : '']">
+              :class="['step' + curStep.id, curStep.col , 'p-0' ,curStep.text, step === curStep.id ? 'active' : '']">
             <span v-html="curStep.name[selectedLocale]"></span>
           </li>
         </ul>
