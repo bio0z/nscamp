@@ -215,6 +215,10 @@ let vm = new Vue({
                 'ru':'пользовательское соглашение',
                 'en':'user agreement'
             },
+            newStarFAQ:{
+                'ru':'Часто задаваемые вопросы и ответы',
+                'en':'FAQ'
+            },
             stepThree:{
                 'ru':'Заполните, персональные данные и оставьте контактную информацию.',
                 'en':'Please, fill the personal information.'
@@ -2509,9 +2513,7 @@ let vm = new Vue({
                 method: 'post',
                 url: 'php/send.php',
                 data: sdata,
-                // headers: {'Content-Type': 'multipart/form-data' },
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                // querystring.stringify(this.form),
             })
                 .then(response => {
                     this.sent = true;

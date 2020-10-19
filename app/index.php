@@ -629,6 +629,11 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
         </div>
         <div class="row mb-3 ml-0 mr-0 footer">
           <div class="col-12 col-md-8 col-lg-8 order-12 order-md-1">
+            <div class="row nsc-btn-link">
+              <a href="https://newstarcamp.ru/participants">
+                {{ translations.newStarFAQ[selectedLocale] }}
+              </a>
+            </div>
             <div class="row m-0">
               <div class="col-1 p-0 text-center">
                 <img src="<?= $path ?>images/svg/wnsc-logo.svg?v=2" class="mb-2 nsc-logo">
