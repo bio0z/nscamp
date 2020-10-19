@@ -360,8 +360,11 @@ main
     background-color: rgba(229, 229, 229, 0.5)
 
   .datepicker
-    background: #f6d000
-    color: #000
+    background: #777fa8
+    color: #fff
+
+  .datepicker .disabled
+    opacity: 0.4
 
   .nsc-checkbox
     width: 30px
@@ -521,11 +524,14 @@ main
     font-size: 12px
     color: #000
     margin: 0 0 10px 18px
+    @media (max-width: 768px)
+      margin: 0 0 30px 18px
 
 .form-check .nsc-btn-link
   color: #777FA8
   @media (max-width: 375px)
     color: #000
+    margin: 0
 
 .footer .link p
   font-size: 12px
