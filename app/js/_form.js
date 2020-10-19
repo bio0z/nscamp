@@ -324,7 +324,7 @@ let vm = new Vue({
             },
             guestAgreement:{
                 'ru':'<p>Я даю <span class="nsc-btn-link" @click.prevent="showModal = true">согласие</span></li>' +
-                    'на обработку персональных данных</p>',
+                    ' на обработку персональных данных</p>',
                 'en':'<p>I accept <span class="nsc-btn-link" @click.prevent="showModal = true">Terms and Conditions</span></p>'
             },
             guestOfferAccept:{
