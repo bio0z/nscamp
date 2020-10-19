@@ -14,6 +14,8 @@ if(isset($_POST)) {
   $ar['passname'] = $_POST['passname'] == 'S' ? 'STANDARD TOUR' : 'VIP TOUR';
   $ar['guest1'] = $_POST['name'] . ' ' . $_POST['lastname'];
   $ar['guest2'] = $_POST['gname'] . ' ' . $_POST['glastname'];
+  $ar['guest3'] = $_POST['g3fname'] . ' ' . $_POST['g3sname'];
+  $ar['guest4'] = $_POST['g4fname'] . ' ' . $_POST['g4sname'];
   $ar['hotel'] = $_POST['hotel'];
   $ar['dateFrom'] = $_POST['dateFrom'];
   $ar['dateTill'] = $_POST['dateTill'];
@@ -29,8 +31,6 @@ if(isset($_POST)) {
   $ar['skipassPrice'] = $_POST['skipassPrice'];
   $ar['breakfastPrice'] = $_POST['breakfastPrice'];
   $ar['tourDays'] = $_POST['tourDays'];
-  $ar['gphone'] = $_POST['gphone'];
-  $ar['gemail'] = $_POST['gemail'];
 
   $voucher = json_encode($ar);
 
@@ -41,5 +41,5 @@ if(isset($_POST)) {
   }
 
 } else {
-  return 'POST is epmty';
+  return 'POST is empty';
 }

@@ -58,6 +58,11 @@ let vm = new Vue({
             gphone: null,
             gemail: null,
 
+            g3sname: null,
+            g3fname: null,
+            g4fname: null,
+            g4sname: null,
+
             promocode: null,
             consent: null,
             offer: null,
@@ -153,6 +158,14 @@ let vm = new Vue({
             secondGuest:{
                 'ru':'Второй гость',
                 'en':'Second guest'
+            },
+            thirdGuest:{
+                'ru':'Третий гость',
+                'en':'Third guest'
+            },
+            fourthGuest:{
+                'ru':'Четвертый гость',
+                'en':'Fourth guest'
             },
             guestName:{
                 'ru':'Имя',
@@ -261,6 +274,18 @@ let vm = new Vue({
             },
             errorFillFIO:{
                 'ru':'Вы забыли заполнить персональные данные.',
+                'en':'Please, fill Name and Surname.'
+            },
+            errorFillFIO2:{
+                'ru':'Вы забыли заполнить персональные данные второго гостя.',
+                'en':'Please, fill Name and Surname.'
+            },
+            errorFillFIO3:{
+                'ru':'Вы забыли заполнить персональные данные третьего гостя.',
+                'en':'Please, fill Name and Surname.'
+            },
+            errorFillFIO4:{
+                'ru':'Вы забыли заполнить персональные данные четвертого гостя.',
                 'en':'Please, fill Name and Surname.'
             },
             errorFillEmail:{
@@ -588,7 +613,9 @@ let vm = new Vue({
                         maxGuests: 4,
                         breakfast: {
                             '1':0,
-                            '2':0
+                            '2':0,
+                            '3':0,
+                            '4':0
                         },
                         price: {
                             '1': 7000,
@@ -2165,10 +2192,15 @@ let vm = new Vue({
     },
     mounted: function () {
         get_parameters = this.$route.query
-        if (get_parameters.step === 6 && get_parameters.par !== 0) {
+        // console.log('before check pay');
+        // console.log('get_parameters ');
+        // console.log(get_parameters);
+        if (get_parameters.step == 6 && get_parameters.par != 0) {
+            // console.log('no pay');
             this.step = 6;
             this.form.payed = 0;
-        } else if (get_parameters.step === 6 && get_parameters.par === 0) {
+        } else if (get_parameters.step == 6 && get_parameters.par == 0) {
+            // console.log('payed');
             this.step = 6;
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
@@ -2381,6 +2413,15 @@ let vm = new Vue({
                 } else if (!this.validPhone(this.form.phone)) {
                     this.errors = this.translations.errorFillCorrectPhone[this.selectedLocale];
                     return false;
+                } else if (this.form.adults >= 2 && (!this.form.gfname || !this.form.gsname)) {
+                    this.errors = this.translations.errorFillFIO2[this.selectedLocale];
+                    return false;
+                } else if (this.form.adults >= 3 && (!this.form.g3fname || !this.form.g3sname)) {
+                    this.errors = this.translations.errorFillFIO3[this.selectedLocale];
+                    return false;
+                } else if (this.form.adults >= 4 && (!this.form.g4fname || !this.form.g4sname)) {
+                    this.errors = this.translations.errorFillFIO4[this.selectedLocale];
+                    return false;
                 } else {
                     this.errors = null;
                 }
@@ -2524,6 +2565,10 @@ let vm = new Vue({
                 fdata.append('passname', this.form.pass);
                 fdata.append('gname', this.form.gfname);
                 fdata.append('glastname', this.form.gsname);
+                fdata.append('g3fname', this.form.g3fname);
+                fdata.append('g3sname', this.form.g3sname);
+                fdata.append('g4fname', this.form.g4fname);
+                fdata.append('g4sname', this.form.g4sname);
                 fdata.append('gphone', this.form.gphone);
                 fdata.append('gemail', this.form.gemail);
                 fdata.append('promocode', this.form.promocode);
