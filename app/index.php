@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=7.3">
+  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=7.5">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -435,13 +435,13 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <h5>{{ translations.thirdGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.g3fname" type="text"
-                         class="form-control rounded-0"
+                         class="form-control"
                          :placeholder="translations.guestName[selectedLocale]"
                          required>
                 </div>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.g3sname" type="text"
-                         class="form-control rounded-0"
+                         class="form-control"
                          :placeholder="translations.guestSurname[selectedLocale]"
                          required>
                 </div>
@@ -565,7 +565,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             </div>
           </div>
         </section>
-        <div class="invalid-feedback" v-if="errors != null">{{ errors }}</div>
+        <div class="invalid-feedback" v-cloak v-if="errors != null">{{ errors }}</div>
         <div class="row col-12 d-flex pl-0 pr-0 ml-0 mr-0 mb-3 mt-sm-3 mt-3 mt-md-0 mt-lg-0 bg-nsc-grey">
           <button class="col-3 col-sm-3 col-md-2 col-lg-2 p-2 bd-highlight form-control col-2  nsc-button"
                   v-if="step !== 1"
