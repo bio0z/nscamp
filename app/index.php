@@ -530,27 +530,47 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             </div>
             <div class="row p-2">
               <div class="col-12 col-sm-12 col-md-6 col-lg-6 form-check">
-                <label class="row">
-                  <input v-model.trim="form.consent"
-                         class="custom-control-input"
-                         type="checkbox"
-                         required>
-                  <div class="border-0 mr-1 nsc-checkbox"
-                       :class="[form.consent ? ' active' : '']"></div>
-                  <div class="col-9" v-html="translations.guestAgreement[selectedLocale]"></div>
-                </label>
+                <div class="row">
+                  <label for="guestAgreement">
+                    <input v-model.trim="form.consent"
+                           class="custom-control-input"
+                           type="checkbox"
+                           id="guestAgreement"
+                           required>
+                    <div class="border-0 mr-1 nsc-checkbox"
+                         :class="[form.consent ? ' active' : '']"></div>
+                  </label>
+                  <div class="col-9">
+                    <p>
+                      {{ translations.guestAgreement[selectedLocale] }}
+                      <span class="nsc-btn-link" @click.prevent="showModal = true">
+                        {{ translations.guestAgreement1[selectedLocale] }}</span>
+                      {{ translations.guestAgreement2[selectedLocale] }}
+                    </p>
+                  </div>
+                </div>
               </div>
               <div class="col-12 col-sm-12 col-md-1 col-lg-1"></div>
               <div class="col-12 col-sm-12 col-md-5 col-lg-5 form-check">
-                <label class="row">
+                <div class="row">
+                  <label for="guestOfferAccept">
                   <input v-model.trim="form.offer"
                          class="custom-control-input"
                          type="checkbox"
+                         id="guestOfferAccept"
                          required>
                   <div class="border-0 nsc-checkbox"
                        :class="[form.offer ? ' active' : '']"></div>
-                  <div class="col-9" v-html="translations.guestOfferAccept[selectedLocale]"></div>
-                </label>
+                  </label>
+                  <div class="col-9">
+                    <p>
+                      {{ translations.guestOfferAccept[selectedLocale] }}
+                      <span class="nsc-btn-link" @click.prevent="showOffer = true">
+                        {{ translations.guestOfferAccept1[selectedLocale] }}
+                      </span>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1189,7 +1209,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=7"></script>
+<script src="<?= $path ?>js/app.min.js?rev=7.1"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>

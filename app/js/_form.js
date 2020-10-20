@@ -13,6 +13,9 @@ Vue.directive('phone', {
             this.value = x[1] + ' (' + x[2] + ') ' + x[3] + ' ' + x[4] + ' ' + x[5];
             el.dispatchEvent(new Event('input'));
         }
+    },
+    touch(el){
+
     }
 });
 
@@ -323,15 +326,24 @@ let vm = new Vue({
                     '</ul>',
             },
             guestAgreement:{
-                'ru':'<p>Я даю <span class="nsc-btn-link" @click.prevent="showModal = true">согласие</span></li>' +
-                    ' на обработку персональных данных</p>',
-                'en':'<p>I accept <span class="nsc-btn-link" @click.prevent="showModal = true">Terms and Conditions</span></p>'
+                'ru':'Я даю ',
+                'en':'I accept '
+            },
+            guestAgreement1:{
+                'ru':'согласие ',
+                'en':'Terms and Conditions'
+            },
+            guestAgreement2:{
+                'ru':'на обработку персональных данных.',
+                'en':'.'
             },
             guestOfferAccept:{
-                'ru':'<p>Я согласен c <span class="nsc-btn-link"' +
-                    '@click.prevent="showOffer = true">политикой конфиденциальности</span></p>',
-                'en':'<p>I accept <span class="nsc-btn-link"' +
-                    '@click.prevent="showOffer = true">offer.</span></p>'
+                'ru':'Я согласен c ',
+                'en':'I accept '
+            },
+            guestOfferAccept1:{
+                'ru':'политикой конфиденциальности',
+                'en':'offer.'
             },
             buyTour:{
                 'ru':'Купить тур',
@@ -2453,6 +2465,15 @@ let vm = new Vue({
             } else if (pass === 'V') {
                 this.$refs.passVLabel.className += " active";
                 this.$refs.passSLabel.classList.remove("active");
+            }
+        },
+        choosePass(){
+            if (form.pass === 'S') {
+                this.form.pass = 'S'
+                this.step = 2
+            } else if (form.pass === 'V') {
+                this.form.pass = 'V'
+                this.step = 2
             }
         },
         showHotelPhoto(){
