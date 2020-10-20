@@ -632,7 +632,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
         <div class="row mb-3 ml-0 mr-0 footer">
           <div class="col-12 col-md-8 col-lg-8 order-12 order-md-1">
             <div class="row nsc-btn-link">
-              <a href="https://newstarcamp.ru/participants">
+              <a href="https://newstarcamp.ru/participants" target="_blank">
                 {{ translations.newStarFAQ[selectedLocale] }}
               </a>
             </div>
@@ -1190,8 +1190,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="<?= $path ?>js/app.min.js?rev=7"></script>
-<!--<script src="-->< ?//= $path ? ><!--js/vue-tap.js"></script>-->
-<!--<script src="-->< ?//= $path ? ><!--js/vue-touch-events.js"></script>-->
+<!--<script src="js/vue-tap.js"></script>-->
+<!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>
   <script
       id="alfa-payment-script"
