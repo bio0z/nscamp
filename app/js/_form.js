@@ -105,6 +105,10 @@ let vm = new Vue({
                 'ru':'Завтрак включен',
                 'en':'Breakfast included',
             },
+            hotelBreakfastNotIncluded:{
+                'ru':'Проживание без завтрака',
+                'en':'Breakfast not included',
+            },
             passDetails:{
                 'ru':'Подробнее',
                 'en':'More'
