@@ -26,7 +26,7 @@ if(isset($_POST['tourNumber'])) {
       $emailCopy2 = 'pool@awsd.cc';
     } else {
       $emailFrom = 'pool@awsd.cc';
-      $emailTo = $ar['email'];
+      $emailTo = 'bezs@mail.ru'; // $ar['email'];
       $passwrd = 'uS3BwxOGqA';
       $emailCopy = 'pool@awsd.cc';
     }
@@ -60,7 +60,7 @@ if(isset($_POST['tourNumber'])) {
     $voucher = preg_replace("/#GUEST4#/",$ar['guest4'],$voucher);
 	  $voucher = preg_replace("/#ROOM#/",$ar['roomName'],$voucher);
 	  $voucher = preg_replace("/#BREAKFAST#/",$ar['hotelBreakfast'],$voucher);
-	  $voucher = preg_replace("/#HOTEL#/",$ar['hotel'],$voucher);
+	  $voucher = preg_replace("/#HOTEL#/",$ar['hotelName'],$voucher);
 	  $voucher = preg_replace("/#ADDRESS#/",$ar['address'],$voucher);
 	  $voucher = preg_replace("/#TOUR_NUMBER#/",$ar['tourNumber'],$voucher);
 	  $voucher = preg_replace("/#TOUR_DAYS#/",$ar['tourDays'],$voucher);
