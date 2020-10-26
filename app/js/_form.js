@@ -1529,7 +1529,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Приют Панды',
                 code: 'PP',
                 formula: 0,
@@ -2173,7 +2173,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Freestyle by Azimut',
                 code: 'FREEBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.5',
@@ -2261,7 +2261,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Valset by Azimut',
                 code: 'VALBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.4',
@@ -2575,6 +2575,10 @@ let vm = new Vue({
                 } else if (formula === 2) {
                     // TODO: welcome to HELL
                 }
+                // if (this.form.promocode){
+                //     this.form.promocode
+                //     curPass = curPass
+                // }
                 if (this.form.adults > 0 && daysTour > 7) {
                     totalPrice =
                         ((this.passes[curPass].price * this.form.adults)
