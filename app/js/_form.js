@@ -1529,7 +1529,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Приют Панды',
                 code: 'PP',
                 formula: 0,
@@ -2173,7 +2173,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Freestyle by Azimut',
                 code: 'FREEBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.5',
@@ -2196,8 +2196,8 @@ let vm = new Vue({
                         },
                         maxGuests: 2,
                         breakfast: {
-                            '1': 800,
-                            '2': 1600,
+                            '1': 0,
+                            '2': 0,
                         },
                         desc:{
                             'ru':'<ul><li>27 кв. м.</li>' +
@@ -2219,7 +2219,7 @@ let vm = new Vue({
                     },
                     {
                         active: true,
-                        name: 'Стандарт с видом на реку',
+                        name: 'Супериор с видом на реку',
                         code: 'SUPR',
                         price: {
                             '1':3400,
@@ -2227,8 +2227,8 @@ let vm = new Vue({
                         },
                         maxGuests: 2,
                         breakfast: {
-                            '1': 800,
-                            '2': 1600,
+                            '1': 0,
+                            '2': 0,
                         },
                         desc:{
                             'ru':'<ul><li>27 кв. м.</li>' +
@@ -2261,7 +2261,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Valset by Azimut',
                 code: 'VALBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.4',
