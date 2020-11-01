@@ -472,7 +472,7 @@ let vm = new Vue({
                 code: 'RIL',
                 address: 'Улица Медовея 6, Эсто-Садок, Россия',
                 formula: 0,
-                gain: 1.07,
+                gain: 1.22,
                 maxGuests: 4,
                 gallery:
                     [
@@ -851,7 +851,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Отель Radisson Rosa Khutor *****',
                 code: 'RRK5',
-                gain: 1.07,
+                gain: 1.22,
                 formula: 1,
                 maxGuests: 2,
                 address:'Набережная Лаванды, 4 , Эсто-Садок, Росси',
@@ -1179,7 +1179,7 @@ let vm = new Vue({
                 address: 'Улица Олимпийская 35, Эсто-Садок, Россия',
                 formula: 1,
                 maxGuests: 2,
-                gain: 1.07,
+                gain: 1.22,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg',
@@ -1436,7 +1436,7 @@ let vm = new Vue({
                 code: 'MRK4',
                 formula: 1,
                 maxGuests: 2,
-                gain: 1.17,
+                gain: 1.32,
                 address: 'Набережная Лаванды, 4, Эсто-Садок, Россия',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-1.jpg',
@@ -1657,7 +1657,7 @@ let vm = new Vue({
                 address: 'Краснодарский край, Горная Олимпийская деревня, ул. Сулимовка, д. 7',
                 formula: 0,
                 maxGuests: 4,
-                gain: 1.12,
+                gain: 1.17,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-2-double_block.jpg',
@@ -1768,7 +1768,7 @@ let vm = new Vue({
                 code: 'ROV',
                 address: 'Краснодарский край, Горная Олимпийская деревня, ул. Сулимовка, д. 27',
                 formula: 0,
-                gain: 1.12,
+                gain: 1.17,
                 maxGuests: 3,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-1.jpg',
@@ -1939,7 +1939,7 @@ let vm = new Vue({
                 code: 'TINN',
                 formula: 1,
                 maxGuests: 2,
-                gain: 1.07,
+                gain: 1.12,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-tinn-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-tinn-1-standard.jpg',
