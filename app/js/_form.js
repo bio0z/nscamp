@@ -2654,8 +2654,13 @@ let vm = new Vue({
                                     + this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults]
                             }
                         } else if (daysTour === 9){
-                            arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price10
-                                + this.hotels[curHotel].rooms[curRoom].breakfast[0]
+                            if (this.form.adults === 2 ){
+                                arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price10
+                                    + this.hotels[curHotel].rooms[curRoom].breakfast[0]
+                            } else {
+                                arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price10
+                            }
+
                         }
 
                         // for(let i=0; i < arrPricesForTour.length; i++){
