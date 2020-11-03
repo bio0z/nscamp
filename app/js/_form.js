@@ -114,12 +114,12 @@ let vm = new Vue({
                 'en':'More'
             },
             passSDetails:{
-                'ru':'от 52190<span>₽ </span> от 9 дней',
-                'en':'from 52190<span>₽ </span> from 9 days'
+                'ru':'от 33267<span>₽ </span> от 9 дней',
+                'en':'from 33267<span>₽ </span> from 9 days'
             },
             passVDetails:{
-                'ru':'от 64190<span>₽ </span> от 9 дней ',
-                'en':'from 64190<span>₽ </span> from 9 days'
+                'ru':'от 46107<span>₽ </span> от 9 дней ',
+                'en':'from 56107<span>₽ </span> from 9 days'
             },
             passSDetailsFull:{
                 'ru':'<p class="mb-2">Браслет участника</p></li>' +
@@ -822,30 +822,137 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Rosa Springs',
                 code: 'ROS',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 4',
+                formula: 3,
+                gain: 1.07,
+                maxGuests: 4,
                 gallery: [
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-8.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-9.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-4.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-2.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-3.jpg',
-                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-4.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-5.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-std-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-std-2.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-std-3.jpg',
                 ],
                 desc: {
-                    'ru' : 'Отель для тех, кто хочет не только классно отдохнуть, но и</li>' +
-                            ' поправить свое здоровье после многочисленных вечеринок во время</li>' +
-                        ' фестиваля. Rosa Springs — это первый бальнеологический отель в</li>' +
-                        ' Красной Поляне. Помимо медицинского центра, все проживающие могут</li>' +
-                        ' посещать спа-комплекс с крытым плавательным бассейном и банями.</li>' +
-                        ' Отель находится всего в 5 минутах ходьбы от Штаба фестиваля и в</li>' +
-                        ' непосредственной близости от многих вечеринок NSC, подъёмника</li>' +
-                        ' Олимпия, а также магазинов, кафе, баров и ресторанов, среди которых</li>' +
-                        ' Груша и Surf Coffee.',
-                    'en':'This hotel was made especially for those who want to have a cool vacation but also retreat health after numerous parties during the festival. Rosa Springs is the first balneological hotel in Krasnaya Polyana mountainside. In addition to the medical center, all residents can visit its spa complex with an indoor swimming pool and baths.</li>' +
-                        'The hotel is just a 5-minute walk from Festival Headquarters and in close proximity to many NSC parties, Olympia cable lifts, as well as shops, cafes, bars, and restaurants, including Grusha restaurant and Surf Coffee cafe.</li>'
-                }
+                    'ru' : 'Спа-отель Rosa Springs с медицинским центром и прямым доступом к лыжным склонам расположен на горнолыжном курорте Роза Хутор. К услугам гостей пункт продажи ски-пассов и спа-центр с бассейном, сауной и фитнес-центром. Также проводятся медицинские и спа-процедуры. На всей территории работает бесплатный Wi-Fi.\n' +
+                        'Во всех номерах имеются кондиционер, электрический чайник, принадлежности для чая/кофе и телевизор с плоским экраном и спутниковыми каналами. В некоторых из них обустроена гостиная зона и установлен диван. Кроме того, в номерах есть собственная ванная комната с халатами, тапочками, феном и бесплатными туалетно-косметическими принадлежностями.\n' +
+                        'Ежедневно для гостей сервируют завтрак «шведский стол». На территории гостиницы также работают рестораны и фитобар, где предлагают закуски.\n',
+                    'en': 'This hotel was made especially for those who want to have a cool vacation but also retreat health after numerous parties during the festival. Rosa Springs is the first balneological hotel in Krasnaya Polyana mountainside. In addition to the medical center, all residents can visit its spa complex with an indoor swimming pool and baths.\n' +
+                        'The hotel is just a 5-minute walk from Festival Headquarters and in close proximity to many NSC parties, Olympia cable lifts, as well as shops, cafes, bars, and restaurants, including Grusha restaurant and Surf Coffee cafe.'
+                },
+                rooms:[
+                    {
+                        active: true,
+                        name: 'Стандарт',
+                        code: 'STD',
+                        maxGuests: 2,
+                        quota: 65,
+                        price10: 71400,
+                        price91: 64050,
+                        price92: 64050,
+                        price: [7350,7350,8400,8400,8400,8400,8400,7350,7350],
+                        breakfast: {
+                            '0': 6800,
+                            '1': 0,
+                            '2': 6100
+                        },
+                        desc: {
+                            'ru': '<ul><li>Телевизор</li>' +
+                                '<li>WI-FI</li>' +
+                                '<li>Кондиционер</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Туалетные принадлежности</li>' +
+                                '<li>Чайник</li>',
+                            'en': '<ul><li>Телевизор</li>' +
+                                '<li>WI-FI</li>' +
+                                '<li>Кондиционер</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Туалетные принадлежности</li>' +
+                                '<li>Чайник</li>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-std-1.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Джуниор',
+                        code: 'JUN',
+                        maxGuests: 2,
+                        quota: 65,
+                        price10: 104720,
+                        price91: 93840,
+                        price92: 93840,
+                        price: [10880,10880,12240,12240,12240,12240,12240,10880,10880],
+                        breakfast: {
+                            '0': 7700,
+                            '1': 0,
+                            '2': 6900
+                        },
+                        desc: {
+                            'ru': '<ul><li>Телевизор</li>' +
+                                '<li>WI-FI</li>' +
+                                '<li>Кондиционер</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Туалетные принадлежности</li>' +
+                                '<li>Чайник</li>',
+                            'en': '<ul><li>Телевизор</li>' +
+                                '<li>WI-FI</li>' +
+                                '<li>Кондиционер</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Туалетные принадлежности</li>' +
+                                '<li>Чайник</li>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-jun-1.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Люкс',
+                        code: 'LUX',
+                        maxGuests: 2,
+                        quota:65,
+                        price10: 127820,
+                        price91: 114540,
+                        price92: 114540,
+                        price: [13280,13280,14940,14940,14940,14940,14940,13280,13280],
+                        breakfast: {
+                            '0': 7700,
+                            '1': 0,
+                            '2': 6900
+                        },
+                        desc: {
+                            'ru': '<ul><li>Телевизор</li>' +
+                                '<li>WI-FI</li>' +
+                                '<li>Кондиционер</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Туалетные принадлежности</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Утюг</li>' +
+                                '<li>Гладильная доска</li>',
+                            'en': '<ul><li>Телевизор</li>' +
+                                '<li>WI-FI</li>' +
+                                '<li>Кондиционер</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Туалетные принадлежности</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Утюг</li>' +
+                                '<li>Гладильная доска</li>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-std-1.jpg'
+                    },
+                ]
             },
             {
                 active: true,
@@ -2403,48 +2510,6 @@ let vm = new Vue({
                     'en': ''
                 }
             },
-            {
-                active: false,
-                name: '',
-                code: '',
-                formula: 0,
-                gain: 1,
-                gallery: [
-                ],
-                rooms: [
-                    {
-                        active: true,
-                        name: '',
-                        code: '',
-                        price: {
-                            '1': 0,
-                            '2': 0,
-                        },
-                        breakfast: {
-                            '1': 0,
-                            '2': 0,
-                        },
-                        desc:{
-                            'ru':'',
-                            'en':''
-                        },
-                        photo: ''
-                    },
-                    {
-                        active: true,
-                        name: '',
-                        code: '',
-                        desc:{
-                            'ru':'',
-                            'en':''
-                        }
-                    }
-                ],
-                desc: {
-                    'ru': '',
-                    'en': ''
-                }
-            },
         ],
     },
     mounted: function () {
@@ -2529,18 +2594,18 @@ let vm = new Vue({
             let arrPricesSum = 0
             let hotelTotalPrice = 0
             let allBreakfasts = 0
-            let arrPricesForTour =  []
+            let arrPricesForTour = []
             let gain = this.hotels[curHotel].gain
 
             if ( this.form.room !== undefined ) {
                 let formula = this.hotels[curHotel].formula
                 let arrPrices = this.hotels[curHotel].rooms[curRoom].price
 
-                if (this.form.hotel === 'RIL'){
+                if (this.form.hotel === 'RIL' || this.form.hotel === 'ROS') {
                     this.form.hotelBreakfast = true
                 }
 
-                if ( this.form.hotelBreakfast === true ) {
+                if ( this.form.hotelBreakfast === true && this.form.hotel !== 'ROS') {
                     allBreakfasts = this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults] * daysTour
                     this.form.hotelBreakfastPrice = allBreakfasts
                 } else {
@@ -2561,7 +2626,7 @@ let vm = new Vue({
                                 arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price91
                             }
                         } else if (daysTour === 9){
-                            arrPricesForTour = arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price10
+                            arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price10
                         }
 
                         // for(let i=0; i < arrPricesForTour.length; i++){
@@ -2574,6 +2639,31 @@ let vm = new Vue({
                     hotelTotalPrice = this.hotels[curHotel].rooms[curRoom].price[this.form.adults] * daysTour
                 } else if (formula === 2) {
                     // TODO: welcome to HELL
+                } else if (formula === 3) {
+                    arrPricesForTour.length = 0
+
+                    if (arrPrices.length > 0) {
+                        if (daysTour === 8 && arrPrices.length > 8){
+                            if (this.form.dateFrom > new Date(2021, 2, 26)) {
+                                // arrPricesForTour = arrPrices.splice(1,8)
+                                arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price92
+                                    + this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults]
+                            } else if (this.form.dateTill === new Date(2021, 2, 26)) {
+                                // arrPricesForTour = arrPrices.splice(0,8)
+                                arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price91
+                                    + this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults]
+                            }
+                        } else if (daysTour === 9){
+                            arrPricesForTour = this.hotels[curHotel].rooms[curRoom].price10
+                                + this.hotels[curHotel].rooms[curRoom].breakfast[0]
+                        }
+
+                        // for(let i=0; i < arrPricesForTour.length; i++){
+                        //     arrPricesSum = arrPricesSum + parseInt(arrPricesForTour[i]);
+                        // }
+                        // hotelTotalPrice = arrPricesSum
+                        hotelTotalPrice = arrPricesForTour
+                    }
                 }
                 // if (this.form.promocode){
                 //     this.form.promocode
@@ -2586,12 +2676,12 @@ let vm = new Vue({
                         + ((skiPass * (daysTour - 1)) * this.form.adults)
                         + allBreakfasts)*gain
 
-                    // console.log('daysTour ' + daysTour)
-                    // console.log('passPrice ' + (this.passes[curPass].price * this.form.adults))
-                    // console.log('hotelTotalPrice ' + hotelTotalPrice)
-                    // console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
-                    // console.log('allBreakfasts ' + allBreakfasts)
-                    // console.log('gain ' + gain)
+                    console.log('daysTour ' + daysTour)
+                    console.log('passPrice ' + (this.passes[curPass].price * this.form.adults))
+                    console.log('hotelTotalPrice ' + hotelTotalPrice)
+                    console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
+                    console.log('allBreakfasts ' + allBreakfasts)
+                    console.log('gain ' + gain)
 
                     this.form.hotelPrice = hotelTotalPrice
                     this.form.skipassPrice = ((skiPass * (daysTour - 1)) * this.form.adults)

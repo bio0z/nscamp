@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=7.6">
+  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=7.7">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -326,7 +326,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                  <label v-if="form.hotel !== 'RIL' && form.hotel !== 'VALBAZ' && form.hotel !== 'FREEBAZ'" class="row m-0">
+                  <label v-if="form.hotel !== 'RIL' && form.hotel !== 'VALBAZ' && form.hotel !== 'FREEBAZ' && form.hotel !== 'ROS'" class="row m-0">
                     <input v-model.trim="form.hotelBreakfast"
                            class="custom-control-input"
                            type="checkbox"
@@ -335,7 +335,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          :class="[form.hotelBreakfast ? ' active' : '']"></div>
                     <div class="col" v-html="translations.hotelBreakfast[selectedLocale]"></div>
                   </label>
-                  <label v-if="form.hotel === 'RIL'" class="row m-0">
+                  <label v-if="form.hotel === 'RIL' && form.hotel === 'ROS'" class="row m-0">
                     <div class="col" v-html="translations.hotelBreakfastIncluded[selectedLocale]"></div>
                   </label>
                   <label v-if="form.hotel === 'VALBAZ' || form.hotel === 'FREEBAZ'" class="row m-0">
@@ -1213,7 +1213,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=7.8"></script>
+<script src="<?= $path ?>js/app.min.js?rev=8"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>
