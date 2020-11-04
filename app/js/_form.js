@@ -2875,7 +2875,29 @@ let vm = new Vue({
             }
         },
         applyPromoCode(){
-            this.form.promocode = this.promocode
+            this.errors = null;
+            const conf = {
+                responseType: 'text'
+            };
+            const data = {
+                promocode : this.promocode,
+                tourPass : this.form.pass
+            };
+            axios
+                .post("php/checkPCode.php", data, conf)
+                .then(response => {
+                    console.log("response", response);
+                })
+                .catch(error => {
+                    this.errors = 'Такой промокод нам не известен.';
+                    console.log("error", error);
+                });
+            this.errors = null;
+
+            if (true){
+                // this.form.promocode = this.promocode
+            }
+
         },
         sendMail(tourNumber) {
             this.errors = null;
