@@ -65,6 +65,8 @@ let vm = new Vue({
             g3fname: null,
             g4fname: null,
             g4sname: null,
+            g5fname: null,
+            g5sname: null,
 
             promocode: null,
             consent: null,
@@ -172,6 +174,10 @@ let vm = new Vue({
             },
             fourthGuest:{
                 'ru':'Четвертый гость',
+                'en':'Fourth guest'
+            },
+            fifthGuest:{
+                'ru':'Пятый гость',
                 'en':'Fourth guest'
             },
             guestName:{
@@ -297,6 +303,10 @@ let vm = new Vue({
             },
             errorFillFIO4:{
                 'ru':'Вы забыли заполнить персональные данные четвертого гостя.',
+                'en':'Please, fill Name and Surname.'
+            },
+            errorFillFIO5:{
+                'ru':'Вы забыли заполнить персональные данные пятого гостя.',
                 'en':'Please, fill Name and Surname.'
             },
             errorFillEmail:{
@@ -2778,6 +2788,9 @@ let vm = new Vue({
                 } else if (this.form.adults >= 4 && (!this.form.g4fname || !this.form.g4sname)) {
                     this.errors = this.translations.errorFillFIO4[this.selectedLocale];
                     return false;
+                } else if (this.form.adults >= 5 && (!this.form.g5fname || !this.form.g5sname)) {
+                    this.errors = this.translations.errorFillFIO5[this.selectedLocale];
+                    return false;
                 } else {
                     this.errors = null;
                 }
@@ -2877,11 +2890,13 @@ let vm = new Vue({
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             })
                 .then(response => {
-                    this.sent = true;
+                    // this.sent = true;
+                    console.log("response", response);
                 })
                 // .then(response => this.responseData = response.data)
-                .catch(e => {
-                    this.errors.push(e);
+                .catch(error => {
+                    // this.errors.push(e);
+                    console.log("error", error);
                 });
             this.errors = null;
         },
@@ -2932,6 +2947,8 @@ let vm = new Vue({
                 fdata.append('g3sname', this.form.g3sname);
                 fdata.append('g4fname', this.form.g4fname);
                 fdata.append('g4sname', this.form.g4sname);
+                fdata.append('g5fname', this.form.g5fname);
+                fdata.append('g5sname', this.form.g5sname);
                 fdata.append('gphone', this.form.gphone);
                 fdata.append('gemail', this.form.gemail);
                 fdata.append('promocode', this.form.promocode);
@@ -2953,11 +2970,13 @@ let vm = new Vue({
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 })
                     .then(response => {
-                        this.form.payed = true;
+                        // this.form.payed = true;
+                        console.log("response", response);
                     })
                     // .then(response => this.responseData = response.data)
-                    .catch(e => {
-                        this.errors.push(e);
+                    .catch(error => {
+                        // this.errors.push(error);
+                        console.log("error", error);
                     });
             }
         },

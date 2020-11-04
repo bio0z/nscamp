@@ -450,7 +450,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          required>
                 </div>
               </div>
-              <div class="form-row" v-if="form.adults === 4">
+              <div class="form-row" v-if="form.adults >= 4">
                 <h5>{{ translations.fourthGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.g4fname" type="text"
@@ -460,6 +460,21 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 </div>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.g4sname" type="text"
+                         class="form-control"
+                         :placeholder="translations.guestSurname[selectedLocale]"
+                         required>
+                </div>
+              </div>
+              <div class="form-row" v-if="form.adults === 5">
+                <h5>{{ translations.fifthGuest[selectedLocale] }}</h5>
+                <div class="col-md-12 mb-4">
+                  <input v-model.trim="form.g5fname" type="text"
+                         class="form-control"
+                         :placeholder="translations.guestName[selectedLocale]"
+                         required>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <input v-model.trim="form.g5sname" type="text"
                          class="form-control"
                          :placeholder="translations.guestSurname[selectedLocale]"
                          required>

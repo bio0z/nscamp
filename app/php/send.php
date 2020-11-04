@@ -31,11 +31,10 @@ if(isset($_POST['tourNumber'])) {
         $emailCopy = 'info@newstarcamp.ru';
         $emailCopy2 = 'pool@awsd.cc';
       } else {
-        $emailFrom = 'pool@awsd.cc';
-        $emailTo = 'bezs@mail.ru'; // $ar['email'];
+        $emailFrom = 'info@newstarcamp.ru';
+        $emailTo = 'nsc-new.awsd.cc'; // $ar['email'];
         $passwrd = 'uS3BwxOGqA';
         $emailCopy = 'pool@awsd.cc';
-        $emailCopy2 = 'bezsnow@gmail.com';
       }
 
       if ($ar['passcode'] == 'V') {
@@ -65,6 +64,8 @@ if(isset($_POST['tourNumber'])) {
       $voucher = preg_replace("/#GUEST3#/",$ar['guest3'],$voucher);
       if ($ar['guest4'] == 'null null') $ar['guest4'] = '';
       $voucher = preg_replace("/#GUEST4#/",$ar['guest4'],$voucher);
+      if ($ar['guest5'] == 'null null') $ar['guest5'] = '';
+      $voucher = preg_replace("/#GUEST5#/",$ar['guest5'],$voucher);
       $voucher = preg_replace("/#ROOM#/",$ar['roomName'],$voucher);
       $voucher = preg_replace("/#BREAKFAST#/",$ar['hotelBreakfast'],$voucher);
       $voucher = preg_replace("/#HOTEL#/",$ar['hotelName'],$voucher);
@@ -107,18 +108,17 @@ if(isset($_POST['tourNumber'])) {
       try {
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
+        $mail->isHTML(true);
+        $mail->charSet = "UTF-8";
         $mail->Host       = 'mail.hostland.ru';                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
         $mail->Username   = $emailFrom;                     // SMTP username
         $mail->Password   = $passwrd;                               // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 587;
-
-        $mail->isHTML(true);
-        $mail->charSet = "UTF-8";
-        $mail->setLanguage('ru');
+//      $mail->setLanguage('ru');
 //      $mail->Encoding = 'base64';
-        // $mail->addCustomHeader('Content-Type', 'text/html;charset=UTF-8');
+//      $mail->addCustomHeader('Content-Type', 'text/html;charset=UTF-8');
         $mail->Subject = 'New Star Camp 2021 Voucher';
         // $mail->Subject = "=?UTF-8?B?".base64_encode('Ваш ваучер на NewStarCamp')."?=";
         $mail->Body      = $body;

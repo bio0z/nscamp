@@ -16,6 +16,7 @@ if(isset($_POST)) {
   $ar['guest2'] = $_POST['g2fname'] . ' ' . $_POST['g2sname'];
   $ar['guest3'] = $_POST['g3fname'] . ' ' . $_POST['g3sname'];
   $ar['guest4'] = $_POST['g4fname'] . ' ' . $_POST['g4sname'];
+  $ar['guest5'] = $_POST['g5fname'] . ' ' . $_POST['g5sname'];
   $ar['hotel'] = $_POST['hotel'];
   $ar['dateFrom'] = $_POST['dateFrom'];
   $ar['dateTill'] = $_POST['dateTill'];
