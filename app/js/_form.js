@@ -823,7 +823,7 @@ let vm = new Vue({
             },
             {
                 active: true,
-                name: 'Rosa Springs',
+                name: 'Rosa Springs ****',
                 code: 'ROS',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 4',
                 formula: 3,
@@ -2681,12 +2681,12 @@ let vm = new Vue({
                         + ((skiPass * (daysTour - 1)) * this.form.adults)
                         + allBreakfasts)*gain
 
-                    console.log('daysTour ' + daysTour)
-                    console.log('passPrice ' + (this.passes[curPass].price * this.form.adults))
-                    console.log('hotelTotalPrice ' + hotelTotalPrice)
-                    console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
-                    console.log('allBreakfasts ' + allBreakfasts)
-                    console.log('gain ' + gain)
+                    // console.log('daysTour ' + daysTour)
+                    // console.log('passPrice ' + (this.passes[curPass].price * this.form.adults))
+                    // console.log('hotelTotalPrice ' + hotelTotalPrice)
+                    // console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
+                    // console.log('allBreakfasts ' + allBreakfasts)
+                    // console.log('gain ' + gain)
 
                     this.form.hotelPrice = hotelTotalPrice
                     this.form.skipassPrice = ((skiPass * (daysTour - 1)) * this.form.adults)

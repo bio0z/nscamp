@@ -335,7 +335,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          :class="[form.hotelBreakfast ? ' active' : '']"></div>
                     <div class="col" v-html="translations.hotelBreakfast[selectedLocale]"></div>
                   </label>
-                  <label v-if="form.hotel === 'RIL' && form.hotel === 'ROS'" class="row m-0">
+                  <label v-if="form.hotel === 'RIL' || form.hotel === 'ROS'" class="row m-0">
                     <div class="col" v-html="translations.hotelBreakfastIncluded[selectedLocale]"></div>
                   </label>
                   <label v-if="form.hotel === 'VALBAZ' || form.hotel === 'FREEBAZ'" class="row m-0">
@@ -1213,7 +1213,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=8.1"></script>
+<script src="<?= $path ?>js/app.min.js?rev=8.2"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>
