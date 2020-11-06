@@ -12,7 +12,10 @@
 //      echo '<p>'. $prop . '</p>';
 //    }
 $timestamp = 1601479956;
-echo date('d M Y H:i:s', $timestamp);
+//echo date('d M Y H:i:s', $timestamp);
+echo json_encode(['status'=> accept,'percent'=>100,]);
+echo '<br>';
+echo json_encode(['status'=> reject,]);
 /*
     $files1 = '../sent/vaucher_num_1601568580.json';
     $json1 = file_get_contents($files1);

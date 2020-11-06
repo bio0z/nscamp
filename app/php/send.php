@@ -25,14 +25,16 @@ if(isset($_POST['tourNumber'])) {
       $ar = json_decode($json,true);
 
       if ($host == 'nswpay.ru') {
-        $emailFrom = 'send@nswpay.ru';
+        $Username = 'sendmail@nswpay.ru';
+        $emailFrom = 'sendmail@nswpay.ru';
         $emailTo = $ar['email'];
-        $passwrd = 'RvEiWiXBvX';
+        $passwrd = 't2tuUEVC4e';
         $emailCopy = 'info@newstarcamp.ru';
         $emailCopy2 = 'pool@awsd.cc';
       } else {
-        $emailFrom = 'info@newstarcamp.ru';
-        $emailTo = 'nsc-new.awsd.cc'; // $ar['email'];
+        $Username = 'pool@awsd.cc';
+        $emailFrom = 'pool@awsd.cc';
+        $emailTo = 'bezs@mail.ru'; // $ar['email'];
         $passwrd = 'uS3BwxOGqA';
         $emailCopy = 'pool@awsd.cc';
       }
@@ -109,10 +111,10 @@ if(isset($_POST['tourNumber'])) {
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
         $mail->isHTML(true);
-        $mail->charSet = "UTF-8";
+        $mail->CharSet    = "utf-8";
         $mail->Host       = 'mail.hostland.ru';                    // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = $emailFrom;                     // SMTP username
+        $mail->Username   = $Username;                     // SMTP username
         $mail->Password   = $passwrd;                               // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 587;
@@ -124,17 +126,21 @@ if(isset($_POST['tourNumber'])) {
         $mail->Body      = $body;
         $mail->AltBody = 'Ваш ваучер на New Star Camp';
 
-        $mail->SetFrom($emailFrom, 'New Star Camp');
+        $mail->SetFrom($emailFrom,'New Star Camp');
         $mail->AddAddress($emailTo);
-        $mail->addReplyTo('info@newstarcamp.ru', 'Information');
+        $mail->addReplyTo('info@newstarcamp.ru', 'NewStarCamp');
         $mail->addBCC($emailCopy);
         $mail->addBCC($emailCopy2);
 
         $mail->AddAttachment($filename);
+//        $mail->ConfirmReadingTo = $emailFrom;
 
         $mail->Send();
 
         echo "Sended to " . $emailTo;
+
+        $mail->ClearAddresses();
+        $mail->ClearAttachments();
 
       } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
