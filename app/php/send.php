@@ -121,7 +121,7 @@ if(isset($_POST['tourNumber'])) {
 //      $mail->setLanguage('ru');
 //      $mail->Encoding = 'base64';
 //      $mail->addCustomHeader('Content-Type', 'text/html;charset=UTF-8');
-        $mail->Subject = 'New Star Camp 2021 Voucher';
+        $mail->Subject = 'New Star Camp 2021 Voucher ' . $ar['tourNumber'];
         // $mail->Subject = "=?UTF-8?B?".base64_encode('Ваш ваучер на NewStarCamp')."?=";
         $mail->Body      = $body;
         $mail->AltBody = 'Ваш ваучер на New Star Camp';

@@ -80,6 +80,7 @@ let vm = new Vue({
             tourDays: 0,
             arrTourDays: null,
             payed: null,
+            passDiscount: 1
         },
 
         translations : {
@@ -126,9 +127,9 @@ let vm = new Vue({
             passSDetailsFull:{
                 'ru':'<p class="mb-2">Браслет участника</p></li>' +
                     '<p class="mb-2">Проживание в отеле</p></li>' +
-                    '<p class="mb-2">Скидки и привелегии участника фестиваля</p></li>' +
+                    '<p class="mb-2">Скидки и привилегии участника фестиваля</p></li>' +
                     '<p class="mb-2">Ски пасс ( 7 дней из 9 / 8 дней из 10)</p></li>' +
-                    '<p class="mb-2">Перевые 500 покупателей получают футболку кэмпа</p></li>',
+                    '<p class="mb-2">Первые 500 покупателей получают фирменную футболку фестиваля</p></li>',
                 'en': '<p class="mb-2">Hotel accommodation</p></li>' +
                     '<p class="mb-2">Festival PASS</p></li>' +
                     '<p class="mb-2">Cable lifts pass</p></li>' +
@@ -196,6 +197,10 @@ let vm = new Vue({
                 'ru':'гость',
                 'en':'guest'
             },
+            guestssMail:{
+                'ru':'гостей',
+                'en':'guest'
+            },
             hotelMailBreakfast:{
                 'ru':'с завтраком',
                 'en':'with breakfast'
@@ -223,6 +228,10 @@ let vm = new Vue({
             guestPromoCodeApply:{
                 'ru':'Применить',
                 'en':'Apply'
+            },
+            guestPromoCodeDiscount:{
+                'ru':'Скидка использована.',
+                'en':'Promocode used.'
             },
             userAgreement:{
                 'ru':'пользовательское соглашение',
@@ -1587,7 +1596,7 @@ let vm = new Vue({
                     },
                     {
                         active: true,
-                        name: 'Стандарт Привелегия',
+                        name: 'Стандарт Привилегия',
                         code: 'SP',
                         price: [6900,6900,6900,5320,5320,5320,5320,3640,3640,3640],
                         price10: 44380,
@@ -2606,6 +2615,11 @@ let vm = new Vue({
             let allBreakfasts = 0
             let arrPricesForTour = []
             let gain = this.hotels[curHotel].gain
+            let passPrice = (this.passes[curPass].price * this.form.adults) * this.form.passDiscount
+
+            if (this.form.passDiscount < 1) {
+                this.form.promocode = this.promocode
+            }
 
             if ( this.form.room !== undefined ) {
                 let formula = this.hotels[curHotel].formula
@@ -2680,23 +2694,23 @@ let vm = new Vue({
                         hotelTotalPrice = arrPricesForTour
                     }
                 }
-                // if (this.form.promocode){
-                //     this.form.promocode
-                //     curPass = curPass
-                // }
                 if (this.form.adults > 0 && daysTour > 7) {
                     totalPrice =
-                        ((this.passes[curPass].price * this.form.adults)
+                        (passPrice
                         + hotelTotalPrice
                         + ((skiPass * (daysTour - 1)) * this.form.adults)
                         + allBreakfasts)*gain
 
-                    // console.log('daysTour ' + daysTour)
-                    // console.log('passPrice ' + (this.passes[curPass].price * this.form.adults))
-                    // console.log('hotelTotalPrice ' + hotelTotalPrice)
-                    // console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
-                    // console.log('allBreakfasts ' + allBreakfasts)
-                    // console.log('gain ' + gain)
+                    if (window.location.href !== 'https://nswpay.ru/') {
+                        console.log('daysTour ' + daysTour)
+                        console.log('passPrice no discount ' + (this.passes[curPass].price * this.form.adults))
+                        console.log('passPrice ' + passPrice)
+                        console.log('discount ' + this.form.passDiscount)
+                        console.log('hotelTotalPrice ' + hotelTotalPrice)
+                        console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
+                        console.log('allBreakfasts ' + allBreakfasts)
+                        console.log('gain ' + gain)
+                    }
 
                     this.form.hotelPrice = hotelTotalPrice
                     this.form.skipassPrice = ((skiPass * (daysTour - 1)) * this.form.adults)
@@ -2886,18 +2900,13 @@ let vm = new Vue({
             axios
                 .post("php/checkPCode.php", data, conf)
                 .then(response => {
-                    console.log("response", response);
+                    this.form.passDiscount = response.data;
                 })
                 .catch(error => {
                     this.errors = 'Такой промокод нам не известен.';
                     console.log("error", error);
                 });
             this.errors = null;
-
-            if (true){
-                // this.form.promocode = this.promocode
-            }
-
         },
         sendMail(tourNumber) {
             this.errors = null;
@@ -2936,8 +2945,17 @@ let vm = new Vue({
 
                 let fdata = new FormData();
 
-                let guests = this.form.adults === 1 ? this.form.adults + ' ' + this.translations.guestMail[this.selectedLocale]
-                    : this.form.adults + ' ' + this.translations.guestsMail[this.selectedLocale]
+                let guestsText = new Map([
+                    [1, this.translations.guestMail[this.selectedLocale]],
+                    [2, this.translations.guestsMail[this.selectedLocale]],
+                    [3, this.translations.guestsMail[this.selectedLocale]],
+                    [4, this.translations.guestsMail[this.selectedLocale]],
+                    [5, this.translations.guestssMail[this.selectedLocale]]
+                ]);
+
+                let adultsGuests = this.form.adults + ' ' + guestsText.get(this.form.adults);
+                console.log(adultsGuests)
+
                 let breakfast = this.form.hotelBreakfast === true ? this.translations.hotelMailBreakfast[this.selectedLocale] : this.translations.hotelMailNoBreakfast[this.selectedLocale]
 
                 let roomName = this.form.roomName
@@ -2976,13 +2994,14 @@ let vm = new Vue({
                 fdata.append('promocode', this.form.promocode);
                 fdata.append('dateFrom', this.form.dateFrom.toLocaleString("ru",options))
                 fdata.append('dateTill', this.form.dateTill.toLocaleString("ru",options));
-                fdata.append('adults', guests);
+                fdata.append('adults', adultsGuests);
                 fdata.append('kids', kids);
                 fdata.append('hotelBreakfast', breakfast);
                 fdata.append('hotelPrice', this.form.hotelPrice);
                 fdata.append('tourPrice', this.form.tourPrice);
                 fdata.append('skipassPrice', this.form.skipassPrice);
                 fdata.append('breakfastPrice', this.form.hotelBreakfastPrice);
+                fdata.append('passDiscount', this.form.passDiscount);
                 fdata.append('tourDays', this.form.tourDays);
 
                 axios({
@@ -2993,12 +3012,12 @@ let vm = new Vue({
                 })
                     .then(response => {
                         // this.form.payed = true;
-                        console.log("response", response);
+                        // console.log("response", response);
                     })
                     // .then(response => this.responseData = response.data)
                     .catch(error => {
                         // this.errors.push(error);
-                        console.log("error", error);
+                        // console.log("error", error);
                     });
             }
         },

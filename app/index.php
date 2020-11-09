@@ -538,12 +538,15 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 </div>
                 <div class="row">
                   <input type="text" class="form-control col promocode"
-                         v-model.trim="promocode"
+                         v-model.prevent="promocode"
                          :placeholder="translations.guestPromoCode[selectedLocale]">
                   <div class="form-control col  nsc-button"
-                       @click="applyPromoCode()">
+                       @click.prevent="applyPromoCode()">
                     {{ translations.guestPromoCodeApply[selectedLocale] }}
                   </div>
+<!--                  <div class="col" v-if="form.passDiscount < 1">-->
+<!--                    {{ translations.guestPromoCodeDiscount[selectedLocale] }}-->
+<!--                  </div>-->
                 </div>
               </div>
             </div>
@@ -1228,7 +1231,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=8.2"></script>
+<script src="<?= $path ?>js/app.min.js?rev=8.7"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>

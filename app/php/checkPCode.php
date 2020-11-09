@@ -15,18 +15,23 @@ $_POST = json_decode(file_get_contents('php://input'), true);
 
 if(isset($_POST['promocode']) && isset($_POST['tourPass'])) {
   if ($_POST['tourPass'] == 'V' && in_array($_POST['promocode'],$arPromoVIP100)) {
-    $response = json_encode(100);
+//    $response = json_encode(['status' => accept,'percent' => 0]);
+    $response = json_encode(0);
   }
   else if ($_POST['tourPass'] == 'S' && in_array($_POST['promocode'],$arPromoSTD50)) {
-    $response =  json_encode(50);
+//    $response =  json_encode(['status' => accept,'percent' => 0.5]);
+    $response =  json_encode(0.5);
   }
   else if ($_POST['tourPass'] == 'S' && in_array($_POST['promocode'],$arPromoSTD100)) {
-    $response =  json_encode(100);
+//    $response =  json_encode(['status' => accept,'percent' => 0]);
+    $response =  json_encode(0);
   } else {
-    $response =  json_encode(false);
+//    $response =  json_encode(['status' => reject]);
+    $response =  json_encode(1);
   }
 } else {
-  $response =  json_encode(false);
+//  $response =  json_encode(['status' => reject]);
+  $response =  json_encode(1);
 }
 
 echo $response;
