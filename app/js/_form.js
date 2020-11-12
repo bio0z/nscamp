@@ -717,7 +717,7 @@ let vm = new Vue({
             },
             {
                 active: true,
-                name: 'Ski Inn ****',
+                name: 'Ski Inn Spa Hotel ****',
                 code: 'SKIINN',
                 address: 'Улица Медовея 6, Эсто-Садок, Россия',
                 formula: 0,
@@ -733,6 +733,10 @@ let vm = new Vue({
                         'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-2.jpg',
                         'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-3.jpg',
                         'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-4.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-5.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-6.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-7.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-8.jpg',
                     ],
                 rooms:[
                     {
@@ -752,6 +756,7 @@ let vm = new Vue({
                         desc: {
                             'ru':'<ul><li>22 кв. м.</li>' +
                                 '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Доступ в спа-зону с бассейном</li>' +
                                 '<li>Климат-контроль</li>' +
                                 '<li>Халат и тапочки</li>' +
                                 '<li>Фен</li>' +
@@ -761,6 +766,7 @@ let vm = new Vue({
                                 '<li>Чайная станция</li></ul>',
                             'en': '<ul><li>22 кв. м.</li>' +
                                 '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Доступ в спа-зону с бассейном</li>' +
                                 '<li>Климат-контроль</li>' +
                                 '<li>Халат и тапочки</li>' +
                                 '<li>Фен</li>' +
@@ -779,7 +785,7 @@ let vm = new Vue({
             },
             {
                 active: true,
-                name: 'Ski Inn **',
+                name: 'Rosa Ski Inn **',
                 code: 'SKIINN2',
                 address: 'Эстосадок, «Роза Хутор», улица Пихтовая аллея, дом 1',
                 formula: 0,
