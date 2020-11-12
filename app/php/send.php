@@ -68,6 +68,8 @@ if(isset($_POST['tourNumber'])) {
       $voucher = preg_replace("/#GUEST4#/",$ar['guest4'],$voucher);
       if ($ar['guest5'] == 'null null') $ar['guest5'] = '';
       $voucher = preg_replace("/#GUEST5#/",$ar['guest5'],$voucher);
+      if ($ar['guest6'] == 'null null') $ar['guest6'] = '';
+      $voucher = preg_replace("/#GUEST6#/",$ar['guest6'],$voucher);
       $voucher = preg_replace("/#ROOM#/",$ar['roomName'],$voucher);
       $voucher = preg_replace("/#BREAKFAST#/",$ar['hotelBreakfast'],$voucher);
       $voucher = preg_replace("/#HOTEL#/",$ar['hotelName'],$voucher);

@@ -24,6 +24,8 @@ let router = new VueRouter({
     routes: []
 });
 
+Vue.config.devtools = false
+
 let vm = new Vue({
     router,
     el: "#orderForm",
@@ -67,6 +69,8 @@ let vm = new Vue({
             g4sname: null,
             g5fname: null,
             g5sname: null,
+            g6sname: null,
+            g6fname: null,
 
             promocode: null,
             consent: null,
@@ -181,6 +185,10 @@ let vm = new Vue({
                 'ru':'Пятый гость',
                 'en':'Fourth guest'
             },
+            sixGuest:{
+                'ru':'Шестой гость',
+                'en':'Six guest'
+            },
             guestName:{
                 'ru':'Имя',
                 'en':'Name'
@@ -246,7 +254,7 @@ let vm = new Vue({
                 'en':'Please, fill the personal information.'
             },
             stepFour:{
-                'ru':'Проверьте введенные данные, подтвердите согласие на их обработку, введите промокод, если имеется и ' +
+                'ru':'Проверьте введенные данные, подтвердите согласие на их обработку, введите промокод, если имеется, и ' +
                     'нажмите кнопку «Купить тур».',
                 'en':'Check your details, enter promocode.'
             },
@@ -316,6 +324,10 @@ let vm = new Vue({
             },
             errorFillFIO5:{
                 'ru':'Вы забыли заполнить персональные данные пятого гостя.',
+                'en':'Please, fill Name and Surname.'
+            },
+            errorFillFIO6:{
+                'ru':'Вы забыли заполнить персональные данные шестого гостя.',
                 'en':'Please, fill Name and Surname.'
             },
             errorFillEmail:{
@@ -704,6 +716,355 @@ let vm = new Vue({
                 }
             },
             {
+                active: true,
+                name: 'Ski Inn ****',
+                code: 'SKIINN',
+                address: 'Улица Медовея 6, Эсто-Садок, Россия',
+                formula: 0,
+                gain: 1.17,
+                maxGuests: 2,
+                gallery:
+                    [
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-2.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-3.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-4.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-2.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-3.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-4.jpg',
+                    ],
+                rooms:[
+                    {
+                        active: true,
+                        name: 'Стандарт-Делюкс',
+                        code: 'STD',
+                        maxGuests: 2,
+                        quota:65,
+                        price: {
+                            '1': 5000,
+                            '2': 5000
+                        },
+                        breakfast: {
+                            '1':1200,
+                            '2':2400
+                        },
+                        desc: {
+                            'ru':'<ul><li>22 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Климат-контроль</li>' +
+                                '<li>Халат и тапочки</li>' +
+                                '<li>Фен</li>' +
+                                '<li>ЖК-телевизор</li>' +
+                                '<li>Бесплатный Wi-Fi</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Чайная станция</li></ul>',
+                            'en': '<ul><li>22 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Климат-контроль</li>' +
+                                '<li>Халат и тапочки</li>' +
+                                '<li>Фен</li>' +
+                                '<li>ЖК-телевизор</li>' +
+                                '<li>Бесплатный Wi-Fi</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Чайная станция</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn-std-1.jpg',
+                    },
+                ],
+                desc:{
+                    'ru':'Ski Inn SPA Hotel - это главный корпус отеля Rosa Ski Inn, прошедший полную реновацию. Это все тоже любимое гостями место с теплой семейной атмосферой, в шаге от подъемника и склонов «Роза Хутор», но в сочетании с абсолютно новыми интерьерами и уютной термальной зоной от FRESH SPA NATURA SIBERICA',
+                    'en':'Do you want to live at the festival epicenter at an affordable price? Riders Lodge is the first hotel in Russia for riders and a friendly gathering and hang out, and very closely located relative to all activities and to the Festival Headquarters and the Olympia cable lift. The hotel lobby deserves special attention - cause it’s full of fun from morning to late night that life: convenient chill-out zone with a fast internet connection, a games area, a cinema, and the Surf Coffee cafe inside.'
+                }
+            },
+            {
+                active: true,
+                name: 'Ski Inn **',
+                code: 'SKIINN2',
+                address: 'Эстосадок, «Роза Хутор», улица Пихтовая аллея, дом 1',
+                formula: 0,
+                gain: 1.17,
+                maxGuests: 6,
+                gallery:
+                    [
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-2.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-3.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-4.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-std-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-std3-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-std3-2.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-std3-3.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-fam-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-fam-2.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-fam-3.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl-2.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl-3.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl4-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl4-2.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl4-3.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl6-1.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl6-2.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl6-3.jpg',
+                        'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl6-4.jpg',
+                    ],
+                rooms:[
+                    {
+                        active: true,
+                        name: 'Стандартный двухместный номер (корпус B)',
+                        code: 'STD',
+                        maxGuests: 2,
+                        quota:65,
+                        price: {
+                            '1': 4600,
+                            '2': 4600
+                        },
+                        breakfast: {
+                            '1':600,
+                            '2':1200
+                        },
+                        desc: {
+                            'ru':'<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>',
+                            'en': '<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-std-1.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Стандартный трехместный номер (корпус В)',
+                        code: 'STD3',
+                        maxGuests: 3,
+                        quota:65,
+                        price: {
+                            '1': 5700,
+                            '2': 5700,
+                            '3': 5700
+                        },
+                        breakfast: {
+                            '1':600,
+                            '2':1200,
+                            '3':1800
+                        },
+                        desc: {
+                            'ru':'<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>',
+                            'en': '<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-std3-1.jpg',
+                    },
+                    {
+                        active: true,
+                        name: 'Стандартный Семейный номер (корпуса В/С/D)',
+                        code: 'FAM',
+                        maxGuests: 2,
+                        quota:65,
+                        price: {
+                            '1': 5400,
+                            '2': 5400,
+                        },
+                        breakfast: {
+                            '1':600,
+                            '2':1200,
+                        },
+                        desc: {
+                            'ru':'<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>',
+                            'en': '<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-fam-1.jpg',
+                    },
+                    {
+                        active: true,
+                        name: 'Комната в 3х комнатном номере с общей ванной (корпус D)',
+                        code: 'TRL',
+                        maxGuests: 2,
+                        quota:65,
+                        price: {
+                            '1': 3000,
+                            '2': 3000,
+                        },
+                        breakfast: {
+                            '1':600,
+                            '2':1200,
+                        },
+                        desc: {
+                            'ru':'<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>',
+                            'en': '<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl-1.jpg',
+                    },
+                    {
+                        active: true,
+                        name: '3х-комнатный номер для компаний (2 спальни+гостиная), корпус С',
+                        code: 'TRL4',
+                        maxGuests: 4,
+                        quota:65,
+                        price: {
+                            '1': 7200,
+                            '2': 7200,
+                            '3': 7200,
+                            '4': 7200,
+                        },
+                        breakfast: {
+                            '1':600,
+                            '2':1200,
+                            '3':1800,
+                            '4':2400
+                        },
+                        desc: {
+                            'ru':'<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>',
+                            'en': '<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl4-1.jpg'
+                    },
+                    {
+                        active: true,
+                        name: '4х-комнатный номер для компаний (3 спальни+гостиная), корпуса B и С',
+                        code: 'TRL6',
+                        maxGuests: 6,
+                        quota:65,
+                        price: {
+                            '1': 10800,
+                            '2': 10800,
+                            '3': 10800,
+                            '4': 10800,
+                            '5': 10800,
+                            '6': 10800
+                        },
+                        breakfast: {
+                            '1':600,
+                            '2':1200,
+                            '3':1800,
+                            '4':2400,
+                            '5':3000,
+                            '6':5600
+                        },
+                        desc: {
+                            'ru':'<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>',
+                            'en': '<ul><li>25 кв. м.</li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Чайный набор посуды</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Набор полотенец и косметических средств для душа</li>' +
+                                '<li>Выделенное место для хранения лыж/сноуборда</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl6-1.jpg'
+                    },
+                ],
+                desc:{
+                    'ru':'Отель Rosa Ski Inn находится на горнолыжном курорте Роза-Хутор, на высоте 1 170 метров над уровнем моря, в 10 минутах ходьбы от лыжного подъемника «Олимпия». Он состоит из 5 зданий на разном расстоянии от горнолыжных склонов. Рядом с главным корпусом проложены лыжные трассы. К услугам гостей помещение для хранения лыж.\n' +
+                        'В числе удобств всех номеров телевизор с плоским экраном, электрический чайник, мини-бар и фен. Из номеров открывается вид на горы. Гостям предоставляется бесплатный Wi-Fi.\n' +
+                        'В ресторане подают блюда европейской и местной кухни.\n' +
+                        'Стойка регистрации отеля Rosa Ski Inn работает круглосуточно.',
+                    'en':'Отель Rosa Ski Inn находится на горнолыжном курорте Роза-Хутор, на высоте 1 170 метров над уровнем моря, в 10 минутах ходьбы от лыжного подъемника «Олимпия». Он состоит из 5 зданий на разном расстоянии от горнолыжных склонов. Рядом с главным корпусом проложены лыжные трассы. К услугам гостей помещение для хранения лыж.\n' +
+                        'В числе удобств всех номеров телевизор с плоским экраном, электрический чайник, мини-бар и фен. Из номеров открывается вид на горы. Гостям предоставляется бесплатный Wi-Fi.\n' +
+                        'В ресторане подают блюда европейской и местной кухни.\n' +
+                        'Стойка регистрации отеля Rosa Ski Inn работает круглосуточно.'
+                }
+            },
+            {
                 active: false,
                 name: 'AYS Let It Snow',
                 code: 'AYSL',
@@ -847,7 +1208,7 @@ let vm = new Vue({
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 4',
                 formula: 3,
                 gain: 1.07,
-                maxGuests: 4,
+                maxGuests: 2,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-8.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-9.jpg',
@@ -2702,6 +3063,9 @@ let vm = new Vue({
                         + allBreakfasts)*gain
 
                     if (window.location.href !== 'https://nswpay.ru/') {
+                        console.log('this.form.adults ' + this.form.adults)
+                        console.log('allBreakfasts day ' + this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults])
+                        console.log('hotelTotalPrice day ' + this.hotels[curHotel].rooms[curRoom].price[this.form.adults])
                         console.log('daysTour ' + daysTour)
                         console.log('passPrice no discount ' + (this.passes[curPass].price * this.form.adults))
                         console.log('passPrice ' + passPrice)
@@ -2804,6 +3168,9 @@ let vm = new Vue({
                     return false;
                 } else if (this.form.adults >= 5 && (!this.form.g5fname || !this.form.g5sname)) {
                     this.errors = this.translations.errorFillFIO5[this.selectedLocale];
+                    return false;
+                } else if (this.form.adults >= 6 && (!this.form.g6fname || !this.form.g6sname)) {
+                    this.errors = this.translations.errorFillFIO6[this.selectedLocale];
                     return false;
                 } else {
                     this.errors = null;
@@ -2989,6 +3356,8 @@ let vm = new Vue({
                 fdata.append('g4sname', this.form.g4sname);
                 fdata.append('g5fname', this.form.g5fname);
                 fdata.append('g5sname', this.form.g5sname);
+                fdata.append('g6fname', this.form.g6fname);
+                fdata.append('g6sname', this.form.g6sname);
                 fdata.append('gphone', this.form.gphone);
                 fdata.append('gemail', this.form.gemail);
                 fdata.append('promocode', this.form.promocode);

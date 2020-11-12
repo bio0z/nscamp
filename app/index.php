@@ -264,6 +264,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
+                    <option value="6">6</option>
                   </select>
                 </div>
               </div>
@@ -465,7 +466,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          required>
                 </div>
               </div>
-              <div class="form-row" v-if="form.adults === 5">
+              <div class="form-row" v-if="form.adults >= 5">
                 <h5>{{ translations.fifthGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.g5fname" type="text"
@@ -475,6 +476,21 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 </div>
                 <div class="col-md-12 mb-4">
                   <input v-model.trim="form.g5sname" type="text"
+                         class="form-control"
+                         :placeholder="translations.guestSurname[selectedLocale]"
+                         required>
+                </div>
+              </div>
+              <div class="form-row" v-if="form.adults === 6">
+                <h5>{{ translations.sixGuest[selectedLocale] }}</h5>
+                <div class="col-md-12 mb-4">
+                  <input v-model.trim="form.g6fname" type="text"
+                         class="form-control"
+                         :placeholder="translations.guestName[selectedLocale]"
+                         required>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <input v-model.trim="form.g6sname" type="text"
                          class="form-control"
                          :placeholder="translations.guestSurname[selectedLocale]"
                          required>
@@ -1227,11 +1243,11 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <footer class="row p-3 mb-5">
   </footer>
 </div>
-<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=8.7"></script>
+<script src="<?= $path ?>js/app.min.js?rev=9.2"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>

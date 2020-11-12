@@ -1,3 +1,16 @@
+<script>
+    let guestsText = new Map([
+        ['1', 'гость'],
+        ['2', 'гостя'],
+        ['3', 'гостя'],
+        ['4', 'гостя'],
+        ['5', 'гостей']
+    ]);
+
+    let guests = guestsText.get('5');
+
+    console.log(guests)
+</script>
 <?php
 //require '../vendor/autoload.php';
 
