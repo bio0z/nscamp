@@ -1213,7 +1213,7 @@ let vm = new Vue({
                 code: 'ROS',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 4',
                 formula: 3,
-                gain: 1.07,
+                gain: 1.12,
                 maxGuests: 2,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-8.jpg',
