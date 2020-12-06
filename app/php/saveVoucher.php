@@ -35,6 +35,7 @@ if(isset($_POST)) {
   $ar['tourDays'] = $_POST['tourDays'];
   $ar['passDiscount'] = $_POST['passDiscount'];
   $ar['promocode'] = $_POST['promocode'];
+  $ar['bed'] = $_POST['bed'];
 
   $voucher = json_encode($ar);
 

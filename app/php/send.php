@@ -80,6 +80,7 @@ if(isset($_POST['tourNumber'])) {
       $voucher = preg_replace("/#DATETILL#/",$ar['dateTill'],$voucher);
       $voucher = preg_replace("/#ADULTS#/",$ar['adults'],$voucher);
       $voucher = preg_replace("/#BACKCOLOR#/",$backColor,$voucher);
+      $voucher = preg_replace("/#BED#/",$ar['bed'],$voucher);
 
       $voucher = mb_convert_encoding($voucher, 'HTML-ENTITIES', "UTF-8");
 
