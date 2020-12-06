@@ -243,7 +243,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                   <div class="pt-2 pb-2 nsc-datesnote">
-                    <span>{{ translations.dateNote[selectedLocale] }}</span>
+<!--                    <span>{{ translations.dateNote[selectedLocale] }}</span>-->
                   </div>
                 </div>
               </div>
