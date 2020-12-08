@@ -496,7 +496,7 @@ let vm = new Vue({
             from: new Date(2021, 3, 5),
             dates: [
                 // new Date(2021, 2, 28),
-                new Date(2021, 2, 29),
+                // new Date(2021, 2, 29),
                 new Date(2021, 2, 30),
                 new Date(2021, 2, 31),
                 // new Date(2021, 3, 1),
@@ -510,7 +510,7 @@ let vm = new Vue({
                 code: 'RIL',
                 address: 'Улица Медовея 6, Эсто-Садок, Россия',
                 formula: 99,
-                gain: 1.22,
+                gain: 1.12,
                 maxGuests: 4,
                 gallery:
                     [
@@ -1398,7 +1398,7 @@ let vm = new Vue({
                 code: 'ROS',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 4',
                 formula: 99,
-                gain: 1.12,
+                gain: 1.07,
                 maxGuests: 2,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rs-8.jpg',
@@ -1552,7 +1552,7 @@ let vm = new Vue({
                 active: true,
                 name: 'Отель Radisson Rosa Khutor *****',
                 code: 'RRK5',
-                gain: 1.22,
+                gain: 1.12,
                 formula: 99,
                 maxGuests: 2,
                 address:'Набережная Лаванды, 4 , Эсто-Садок, Росси',
@@ -1914,7 +1914,7 @@ let vm = new Vue({
                 address: 'Улица Олимпийская 35, Эсто-Садок, Россия',
                 formula: 99,
                 maxGuests: 2,
-                gain: 1.22,
+                gain: 1.12,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg',
@@ -2254,7 +2254,7 @@ let vm = new Vue({
                 code: 'MRK4',
                 formula: 99,
                 maxGuests: 2,
-                gain: 1.32,
+                gain: 1.22,
                 address: 'Набережная Лаванды, 4, Эсто-Садок, Россия',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-1.jpg',
@@ -2385,7 +2385,7 @@ let vm = new Vue({
                 formula: 99,
                 address: 'Краснодарский край, Горная Олимпийская деревня, ул. Сулимовка, д. 8',
                 maxGuests: 3,
-                gain: 1.07,
+                gain: 1.12,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-2-small-1.jpg',
@@ -3074,7 +3074,7 @@ let vm = new Vue({
                 address: 'Краснодарский край, с. Эстосадок, наб. Панорама, д.3',
                 formula: 99,
                 maxGuests: 2,
-                gain: 1.07,
+                gain: 1.12,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-gtinn-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-gtinn-2.jpg',
@@ -3233,7 +3233,7 @@ let vm = new Vue({
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.5',
                 formula: 99,
                 maxGuests: 2,
-                gain: 1.07,
+                gain: 1.12,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-freebaz-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-freebaz-sup-1.jpg',
@@ -3345,7 +3345,7 @@ let vm = new Vue({
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.4',
                 formula: 99,
                 maxGuests: 5,
-                gain: 1.07,
+                gain: 1.12,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-1.jpg',
@@ -3609,10 +3609,11 @@ let vm = new Vue({
                         day: 'numeric',
                     };
                     let dayStart = this.form.dateFrom.toLocaleString("ru",option);
+                    let dayEnd = this.form.dateTill.toLocaleString("ru",option);
                     let daysCount = daysTour;
                     const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
-                    let arrPrices = this.hotels[curHotel].rooms[curRoom].prices[this.form.adults].slice(vm.days.indexOf(parseInt(dayStart)), daysCount);
+                    let arrPrices = this.hotels[curHotel].rooms[curRoom].prices[this.form.adults].slice(vm.days.indexOf(parseInt(dayStart)), vm.days.indexOf(parseInt(dayEnd)));
                     hotelTotalPrice = arrPrices.reduce(reducer);
 
                     if (this.hotels[curHotel].rooms[curRoom].breakfasts_included === true) {
@@ -3621,7 +3622,7 @@ let vm = new Vue({
                         this.form.hotelBreakfastPrice = allBreakfasts;
                     } else if (this.hotels[curHotel].rooms[curRoom].breakfasts_no === false
                         && this.form.hotelBreakfast === true) {
-                        let arrBreakfast = vm.hotels[curHotel].rooms[curRoom].breakfasts[this.form.adults].slice(vm.days.indexOf(parseInt(dayStart)), daysCount);
+                        let arrBreakfast = vm.hotels[curHotel].rooms[curRoom].breakfasts[this.form.adults].slice(vm.days.indexOf(parseInt(dayStart)), vm.days.indexOf(parseInt(dayEnd)));
                         allBreakfasts = arrBreakfast.reduce(reducer);
                         this.form.hotelBreakfastPrice = allBreakfasts;
                     } else {
@@ -3639,9 +3640,13 @@ let vm = new Vue({
                         + allBreakfasts)*gain
 
                     if (window.location.href !== 'https://nswpay.ru/') {
-                        console.log('this.form.adults ' + this.form.adults)
+                        console.log('adults ' + this.form.adults)
                         // console.log('allBreakfasts day ' + this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults])
-                        console.log('hotelTotalPrice day ' + this.hotels[curHotel].rooms[curRoom].prices[this.form.adults])
+                        console.log('hotelTotalPrice prices ' + this.hotels[curHotel].rooms[curRoom].prices[this.form.adults])
+                        console.log('hotelTotalPrice arrPrices ' + arrPrices)
+                        console.log('hotelTotalPrice indexOf ' + vm.days.indexOf(parseInt(dayStart)))
+                        console.log('hotelTotalPrice dayStart ' + dayStart)
+                        console.log('hotelTotalPrice daysCount ' + daysCount)
                         console.log('daysTour ' + daysTour)
                         console.log('passPrice no discount ' + (this.passes[curPass].price * this.form.adults))
                         console.log('passPrice ' + passPrice)
