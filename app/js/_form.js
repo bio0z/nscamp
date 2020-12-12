@@ -128,12 +128,12 @@ let vm = new Vue({
                 'en':'More'
             },
             passSDetails:{
-                'ru':'от 33267<span>₽ </span> от 9 дней',
-                'en':'from 33267<span>₽ </span> from 9 days'
+                'ru':'от 37 353<span>₽ </span> от 7 дней',
+                'en':'from 37 353<span>₽ </span> from 7 days'
             },
             passVDetails:{
-                'ru':'от 46107<span>₽ </span> от 9 дней ',
-                'en':'from 56107<span>₽ </span> from 9 days'
+                'ru':'от 50 792<span>₽ </span> от 7 дней ',
+                'en':'from 50 792<span>₽ </span> from 7 days'
             },
             passSDetailsFull:{
                 'ru':'<p class="mb-2">Браслет участника</p></li>' +
@@ -496,7 +496,7 @@ let vm = new Vue({
             from: new Date(2021, 3, 5),
             dates: [
                 // new Date(2021, 2, 28),
-                // new Date(2021, 2, 29),
+                new Date(2021, 2, 29),
                 new Date(2021, 2, 30),
                 new Date(2021, 2, 31),
                 // new Date(2021, 3, 1),
