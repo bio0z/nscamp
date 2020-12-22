@@ -42,7 +42,7 @@ if(isset($_POST['tourNumber'])) {
       if ($ar['passcode'] == 'V') {
         $pass = 'VIP';
         $backColor = '#F2D046';
-      } elseif ($ar['passcode'] == 'S'){
+      } elseif ($ar['passcode'] == 'S') {
         $pass = 'STANDARD';
         $backColor = '#DB9EA7';
       }
@@ -50,7 +50,13 @@ if(isset($_POST['tourNumber'])) {
       $body = file_get_contents('../html/mail.html');
       $body = preg_replace("/#HTTP_HOST#/",'http://'.$_SERVER["HTTP_HOST"],$body);
 
-      $voucher = file_get_contents('../html/voucher2.html');
+      if (strlen($_POST['tourNumber']) === 10) {
+        $voucher = file_get_contents('../html/voucher2.html');
+      } else {
+        $voucher = file_get_contents('../html/voucher3.html');
+        $skiPassDays = $ar['tourDays'] - 1;
+        $tourDays = $ar['tourDays'] + 1;
+      }
 
       $voucher = preg_replace("/#FIO#/",$ar['name'],$voucher);
       $voucher = preg_replace("/#HTTP_HOST#/",'http://'.$_SERVER["HTTP_HOST"],$voucher);
@@ -76,6 +82,8 @@ if(isset($_POST['tourNumber'])) {
       $voucher = preg_replace("/#ADDRESS#/",$ar['address'],$voucher);
       $voucher = preg_replace("/#TOUR_NUMBER#/",$ar['tourNumber'],$voucher);
       $voucher = preg_replace("/#TOUR_DAYS#/",$ar['tourDays'],$voucher);
+      $voucher = preg_replace("/#SKIPASS_DAYS#/",$tourDays,$voucher);
+      $voucher = preg_replace("/#SKIPASS_DAYS2#/",$skiPassDays,$voucher);
       $voucher = preg_replace("/#DATEFROM#/",$ar['dateFrom'],$voucher);
       $voucher = preg_replace("/#DATETILL#/",$ar['dateTill'],$voucher);
       $voucher = preg_replace("/#ADULTS#/",$ar['adults'],$voucher);
