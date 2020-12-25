@@ -302,8 +302,8 @@ let vm = new Vue({
                 'en':'Please, choose your the dates of tour.'
             },
             errorMinDates:{
-                'ru':'Туры менее 7 дней пока недоступны.',
-                'en':'Minimal tour 7 days at this moment.'
+                'ru':'Туры менее 5 дней пока недоступны.',
+                'en':'Minimal tour 5 days at this moment.'
             },
             errorChooseAdults:{
                 'ru':'Вы забыли выбрать количество человек.',
@@ -496,9 +496,9 @@ let vm = new Vue({
             from: new Date(2021, 3, 5),
             dates: [
                 // new Date(2021, 2, 28),
-                new Date(2021, 2, 29),
-                new Date(2021, 2, 30),
-                new Date(2021, 2, 31),
+                // new Date(2021, 2, 29),
+                // new Date(2021, 2, 30),
+                // new Date(2021, 2, 31),
                 // new Date(2021, 3, 1),
                 // new Date(2021, 3, 2),
             ],
@@ -3639,7 +3639,7 @@ let vm = new Vue({
                 if (window.location.href !== 'https://nswpay.ru/') {
                     console.log('daysTour ' + daysTour)
                 }
-                if (this.form.adults > 0 && daysTour > 5) {
+                if (this.form.adults > 0 && daysTour > 4) {
                     totalPrice =
                         (passPrice
                         + hotelTotalPrice
@@ -3715,7 +3715,7 @@ let vm = new Vue({
                 } else if (!this.form.adults) {
                     this.errors = this.translations.errorChooseAdults[this.selectedLocale];
                     return false;
-                } else if (this.calcTourDays < 6) {
+                } else if (this.calcTourDays < 5) {
                     this.errors = this.translations.errorMinDates[this.selectedLocale];
                     return false;
                 } else {
