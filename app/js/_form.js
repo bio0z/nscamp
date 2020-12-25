@@ -3986,19 +3986,6 @@ let vm = new Vue({
 
     submit() {
     },
-
-    //   onSubmit(e) {
-    //     e.preventDefault();
-    //     console.log('onSubmited');
-    //     this.$axios
-    //        .post(
-    //            "send.php",
-    //             querystring.stringify(this.form)
-    //        )
-    //        .then(res => {
-    //            this.sent = true;
-    //        });
-    // },
      components: {
          vuejsDatepicker
      }
