@@ -36,7 +36,7 @@ let vm = new Vue({
             'en': "EN",
         },
         selectedLocale: 'ru',
-        days: [26,27,28,29,30,31,1,2,3],
+        days: [26,27,28,29,30,31,1,2,3,4],
         promocode: '',
         form: {
             pass: null,
@@ -571,8 +571,8 @@ let vm = new Vue({
                         code: 'SB',
                         maxGuests: 2,
                         prices: {
-                            1: [4700, 4700, 4700, 4700, 4700, 4700, 4700, 4700, 4700, 4700],
-                            2: [5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300]
+                            1: [5200, 5200, 5200, 5200, 5200, 5200, 5200, 5200, 5200, 5200],
+                            2: [5800, 5800, 5800, 5800, 5800, 5800, 5800, 5800, 5800, 5800]
                         },
                         breakfasts:{},
                         breakfasts_included: true,
@@ -608,8 +608,8 @@ let vm = new Vue({
                         code: 'S3B',
                         maxGuests: 2,
                         prices: {
-                            1: [4700, 4700, 4700, 4700, 4700, 4700, 4700, 4700, 4700, 4700],
-                            2: [5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300]
+                            1: [7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100],
+                            2: [7800, 7800, 7800, 7800, 7800, 7800, 7800, 7800, 7800, 7800]
                         },
                         breakfasts:{},
                         breakfasts_included: true,
@@ -658,8 +658,8 @@ let vm = new Vue({
                         code: 'S3',
                         maxGuests: 4,
                         prices: {
-                            1: [4700, 4700, 4700, 4700, 4700, 4700, 4700, 4700, 4700, 4700],
-                            2: [5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300, 5300],
+                            1: [7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100],
+                            2: [7800, 7800, 7800, 7800, 7800, 7800, 7800, 7800, 7800, 7800],
                             3: [8500, 8500, 8500, 8500, 8500, 8500, 8500, 8500, 8500, 8500],
                             4: [9200, 9200, 9200, 9200, 9200, 9200, 9200, 9200, 9200, 9200]
                         },
@@ -3249,11 +3249,11 @@ let vm = new Vue({
                             2: [3000,3000,3000,3000,3000,3000,3000,3000,3000],
                         },
                         breakfasts:{
-                            1: [800,800,800,800,800,800,800,800,800],
-                            2: [1600,1600,1600,1600,1600,1600,1600,1600,1600],
+                            1: [0,0,0,0,0,0,0,0,0],
+                            2: [0,0,0,0,0,0,0,0,0],
                         },
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         maxGuests: 2,
                         beds: [
                             {
@@ -3608,12 +3608,19 @@ let vm = new Vue({
                     let option = {
                         day: 'numeric',
                     };
-                    let dayStart = this.form.dateFrom.toLocaleString("ru",option);
-                    let dayEnd = this.form.dateTill.toLocaleString("ru",option);
+                    let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru",option));
+                    let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru",option));
                     let daysCount = daysTour;
+
+                if (window.location.href !== 'https://nswpay.ru/') {
+                    console.log('hotelTotalPrice dayStart indexOf ' + vm.days.indexOf(dayStart))
+                    console.log('hotelTotalPrice dayStart ' + dayStart)
+                    console.log('hotelTotalPrice dayEnd indexOf ' + vm.days.indexOf(dayEnd))
+                    console.log('hotelTotalPrice dayEnd ' + dayEnd)
+                }
                     const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
-                    let arrPrices = this.hotels[curHotel].rooms[curRoom].prices[this.form.adults].slice(vm.days.indexOf(parseInt(dayStart)), vm.days.indexOf(parseInt(dayEnd)));
+                    let arrPrices = this.hotels[curHotel].rooms[curRoom].prices[this.form.adults].slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd));
                     hotelTotalPrice = arrPrices.reduce(reducer);
 
                     if (this.hotels[curHotel].rooms[curRoom].breakfasts_included === true) {
@@ -3622,7 +3629,7 @@ let vm = new Vue({
                         this.form.hotelBreakfastPrice = allBreakfasts;
                     } else if (this.hotels[curHotel].rooms[curRoom].breakfasts_no === false
                         && this.form.hotelBreakfast === true) {
-                        let arrBreakfast = vm.hotels[curHotel].rooms[curRoom].breakfasts[this.form.adults].slice(vm.days.indexOf(parseInt(dayStart)), vm.days.indexOf(parseInt(dayEnd)));
+                        let arrBreakfast = vm.hotels[curHotel].rooms[curRoom].breakfasts[this.form.adults].slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd));
                         allBreakfasts = arrBreakfast.reduce(reducer);
                         this.form.hotelBreakfastPrice = allBreakfasts;
                     } else {
@@ -3644,8 +3651,11 @@ let vm = new Vue({
                         // console.log('allBreakfasts day ' + this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults])
                         console.log('hotelTotalPrice prices ' + this.hotels[curHotel].rooms[curRoom].prices[this.form.adults])
                         console.log('hotelTotalPrice arrPrices ' + arrPrices)
-                        console.log('hotelTotalPrice indexOf ' + vm.days.indexOf(parseInt(dayStart)))
+                        console.log('hotelTotalPrice arrPrices len ' + arrPrices.length)
+                        console.log('hotelTotalPrice dayStart indexOf ' + vm.days.indexOf(dayStart))
                         console.log('hotelTotalPrice dayStart ' + dayStart)
+                        console.log('hotelTotalPrice dayEnd indexOf ' + vm.days.indexOf(dayEnd))
+                        console.log('hotelTotalPrice dayEnd ' + dayEnd)
                         console.log('hotelTotalPrice daysCount ' + daysCount)
                         console.log('daysTour ' + daysTour)
                         console.log('passPrice no discount ' + (this.passes[curPass].price * this.form.adults))
