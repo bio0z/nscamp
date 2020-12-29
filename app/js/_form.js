@@ -302,8 +302,8 @@ let vm = new Vue({
                 'en':'Please, choose your the dates of tour.'
             },
             errorMinDates:{
-                'ru':'Туры менее 5 дней пока недоступны.',
-                'en':'Minimal tour 5 days at this moment.'
+                'ru':'Туры менее 4 дней пока недоступны.',
+                'en':'Minimal tour 4 days at this moment.'
             },
             errorChooseAdults:{
                 'ru':'Вы забыли выбрать количество человек.',
@@ -3612,16 +3612,13 @@ let vm = new Vue({
                     let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru",option));
                     let daysCount = daysTour;
 
-                if (window.location.href !== 'https://nswpay.ru/') {
-                    console.log('hotelTotalPrice dayStart indexOf ' + vm.days.indexOf(dayStart))
-                    console.log('hotelTotalPrice dayStart ' + dayStart)
-                    console.log('hotelTotalPrice dayEnd indexOf ' + vm.days.indexOf(dayEnd))
-                    console.log('hotelTotalPrice dayEnd ' + dayEnd)
-                }
                     const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
                     let arrPrices = this.hotels[curHotel].rooms[curRoom].prices[this.form.adults].slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd));
                     hotelTotalPrice = arrPrices.reduce(reducer);
+
+                    let skiPassDays = daysTour < 6 ? daysTour : daysTour - 1;
+                    let skiPassPrice = ((skiPass * skiPassDays) * this.form.adults);
 
                     if (this.hotels[curHotel].rooms[curRoom].breakfasts_included === true) {
                         this.form.hotelBreakfast = true;
@@ -3643,7 +3640,7 @@ let vm = new Vue({
                     totalPrice =
                         (passPrice
                         + hotelTotalPrice
-                        + ((skiPass * (daysTour - 1)) * this.form.adults)
+                        + skiPassPrice
                         + allBreakfasts)*gain
 
                     if (window.location.href !== 'https://nswpay.ru/') {
@@ -3715,7 +3712,7 @@ let vm = new Vue({
                 } else if (!this.form.adults) {
                     this.errors = this.translations.errorChooseAdults[this.selectedLocale];
                     return false;
-                } else if (this.calcTourDays < 5) {
+                } else if (this.calcTourDays < 4) {
                     this.errors = this.translations.errorMinDates[this.selectedLocale];
                     return false;
                 } else {
