@@ -3598,7 +3598,10 @@ let vm = new Vue({
             let hotelTotalPrice = 0
             let allBreakfasts = 0
             let gain = this.hotels[curHotel].gain
-            let passPrice = (this.passes[curPass].price * this.form.adults) * this.form.passDiscount
+            daysTour < 3 && this.form.pass === 'S' ?
+                passDayPrice = 5000 :
+                passDayPrice = this.passes[curPass].price
+            let passPrice = (passDayPrice * this.form.adults) * this.form.passDiscount
 
             if (this.form.passDiscount < 1) {
                 this.form.promocode = this.promocode
@@ -3636,7 +3639,7 @@ let vm = new Vue({
                 if (window.location.href !== 'https://nswpay.ru/') {
                     console.log('daysTour ' + daysTour)
                 }
-                if (this.form.adults > 0 && daysTour > 4) {
+                if (this.form.adults > 0 && daysTour > 3) {
                     totalPrice =
                         (passPrice
                         + hotelTotalPrice
