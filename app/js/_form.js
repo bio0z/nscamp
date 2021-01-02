@@ -128,18 +128,18 @@ let vm = new Vue({
                 'en':'More'
             },
             passSDetails:{
-                'ru':'от 37 353<span>₽ </span> от 7 дней',
-                'en':'from 37 353<span>₽ </span> from 7 days'
+                'ru':'от 28 986<span>₽ </span> от 5 дней',
+                'en':'from 28 986<span>₽ </span> from 5 days'
             },
             passVDetails:{
-                'ru':'от 50 792<span>₽ </span> от 7 дней ',
-                'en':'from 50 792<span>₽ </span> from 7 days'
+                'ru':'от 40 986<span>₽ </span> от 5 дней ',
+                'en':'from 40 986<span>₽ </span> from 5 days'
             },
             passSDetailsFull:{
                 'ru':'<p class="mb-2">Браслет участника</p></li>' +
                     '<p class="mb-2">Проживание в отеле</p></li>' +
                     '<p class="mb-2">Скидки и привилегии участника фестиваля</p></li>' +
-                    '<p class="mb-2">Ски пасс ( 7 дней из 9 / 8 дней из 10)</p></li>' +
+                    '<p class="mb-2">Ски пасс*</p><p class="minitext">*информация по ски-пасс доступна в разделе F.A.Q</p></li>' +
                     '<p class="mb-2">Первые 500 покупателей получают фирменную футболку фестиваля</p></li>',
                 'en': '<p class="mb-2">Hotel accommodation</p></li>' +
                     '<p class="mb-2">Festival PASS</p></li>' +
@@ -3598,6 +3598,7 @@ let vm = new Vue({
             let hotelTotalPrice = 0
             let allBreakfasts = 0
             let gain = this.hotels[curHotel].gain
+            let passDayPrice = 0
             daysTour < 3 && this.form.pass === 'S' ?
                 passDayPrice = 5000 :
                 passDayPrice = this.passes[curPass].price
