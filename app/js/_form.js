@@ -566,7 +566,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт с балконом',
                         code: 'SB',
                         maxGuests: 2,
@@ -1966,7 +1966,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт с видом на реку',
                         code: 'S2RV',
                         prices: {
@@ -2010,7 +2010,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Супериор',
                         code: 'SUP',
                         prices: {
@@ -2379,7 +2379,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Приют Панды',
                 code: 'PP',
                 formula: 99,
