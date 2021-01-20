@@ -1925,7 +1925,7 @@ let vm = new Vue({
                 ],
                 rooms: [
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт',
                         code: 'S2',
                         prices: {
@@ -2134,7 +2134,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-3-family-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Полулюкс',
                         code: 'PL',
                         prices: {
