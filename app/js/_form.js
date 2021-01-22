@@ -653,7 +653,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-5-standard-2.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт улучшенный без балкона',
                         code: 'S3',
                         maxGuests: 4,
@@ -813,7 +813,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Ski Inn Spa Hotel ****',
                 code: 'SKIINN',
                 address: '354392 г. Сочи, Красная поляна, курорт "Роза Хутор", ул. Пихтовая аллея, д.1',
@@ -837,7 +837,7 @@ let vm = new Vue({
                     ],
                 rooms:[
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт-Делюкс',
                         code: 'STD',
                         maxGuests: 2,
