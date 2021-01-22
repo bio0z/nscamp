@@ -748,7 +748,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-7-double-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Семейный номер',
                         code: 'FAM',
                         maxGuests: 4,
@@ -926,7 +926,7 @@ let vm = new Vue({
                     ],
                 rooms:[
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандартный двухместный номер (корпус B)',
                         code: 'STD',
                         maxGuests: 2,
@@ -1120,7 +1120,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl-1.jpg',
                     },
                     {
-                        active: true,
+                        active: false,
                         name: '3х-комнатный номер для компаний (2 спальни+гостиная), корпус С',
                         code: 'TRL4',
                         maxGuests: 4,
@@ -2094,7 +2094,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-3-family-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Семейный с балконом',
                         code: 'FAMB',
                         prices: {
@@ -2207,7 +2207,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-5-lux.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Представительский люкс',
                         code: 'PREL',
                         prices: {
