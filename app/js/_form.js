@@ -45,7 +45,7 @@ let vm = new Vue({
             adults: '',
             kids: '',
 
-            hotel: 'RIL',
+            hotel: 'RRK5',
             hotelName: '',
             hotelBreakfast: null,
             hotelBreakfastPrice: null,
@@ -505,7 +505,7 @@ let vm = new Vue({
         },
         hotels: [
             {
-                active: true,
+                active: false,
                 name: 'Riders Lodge **',
                 code: 'RIL',
                 address: 'Улица Медовея 6, Эсто-Садок, Россия',
