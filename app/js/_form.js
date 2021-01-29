@@ -2915,7 +2915,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Tulip Inn ***',
                 address: 'Краснодарский край, с. Эстосадок, наб. Панорама, д.2',
                 code: 'TINN',
@@ -3068,7 +3068,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Golden Tulip ****',
                 code: 'GTINN',
                 address: 'Краснодарский край, с. Эстосадок, наб. Панорама, д.3',
