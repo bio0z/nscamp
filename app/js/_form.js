@@ -1070,7 +1070,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-fam-1.jpg',
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Комната в 3х комнатном номере с общей ванной (корпус B)',
                         code: 'TRL',
                         maxGuests: 2,
@@ -1555,7 +1555,7 @@ let vm = new Vue({
                 gain: 1.12,
                 formula: 99,
                 maxGuests: 2,
-                address:'Набережная Лаванды, 4 , Эсто-Садок, Росси',
+                address:'Набережная Лаванды, 4 , Эсто-Садок, Россия',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-2-standard-1.jpg',
