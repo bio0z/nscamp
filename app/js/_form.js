@@ -15,7 +15,6 @@ Vue.directive('phone', {
         }
     },
     touch(el){
-
     }
 });
 
@@ -1612,7 +1611,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-2-standard-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Премиум с балконом',
                         code: 'PB',
                         prices: {
@@ -1660,7 +1659,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-3-premium-balcony-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Премиум с балконом с видом на реку',
                         code: 'PBRV',
                         prices: {
