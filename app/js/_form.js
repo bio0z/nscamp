@@ -3920,6 +3920,8 @@ let vm = new Vue({
 
                 let kids = this.form.kids !== 1 || this.form.kids !== 2 ? 0 : this.form.kids
 
+                let tourDaysCount = Math.round(Number(this.form.tourDays))
+
                 let options = {
                     year: 'numeric',
                     month: 'long',
@@ -3963,7 +3965,7 @@ let vm = new Vue({
                 fdata.append('skipassPrice', this.form.skipassPrice);
                 fdata.append('breakfastPrice', this.form.hotelBreakfastPrice);
                 fdata.append('passDiscount', this.form.passDiscount);
-                fdata.append('tourDays', this.form.tourDays);
+                fdata.append('tourDays', String(tourDaysCount));
 
                 axios({
                     method: 'post',
