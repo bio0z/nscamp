@@ -1177,7 +1177,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl4-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: '4х-комнатный номер для компаний (3 спальни+гостиная), корпуса B и С',
                         code: 'TRL6',
                         maxGuests: 6,
