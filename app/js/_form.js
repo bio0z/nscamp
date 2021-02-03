@@ -892,7 +892,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Rosa Ski Inn **',
                 code: 'SKIINN2',
                 address: 'Эстосадок, «Роза Хутор», улица Пихтовая аллея, дом 1',
@@ -1023,7 +1023,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-std3-1.jpg',
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандартный Семейный номер (корпуса В/С/D)',
                         code: 'FAM',
                         maxGuests: 2,
@@ -2711,7 +2711,7 @@ let vm = new Vue({
                 ],
                 rooms: [
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт',
                         code: 'S',
                         maxGuests: 2,
