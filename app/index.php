@@ -336,7 +336,11 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                   </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                  <label v-if="form.hotel !== 'RIL' && form.hotel !== 'VALBAZ' && form.hotel !== 'FREEBAZ' && form.hotel !== 'ROS'" class="row m-0">
+                  <label v-if="form.hotel !== 'RIL' &&
+                    form.hotel !== 'VALBAZ' &&
+                    form.hotel !== 'FREEBAZ' &&
+                    form.hotel !== 'AYSD' &&
+                    form.hotel !== 'ROS'" class="row m-0">
                     <input v-model.trim="form.hotelBreakfast"
                            class="custom-control-input"
                            type="checkbox"
@@ -348,7 +352,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                   <label v-if="form.hotel === 'RIL' || form.hotel === 'ROS'" class="row m-0">
                     <div class="col" v-html="translations.hotelBreakfastIncluded[selectedLocale]"></div>
                   </label>
-                  <label v-if="form.hotel === 'VALBAZ' || form.hotel === 'FREEBAZ'" class="row m-0">
+                  <label v-if="form.hotel === 'VALBAZ' || form.hotel === 'FREEBAZ' || form.hotel === 'AYSD'" class="row m-0">
                     <div class="col" v-html="translations.hotelBreakfastNotIncluded[selectedLocale]"></div>
                   </label>
                 </div>
@@ -952,7 +956,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=1612424213"></script>
+<script src="<?= $path ?>js/app.min.js?rev=1612441786"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>
