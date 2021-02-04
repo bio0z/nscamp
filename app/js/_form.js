@@ -1722,7 +1722,7 @@ let vm = new Vue({
                     {
                         active: true,
                         name: 'Гранд Премьер (вид на горы)',
-                        code: 'GRP',
+                        code: 'GRPM',
                         maxGuests: 2,
                         quota:65,
                         prices: {
@@ -1777,7 +1777,7 @@ let vm = new Vue({
                     {
                         active: true,
                         name: 'Премьер Сьют (вид на горы)',
-                        code: 'PSM',
+                        code: 'PRSM',
                         maxGuests: 2,
                         quota: 65,
                         prices: {
