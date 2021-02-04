@@ -340,6 +340,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                     form.hotel !== 'VALBAZ' &&
                     form.hotel !== 'FREEBAZ' &&
                     form.hotel !== 'AYSD' &&
+                    form.hotel !== 'AYSL' &&
+                    form.hotel !== 'GRF' &&
                     form.hotel !== 'ROS'" class="row m-0">
                     <input v-model.trim="form.hotelBreakfast"
                            class="custom-control-input"
@@ -349,10 +351,10 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          :class="[form.hotelBreakfast ? ' active' : '']"></div>
                     <div class="col" v-html="translations.hotelBreakfast[selectedLocale]"></div>
                   </label>
-                  <label v-if="form.hotel === 'RIL' || form.hotel === 'ROS'" class="row m-0">
+                  <label v-if="form.hotel === 'RIL' || form.hotel === 'ROS' || form.hotel === 'GRF'" class="row m-0">
                     <div class="col" v-html="translations.hotelBreakfastIncluded[selectedLocale]"></div>
                   </label>
-                  <label v-if="form.hotel === 'VALBAZ' || form.hotel === 'FREEBAZ' || form.hotel === 'AYSD'" class="row m-0">
+                  <label v-if="form.hotel === 'VALBAZ' || form.hotel === 'FREEBAZ' || form.hotel === 'AYSD' || form.hotel === 'AYSL'" class="row m-0">
                     <div class="col" v-html="translations.hotelBreakfastNotIncluded[selectedLocale]"></div>
                   </label>
                 </div>
@@ -956,7 +958,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=1612441786"></script>
+<script src="<?= $path ?>js/app.min.js?rev=1612464993"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>

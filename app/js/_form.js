@@ -1255,18 +1255,22 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'AYS Let It Snow',
                 code: 'AYSL',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Сулимовка, 5',
                 formula: 99,
                 gain: 1.12,
-                maxGuests: 4,
-                gallery: [],
+                maxGuests: 2,
+                gallery: [
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-AYSL-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-AYSL-2.jpg',
+                    ''
+                ],
                 rooms: [
                     {
                         active: true,
-                        name: 'Двухместный номер в блоке',
+                        name: '2х-местный в блоке',
                         code: 'DB',
                         maxGuests: 2,
                         quota:65,
@@ -1276,7 +1280,7 @@ let vm = new Vue({
                         },
                         breakfasts:{},
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         beds: [
                             {
                                 'code':1,
@@ -1288,29 +1292,29 @@ let vm = new Vue({
                             }
                         ],
                         desc: {
-                            'ru':'<ul><li>8-14 кв. м. </li>' +
-                                '<li>Вместимость до 3-х человек</li>' +
+                            'ru':'<ul>' +
+                                '<li>Стол и стул</li>' +
                                 '<li>Вид на горы</li>' +
-                                '<li>WI-FI</li>' +
-                                '<li>Фен</li>' +
-                                '<li>Гигиенические средства</li>' +
-                                '<li>Полотенца</li>' +
-                                '<li>Сушилка для белья</li></ul>',
-                            'en': '<ul><li>30 кв. м.<li>' +
-                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Шкаф</li>' +
+                                '<li>Совмещенные санузел на нескольно номеров</li>' +
+                                '<li>Комплект полотенец</li>' +
+                                '<li>Встроенный фен</li>' +
+                                '<li>Туалетные принадлежности</li></ul>',
+                            'en': '<ul>' +
+                                '<li>Стол и стул</li>' +
                                 '<li>Вид на горы</li>' +
-                                '<li>WI-FI</li>' +
-                                '<li>Фен</li>' +
-                                '<li>Гигиенические средства</li>' +
-                                '<li>Полотенца</li>' +
-                                '<li>Сушилка для белья</li></ul>'
+                                '<li>Шкаф</li>' +
+                                '<li>Совмещенные санузел на нескольно номеров</li>' +
+                                '<li>Комплект полотенец</li>' +
+                                '<li>Встроенный фен</li>' +
+                                '<li>Туалетные принадлежности</li></ul>'
                         },
-                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg'
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-AYSL-d-1.jpg'
                     },
                     {
                         active: true,
-                        name: 'Одноместный номер в блоке',
-                        code: 'DB',
+                        name: '1-местный в блоке',
+                        code: 'SB',
                         maxGuests: 2,
                         quota:65,
                         prices: {
@@ -1319,23 +1323,17 @@ let vm = new Vue({
                         },
                         breakfasts:{},
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         beds: [
                             {
-                                'code':1,
-                                'name': '1 двуспальная кровать',
-                            },
-                            {
-                                'code':2,
-                                'name':'2 односпальные кровати'
+                                'code': 1,
+                                'name': '1 односпальная кровать',
                             }
                         ],
                         desc: {
-                            'ru':'<ul><li>+/- 8-14 кв. м. </li>' +
+                            'ru':'<ul>' +
                                 '<li>Односпальная кровать</li>' +
-                                '<li>Прикроватная тумбочка</li>' +
                                 '<li>Стол и стул</li>' +
-                                '<li>Стакан для воды</li>' +
                                 '<li>Шкаф</li>' +
                                 '<li>Совмещенные санузел на нескольно номеров</li>' +
                                 '<li>Комплект полотенец</li>' +
@@ -1370,7 +1368,7 @@ let vm = new Vue({
                 code: 'AYSD',
                 formula: 99,
                 gain: 1.12,
-                maxGuests: 4,
+                maxGuests: 3,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-ays-1.JPG',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-ays-2.JPG',
@@ -1381,7 +1379,7 @@ let vm = new Vue({
                 rooms: [
                     {
                         active: false,
-                        name: 'Двухместный номер в блоке Compact',
+                        name: '2х-местный в блоке Compact',
                         code: 'D2CB',
                         maxGuests: 2,
                         prices: {
@@ -1390,11 +1388,11 @@ let vm = new Vue({
                         },
                         breakfasts:{},
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         beds: [
                             {
-                                'code':1,
-                                'name': '1 двуспальная кровать',
+                                'code': 2,
+                                'name': '2 односпальные кровати',
                             }
                         ],
                         desc:{
@@ -1419,7 +1417,7 @@ let vm = new Vue({
                     },
                     {
                         active: false,
-                        name: 'Двухместный номер в блоке Compact с видом на горы',
+                        name: '2х-местный в блоке Compact с видом на горы',
                         code: 'D2CBM',
                         maxGuests: 2,
                         prices: {
@@ -1428,11 +1426,11 @@ let vm = new Vue({
                         },
                         breakfasts:{},
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         beds: [
                             {
-                                'code':1,
-                                'name': '1 двуспальная кровать',
+                                'code': 2,
+                                'name': '2 односпальные кровати',
                             }
                         ],
                         desc:{
@@ -1457,7 +1455,7 @@ let vm = new Vue({
                     },
                     {
                         active: true,
-                        name: 'Двухместный номер в блоке',
+                        name: '2х-местный в блоке',
                         code: 'D2B',
                         maxGuests: 2,
                         prices: {
@@ -1466,7 +1464,7 @@ let vm = new Vue({
                         },
                         breakfasts:{},
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         beds: [
                             {
                                 'code':1,
@@ -1493,7 +1491,7 @@ let vm = new Vue({
                     },
                     {
                         active: true,
-                        name: 'Двухместный номер в блоке с видом на горы',
+                        name: '2х-местный в блоке с видом на горы',
                         code: 'D2BM',
                         maxGuests: 2,
                         prices: {
@@ -1502,7 +1500,7 @@ let vm = new Vue({
                         },
                         breakfasts:{},
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         beds: [
                             {
                                 'code':1,
@@ -1531,7 +1529,7 @@ let vm = new Vue({
                     },
                     {
                         active: true,
-                        name: 'Двухместный номер в блоке Extra Space с видом на горы',
+                        name: '2х-местный в блоке Extra Space с видом на горы',
                         code: 'D2ESM',
                         maxGuests: 2,
                         prices: {
@@ -1540,14 +1538,10 @@ let vm = new Vue({
                         },
                         breakfasts:{},
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         beds: [
                             {
-                                'code':1,
-                                'name': '1 двуспальная кровать',
-                            },
-                            {
-                                'code':2,
+                                'code': 2,
                                 'name': '2 односпальные кровати',
                             }
                         ],
@@ -1569,7 +1563,7 @@ let vm = new Vue({
                     },
                     {
                         active: true,
-                        name: 'Стандарт двухместный Extra Space',
+                        name: 'Стандарт 2х-местный Extra Space',
                         code: 'D2SES',
                         maxGuests: 3,
                         prices: {
@@ -1578,14 +1572,10 @@ let vm = new Vue({
                         },
                         breakfasts:{},
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         beds: [
                             {
-                                'code':1,
-                                'name': '1 двуспальная кровать',
-                            },
-                            {
-                                'code':2,
+                                'code': 2,
                                 'name': '2 односпальные кровати',
                             }
                         ],
@@ -1609,7 +1599,7 @@ let vm = new Vue({
                     },
                     {
                         active: true,
-                        name: 'Двухместный номер Extra Space с видом на горы',
+                        name: '2х-местный номер Extra Space с видом на горы',
                         code: 'D2SESM',
                         maxGuests: 3,
                         prices: {
@@ -1618,14 +1608,10 @@ let vm = new Vue({
                         },
                         breakfasts:{},
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         beds: [
                             {
-                                'code':1,
-                                'name': '1 двуспальная кровать',
-                            },
-                            {
-                                'code':2,
+                                'code': 2,
                                 'name': '2 односпальные кровати',
                             }
                         ],
@@ -1663,10 +1649,13 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Green Flow ****',
                 code: 'GRF',
-                address: 'Роза Хутор, п. Эсто-Садок, ул. Сулимовка, 9',
+                address: 'Роза Хутор, п. Эсто-Садок, ул. Сулимовка, 5',
+                formula: 99,
+                gain: 1.10,
+                maxGuests: 2,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-gf-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-gf-2.JPG',
@@ -1674,15 +1663,177 @@ let vm = new Vue({
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-gf-4.jpeg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-gf-5.jpg',
                 ],
+                rooms: [
+                    {
+                        active: true,
+                        name: 'Супериор (вид на Олимпийскую деревню)',
+                        code: 'SUPO',
+                        maxGuests: 2,
+                        quota: 65,
+                        prices: {
+                            1: [10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550],
+                            2: [10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550]
+                        },
+                        breakfasts:{},
+                        breakfasts_included: true,
+                        breakfasts_no: false,
+                        beds: [
+                            {
+                                'code':1,
+                                'name': '1 двуспальная кровать',
+                            },
+                            {
+                                'code':2,
+                                'name':'2 односпальные кровати'
+                            }
+                        ],
+                        desc: {
+                            'ru':'<ul>' +
+                                '<li>+/- 25 кв. м. </li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор, спутниковое телевидение\n</li>' +
+                                '<li>WI-Fi</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Система климат-контроля</li>' +
+                                '<li>Мини-холодильник</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Халат и тапочки</li>' +
+                                '<li>Косметические средства</li>' +
+                                '<li>Балкон с красивым видом</li>' +
+                                '<li>Чайный набор</li>' +
+                                '<li>Сейф</li></ul>',
+                            'en': '<ul>' +
+                                '<li>+/- 25 кв. м. </li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор, спутниковое телевидение\n</li>' +
+                                '<li>WI-Fi</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Система климат-контроля</li>' +
+                                '<li>Мини-холодильник</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Халат и тапочки</li>' +
+                                '<li>Косметические средства</li>' +
+                                '<li>Балкон с красивым видом</li>' +
+                                '<li>Чайный набор</li>' +
+                                '<li>Сейф</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-GF-sup-1.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Гранд Премьер (вид на горы)',
+                        code: 'GRP',
+                        maxGuests: 2,
+                        quota:65,
+                        prices: {
+                            1: [11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350],
+                            2: [11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350]
+                        },
+                        breakfasts:{},
+                        breakfasts_included: true,
+                        breakfasts_no: false,
+                        beds: [
+                            {
+                                'code': 1,
+                                'name': '1 односпальная кровать',
+                            },
+                            {
+                                'code': 2,
+                                'name': '2 двуспальные кровати',
+                            }
+                        ],
+                        desc: {
+                            'ru':'<ul>' +
+                                '<li>+/- 25 кв. м. </li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор, спутниковое телевидение\n</li>' +
+                                '<li>WI-Fi</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Система климат-контроля</li>' +
+                                '<li>Мини-холодильник</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Халат и тапочки</li>' +
+                                '<li>Косметические средства</li>' +
+                                '<li>Балкон с красивым видом</li>' +
+                                '<li>Чайный набор</li>' +
+                                '<li>Сейф</li></ul>',
+                            'en': '<ul>' +
+                                '<li>+/- 25 кв. м. </li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор, спутниковое телевидение\n</li>' +
+                                '<li>WI-Fi</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Система климат-контроля</li>' +
+                                '<li>Мини-холодильник</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Халат и тапочки</li>' +
+                                '<li>Косметические средства</li>' +
+                                '<li>Балкон с красивым видом</li>' +
+                                '<li>Чайный набор</li>' +
+                                '<li>Сейф</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-GF-sup-2.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Премьер Сьют (вид на горы)',
+                        code: 'PSM',
+                        maxGuests: 2,
+                        quota: 65,
+                        prices: {
+                            1: [16600, 16600, 16600, 16600, 16600, 16600, 16600, 16600, 16600, 16600],
+                            2: [16600, 16600, 16600, 16600, 16600, 16600, 16600, 16600, 16600, 16600]
+                        },
+                        breakfasts:{},
+                        breakfasts_included: true,
+                        breakfasts_no: false,
+                        beds: [
+                            {
+                                'code': 1,
+                                'name': '1 односпальная кровать',
+                            },
+                            {
+                                'code': 2,
+                                'name': '2 двуспальные кровати',
+                            }
+                        ],
+                        desc: {
+                            'ru':'<ul>' +
+                                '<li>+/- 25 кв. м. </li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор, спутниковое телевидение\n</li>' +
+                                '<li>WI-Fi</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Система климат-контроля</li>' +
+                                '<li>Мини-холодильник</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Халат и тапочки</li>' +
+                                '<li>Косметические средства</li>' +
+                                '<li>Балкон с красивым видом</li>' +
+                                '<li>Чайный набор</li>' +
+                                '<li>Сейф</li></ul>',
+                            'en': '<ul>' +
+                                '<li>+/- 25 кв. м. </li>' +
+                                '<li>Вместимость до 3-х человек</li>' +
+                                '<li>Телевизор, спутниковое телевидение\n</li>' +
+                                '<li>WI-Fi</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Система климат-контроля</li>' +
+                                '<li>Мини-холодильник</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Халат и тапочки</li>' +
+                                '<li>Косметические средства</li>' +
+                                '<li>Балкон с красивым видом</li>' +
+                                '<li>Чайный набор</li>' +
+                                '<li>Сейф</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-GF-sup-4.jpg'
+                    }
+                ],
                 desc:{
-                    'ru': 'Green Flow – настоящий оазис для тех, кто хочет отдохнуть</li>' +
-                        ' в тишине и покое, наслаждаясь невероятной красотой гор из окна</li>' +
-                        ' номера. Это не просто комфорт и сервис, это особая атмосфера, в</li>' +
-                        ' которую хочется возвращаться. Неотъемлемая составляющая отеля —</li>' +
-                        ' открытый всесезонный инфинити бассейн с подогревом, подсветкой и</li>' +
-                        ' панорамным видом на живописные склоны Северокавказских гор.</li>' +
-                        ' Удовольствие от посещения спа-зоны отеля и открытого бассейна</li>' +
-                        ' останется ещё на долгое время на ваших красивых фотографиях.',
+                    'ru': 'Отель Green Flow находится на высоте 1170 метров на курорте «Роза Хутор» и является первым и единственным отелем в России, входящим в международную ассоциацию Healing Hotels of the World, донося ценности хилинг подхода своим гостям.\n' +
+                        'Хилинг-концепция, лежащая в основе отеля, отвечает основным запросам людей, живущих в стремительном ритме больших городов и перегруженных информацией. Поэтому Green Flow – оазис для тех, кто ищет место, где можно остановиться, отдохнуть и обрести успокоение. Это не просто комфорт и сервис, это особая атмосфера, в которую хочется возвращаться.\n' +
+                        'Эта атмосфера складывается из синергии окружающей природы и внутреннего наполнения отеля: целебный горный воздух, насыщенный заряженными ионами, и продуманный дизайн номеров с использованием спокойных оттенков, натуральных материалов, удобных матрасов для качественного восстанавливающего сна. И неотъемлемая составляющая - открытый всесезонный инфинити бассейн с подогревом, подсветкой и панорамным видом на живописные склоны Северокавказских гор.\n',
                     'en':'Green Flow is an amazing oasis for those who want to chill in peace and quiet. It is not just comfort and service, it is a special atmosphere. An integral part of the hotel is an all-season outdoor heated and lighted pool, with panoramic views of the northern slopes. The hotel\'s spa areas and the outdoor pool will remain for a long time in your beautiful shots and memory.'
                 }
             },
