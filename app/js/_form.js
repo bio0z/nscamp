@@ -3400,7 +3400,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Двухкомнатные апартаменты (корпуса Центр и Спорт)',
                         code: 'APDSC',
                         prices: {
@@ -3444,7 +3444,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-2.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Трехкомнатные апартаменты (корпус Спорт)',
                         code: 'APTSC',
                         prices: {
