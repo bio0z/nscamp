@@ -504,7 +504,7 @@ let vm = new Vue({
         },
         hotels: [
             {
-                active: false,
+                active: true,
                 name: 'Riders Lodge **',
                 code: 'RIL',
                 address: 'Улица Медовея 6, Эсто-Садок, Россия',
@@ -747,7 +747,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-7-double-1.jpg'
                     },
                     {
-                        active: false,
+                        active: true,
                         name: 'Семейный номер',
                         code: 'FAM',
                         maxGuests: 4,
@@ -1255,7 +1255,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'AYS Let It Snow',
                 code: 'AYSL',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Сулимовка, 5',
@@ -1363,7 +1363,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'AYS Design Hotel **',
                 code: 'AYSD',
                 formula: 99,
@@ -3784,7 +3784,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Valset by Azimut',
                 code: 'VALBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.4',
