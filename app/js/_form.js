@@ -3250,7 +3250,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-3-triple.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт улучшенный',
                         code: 'SB',
                         maxGuests: 3,
