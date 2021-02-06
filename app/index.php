@@ -163,10 +163,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                   </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
-                  <label class="m-1 nsc-pass-label p-0"
-                         v-bind:class="[!passVDetails ? 'nsc-pass-v' : 'nsc-pass-v-back']"
-                         @click="setPassActive('V')"
-                         ref="passVLabel">
+                  <label class="m-1 nsc-pass-label p-0 nsc-pass-v" style="opacity: 0.3;">
                     <div class="row pass-front" id="pass-front-v">
                       <div class="f1 pass-detail-dt" v-if="passVDetails">
                         <div v-html="translations.passVDetailsFull[selectedLocale]"></div>
@@ -178,13 +175,11 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          v-html="translations.passVDetailsFull[selectedLocale]">
                     </div>
                     <input type="radio" class="form-control "
-                           v-model.trim="form.pass"
-                           value="V"
                            hidden
                            required>
                   </label>
-                  <div class="btn  nsc-button btn-more"
-                       @click="showPassVDetail()">{{ translations.passDetails[selectedLocale] }}
+                  <div class="p-1 font-weight-bold text-uppercase">
+                       {{ translations.soldOut[selectedLocale] }}
                   </div>
                 </div>
               </div>
@@ -958,7 +953,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=1612542424"></script>
+<script src="<?= $path ?>js/app.min.js?rev=1612543967"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>

@@ -134,6 +134,10 @@ let vm = new Vue({
                 'ru':'от 40 986<span>₽ </span> от 5 дней ',
                 'en':'from 40 986<span>₽ </span> from 5 days'
             },
+            soldOut:{
+                'ru':'SOLD OUT',
+                'en':'SOLD OUT'
+            },
             passSDetailsFull:{
                 'ru':'<p class="mb-2">Браслет участника</p></li>' +
                     '<p class="mb-2">Проживание в отеле</p></li>' +
