@@ -1870,7 +1870,7 @@ let vm = new Vue({
                 },
                 rooms:[
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт',
                         code: 'STD',
                         maxGuests: 2,
