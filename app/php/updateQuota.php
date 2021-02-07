@@ -2,9 +2,9 @@
 $_POST = json_decode(file_get_contents('php://input'), true);
 
 if ($_GET['hotelCode']) $_POST['hotelCode'] = $_GET['hotelCode'];
+if ($_GET['roomCode']) $_POST['roomCode'] = $_GET['roomCode'];
 
 if (isset($_POST)) {
-  $_POST['hotelCode'] ? $hotel = $_POST['hotelCode'] : $hotel = 'AYSD';
 
   $host = $_SERVER['HTTP_HOST'];
   $servername = "localhost";
@@ -21,22 +21,26 @@ if (isset($_POST)) {
     $password = "root";
     $database = 'nscTemp';
   }
-
   $conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   } else {
-    if ($result = $conn->query("SELECT * FROM temp_rooms_quota")) {
-      while ($row = $result->fetch_assoc()) {
-        if ($row['quota'] > 0 && $row['hotelCode'] == $hotel) {
-          $arRooms[] = $row['roomCode'];
-        }
-      }
-      echo json_encode($arRooms);
+    $hotelCode = $conn->real_escape_string(trim($_POST['hotelCode']));
+    $roomCode = $conn->real_escape_string(trim($_POST['roomCode']));
+
+    $result = $conn->query('SELECT * FROM temp_rooms_quota WHERE hotelCode = "' . $hotelCode . '" AND roomCode = "' . $roomCode .'"');
+    if ($result) {
+      $conn->query("UPDATE temp_rooms_quota 
+                        SET quota = quota-1
+                        WHERE hotelCode = '" . $hotelCode . "' 
+                          AND roomCode = '" . $roomCode."'");
+      echo 'Updated.';
+    } else {
+      echo 'Incorrest Hotel or Room !' . '<br>';
+      echo "Error: " . $result . "<br>" . $conn->error;
     }
   }
 } else {
-  echo 'POST is empty';
+  echo 'POST is empty!';
 }
