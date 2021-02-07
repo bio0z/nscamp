@@ -298,7 +298,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pb-2 input-group">
                   <div class="btn-group input-group-prepend">
                     <select v-model.trim="form.hotel"
-                            class="custom-select  nsc-select"
+                            class="custom-select nsc-select"
                             @change="showHotelPhoto"
                             required>
                       <option value="" disabled selected>{{ translations.hotelType[selectedLocale] }}</option>
@@ -313,7 +313,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                             @change="showRoomPhoto"
                             required>
                       <option value="" disabled selected>{{ translations.roomType[selectedLocale] }}</option>
-                      <option v-for="room in activeHotelRooms" :value=room.code>{{ room.name }}</option>
+                      <option v-for="room in hotelQuota" :value=room.code>{{ room.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -953,7 +953,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=1612621715"></script>
+<script src="<?= $path ?>js/app.min.js?rev=1612698057"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>
