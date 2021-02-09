@@ -897,7 +897,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Rosa Ski Inn **',
                 code: 'SKIINN2',
                 address: 'Эстосадок, «Роза Хутор», улица Пихтовая аллея, дом 1',
@@ -1074,7 +1074,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-fam-1.jpg',
                     },
                     {
-                        active: false,
+                        active: true,
                         name: 'Комната в 3х комнатном номере с общей ванной (корпус B)',
                         code: 'TRL',
                         maxGuests: 2,
@@ -1124,7 +1124,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-skiinn2-trl-1.jpg',
                     },
                     {
-                        active: false,
+                        active: true,
                         name: '3х-комнатный номер для компаний (2 спальни+гостиная), корпус С',
                         code: 'TRL4',
                         maxGuests: 4,
@@ -1260,7 +1260,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'AYS Let It Snow',
                 code: 'AYSL',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Сулимовка, 5',
@@ -1368,7 +1368,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'AYS Design Hotel **',
                 code: 'AYSD',
                 formula: 99,
