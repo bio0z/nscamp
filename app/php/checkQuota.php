@@ -8,7 +8,7 @@ if (isset($_POST)) {
 
   $host = $_SERVER['HTTP_HOST'];
   $servername = "localhost";
-  if ($host != 'localhost') {
+  if ($host == 'nsc-new.awsd.cc') {
     $username = "host1817609";
     $password = "RtYyvvrI7O";
     $database = 'host1817609_nsctemp';

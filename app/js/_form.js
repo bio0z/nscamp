@@ -2355,7 +2355,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Отель Park Inn by Radisson Rosa Khutor ****',
                 code: 'PIRRS4',
                 address: 'Улица Олимпийская 35, Эсто-Садок, Россия',
@@ -2618,7 +2618,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-4-halflux.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Люкс',
                         code: 'L',
                         prices: {
@@ -4458,7 +4458,7 @@ let vm = new Vue({
                             this.hotelQuota = activeRooms;
                         } else {
                             this.hotelQuota = [];
-                            this.errors = 'Все номер в этом отеле проданы.';
+                            this.errors = 'Все номера в этом отеле проданы.';
                         }
                     })
                     .catch(error => {
