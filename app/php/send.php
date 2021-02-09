@@ -149,7 +149,8 @@ if (isset($_POST['tourNumber'])) {
         $mail->Send();
 
         $servername = "localhost";
-        if ($host != 'localhost') {
+
+        if ($host == 'nsc-new.awsd.cc') {
           $username = "host1817609";
           $password = "RtYyvvrI7O";
           $database = 'host1817609_nsctemp';
@@ -162,6 +163,7 @@ if (isset($_POST['tourNumber'])) {
           $password = "root";
           $database = 'nscTemp';
         }
+
         $conn = new mysqli($servername, $username, $password, $database);
 
         if ($conn->connect_error) {

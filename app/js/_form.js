@@ -1320,7 +1320,7 @@ let vm = new Vue({
                         active: true,
                         name: '1-местный в блоке',
                         code: 'SB',
-                        maxGuests: 2,
+                        maxGuests: 1,
                         quota: 65,
                         prices: {
                             1: [4200, 4200, 3200, 3200, 3200, 3200, 3200, 3200, 3200, 3200],
@@ -4167,6 +4167,9 @@ let vm = new Vue({
                 }
             } else if (this.step === 3) {
 
+                console.log('activeHotelRooms')
+                this.activeHotelRooms()
+
                 this.form.hotelName = this.hotels[this.currentHotel].name;
                 this.form.address = this.hotels[this.currentHotel].address;
 
@@ -4434,7 +4437,6 @@ let vm = new Vue({
             let arRooms = this.hotels.find(hotel => hotel.code === this.form.hotel)
             // if (Array.from(arRooms).length > 0) {
             if (Object.keys(arRooms).length > 0) {
-                console.log('arRooms not empty');
                 const conf = {
                     responseType: 'text'
                 };
@@ -4465,7 +4467,6 @@ let vm = new Vue({
                         this.errors = 'Нет информации по отелю.';
                         console.log("error", error);
                     });
-                console.log('worked');
                 return Array.from(this.hotelQuota);
             } else {
                 console.log('arRooms empty');
