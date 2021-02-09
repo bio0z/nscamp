@@ -309,7 +309,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pb-2">
                   <div>
                     <select v-model.trim="form.room"
-                            class="custom-select  nsc-select"
+                            class="custom-select nsc-select"
                             @change="showRoomPhoto"
                             required>
                       <option value="" disabled selected>{{ translations.roomType[selectedLocale] }}</option>
@@ -661,6 +661,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           <button
               class="col-3 col-sm-3 col-md-2 col-lg-2 ml-auto p-2 bd-highlight form-control col-2  nsc-button"
               v-if="step !== totalsteps"
+              id="stepper"
               @click.prevent="nextStep">{{ translations.stepNext[selectedLocale] }}
           </button>
           <?php $env == 'prod' ? $token = 'qlsnf995gkvurbqpc3qm4nbvqs' : $token = '5ul0u41eam2n3qpsuicfjim7fj' ?>
@@ -953,7 +954,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=1612877329"></script>
+<script src="<?= $path ?>js/app.min.js?rev=1612881556"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>

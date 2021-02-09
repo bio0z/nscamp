@@ -3967,6 +3967,10 @@ let vm = new Vue({
         window.addEventListener('load',()=>{
             this.activeHotelRooms()
         })
+        let step = document.getElementById("stepper");
+        step.addEventListener('click',()=>{
+            this.activeHotelRooms()
+        })
     },
     computed: {
         userFIO() {
@@ -4152,6 +4156,7 @@ let vm = new Vue({
                     this.errors = null;
                 }
             } else if (this.step === 2) {
+                this.form.room = ''
                 this.form.tourDays = this.calcTourDays
                 if (!this.form.dateTill || !this.form.dateFrom) {
                     this.errors = this.translations.errorChooseDates[this.selectedLocale];
@@ -4166,9 +4171,6 @@ let vm = new Vue({
                     this.errors = null;
                 }
             } else if (this.step === 3) {
-
-                console.log('activeHotelRooms')
-                this.activeHotelRooms()
 
                 this.form.hotelName = this.hotels[this.currentHotel].name;
                 this.form.address = this.hotels[this.currentHotel].address;
