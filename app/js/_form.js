@@ -1843,7 +1843,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Rosa Springs ****',
                 code: 'ROS',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 4',
