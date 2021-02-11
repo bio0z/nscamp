@@ -3637,7 +3637,7 @@ let vm = new Vue({
                 ],
                 rooms: [
                     {
-                        active: true,
+                        active: false,
                         name: 'Супериор с видом на лес',
                         code: 'SUPF',
                         prices: {
