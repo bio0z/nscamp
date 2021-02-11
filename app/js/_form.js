@@ -1235,7 +1235,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'AYS Let It Snow',
                 code: 'AYSL',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Сулимовка, 5',
@@ -1343,7 +1343,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'AYS Design Hotel **',
                 code: 'AYSD',
                 formula: 99,
