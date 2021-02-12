@@ -44,7 +44,7 @@ let vm = new Vue({
             adults: '',
             kids: '',
 
-            hotel: 'RRK5',
+            hotel: 'GRF',
             hotelName: '',
             hotelBreakfast: null,
             hotelBreakfastPrice: null,
@@ -1955,7 +1955,7 @@ let vm = new Vue({
                 ]
             },
             {
-                active: true,
+                active: false,
                 name: 'Отель Radisson Rosa Khutor *****',
                 code: 'RRK5',
                 gain: 1.12,
@@ -3623,7 +3623,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Freestyle by Azimut',
                 code: 'FREEBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.5',
