@@ -87,6 +87,15 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
     <noscript>
       <div><img src="https://mc.yandex.ru/watch/66145342" style="position:absolute; left:-9999px;" alt=""/></div>
     </noscript>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QD86B6FDC5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-QD86B6FDC5');
+    </script>
   <?php } ?>
 </head>
 
