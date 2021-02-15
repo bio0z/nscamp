@@ -509,7 +509,7 @@ let vm = new Vue({
         hotelQuota: '',
         hotels: [
             {
-                active: true,
+                active: false,
                 name: 'Riders Lodge **',
                 code: 'RIL',
                 address: 'Улица Медовея 6, Эсто-Садок, Россия',
@@ -743,7 +743,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-7-double-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Семейный номер',
                         code: 'FAM',
                         maxGuests: 4,
@@ -2965,7 +2965,7 @@ let vm = new Vue({
                 ],
                 rooms: [
                     {
-                        active: true,
+                        active: false,
                         name: 'Двухместный номер в блоке',
                         code: 'DB',
                         maxGuests: 2,
