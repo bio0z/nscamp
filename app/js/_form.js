@@ -44,7 +44,7 @@ let vm = new Vue({
             adults: '',
             kids: '',
 
-            hotel: 'GRF',
+            hotel: 'RRK5',
             hotelName: '',
             hotelBreakfast: null,
             hotelBreakfastPrice: null,
@@ -1955,7 +1955,7 @@ let vm = new Vue({
                 ]
             },
             {
-                active: false,
+                active: true,
                 name: 'Отель Radisson Rosa Khutor *****',
                 code: 'RRK5',
                 gain: 1.12,
@@ -1981,6 +1981,49 @@ let vm = new Vue({
                         prices: {
                             1: [8800, 8800, 7000, 7000, 7000, 7000, 7000, 4900, 4900, 4900],
                             2: [8800, 8800, 7000, 7000, 7000, 7000, 7000, 4900, 4900, 4900],
+                        },
+                        breakfasts: {
+                            1: [800, 800, 800, 800, 800, 800, 800, 800, 800, 800],
+                            2: [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000]
+                        },
+                        breakfasts_included: false,
+                        breakfasts_no: false,
+                        maxGuests: 2,
+                        beds: [
+                            {
+                                'code': 1,
+                                'name': '1 двуспальная кровать',
+                            },
+                            {
+                                'code': 2,
+                                'name': '2 односпальные кровати'
+                            }
+                        ],
+                        desc: {
+                            'ru': '<ul><li>27 кв. м. </li>' +
+                                '<li>Халат и тапочки</li>' +
+                                '<li>Чайный и кофейный набор</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Профессиональный фен</li>' +
+                                '<li>Бесплатная бутылированная вода</li>' +
+                                '<li>Бесплатный WI-FI</li></ul>',
+                            'en': '<ul><li>27 м2 </li>' +
+                                '<li>Bathrobe and slippers</li>' +
+                                '<li>Tea and Coffe</li>' +
+                                '<li>TV</li>' +
+                                '<li>Hair Dryer</li>' +
+                                '<li>Water</li>' +
+                                '<li>WI-FI</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rrk5-2-standard-1.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Супериор',
+                        code: 'SUPER',
+                        prices: {
+                            1: [9300, 9300, 7500, 7500, 7500, 7500, 7500, 5400, 5400, 5400],
+                            2: [9300, 9300, 7500, 7500, 7500, 7500, 7500, 5400, 5400, 5400],
                         },
                         breakfasts: {
                             1: [800, 800, 800, 800, 800, 800, 800, 800, 800, 800],
