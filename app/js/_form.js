@@ -3100,7 +3100,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Rosa Village **',
                 code: 'ROV',
                 address: 'Краснодарский край, Горная Олимпийская деревня, ул. Сулимовка, д. 27',
