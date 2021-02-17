@@ -2010,7 +2010,7 @@ let vm = new Vue({
                 ]
             },
             {
-                active: false,
+                active: true,
                 name: 'Отель Radisson Rosa Khutor *****',
                 code: 'RRK5',
                 gain: 1.12,
