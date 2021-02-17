@@ -1348,7 +1348,7 @@ let vm = new Vue({
                 code: 'AYSD',
                 formula: 99,
                 gain: 1.12,
-                maxGuests: 3,
+                maxGuests: 2,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-ays-1.JPG',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-ays-2.JPG',
@@ -1406,7 +1406,7 @@ let vm = new Vue({
                         },
                         breakfasts: {
                             1:[450,450,450,450,450,450,450,450,450,450],
-                            2:[450,450,450,450,450,450,450,450,450,450]
+                            2:[900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1447,7 +1447,7 @@ let vm = new Vue({
                         },
                         breakfasts: {
                             1:[450,450,450,450,450,450,450,450,450,450],
-                            2:[450,450,450,450,450,450,450,450,450,450]
+                            2:[900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1484,7 +1484,7 @@ let vm = new Vue({
                         },
                         breakfasts: {
                             1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [450,450,450,450,450,450,450,450,450,450]
+                            2: [900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1523,7 +1523,7 @@ let vm = new Vue({
                         },
                         breakfasts: {
                             1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [450,450,450,450,450,450,450,450,450,450]
+                            2: [900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1558,7 +1558,7 @@ let vm = new Vue({
                         },
                         breakfasts: {
                             1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [450,450,450,450,450,450,450,450,450,450]
+                            2: [900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1595,7 +1595,7 @@ let vm = new Vue({
                         },
                         breakfasts: {
                             1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [450,450,450,450,450,450,450,450,450,450]
+                            2: [900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1632,7 +1632,7 @@ let vm = new Vue({
                         },
                         breakfasts: {
                             1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [450,450,450,450,450,450,450,450,450,450]
+                            2: [900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
