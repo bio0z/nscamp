@@ -527,7 +527,7 @@ let vm = new Vue({
                     ],
                 rooms: [
                     {
-                        active: false,
+                        active: true,
                         name: 'Стандартный',
                         code: 'S',
                         maxGuests: 2,
@@ -568,7 +568,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg'
                     },
                     {
-                        active: false,
+                        active: true,
                         name: 'Стандарт с балконом',
                         code: 'SB',
                         maxGuests: 2,
@@ -604,7 +604,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-2-standard-1.jpg'
                     },
                     {
-                        active: false,
+                        active: true,
                         name: 'Стандарт улучшенный с балконом',
                         code: 'S3B',
                         maxGuests: 2,
@@ -652,7 +652,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-5-standard-2.jpg'
                     },
                     {
-                        active: false,
+                        active: true,
                         name: 'Стандарт улучшенный без балкона',
                         code: 'S3',
                         maxGuests: 4,
@@ -702,7 +702,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-5-standard-2.jpg'
                     },
                     {
-                        active: false,
+                        active: true,
                         name: 'Двухкомнатный номер',
                         code: 'S2',
                         maxGuests: 3,
@@ -743,7 +743,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rl-7-double-1.jpg'
                     },
                     {
-                        active: false,
+                        active: true,
                         name: 'Семейный номер',
                         code: 'FAM',
                         maxGuests: 4,
