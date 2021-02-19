@@ -1346,6 +1346,7 @@ let vm = new Vue({
                 active: true,
                 name: 'AYS Design Hotel **',
                 code: 'AYSD',
+                address: 'Краснодарский край, с. Эстосадок, Горная Олимпийская деревня, ул. Сулимовка, д. 5',
                 formula: 99,
                 gain: 1.12,
                 maxGuests: 2,
@@ -2883,7 +2884,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Приют Панды',
                 code: 'PP',
                 formula: 99,
