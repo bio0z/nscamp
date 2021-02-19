@@ -2011,7 +2011,7 @@ let vm = new Vue({
                 ]
             },
             {
-                active: true,
+                active: false,
                 name: 'Отель Radisson Rosa Khutor *****',
                 code: 'RRK5',
                 gain: 1.12,
@@ -3199,7 +3199,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Rosa Village **',
                 code: 'ROV',
                 address: 'Краснодарский край, Горная Олимпийская деревня, ул. Сулимовка, д. 27',
