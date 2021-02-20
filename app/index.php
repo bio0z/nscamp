@@ -93,7 +93,6 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-QD86B6FDC5');
     </script>
   <?php } ?>
@@ -265,8 +264,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                     <option value="" disabled selected>{{ translations.tourAdults[selectedLocale] }}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+<!--                    <option value="3">3</option>-->
+<!--                    <option value="4">4</option>-->
 <!--                    <option value="5">5</option>-->
 <!--                    <option value="6">6</option>-->
                   </select>
@@ -962,7 +961,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=1613721575"></script>
+<script src="<?= $path ?>js/app.min.js?rev=1613823767"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>
