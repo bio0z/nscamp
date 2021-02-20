@@ -509,7 +509,7 @@ let vm = new Vue({
         hotelQuota: '',
         hotels: [
             {
-                active: false,
+                active: true,
                 name: 'Riders Lodge **',
                 code: 'RIL',
                 address: 'Улица Медовея 6, Эсто-Садок, Россия',
@@ -2754,7 +2754,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 formula: 99,
@@ -4039,12 +4039,7 @@ let vm = new Vue({
             this.form.roomName = this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
             return this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
         },
-        // bedName() {
-        //     this.form.roomName = this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).code
-        //     return this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
-        // },
         setTourName() {
-//            this.form.tourName = 'New Star Camp ' + this.passes[this.form.pass].name + ' tour, hotel: ' + this.form.hotelName;
             this.form.tourName = 'New Star Camp ' + ' tour, hotel: ' + this.form.hotelName;
             return this.form.tourName;
         },
@@ -4074,11 +4069,6 @@ let vm = new Vue({
                 return beds
             }
         },
-        // currentRoom() {
-        //     let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
-        //     let curRoom = this.hotels[curHotel].rooms.find(room => room.code === this.form.room)
-        //     return this.hotels.indexOf(curRoom)+1
-        // },
         calcTourPrice() {
             let totalPrice = 0;
             let skiPass = 1470;
@@ -4140,9 +4130,7 @@ let vm = new Vue({
 
                     if (window.location.href !== 'https://nswpay.ru/') {
                         console.log('adults ' + this.form.adults)
-                        // console.log('allBreakfasts day ' + this.hotels[curHotel].rooms[curRoom].breakfast[this.form.adults])
                         console.log('hotelTotalPrice prices ' + this.hotels[curHotel].rooms[curRoom].prices[this.form.adults])
-                        console.log('hotelTotalPrice arrPrices ' + arrPrices)
                         console.log('hotelTotalPrice dayStart indexOf ' + vm.days.indexOf(dayStart))
                         console.log('hotelTotalPrice dayStart ' + dayStart)
                         console.log('hotelTotalPrice dayEnd indexOf ' + vm.days.indexOf(dayEnd))
@@ -4155,7 +4143,6 @@ let vm = new Vue({
                         console.log('hotelTotalPrice ' + hotelTotalPrice)
                         console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
                         console.log('allBreakfasts ' + allBreakfasts)
-                        console.log('gain ' + gain)
                     }
 
                     this.form.hotelPrice = hotelTotalPrice
@@ -4467,19 +4454,16 @@ let vm = new Vue({
                 })
                     .then(response => {
                         // this.form.payed = true;
-                        // console.log("response", response);
                     })
                     // .then(response => this.responseData = response.data)
                     .catch(error => {
                         // this.errors.push(error);
-                        // console.log("error", error);
                     });
             }
         },
         activeHotelRooms() {
             let adults = this.form.adults
             let arRooms = this.hotels.find(hotel => hotel.code === this.form.hotel)
-            // if (Array.from(arRooms).length > 0) {
             if (Object.keys(arRooms).length > 0) {
                 const conf = {
                     responseType: 'text'
@@ -4495,11 +4479,9 @@ let vm = new Vue({
                             let hotelQuota = Array.from(response.data);
                             let activeRooms = [];
                             arRooms.rooms.forEach(function (item, i, arRooms) {
-                                // return arRooms.rooms.filter(function (room){
                                 if (item.maxGuests >= adults && item.active && hotelQuota.indexOf(item.code) > -1) {
                                     activeRooms.push(item);
                                 }
-                                // return room.maxGuests >= adults  && room.active && hotelQuota.indexOf(room.code) > -1
                             })
                             this.hotelQuota = activeRooms;
                         } else {
