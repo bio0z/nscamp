@@ -4136,7 +4136,6 @@ let vm = new Vue({
                         console.log('hotelTotalPrice dayEnd indexOf ' + vm.days.indexOf(dayEnd))
                         console.log('hotelTotalPrice dayEnd ' + dayEnd)
                         console.log('hotelTotalPrice daysCount ' + daysCount)
-                        console.log('daysTour ' + daysTour)
                         console.log('passPrice no discount ' + (this.passes[curPass].price * this.form.adults))
                         console.log('passPrice ' + passPrice)
                         console.log('discount ' + this.form.passDiscount)
