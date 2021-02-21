@@ -34,12 +34,15 @@ let vm = new Vue({
             'ru': "RU",
             'en': "EN",
         },
-        phpPath : '',
+        phpPath: '',
         selectedLocale: 'ru',
         days: [26, 27, 28, 29, 30, 31, 1, 2, 3, 4],
         promocode: '',
+        friendPassPrice: '',
         form: {
             pass: 'S',
+            friendPassAdded: null,
+            passPrice: '',
             dateFrom: null,
             dateTill: null,
             adults: '',
@@ -244,6 +247,10 @@ let vm = new Vue({
                 'ru': 'Промокод',
                 'en': 'Promocode'
             },
+            friendPassPrice: {
+                'ru': 'Другая сумма',
+                'en': 'Other sum'
+            },
             guestPromoCodeApply: {
                 'ru': 'Применить',
                 'en': 'Apply'
@@ -268,6 +275,14 @@ let vm = new Vue({
                 'ru': 'Проверьте введенные данные, подтвердите согласие на их обработку, введите промокод, если имеется, и ' +
                     'нажмите кнопку «Купить тур».',
                 'en': 'Check your details, enter promocode.'
+            },
+            stepFive: {
+                'ru': 'Команда NSC дарит тебе карту участника, которая даёт доступ на все события фестиваля. Мы знаем, как ты любишь New Star Camp, и даём возможность сделать донейшн в размере стоимости карты участника или другой суммы, которую ты посчитаешь нужной. Все собранные средства пойдут на развитие культуры action-спорта и помощь восходящим звёздам из мира спорта и музыки. Спасибо тебе, друг!',
+                'en': 'Команда NSC дарит тебе карту участника, которая даёт доступ на все события фестиваля. Мы знаем, как ты любишь New Star Camp, и даём возможность сделать донейшн в размере стоимости карты участника или другой суммы, которую ты посчитаешь нужной. Все собранные средства пойдут на развитие культуры action-спорта и помощь восходящим звёздам из мира спорта и музыки. Спасибо тебе, друг!'
+            },
+            friendPassAdded: {
+                'ru': 'Добавить стоимость карты участника (8000 рублей)',
+                'en': 'Добавить стоимость карты участника (8000 рублей)'
             },
             stepDates: {
                 'ru': 'Выберите даты',
@@ -4045,11 +4060,11 @@ let vm = new Vue({
         }
     },
     computed: {
-        getDomain(){
+        getDomain() {
             let domain = document.domain
             console.log('getDomain ' + domain)
-            if  (domain === 'localhost') {
-               this.phpPath = 'nscamp-friends/app/'
+            if (domain === 'localhost') {
+                this.phpPath = 'nscamp-friends/app/'
             }
         },
         userFIO() {
@@ -4198,7 +4213,13 @@ let vm = new Vue({
                 console.log("Шаг 2 : to checkFriendPhone ")
                 this.checkFriendPhone()
             }
-        }
+        },
+        friendPassPrice(){
+          if (this.form.friendPassAdded && this.friendPassPrice !== 8000) {
+             this.form.friendPassAdded = null
+             this.form.passPrice = this.friendPassPrice
+          }
+       }
     },
     methods: {
         setLocale: function (locale) {
@@ -4390,6 +4411,13 @@ let vm = new Vue({
             } else {
                 this.$refs.hotelImage.src = this.hotels[hotelId].gallery[imgImageNum];
                 this.$refs.hotelImage.setAttribute('image-id', String(imgImageNum));
+            }
+        },
+        applyFriendPassPrice() {
+            if (!this.form.friendPassAdded) {
+                this.form.passPrice = this.friendPassPrice
+            } else {
+                this.form.passPrice = 8000
             }
         },
         applyPromoCode() {
