@@ -139,7 +139,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                   <img src="<?= $path ?>images/svg/step1.svg?v=2"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8">
-                  {{ translations.stepTour[selectedLocale] }}
+                  {{ translations.stepFriendPhone[selectedLocale] }}
                 </div>
               </div>
             </div>
@@ -151,7 +151,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div clas="col-12 col-sm-12 col-lg-6">
                   <input type="phone"
                          width="261px"
-                         v-model.trim="form.phone"
+                         v-model.trim="friendPhone"
                          name="phone"
                          id="phone"
                          autocomplete="tel"
@@ -934,8 +934,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=1"></script>
-<!--<script src="js/vue-tap.js"></script>-->
+<script src="<?= $path ?>js/app.min.js?rev=24"></script>
+<!--<script src="js/vue-tap.js"></script>--
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>
   <script
