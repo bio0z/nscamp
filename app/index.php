@@ -100,7 +100,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 
 <body>
 <div id="orderForm" class="container" v-cloak>
-  <header class="row m-0 mt-2">
+  <header :onload.once="getDomain" class="row m-0 mt-2">
     <div class="col-12 pb-3 lang-mob">
       <button class="btn btn-link p-0 link">
         <div v-for="(locale,code) in locales">
@@ -377,6 +377,11 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
               </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-8 pt-sm-2" id="Guests">
+              <div class="form-row">
+                <div class="col-md-12 pl-4 pr-4 pb-3 pt-3 mb-2 present-skipass">
+                  {{ translations.presentSkiPass[selectedLocale] }}
+                </div>
+              </div>
               <div class="form-row">
                 <h5>{{ translations.firstGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
@@ -934,7 +939,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=24"></script>
+<script src="<?= $path ?>js/app.min.js?rev=27"></script>
 <!--<script src="js/vue-tap.js"></script>--
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>
