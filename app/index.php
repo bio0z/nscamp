@@ -1,7 +1,7 @@
 <?php
 $tourID = count(scandir('sent/')) + 1;
 $host = $_SERVER['HTTP_HOST'];
-$host == 'localhost' ? $path = 'nscamp/app/' : '';
+$host == 'localhost' ? $path = 'nscamp-friends/app/' : '';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 ?>
@@ -144,51 +144,24 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
               </div>
             </div>
             <div class="col-12 col-sm-12 col-md-9 col-lg-9 mb-2 pl-0 pr-0">
-              <div class="row justify-content-end">
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
-                  <label class="m-1 nsc-pass-label p-0"
-                         v-bind:class="[!passSDetails ? 'nsc-pass-s' : 'nsc-pass-s-back']"
-                         @click="setPassActive('S')"
-                         ref="passSLabel">
-                    <div class="row pass-front" id="pass-front">
-                      <div class="f1 pass-detail-dt" v-if="passSDetails">
-                        <div v-html="translations.passSDetailsFull[selectedLocale]"></div>
-                        <div class="pass-price-dt" v-html="translations.passSDetails[selectedLocale]"></div>
-                      </div>
-                      <div class="pass-price" v-html="translations.passSDetails[selectedLocale]"></div>
-                    </div>
-                    <div class="row f1 pass-detail" id="pass-detail" v-if="passSDetails"
-                         v-html="translations.passSDetailsFull[selectedLocale]">
-                    </div>
-                    <input type="radio" class="form-control "
-                           v-model.trim="form.pass"
-                           value="S"
-                           hidden
-                           required>
-                  </label>
-                  <div class="btn  nsc-button btn-more"
-                       @click="showPassSDetail()">{{ translations.passDetails[selectedLocale] }}
-                  </div>
+              <div class="row p-3 justify-content-md-end justify-content-center">
+                <div clas="col-12 col-sm-12 col-lg-6">
+
                 </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
-                  <label class="m-1 nsc-pass-label p-0 nsc-pass-v" style="opacity: 0.3;">
-                    <div class="row pass-front" id="pass-front-v">
-                      <div class="f1 pass-detail-dt" v-if="passVDetails">
-                        <div v-html="translations.passVDetailsFull[selectedLocale]"></div>
-                        <div class="pass-price-dt" v-html="translations.passVDetails[selectedLocale]"></div>
-                      </div>
-                      <div class="pass-price" v-html="translations.passVDetails[selectedLocale]"></div>
-                    </div>
-                    <div class="row f1 pass-detail" id="pass-detail-v" v-if="passVDetails"
-                         v-html="translations.passVDetailsFull[selectedLocale]">
-                    </div>
-                    <input type="radio" class="form-control "
-                           hidden
-                           required>
-                  </label>
-                  <div class="p-1 font-weight-bold text-uppercase">
-                       {{ translations.soldOut[selectedLocale] }}
-                  </div>
+                <div clas="col-12 col-sm-12 col-lg-6">
+                  <input type="phone"
+                         width="261px"
+                         v-model.trim="form.phone"
+                         name="phone"
+                         id="phone"
+                         autocomplete="tel"
+                         class="form-control phone"
+                         :placeholder="translations.guestPhone[selectedLocale]"
+                         maxlength="17"
+                         v-phone
+                         pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+                         required>
+                  <div class="phone-error p-2" v-if="errors != null">{{ errors }}</div>
                 </div>
               </div>
             </div>
@@ -641,7 +614,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
           </div>
         </section>
         <div>
-          <div class="invalid-feedback" v-if="errors != null">{{ errors }}</div>
+          <div class="invalid-feedback" v-if="errors != null && step !== 1">{{ errors }}</div>
         </div>
         <div class="row col-12 d-flex pl-0 pr-0 ml-0 mr-0 mb-3 mt-sm-3 mt-3 mt-md-0 mt-lg-0 bg-nsc-grey">
           <button class="col-3 col-sm-3 col-md-2 col-lg-2 p-2 bd-highlight form-control col-2  nsc-button"
@@ -961,7 +934,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=1613825708"></script>
+<script src="<?= $path ?>js/app.min.js?rev=1"></script>
 <!--<script src="js/vue-tap.js"></script>-->
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>

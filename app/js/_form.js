@@ -38,13 +38,13 @@ let vm = new Vue({
         days: [26, 27, 28, 29, 30, 31, 1, 2, 3, 4],
         promocode: '',
         form: {
-            pass: null,
+            pass: 'S',
             dateFrom: null,
             dateTill: null,
             adults: '',
             kids: '',
 
-            hotel: 'TINN',
+            hotel: 'MRK4',
             hotelName: '',
             hotelBreakfast: null,
             hotelBreakfastPrice: null,
@@ -232,8 +232,8 @@ let vm = new Vue({
                 'en': 'Surname'
             },
             guestPhone: {
-                'ru': 'Телефон',
-                'en': 'Phone num'
+                'ru': '+7 (___) ___-__-__',
+                'en': '+7 (___) ___-__-__'
             },
             guestHotel: {
                 'ru': 'Отель',
@@ -296,9 +296,9 @@ let vm = new Vue({
                 'ru': 'Выберите отель и тип номера.',
                 'en': 'Please, choose your accommodation.'
             },
-            errorChoosePass: {
-                'ru': 'Вы забыли выбрать вариант размещения.',
-                'en': 'Please, choose your pass.'
+            errorWrongPhone: {
+                'ru': 'Извините, данный номер отсутствует в базе клиентов.',
+                'en': 'Sorry, we dont know this phone number.'
             },
             errorChooseDates: {
                 'ru': 'Вы забыли выбрать даты заезда.',
@@ -509,7 +509,7 @@ let vm = new Vue({
         hotelQuota: '',
         hotels: [
             {
-                active: true,
+                active: false,
                 name: 'Riders Lodge **',
                 code: 'RIL',
                 address: 'Улица Медовея 6, Эсто-Садок, Россия',
@@ -1343,7 +1343,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'AYS Design Hotel **',
                 code: 'AYSD',
                 address: 'Краснодарский край, с. Эстосадок, Горная Олимпийская деревня, ул. Сулимовка, д. 5',
@@ -1406,8 +1406,8 @@ let vm = new Vue({
                             2: [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500]
                         },
                         breakfasts: {
-                            1:[450,450,450,450,450,450,450,450,450,450],
-                            2:[900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1447,8 +1447,8 @@ let vm = new Vue({
                             2: [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500]
                         },
                         breakfasts: {
-                            1:[450,450,450,450,450,450,450,450,450,450],
-                            2:[900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1484,8 +1484,8 @@ let vm = new Vue({
                             2: [4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800]
                         },
                         breakfasts: {
-                            1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1523,8 +1523,8 @@ let vm = new Vue({
                             2: [5100, 5100, 5100, 5100, 5100, 5100, 5100, 5100, 5100, 5100]
                         },
                         breakfasts: {
-                            1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1558,8 +1558,8 @@ let vm = new Vue({
                             2: [6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500]
                         },
                         breakfasts: {
-                            1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1595,8 +1595,8 @@ let vm = new Vue({
                             2: [6800, 6800, 6800, 6800, 6800, 6800, 6800, 6800, 6800, 6800]
                         },
                         breakfasts: {
-                            1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1632,8 +1632,8 @@ let vm = new Vue({
                             2: [7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100]
                         },
                         breakfasts: {
-                            1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -2884,7 +2884,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Приют Панды',
                 code: 'PP',
                 formula: 99,
@@ -3410,7 +3410,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Tulip Inn ***',
                 address: 'Краснодарский край, с. Эстосадок, наб. Панорама, д.2',
                 code: 'TINN',
@@ -3563,7 +3563,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Golden Tulip ****',
                 code: 'GTINN',
                 address: 'Краснодарский край, с. Эстосадок, наб. Панорама, д.3',
@@ -3722,7 +3722,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Freestyle by Azimut',
                 code: 'FREEBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.5',
@@ -4006,13 +4006,13 @@ let vm = new Vue({
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
         }
-        window.addEventListener('load',()=>{
-            this.activeHotelRooms()
-        })
-        let step = document.getElementById("stepper");
-        step.addEventListener('click',()=>{
-            this.activeHotelRooms()
-        })
+        // window.addEventListener('load',()=>{
+        //     this.activeHotelRooms()
+        // })
+        // let step = document.getElementById("stepper");
+        // step.addEventListener('click',()=>{
+        //     this.activeHotelRooms()
+        // })
     },
     computed: {
         userFIO() {
@@ -4154,11 +4154,32 @@ let vm = new Vue({
             return false;
         }
     },
-    watch: {
-    },
+    watch: {},
     methods: {
         setLocale: function (locale) {
             this.selectedLocale = locale;
+        },
+        checkFriendPhone() {
+            const conf = {
+                responseType: 'text'
+            };
+            const data = {
+                phoneToCheck: this.form.phone
+            };
+            console.log('data')
+            console.log(data)
+            axios.post("nscamp-friends/app/php/checkFriendPhone.php", data, conf).then(response => {
+                if (response.data === true) {
+                    this.errors = null;
+                    return true;
+                } else {
+                    this.errors = this.translations.errorWrongPhone[this.selectedLocale];
+                    return false;
+                }
+            }).catch(error => {
+                this.errors = 'Непредвиденная ошибка.';
+                console.log("error", error);
+            });
         },
         validEmail: function (email) {
             let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -4177,11 +4198,14 @@ let vm = new Vue({
         },
         nextStep() {
             if (this.step === 1) {
-                if (!this.form.pass) {
-                    this.errors = this.translations.errorChoosePass[this.selectedLocale];
-                    return false;
+                if (this.form.phone) {
+                    if (this.checkFriendPhone() === false || this.checkFriendPhone() === undefined) {
+                        // this.errors = this.translations.errorWrongPhone[this.selectedLocale];
+                        return false;
+                    }
                 } else {
-                    this.errors = null;
+                    // this.errors = this.translations.errorWrongPhone[this.selectedLocale];
+                    return false;
                 }
             } else if (this.step === 2) {
                 this.form.room = ''
@@ -4285,7 +4309,7 @@ let vm = new Vue({
             this.$refs.hotelImage.src = this.hotels[curHotelIndex].gallery[0];
             this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].desc[this.selectedLocale];
 
-            this.activeHotelRooms()
+            // this.activeHotelRooms()
         },
         showRoomPhoto() {
             let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
