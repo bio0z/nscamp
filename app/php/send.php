@@ -45,6 +45,9 @@ if (isset($_POST['tourNumber'])) {
       } elseif ($ar['passcode'] == 'S') {
         $pass = 'STANDARD';
         $backColor = '#DB9EA7';
+      } elseif ($ar['passcode'] == 'F') {
+        $pass = 'FRIENDS';
+        $backColor = '#F2D046';
       }
 
       $body = file_get_contents('../html/mail.html');
@@ -52,6 +55,10 @@ if (isset($_POST['tourNumber'])) {
 
       if (strlen($_POST['tourNumber']) === 10) {
         $voucher = file_get_contents('../html/voucher2.html');
+      } else if ($ar['passcode'] == 'P') {
+        $voucher = file_get_contents('../html/voucherP.html');
+        $skiPassDays = $ar['tourDays'] - 1;
+        $tourDays = $ar['tourDays'] + 1;
       } else {
         $voucher = file_get_contents('../html/voucher3.html');
         $skiPassDays = $ar['tourDays'] - 1;
@@ -154,7 +161,7 @@ if (isset($_POST['tourNumber'])) {
           $username = "host1817609";
           $password = "RtYyvvrI7O";
           $database = 'host1817609_nsctemp';
-        } elseif ($host == 'nswpay.ru'){
+        } elseif ($host == 'nswpay.ru') {
           $username = "host1211741_nsctemp";
           $password = "5zN0t0AF";
           $database = 'host1211741_nsctemp';
@@ -172,12 +179,12 @@ if (isset($_POST['tourNumber'])) {
           $hotelCode = $conn->real_escape_string(trim($ar['hotel']));
           $roomCode = $conn->real_escape_string(trim($ar['room']));
 
-          $result = $conn->query('SELECT * FROM temp_rooms_quota WHERE hotelCode = "' . $hotelCode . '" AND roomCode = "' . $roomCode .'"');
+          $result = $conn->query('SELECT * FROM temp_rooms_quota WHERE hotelCode = "' . $hotelCode . '" AND roomCode = "' . $roomCode . '"');
           if ($result) {
             $conn->query("UPDATE temp_rooms_quota 
                         SET quota = quota-1
                         WHERE hotelCode = '" . $hotelCode . "' 
-                          AND roomCode = '" . $roomCode."'");
+                          AND roomCode = '" . $roomCode . "'");
             echo 'Updated.';
           } else {
             echo 'Incorrest Hotel or Room !' . '<br>';

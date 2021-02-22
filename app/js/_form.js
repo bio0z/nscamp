@@ -239,6 +239,10 @@ let vm = new Vue({
                 'ru': '+7 (___) ___-__-__',
                 'en': '+7 (___) ___-__-__'
             },
+            guestPhoneText: {
+                'ru': 'Телефон',
+                'en': 'Phone num'
+            },
             guestHotel: {
                 'ru': 'Отель',
                 'en': 'Hotel'
@@ -441,7 +445,7 @@ let vm = new Vue({
         step: 1,
         phonestatus: false,
         friendPhone: null,
-        totalsteps: 7,
+        totalsteps: 6,
         errors: null,
         guests: 1,
         error: null,

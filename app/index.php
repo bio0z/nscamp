@@ -566,12 +566,10 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             </div>
           </div>
           <div clas="row">
-            <div class="row p-2">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6"
-                   v-bind:class="[ form.pass === 'V' ? 'tour-final-v' : 'tour-final-s']">
+            <div class="row p-2 pb-5">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 tour-final-f">
                 <div class="tour-final tourIncluded p-3">
-                  <h5 v-if="form.pass === 'V'">VIP TOUR</h5>
-                  <h5 v-if="form.pass === 'S'">STANDARD TOUR</h5>
+                  <h5>FRIENDS TOUR</h5>
                   <div class="row">
                     <label class="col-4" for="tourPersonName">{{ translations.guestName[selectedLocale] }}</label>
                     <input class="col-8 border-0" type="text" id="tourPersonName"
@@ -585,7 +583,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                     <input class="col-8 border-0" type="email" class="tourClientEmail" id="tourPersonEmail"
                            :value="form.email" readonly></div>
                   <div class="row">
-                    <label class="col-4" for="tourPersonPhone">{{ translations.guestPhone[selectedLocale] }}</label>
+                    <label class="col-4" for="tourPersonPhone">{{ translations.guestPhoneText[selectedLocale] }}</label>
                     <input class="col-8 border-0" type="text" id="tourPersonPhone"
                            :value="form.phone" readonly></div>
                   <div class="row">
