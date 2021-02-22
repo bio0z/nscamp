@@ -526,6 +526,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                       <input v-model.trim="form.friendPassAdded"
                              class="custom-control-input"
                              type="checkbox"
+                             @change="applyFullFriendPassPrice()"
                              id="addFriendPass"
                              required>
                       <div class="border-0 mr-1 nsc-checkbox"
@@ -539,7 +540,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                   </div>
                   <div class="row">
                     <input type="text" class="form-control col promocode"
-                           v-model.prevent="friendPassPrice"
+                           v-model="friendPassPrice"
                            :placeholder="translations.friendPassPrice[selectedLocale]">
                     <div class="form-control col nsc-button"
                          @click.prevent="applyFriendPassPrice()">

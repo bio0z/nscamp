@@ -40,7 +40,7 @@ let vm = new Vue({
         promocode: '',
         friendPassPrice: '',
         form: {
-            pass: 'S',
+            pass: 'F',
             friendPassAdded: null,
             passPrice: '',
             dateFrom: null,
@@ -504,16 +504,11 @@ let vm = new Vue({
 
         passes: [
             {
-                name: 'standard',
-                code: 'S',
-                color: '#CCCCCC',
-                price: 8000,
-            },
-            {
-                name: 'vip',
-                code: 'V',
-                color: '#777FA8',
-                price: 20000,
+                name: 'friends',
+                code: 'F',
+                color: '#F6D000',
+                price: 0,
+                fullprice: 8000,
             }
         ],
         disabledDates: {
@@ -4123,18 +4118,13 @@ let vm = new Vue({
         },
         calcTourPrice() {
             let totalPrice = 0;
-            let skiPass = 1470;
-            let curPass = this.passes.indexOf(this.passes.find(pass => pass.code === this.form.pass))
             let curHotel = this.hotels.indexOf(this.hotels.find(hotel => hotel.code === this.form.hotel))
             let curRoom = this.hotels[curHotel].rooms.indexOf(this.hotels[curHotel].rooms.find(room => room.code === this.form.room))
             let daysTour = this.form.tourDays
             let hotelTotalPrice = 0
             let allBreakfasts = 0
             let gain = this.hotels[curHotel].gain
-            let passDayPrice = 0
-            daysTour < 3 && this.form.pass === 'S' ?
-                passDayPrice = 5000 :
-                passDayPrice = this.passes[curPass].price
+            let passDayPrice = this.form.passPrice
             let passPrice = (passDayPrice * this.form.adults) * this.form.passDiscount
 
             if (this.form.passDiscount < 1) {
@@ -4154,8 +4144,8 @@ let vm = new Vue({
                 let arrPrices = this.hotels[curHotel].rooms[curRoom].prices[this.form.adults].slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd));
                 hotelTotalPrice = arrPrices.reduce(reducer);
 
-                let skiPassDays = daysTour < 6 ? daysTour : daysTour - 1;
-                let skiPassPrice = ((skiPass * skiPassDays) * this.form.adults);
+                // let skiPassDays = daysTour < 6 ? daysTour : daysTour - 1;
+                // let skiPassPrice = ((skiPass * skiPassDays) * this.form.adults);
 
                 if (this.hotels[curHotel].rooms[curRoom].breakfasts_included === true) {
                     this.form.hotelBreakfast = true;
@@ -4175,10 +4165,7 @@ let vm = new Vue({
                 }
                 if (this.form.adults > 0 && daysTour > 3) {
                     totalPrice =
-                        (passPrice
-                            + hotelTotalPrice
-                            + skiPassPrice
-                            + allBreakfasts) * gain
+                        passPrice + ((hotelTotalPrice + allBreakfasts) * gain)
 
                     if (window.location.href !== 'https://nswpay.ru/') {
                         console.log('adults ' + this.form.adults)
@@ -4188,16 +4175,14 @@ let vm = new Vue({
                         console.log('hotelTotalPrice dayEnd indexOf ' + vm.days.indexOf(dayEnd))
                         console.log('hotelTotalPrice dayEnd ' + dayEnd)
                         console.log('hotelTotalPrice daysCount ' + daysCount)
-                        console.log('passPrice no discount ' + (this.passes[curPass].price * this.form.adults))
                         console.log('passPrice ' + passPrice)
                         console.log('discount ' + this.form.passDiscount)
                         console.log('hotelTotalPrice ' + hotelTotalPrice)
-                        console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
                         console.log('allBreakfasts ' + allBreakfasts)
                     }
 
                     this.form.hotelPrice = hotelTotalPrice
-                    this.form.skipassPrice = ((skiPass * (daysTour - 1)) * this.form.adults)
+                    this.form.skipassPrice = 0
                     this.form.hotelBreakfastPrice = allBreakfasts
                     this.form.tourPrice = Math.ceil(totalPrice)
                     return Math.ceil(totalPrice) + '₽'
@@ -4213,13 +4198,7 @@ let vm = new Vue({
                 console.log("Шаг 2 : to checkFriendPhone ")
                 this.checkFriendPhone()
             }
-        },
-        friendPassPrice(){
-          if (this.form.friendPassAdded && this.friendPassPrice !== 8000) {
-             this.form.friendPassAdded = null
-             this.form.passPrice = this.friendPassPrice
-          }
-       }
+        }
     },
     methods: {
         setLocale: function (locale) {
@@ -4414,10 +4393,14 @@ let vm = new Vue({
             }
         },
         applyFriendPassPrice() {
-            if (!this.form.friendPassAdded) {
-                this.form.passPrice = this.friendPassPrice
+            this.form.passPrice = this.friendPassPrice
+        },
+        applyFullFriendPassPrice() {
+            let curPass = this.passes.indexOf(this.passes.find(pass => pass.code === this.form.pass))
+            if (this.form.friendPassAdded) {
+              this.form.passPrice = this.passes[curPass].fullprice
             } else {
-                this.form.passPrice = 8000
+               this.form.passPrice = this.friendPassPrice
             }
         },
         applyPromoCode() {
