@@ -35,7 +35,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=1609615830">
+  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=1613999309">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -513,14 +513,14 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             </div>
           </div>
           <div clas="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-4">
               <div class="row">
                 <div class="col-12 col-md-1">
                 </div>
-                <div class="col-12 col-md-5">
+                <div class="col-8 col-sm-6 col-md-5">
                   <img src="<?= $path ?>images/svg/friend_card_step5.svg"/>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-4 col-sm-6 col-md-6">
                   <div class="row">
                     <label for="addFriendPass">
                       <input v-model.trim="form.friendPassAdded"
@@ -533,12 +533,12 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                            :class="[form.friendPassAdded ? ' active' : '']"></div>
                     </label>
                     <div class="col-9">
-                      <p>
+                      <p class="f2">
                         {{ translations.friendPassAdded[selectedLocale] }}
                       </p>
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row ownprice">
                     <input type="text" class="form-control col promocode"
                            v-model="friendPassPrice"
                            :placeholder="translations.friendPassPrice[selectedLocale]">
@@ -666,7 +666,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             </div>
           </div>
         </section>
-        <section v-if="step === 6">
+        <section v-if="step === 7">
           <div class="row">
             <div class="col text-center">
               <div v-if="form.payed === 1" v-html="translations.tourSuccess[selectedLocale]">
@@ -684,7 +684,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                   v-if="step !== 1"
                   @click.prevent="prevStep">{{ translations.stepPrevious[selectedLocale] }}
           </button>
-          <div v-if="step > 2 && step < 6" class="row col-5 col-sm-6 col-lg-6 text-right nsc-tour-sum">
+          <div v-if="step > 2 && step < 7" class="row col-5 col-sm-6 col-lg-6 text-right nsc-tour-sum">
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
@@ -714,8 +714,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 v-show="form.consent && form.offer"
                 id="alfa-payment-button"
                 data-token="<?= $token ?>"
-                data-return-url="http://<?= $host ?>/?step=6&par=0&tourNumber=<?= $tourNumber ?>"
-                data-fail-url="http://<?= $host ?>/?step=6"
+                data-return-url="http://<?= $host ?>/?step=7&par=0&tourNumber=<?= $tourNumber ?>"
+                data-fail-url="http://<?= $host ?>/?step=7"
                 data-language="ru"
                 data-stages="1"
                 data-amount-format="rubli"
@@ -1254,7 +1254,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=28"></script>
+<script src="<?= $path ?>js/app.min.js?rev=1614000028"></script>
 <!--<script src="js/vue-tap.js"></script>--
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>

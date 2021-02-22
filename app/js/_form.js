@@ -441,7 +441,7 @@ let vm = new Vue({
         step: 1,
         phonestatus: false,
         friendPhone: null,
-        totalsteps: 5,
+        totalsteps: 7,
         errors: null,
         guests: 1,
         error: null,
@@ -461,38 +461,48 @@ let vm = new Vue({
                 active: false,
                 id: 2,
                 name: {
-                    'ru': 'Выбор<br> даты',
-                    'en': 'Choose<br> dates'
+                    'ru': 'Даты',
+                    'en': 'Dates'
                 },
                 text: 'text-center',
-                col: 'col-3',
+                col: 'col',
             },
             {
                 active: false,
                 id: 3,
                 name: {
-                    'ru': 'Выбор<br> отеля',
-                    'en': 'Choose<br> accommodation'
+                    'ru': 'Отель',
+                    'en': 'Accommodation'
                 },
                 text: 'text-center',
-                col: 'col-3',
+                col: 'col',
             },
             {
                 active: false,
                 id: 4,
                 name: {
-                    'ru': 'Персональные<br> данные',
-                    'en': 'Personal<br> details'
+                    'ru': 'Данные',
+                    'en': 'Personal'
                 },
                 text: 'text-center',
-                col: 'col-3',
+                col: 'col',
             },
             {
                 active: false,
                 id: 5,
                 name: {
-                    'ru': 'Покупка<br> тура',
-                    'en': 'Tour<br> purchasing'
+                    'ru': 'Friends Pass',
+                    'en': 'Friends Pass'
+                },
+                text: 'text-center',
+                col: 'col',
+            },
+            {
+                active: false,
+                id: 6,
+                name: {
+                    'ru': 'Оплата',
+                    'en': 'Purchase'
                 },
                 text: 'text-right',
                 col: 'col',
@@ -4045,11 +4055,11 @@ let vm = new Vue({
     },
     mounted: function () {
         get_parameters = this.$route.query
-        if (get_parameters.step == 6 && get_parameters.par != 0) {
-            this.step = 6;
+        if (get_parameters.step == 7 && get_parameters.par != 0) {
+            this.step = 7;
             this.form.payed = 0;
-        } else if (get_parameters.step == 6 && get_parameters.par == 0) {
-            this.step = 6;
+        } else if (get_parameters.step == 7 && get_parameters.par == 0) {
+            this.step = 7;
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
         }
@@ -4313,6 +4323,10 @@ let vm = new Vue({
                     this.errors = null;
                     this.step++;
                 }
+            } else if (this.step === 5) {
+                if (this.errors === null) {
+                   this.step++;
+                }
             }
         },
         showPassVDetail() {
@@ -4394,6 +4408,7 @@ let vm = new Vue({
         },
         applyFriendPassPrice() {
             this.form.passPrice = this.friendPassPrice
+            this.form.friendPassAdded = null
         },
         applyFullFriendPassPrice() {
             let curPass = this.passes.indexOf(this.passes.find(pass => pass.code === this.form.pass))
