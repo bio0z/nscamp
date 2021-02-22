@@ -34,7 +34,7 @@ let vm = new Vue({
             'ru': "RU",
             'en': "EN",
         },
-        phpPath: '',
+        phpPath: 'friends/',
         selectedLocale: 'ru',
         days: [26, 27, 28, 29, 30, 31, 1, 2, 3, 4],
         promocode: '',

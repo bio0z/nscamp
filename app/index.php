@@ -1,7 +1,7 @@
 <?php
 $tourID = count(scandir('sent/')) + 1;
 $host = $_SERVER['HTTP_HOST'];
-$host == 'localhost' ? $path = 'nscamp-friends/app/' : '';
+$host == 'localhost' ? $path = 'nscamp-friends/app/' : $path = 'friends/';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 ?>
@@ -20,7 +20,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
 
   <!-- Template Basic Images Start -->
-  <meta property="og:image" content="<?= $path ?>/images/meta-image.jpg">
+  <meta property="og:image" content="<?= $path ?>images/meta-image.jpg">
   <meta
       content="Фестиваль New Star Camp пройдет 26 марта - 4 апреля 2021 года на всесезонном горном курорте «Роза Хутор» (Сочи)."
       property="description">
@@ -1253,7 +1253,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=27"></script>
+<script src="<?= $path ?>js/app.min.js?rev=28"></script>
 <!--<script src="js/vue-tap.js"></script>--
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>
