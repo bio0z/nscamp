@@ -455,11 +455,11 @@ let vm = new Vue({
                 active: true,
                 id: 1,
                 name: {
-                    'ru': 'Авторизация',
-                    'en': 'Authorize'
+                    'ru': 'Вход',
+                    'en': 'Login'
                 },
                 text: 'text-left',
-                col: 'col',
+                col: '',
             },
             {
                 active: false,
@@ -495,8 +495,8 @@ let vm = new Vue({
                 active: false,
                 id: 5,
                 name: {
-                    'ru': 'Friends Pass',
-                    'en': 'Friends Pass'
+                    'ru': 'Donation',
+                    'en': 'Donation'
                 },
                 text: 'text-center',
                 col: 'col',
@@ -509,7 +509,7 @@ let vm = new Vue({
                     'en': 'Purchase'
                 },
                 text: 'text-right',
-                col: 'col',
+                col: '',
             }
         ],
 

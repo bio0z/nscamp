@@ -10,6 +10,7 @@ if (isset($_POST)) {
   $arFriendsPhones = [
     '89110106919',
     '89262096108',
+    '89269748191',
   ];
 
   if (in_array($phoneToCheck, $arFriendsPhones)) {
