@@ -127,11 +127,11 @@ function revtimestamp() {
 		.pipe(gulp.dest('app'))
 }
 
-exports.browsersync = browsersync;
+// exports.browsersync = browsersync;
 exports.assets      = series(styles, scripts);
 exports.styles      = styles;
 exports.scripts     = scripts;
 // exports.images      = images;
 // exports.cleanimg    = cleanimg;
-exports.deploy      = deploy;
-exports.default     = parallel(styles, scripts, browsersync, revtimestamp, startwatch);
+// exports.deploy      = deploy;
+exports.default     = parallel(styles, scripts, revtimestamp, startwatch);

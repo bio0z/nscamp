@@ -509,7 +509,7 @@ let vm = new Vue({
         hotelQuota: '',
         hotels: [
             {
-                active: true,
+                active: false,
                 name: 'Riders Lodge **',
                 code: 'RIL',
                 address: 'Улица Медовея 6, Эсто-Садок, Россия',
@@ -2884,7 +2884,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Приют Панды',
                 code: 'PP',
                 formula: 99,
@@ -3042,10 +3042,10 @@ let vm = new Vue({
                     }
                 ],
                 desc: {
-                    'ru': 'Отель «Приют Панды» находится в селе Эстосадок, всего в 500 метрах от подъемника «Роза Хутор». На территории отеля работает кафе и предоставляется бесплатный Wi-Fi. /n' +
-                        'В ярко оформленных номерах этого отеля к услугам гостей балкон. В некоторых номерах есть собственная ванная комната, гости других номеров пользуются общей ванной комнатой. /n' +
-                        'В распоряжении гостей отеля «Приют Панды» общий лаундж. Горнолыжный подъемник «Альпика-сервис» расположен менее чем в 5 км. /n' +
-                        'Автомобиль можно оставить на бесплатной парковке. /n',
+                    'ru': 'Отель «Приют Панды» находится в селе Эстосадок, всего в 500 метрах от подъемника «Роза Хутор». На территории отеля работает кафе и предоставляется бесплатный Wi-Fi.' +
+                        'В ярко оформленных номерах этого отеля к услугам гостей балкон. В некоторых номерах есть собственная ванная комната, гости других номеров пользуются общей ванной комнатой.' +
+                        'В распоряжении гостей отеля «Приют Панды» общий лаундж. Горнолыжный подъемник «Альпика-сервис» расположен менее чем в 5 км.' +
+                        'Автомобиль можно оставить на бесплатной парковке.',
                     'en': 'A cozy, little hotel located at the entrance of the Olympic village right next to the free parking lots for guests. A colorful and comfortable recreation area where you can find table-top games, cafes and a large screen to relax after a hectic day on the slopes.'
                 }
             },
@@ -3834,7 +3834,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Valset by Azimut',
                 code: 'VALBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.4',
@@ -3845,7 +3845,10 @@ let vm = new Vue({
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-2.jpg',
-                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-3.jpg'
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-3.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-VALBAZ-ap-s1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-VALBAZ-ap-s2.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-VALBAZ-ap-s3.jpg'
                 ],
                 rooms: [
                     {
@@ -3934,15 +3937,15 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-2.jpg'
                     },
                     {
-                        active: false,
+                        active: true,
                         name: 'Трехкомнатные апартаменты (корпус Спорт)',
                         code: 'APTSC',
                         prices: {
-                            1: [7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000],
-                            2: [7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000],
-                            3: [7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000],
-                            4: [7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000],
-                            5: [7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000],
+                            1: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
+                            2: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
+                            3: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
+                            4: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
+                            5: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
                         },
                         breakfasts: {},
                         breakfasts_included: false,
@@ -3981,6 +3984,46 @@ let vm = new Vue({
                                 '<li>WI-FI</li>',
                         },
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-3.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Однокомнатные апартаменты Home (4, 5 корпус)',
+                        code: 'APTSH',
+                        prices: {
+                            1: [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500],
+                            2: [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500],
+                        },
+                        breakfasts: {},
+                        breakfasts_included: false,
+                        breakfasts_no: true,
+                        maxGuests: 2,
+                        beds: [
+                            {
+                                'code': 2,
+                                'name': '1 двуспальные кровати'
+                            }
+                        ],
+                        desc: {
+                            'ru': '<ul><li>TV</li>' +
+                                '<li>WI-FI</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Плита</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Микроволновая печь</li>' +
+                                '<li>Посудомоечная машина</li>' +
+                                '<li>Душевая кабина или ванна</li>' +
+                                '<li>Фен</li>',
+                            'en': '<ul><li>TV</li>' +
+                                '<li>WI-FI</li>' +
+                                '<li>Телефон</li>' +
+                                '<li>Плита</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Микроволновая печь</li>' +
+                                '<li>Посудомоечная машина</li>' +
+                                '<li>Душевая кабина или ванна</li>' +
+                                '<li>Фен</li></ul>',
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-VALBAZ-ap-s1.jpg'
                     }
                 ],
                 desc: {
