@@ -4,6 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp-friends/app/' : $path = 'friends/';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
+$timestamp = '1614086154';
 ?>
 
 <html lang="ru">
@@ -35,7 +36,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
   <meta name="theme-color" content="#000">
   <!-- Custom Browsers Color End -->
 
-  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=1614007701">
+  <link rel="stylesheet" href="<?= $path ?>css/app.min.css?rev=<?= $timestamp ?>">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,500,700&amp;subset=latin-ext"
         rel="stylesheet">
   <script type="text/x-template" id="modal-template">
@@ -105,26 +106,26 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <body>
 <div id="orderForm" class="container" v-cloak>
   <header :onload.once="getDomain" class="row m-0 mt-2">
-    <div class="col-12 pb-3 lang-mob">
-      <button class="btn btn-link p-0 link">
-        <div v-for="(locale,code) in locales">
-          <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>
-        </div>
-      </button>
-    </div>
-    <div class="col-8"><h1>{{ translations.title[selectedLocale] }}</h1></div>
-    <div class="col text-right pt-2 nsc-logo">
+    <!--    <div class="col-12 pb-3 lang-mob">-->
+    <!--      <button class="btn btn-link p-0 link">-->
+    <!--        <div v-for="(locale,code) in locales">-->
+    <!--          <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>-->
+    <!--        </div>-->
+    <!--      </button>-->
+    <!--    </div>-->
+    <!--    <div class="col-8"><h1>{{ translations.title[selectedLocale] }}</h1></div>-->
+    <div class="col text-center pt-2 nsc-logo">
       <a href="https://newstarcamp.ru">
         <img src="<?= $path ?>images/svg/nsc-logo.svg?v=2">
       </a>
     </div>
-    <div class="col-1 lang-top">
-      <button class="btn btn-link p-0 link">
-        <div v-for="(locale,code) in locales">
-          <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>
-        </div>
-      </button>
-    </div>
+    <!--    <div class="col-1 lang-top">-->
+    <!--      <button class="btn btn-link p-0 link">-->
+    <!--        <div v-for="(locale,code) in locales">-->
+    <!--          <a :data-lang-id="code" v-if="code!==selectedLocale" @click.prevent="setLocale(code)">{{ locale }}</a>-->
+    <!--        </div>-->
+    <!--      </button>-->
+    <!--    </div>-->
   </header>
   <main class="row">
     <div class="col">
@@ -137,17 +138,23 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
         </ul>
         <section v-if="step === 1">
           <div class="row">
-            <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img src="<?= $path ?>images/svg/step1.svg?v=2"/>
                 </div>
-                <div class="col-6 col-sm-6 col-md-8 col-lg-8">
-                  {{ translations.stepFriendPhone[selectedLocale] }}
+                <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+                  <p>Привет!</p>
+                  <p>Для путешествия на Quiksilver New Star Camp 2012 тебе осталось несколько шагов. Эта страница
+                    сделана специально для друзей фестиваля. Здесь ты можешь подобрать тур и получить приятный бонус от
+                    нас в виде ски-пасса и браслета участника!</p>
+                  <p>Введи номер телефона чтобы продолжить.</p>
                 </div>
               </div>
             </div>
             <div class="col-12 col-sm-12 col-md-9 col-lg-9 mb-2 pl-0 pr-0">
+              <div class="row">
+              </div>
               <div class="row p-3 justify-content-md-end justify-content-center">
                 <div clas="col-12 col-sm-12 col-lg-6">
 
@@ -160,7 +167,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          id="phone"
                          autocomplete="tel"
                          class="form-control phone"
-                         :placeholder="translations.guestPhone[selectedLocale]"
+                         placeholder="+7 (___) ___-__-__"
                          maxlength="17"
                          v-phone
                          pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
@@ -184,6 +191,12 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
               </div>
             </div>
             <div class="col-12 col-sm-12 col-md-8 col-lg-8 p-sm-2">
+              <div class="row">
+                <p>Дорогой друг!</p>
+                <p>При выборе срока пребывания важно помнить, что фестиваль - это не просто горы, а горы эмоций!
+                  Красивые виды и заряд энергии тоже никто не отменял.</p>
+                <p>Мы рекомендуем тебе оставаться на 4 ночи и больше, чтобы успеть хоть что-то)</p>
+              </div>
               <div class="row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
                   <vuejs-datepicker
@@ -273,8 +286,8 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img src="<?= $path ?>images/svg/step3.svg?v=2"/>
                 </div>
-                <div class="col-6 col-sm-6 col-md-8 col-lg-8">
-                  {{ translations.stepHotel[selectedLocale] }}
+                <div class="col-9 col-sm-9 col-md-9 col-lg-9">
+                  <p>Здесь выбор уже сделан. В отеле будут жить организаторы, партнеры, райдеры, артисты и ты!</p>
                 </div>
               </div>
             </div>
@@ -384,7 +397,9 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
             <div class="col-12 col-sm-12 col-md-6 col-lg-8 pt-sm-2" id="Guests">
               <div class="form-row">
                 <div class="col-md-12 pl-4 pr-4 pb-3 pt-3 mb-2 present-skipass">
-                  {{ translations.presentSkiPass[selectedLocale] }}
+                  <p>Команда NewStarCamp дарит тебе ски-пасс на выбранные дни фестиваля. Если у тебя нет горнолыжного
+                    оборудования, ты можешь взять его в прокате Riders Rent со скидкой 50%, сообщив при оплате свои
+                    фамилию и номер телефона.'</p>
                 </div>
               </div>
               <div class="form-row">
@@ -414,7 +429,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                          id="phone"
                          autocomplete="tel"
                          class="form-control "
-                         :placeholder="translations.guestPhone[selectedLocale]"
+                         placeholder="+7 (___) ___-__-__"
                          maxlength="17"
                          v-phone
                          pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
@@ -507,7 +522,11 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
                   <img src="<?= $path ?>images/svg/step5.svg?v=2"/>
                 </div>
                 <div class="col-10">
-                  {{ translations.stepFive[selectedLocale] }}
+                  <!--                  <p>Команда NewStarCamp дарит тебе карту участника, которая даёт доступ на все события фестиваля. Мы знаем, как ты любишь New Star Camp, и даём возможность сделать донейшн в размере стоимости карты участника или другой суммы, которую ты посчитаешь нужной. Все собранные средства пойдут на развитие культуры action-спорта и помощь восходящим звёздам из мира спорта и музыки. Спасибо тебе, друг!</p>-->
+                  <p>От лица команды фестиваля мы дарим тебе браслет участника, который позволит посещать все события и
+                    локации. Мы знаем, что ты любишь то, что мы делаем и даем возможность оставить донейшн в размере
+                    стоимости браслета или любой суммы, которая кажется тебе целесообразной. Собранные средства пойдут
+                    на поддержку и развитие фестиваля. Спасибо!</p>
                 </div>
               </div>
             </div>
@@ -601,16 +620,23 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
               </div>
               <div class="col-12 col-sm-12 col-md-1 col-lg-1"></div>
               <div class="col pt-3">
-                <div class="tourIncluded" v-html="translations.tourIncluded[selectedLocale]">
+                <div class="tourIncluded">
+                  <p><b>В тур включено:</b></p>
+                  <ul>
+                    <li> Браслет участника</li>
+                    <li> Проживание в отеле</li>
+                    <li> Ски-пасс</li>
+                    <li v-if="form.hotelBreakfast"> Завтрак</li>
+                  </ul>
                 </div>
                 <div class="row">
-                  <input type="text" class="form-control col promocode"
-                         v-model.prevent="promocode"
-                         :placeholder="translations.guestPromoCode[selectedLocale]">
-                  <div class="form-control col  nsc-button"
-                       @click.prevent="applyPromoCode()">
-                    {{ translations.guestPromoCodeApply[selectedLocale] }}
-                  </div>
+                  <!--                  <input type="text" class="form-control col promocode"-->
+                  <!--                         v-model.prevent="promocode"-->
+                  <!--                         :placeholder="translations.guestPromoCode[selectedLocale]">-->
+                  <!--                  <div class="form-control col  nsc-button"-->
+                  <!--                       @click.prevent="applyPromoCode()">-->
+                  <!--                    {{ translations.guestPromoCodeApply[selectedLocale] }}-->
+                  <!--                  </div>-->
                   <!--                  <div class="col" v-if="form.passDiscount < 1">-->
                   <!--                    {{ translations.guestPromoCodeDiscount[selectedLocale] }}-->
                   <!--                  </div>-->
@@ -1252,7 +1278,7 @@ $env = $host == 'nswpay.ru' ? 'prod' : 'test';
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="<?= $path ?>js/app.min.js?rev=1614009033"></script>
+<script src="<?= $path ?>js/app.min.js?rev=<?= $timestamp ?>"></script>
 <!--<script src="js/vue-tap.js"></script>--
 <!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>

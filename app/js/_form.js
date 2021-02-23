@@ -48,9 +48,9 @@ let vm = new Vue({
             adults: '',
             kids: '',
 
-            hotel: 'MRK4',
+            hotel: 'PIRRS4',
             hotelName: '',
-            hotelBreakfast: null,
+            hotelBreakfast: true,
             hotelBreakfastPrice: null,
             hotelPrice: null,
             address: null,
@@ -235,10 +235,6 @@ let vm = new Vue({
                 'ru': 'Фамилия',
                 'en': 'Surname'
             },
-            guestPhone: {
-                'ru': '+7 (___) ___-__-__',
-                'en': '+7 (___) ___-__-__'
-            },
             guestPhoneText: {
                 'ru': 'Телефон',
                 'en': 'Phone num'
@@ -272,32 +268,27 @@ let vm = new Vue({
                 'en': 'FAQ'
             },
             stepThree: {
-                'ru': 'Заполните, персональные данные и оставьте контактную информацию.',
+                'ru': 'Заполни, персональные данные и оставь контактную информацию.',
                 'en': 'Please, fill the personal information.'
             },
             stepFour: {
-                'ru': 'Проверьте введенные данные, подтвердите согласие на их обработку, введите промокод, если имеется, и ' +
-                    'нажмите кнопку «Купить тур».',
-                'en': 'Check your details, enter promocode.'
-            },
-            stepFive: {
-                'ru': 'Команда NSC дарит тебе карту участника, которая даёт доступ на все события фестиваля. Мы знаем, как ты любишь New Star Camp, и даём возможность сделать донейшн в размере стоимости карты участника или другой суммы, которую ты посчитаешь нужной. Все собранные средства пойдут на развитие культуры action-спорта и помощь восходящим звёздам из мира спорта и музыки. Спасибо тебе, друг!',
-                'en': 'Команда NSC дарит тебе карту участника, которая даёт доступ на все события фестиваля. Мы знаем, как ты любишь New Star Camp, и даём возможность сделать донейшн в размере стоимости карты участника или другой суммы, которую ты посчитаешь нужной. Все собранные средства пойдут на развитие культуры action-спорта и помощь восходящим звёздам из мира спорта и музыки. Спасибо тебе, друг!'
+                'ru': 'Проверь введенные данные, подтверди согласие на их обработку и нажми кнопку «Купить тур».',
+                'en': 'Check your details.'
             },
             friendPassAdded: {
-                'ru': 'Добавить стоимость карты участника (8000 рублей)',
-                'en': 'Добавить стоимость карты участника (8000 рублей)'
+                'ru': 'Добавить стоимость браслета участника (8000 рублей)',
+                'en': 'Добавить стоимость браслета участника (8000 рублей)'
             },
             stepDates: {
-                'ru': 'Выберите даты',
-                'en': 'Please, choose dates'
+                'ru': 'Выбери даты',
+                'en': 'Сhoose dates'
             },
             dateFrom: {
-                'ru': 'Начало тура',
+                'ru': 'Начало трипа',
                 'en': 'Tour start'
             },
             dateTill: {
-                'ru': 'Конец тура',
+                'ru': 'Грустный камбек',
                 'en': 'Tour end'
             },
             dateNote: {
@@ -305,19 +296,15 @@ let vm = new Vue({
                 'en': '* Туры длительностью менее 9 дней станут доступны с 01.01.2021',
             },
             tourAdults: {
-                'ru': 'Количество взрослых',
+                'ru': 'Количество гостей',
                 'en': 'Number of adults',
-            },
-            presentSkiPass: {
-                'ru': 'Команда NSC дарит тебе Ski-Pass на выбранные дни фестиваля. Если у тебя нет горнолыжного оборудования, ты можешь взять его в прокате Riders Rent со скидкой 50%, сообщив при оплате свои фамилию и номер телефона.',
-                'en': 'Команда NSC дарит тебе Ski-Pass на выбранные дни фестиваля. Если у тебя нет горнолыжного оборудования, ты можешь взять его в прокате Riders Rent со скидкой 50%, сообщив при оплате свои фамилию и номер телефона.',
             },
             tourKids: {
                 'ru': 'Количество детей',
                 'en': 'Number of children',
             },
             stepHotel: {
-                'ru': 'Выберите отель и тип номера.',
+                'ru': 'Выберит отель и тип номера.',
                 'en': 'Please, choose your accommodation.'
             },
             errorWrongPhone: {
@@ -379,20 +366,6 @@ let vm = new Vue({
             errorFillCorrectPhone: {
                 'ru': 'Укажите корректный телефон.',
                 'en': 'Please, fill correct number of cell phone'
-            },
-            tourIncluded: {
-                'ru': '<p><b>В тур включено:</b></p></li>' +
-                    '<ul></li>' +
-                    '<li> Браслет участника</li></li>' +
-                    '<li> Проживание в отеле</li></li>' +
-                    '<li> Ски-пасс</li></li>' +
-                    '</ul>',
-                'en': '<p><b>Tour details:</b></p></li>' +
-                    '<ul></li>' +
-                    '<li> Festival PASS</li></li>' +
-                    '<li> Hotel accommodation</li></li>' +
-                    '<li> Cable lifts ticket(s)</li></li>' +
-                    '</ul>',
             },
             guestAgreement: {
                 'ru': 'Я даю ',
@@ -485,8 +458,8 @@ let vm = new Vue({
                 active: false,
                 id: 4,
                 name: {
-                    'ru': 'Данные',
-                    'en': 'Personal'
+                    'ru': 'Оформление',
+                    'en': 'Guests'
                 },
                 text: 'text-center',
                 col: 'col',
@@ -495,8 +468,8 @@ let vm = new Vue({
                 active: false,
                 id: 5,
                 name: {
-                    'ru': 'Donation',
-                    'en': 'Donation'
+                    'ru': 'Friends pass',
+                    'en': 'Friends pass'
                 },
                 text: 'text-center',
                 col: 'col',
@@ -2062,7 +2035,7 @@ let vm = new Vue({
                 ],
                 rooms: [
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт',
                         code: 'S2',
                         prices: {
@@ -2444,13 +2417,13 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Отель Park Inn by Radisson Rosa Khutor ****',
                 code: 'PIRRS4',
                 address: 'Улица Олимпийская 35, Эсто-Садок, Россия',
                 formula: 99,
                 maxGuests: 2,
-                gain: 1.12,
+                gain: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg',
@@ -2460,6 +2433,47 @@ let vm = new Vue({
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-6-president-lux-1.jpg',
                 ],
                 rooms: [
+                    {
+                        active: true,
+                        name: 'Стандарт',
+                        code: 'S2FF',
+                        prices: {
+                            1: [4700, 4700, 4700, 3500, 3500, 3500, 3500, 3500, 3500, 3500],
+                            2: [4700, 4700, 4700, 3500, 3500, 3500, 3500, 3500, 3500, 3500],
+                        },
+                        breakfasts: {
+                            1: [600, 600, 600, 900, 900, 900, 900, 900, 900, 900],
+                            2: [1500, 1500, 1500, 1800, 1800, 1800, 1800, 1800, 1800, 1800]
+                        },
+                        breakfasts_included: false,
+                        breakfasts_no: false,
+                        beds: [
+                            {
+                                'code': 1,
+                                'name': '1 двуспальная кровать',
+                            },
+                            {
+                                'code': 2,
+                                'name': '2 односпальные кровати'
+                            }
+                        ],
+                        desc: {
+                            'ru': '<ul><li>28 кв. м.</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Тапочки</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Телевизор </li>' +
+                                '<li>Бесплатная бутилированная вода</li>' +
+                                '<li>Бесплатный Wi-Fi</li></ul>',
+                            'en': '<ul><li>29 m2</li>' +
+                                '<li>Espresso machine, Teapot</li>' +
+                                '<li>TV</li>' +
+                                '<li>Hair Dryer</li>' +
+                                '<li>Water</li>' +
+                                '<li>WI-FI</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg'
+                    },
                     {
                         active: false,
                         name: 'Стандарт',
@@ -2779,13 +2793,13 @@ let vm = new Vue({
                     }
                 ],
                 desc: {
-                    'ru': 'Отель Park Inn by Radisson 4* расположен в самом сердце горного курорта «Роза Хутор», в шаговой доступности от главных канатных дорог «Олимпия» и «Стрела». </li>' +
+                    'ru': 'Отель Park Inn by Radisson 4* расположен в самом сердце горного курорта «Роза Хутор», в шаговой доступности от главных канатных дорог «Олимпия» и «Стрела».' +
                         'Отель Park Inn by Radisson Rosa Khutor 4* предлагает своим гостям современные комфортабельные номера с видом на горные вершины. Кроме того, отель располагает номерами для людей с ограниченными возможностями. На первом этаже отеля расположен баварский ресторан, где можно насладиться европейскими блюдами от нашего шеф-повара, а в лобби баре хорошо провести время с друзьями около камина.',
                     'en': 'Park Inn is one of the first hotels that has been opened at Rosa Khutor Resort. In 2012, the hotel hosted participants and facilitators of the first mountain festival. In the spacious and comfortable lobby, you might often see guest music stars, sportsmen and organisers. The festival’s second information desk is also located there. Stylish and attractive rooms will help you fully recover after a busy day, and due to its convenient location and proximity to chairlifts you will be first to arrive at the main festival site.'
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 formula: 99,
@@ -4071,7 +4085,6 @@ let vm = new Vue({
     computed: {
         getDomain() {
             let domain = document.domain
-            console.log('getDomain ' + domain)
             if (domain === 'localhost') {
                 this.phpPath = 'nscamp-friends/app/'
             }
