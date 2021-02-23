@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp-friends/app/' : $path = 'friends/';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1614109470';
+$timestamp = '1614113557';
 ?>
 
 <html lang="ru">
@@ -116,7 +116,7 @@ $timestamp = '1614109470';
         <div class="col-8" v-if="step > 1"><h1>{{ steps[step-1].name[selectedLocale] }}</h1></div>
     <div class="col text-center pt-2 nsc-logo">
       <a href="https://newstarcamp.ru">
-        <img src="<?= $path ?>images/svg/nsc-logo.svg?v=2">
+        <img alt="" src="<?= $path ?>images/svg/nsc-logo.svg?v=2">
       </a>
     </div>
     <!--    <div class="col-1 lang-top">-->
@@ -141,7 +141,7 @@ $timestamp = '1614109470';
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?= $path ?>images/svg/step1.svg?v=2"/>
+                  <img alt="" src="<?= $path ?>images/svg/step1.svg?v=2"/>
                 </div>
                 <div class="col-8 col-sm-8 col-md-8 col-lg-8">
                   <p>Привет!</p>
@@ -152,14 +152,9 @@ $timestamp = '1614109470';
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-9 col-lg-9 mb-2 pl-0 pr-0">
-              <div class="row">
-              </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-2 pl-0 pr-0">
               <div class="row p-3 justify-content-md-end justify-content-center">
-                <div clas="col-12 col-sm-12 col-lg-6">
-
-                </div>
-                <div clas="col-12 col-sm-12 col-lg-6">
+                <div class="col-12 col-sm-12 col-lg-12 text-center">
                   <input type="phone"
                          width="261px"
                          v-model.trim="friendPhone"
@@ -170,7 +165,7 @@ $timestamp = '1614109470';
                          placeholder="8 (___) ___-____"
                          maxlength="17"
                          v-phone
-                         required>
+                         required />
                   <div class="phone-error p-2" v-if="errors != null">{{ errors }}</div>
                 </div>
               </div>
@@ -182,7 +177,7 @@ $timestamp = '1614109470';
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?= $path ?>images/svg/step2.svg?v=2"/>
+                  <img alt="" src="<?= $path ?>images/svg/step2.svg?v=2"/>
                 </div>
                 <div class="col-6 col-sm-6 col-md-8 col-lg-8">
                   {{ translations.stepDates[selectedLocale] }}
@@ -283,7 +278,7 @@ $timestamp = '1614109470';
             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?= $path ?>images/svg/step3.svg?v=2"/>
+                  <img alt="" src="<?= $path ?>images/svg/step3.svg?v=2"/>
                 </div>
                 <div class="col-9 col-sm-9 col-md-9 col-lg-9">
                   <p>Здесь выбор уже сделан. В этом отеле будут жить организаторы, партнеры, райдеры, артисты и ты!</p>
@@ -337,7 +332,7 @@ $timestamp = '1614109470';
                     <input v-model.trim="form.hotelBreakfast"
                            class="custom-control-input"
                            type="checkbox"
-                           required/>
+                           required />
                     <div class="border-0 mr-1 nsc-bf-checkbox"
                          :class="[form.hotelBreakfast ? ' active' : '']"></div>
                     <div class="col" v-html="translations.hotelBreakfast[selectedLocale]"></div>
@@ -386,7 +381,7 @@ $timestamp = '1614109470';
             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
               <div class="row step-num">
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
-                  <img src="<?= $path ?>images/svg/step4.svg?v=2"/>
+                  <img alt="" src="<?= $path ?>images/svg/step4.svg?v=2"/>
                 </div>
                 <div class="col-8 col-sm-8 col-md-8 col-lg-8">
                   {{ translations.stepThree[selectedLocale] }}
@@ -395,11 +390,9 @@ $timestamp = '1614109470';
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-8 pt-sm-2" id="Guests">
               <div class="form-row">
-                <div class="col-md-12 pl-4 pr-4 pb-3 pt-3 mb-2 present-skipass">
-                  <p>Команда New Star Camp дарит тебе ски-пасс на выбранные дни фестиваля. Если у тебя нет горнолыжного
-                    оборудования, ты можешь взять его в прокате Riders Rent со скидкой 50%, сообщив при оплате свои
-                    фамилию и номер телефона.</p>
-                </div>
+                <p>Команда New Star Camp дарит тебе ски-пасс на выбранные дни фестиваля. Если у тебя нет горнолыжного
+                  оборудования, ты можешь взять его в прокате Riders Rent со скидкой 50%, сообщив при оплате свои
+                  фамилию и номер телефона.</p>
               </div>
               <div class="form-row">
                 <h5>{{ translations.firstGuest[selectedLocale] }}</h5>
@@ -422,7 +415,7 @@ $timestamp = '1614109470';
                          required>
                 </div>
                 <div class="col-md-12 mb-4">
-                  <input type="phone"
+                  <input type="tel"
                          v-model.trim="form.phone"
                          name="phone"
                          id="phone"
@@ -518,7 +511,7 @@ $timestamp = '1614109470';
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row step-num">
                 <div class="col-2 col-sm-2 col-md-1 col-lg-1 d-flex align-items-start flex-column p-0 nsc-step-num">
-                  <img src="<?= $path ?>images/svg/step5.svg?v=2"/>
+                  <img alt="" src="<?= $path ?>images/svg/step5.svg?v=2"/>
                 </div>
                 <div class="col-10">
                   <!--                  <p>Команда New Star Camp дарит тебе карту участника, которая даёт доступ на все события фестиваля. Мы знаем, как ты любишь New Star Camp, и даём возможность сделать донейшн в размере стоимости карты участника или другой суммы, которую ты посчитаешь нужной. Все собранные средства пойдут на развитие культуры action-спорта и помощь восходящим звёздам из мира спорта и музыки. Спасибо тебе, друг!</p>-->
@@ -530,13 +523,13 @@ $timestamp = '1614109470';
               </div>
             </div>
           </div>
-          <div clas="row">
+          <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-4">
               <div class="row">
                 <div class="col-12 col-md-1">
                 </div>
                 <div class="col-8 col-sm-6 col-md-5">
-                  <img src="<?= $path ?>images/svg/friend_card_step5.svg"/>
+                  <img alt="" src="<?= $path ?>images/svg/friend_card_step5.svg"/>
                 </div>
                 <div class="col-4 col-sm-6 col-md-6">
                   <div class="row">
@@ -575,7 +568,7 @@ $timestamp = '1614109470';
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row step-num">
                 <div class="col-2 col-sm-2 col-md-1 col-lg-1 d-flex align-items-start flex-column p-0 nsc-step-num">
-                  <img src="<?= $path ?>images/svg/step6.svg?v=2"/>
+                  <img alt="" src="<?= $path ?>images/svg/step6.svg?v=2"/>
                 </div>
                 <div class="col-10">
                   {{ translations.stepFour[selectedLocale] }}
@@ -583,7 +576,7 @@ $timestamp = '1614109470';
               </div>
             </div>
           </div>
-          <div clas="row">
+          <div class="row">
             <div class="row p-2 pb-5">
               <div class="col-12 col-sm-12 col-md-6 col-lg-6 tour-final-f">
                 <div class="tour-final tourIncluded p-3">
@@ -598,7 +591,7 @@ $timestamp = '1614109470';
                            :value="guestsNum" readonly></div>
                   <div class="row">
                     <label class="col-4" for="tourPersonEmail">E-mail</label>
-                    <input class="col-8 border-0" type="email" class="tourClientEmail" id="tourPersonEmail"
+                    <input class="col-8 border-0 tourClientEmail" type="email" id="tourPersonEmail"
                            :value="form.email" readonly></div>
                   <div class="row">
                     <label class="col-4" for="tourPersonPhone">{{ translations.guestPhoneText[selectedLocale] }}</label>
@@ -707,7 +700,7 @@ $timestamp = '1614109470';
                   v-if="step !== 1"
                   @click.prevent="prevStep">{{ translations.stepPrevious[selectedLocale] }}
           </button>
-          <div v-if="step > 2 && step < 7" class="row col-5 col-sm-6 col-lg-6 text-right nsc-tour-sum">
+          <div v-if="step > 2 && step < 7" class="row col-5 col-sm-6 col-lg-8 text-right nsc-tour-sum">
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
@@ -773,7 +766,7 @@ $timestamp = '1614109470';
             </div>
             <div class="row m-0">
               <div class="col-1 p-0 text-center">
-                <img src="<?= $path ?>images/svg/wnsc-logo.svg?v=2" class="mb-2 nsc-logo">
+                <img alt="" src="<?= $path ?>images/svg/wnsc-logo.svg?v=2" class="mb-2 nsc-logo">
                 <p>ООО «НЬЮ СТАР»</p>
               </div>
               <div class="col-10 col-sm-6 col-md-6 col-lg-6">
@@ -791,7 +784,7 @@ $timestamp = '1614109470';
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 pr-0 text-md-right text-sm-left mb-3 order-1 order-md-12">
             <div class="row m-0 p-1">
               <button id="externalButton" @click.prevent="showModal = true" class="btn nsc-btn-link p-0 link f1">
-                <img src="<?= $path ?>images/svg/user-offer.svg?v=2" class="nsc-user-offer"/>
+                <img alt="" src="<?= $path ?>images/svg/user-offer.svg?v=2" class="nsc-user-offer"/>
                 {{ translations.userAgreement[selectedLocale] }}
               </button>
             </div>

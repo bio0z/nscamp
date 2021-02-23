@@ -2871,7 +2871,7 @@ let vm = new Vue({
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 maxGuests: 2,
-                gain: 1.22,
+                gain: 1,
                 address: 'Набережная Лаванды, 4, Эсто-Садок, Россия',
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-1.jpg',
@@ -4143,10 +4143,10 @@ let vm = new Vue({
     },
     mounted: function () {
         get_parameters = this.$route.query
-        if (get_parameters.step == 7 && get_parameters.par != 0) {
+        if (get_parameters.step === 7 && get_parameters.par !== 0) {
             this.step = 7;
             this.form.payed = 0;
-        } else if (get_parameters.step == 7 && get_parameters.par == 0) {
+        } else if (get_parameters.step === 7 && get_parameters.par === 0) {
             this.step = 7;
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
@@ -4204,13 +4204,14 @@ let vm = new Vue({
                 return hotel.maxGuests >= this.form.adults && hotel.active
             })
         },
-
         activeRoomBeds() {
             let curHotel = this.hotels.indexOf(this.hotels.find(hotel => hotel.code === this.form.hotel))
+            console.log('curHotel ' + curHotel)
             if (this.form.room) {
                 let curRoom = this.hotels[curHotel].rooms.indexOf(this.hotels[curHotel].rooms.find(room => room.code === this.form.room))
-                let beds = this.hotels[curHotel].rooms[curRoom].beds
-                return beds
+                console.log('this.hotels[curHotel].rooms ' + this.hotels[curHotel].rooms)
+                console.log('curRoom ' + curRoom)
+                return this.hotels[curHotel].rooms[curRoom].beds
             }
         },
         calcTourPrice() {
@@ -4316,6 +4317,7 @@ let vm = new Vue({
                     this.form.phone = null
                 }
             }).catch(error => {
+                console.log("error", error);
                 this.errors = 'Непредвиденная ошибка проверки телефона.';
             });
         },
@@ -4636,6 +4638,7 @@ let vm = new Vue({
                     })
                     // .then(response => this.responseData = response.data)
                     .catch(error => {
+                        console.log(error)
                         // this.errors.push(error);
                     });
             }

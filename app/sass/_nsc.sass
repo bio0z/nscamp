@@ -129,7 +129,9 @@ header .btn-link a
   margin: 0 0 10px auto
 
 #progressbar li.step6, #progressbar li.step1
-  width: 38px
+  width: 56px
+  @media (max-width: 576px)
+    width: 38px
 
 #progressbar li:after
   content: ''
@@ -150,7 +152,6 @@ header .btn-link a
 .phone-error
   color: #e93a2f
   font-size: 12px
-  width: 261px
 
 .present-skipass
   background-color: #6BC9B9
@@ -329,6 +330,7 @@ main
 
   .form-control.phone
     width: 261px
+    display: initial
 
   .nsc-button
     background-color: #777fa8
