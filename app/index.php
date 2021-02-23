@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp-friends/app/' : $path = 'friends/';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1614106257';
+$timestamp = '1614109470';
 ?>
 
 <html lang="ru">
@@ -167,10 +167,9 @@ $timestamp = '1614106257';
                          id="phone"
                          autocomplete="tel"
                          class="form-control phone"
-                         placeholder="+7 (___) ___-__-__"
+                         placeholder="8 (___) ___-____"
                          maxlength="17"
                          v-phone
-                         pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
                          required>
                   <div class="phone-error p-2" v-if="errors != null">{{ errors }}</div>
                 </div>
@@ -1279,8 +1278,6 @@ $timestamp = '1614106257';
 <script src="https://unpkg.com/vue-router"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="<?= $path ?>js/app.min.js?rev=<?= $timestamp ?>"></script>
-<!--<script src="js/vue-tap.js"></script>--
-<!--<script src="js/vue-touch-events.js"></script>-->
 <?php if ($env == 'prod') { ?>
   <script
       id="alfa-payment-script"

@@ -1,20 +1,44 @@
 Vue.component('modal', {
     template: "#modal-template"
 });
-
 Vue.directive('phone', {
     bind(el) {
-        el.oninput = function (e) {
-            if (!e.isTrusted) {
-                return;
+        function replaceNumberForInput(value) {
+            let val = ''
+            const x = value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,4})/)
+
+            if (!x[2] && x[1] !== '') {
+                val = x[1] === '8' ? x[1] : '8' + x[1]
+            } else {
+                val = !x[3] ? x[1] + x[2] : x[1] + '(' + x[2] + ') ' + x[3] + (x[4] ? '-' + x[4] : '')
             }
 
-            let x = this.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
-            this.value = x[1] + ' (' + x[2] + ') ' + x[3] + ' ' + x[4] + ' ' + x[5];
-            el.dispatchEvent(new Event('input'));
+            return val
         }
-    },
-    touch(el) {
+
+        function replaceNumberForPaste(value) {
+            const r = value.replace(/\D/g, '')
+            let val = r
+            if (val.charAt(0) === '7') {
+                val = '8' + val.slice(1)
+            }
+            return replaceNumberForInput(val)
+        }
+
+        el.oninput = function(e) {
+            if (!e.isTrusted) {
+                return
+            }
+            this.value = replaceNumberForInput(this.value)
+        }
+
+        el.onpaste = function() {
+            setTimeout(() => {
+                const pasteVal = el.value
+                this.value = replaceNumberForPaste(pasteVal)
+            })
+        }
+
     }
 });
 
@@ -2421,7 +2445,6 @@ let vm = new Vue({
                 name: 'Отель Park Inn by Radisson Rosa Khutor ****',
                 code: 'PIRRS4',
                 address: 'Улица Олимпийская 35, Эсто-Садок, Россия',
-                formula: 99,
                 maxGuests: 2,
                 gain: 1,
                 gallery: [
@@ -2435,12 +2458,12 @@ let vm = new Vue({
                 rooms: [
                     {
                         active: true,
-                        name: 'Стандарт',
+                        name: 'Стандартный номер',
                         code: 'S2FF',
                         maxGuests: 2,
                         prices: {
-                            1: [4700, 4700, 4700, 3500, 3500, 3500, 3500, 3500, 3500, 3500],
-                            2: [4700, 4700, 4700, 3500, 3500, 3500, 3500, 3500, 3500, 3500],
+                            1: [5300, 5300, 4400, 4400, 4400, 4400, 4400, 4400, 4400, 4400],
+                            2: [5300, 5300, 4400, 4400, 4400, 4400, 4400, 4400, 4400, 4400],
                         },
                         breakfasts: {
                             1: [600, 600, 600, 900, 900, 900, 900, 900, 900, 900],
@@ -2509,6 +2532,50 @@ let vm = new Vue({
                                 '<li>Бесплатный Wi-Fi</li></ul>',
                             'en': '<ul><li>29 m2</li>' +
                                 '<li>Espresso machine, Teapot</li>' +
+                                '<li>TV</li>' +
+                                '<li>Hair Dryer</li>' +
+                                '<li>Water</li>' +
+                                '<li>WI-FI</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Стандарт с видом на реку',
+                        code: 'S2RVFF',
+                        prices: {
+                            1: [5300, 5300, 4400, 4400, 4400, 4400, 4400, 4400, 4400, 4400],
+                            2: [5300, 5300, 4400, 4400, 4400, 4400, 4400, 4400, 4400, 4400],
+                        },
+                        breakfasts: {
+                            1: [600, 600, 600, 900, 900, 900, 900, 900, 900, 900],
+                            2: [1500, 1500, 1500, 1800, 1800, 1800, 1800, 1800, 1800, 1800]
+                        },
+                        breakfasts_included: false,
+                        breakfasts_no: false,
+                        maxGuests: 2,
+                        beds: [
+                            {
+                                'code': 1,
+                                'name': '1 двуспальная кровать',
+                            },
+                            {
+                                'code': 2,
+                                'name': '2 односпальные кровати'
+                            }
+                        ],
+                        desc: {
+                            'ru': '<ul><li>28 кв. м.</li>' +
+                                '<li>Вид на реку</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Тапочки</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Бесплатная бутилированная вода</li>' +
+                                '<li>Бесплатный Wi-Fi</li></ul>',
+                            'en': '<ul><li>28 m2</li>' +
+                                '<li>Espresso machine, Teapot</li>' +
+                                '<li>Iron</li>' +
                                 '<li>TV</li>' +
                                 '<li>Hair Dryer</li>' +
                                 '<li>Water</li>' +
@@ -2800,10 +2867,9 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
-                formula: 99,
                 maxGuests: 2,
                 gain: 1.22,
                 address: 'Набережная Лаванды, 4, Эсто-Садок, Россия',
@@ -2888,12 +2954,12 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-2-standard-1.jpg'
                     },
                     {
-                        active: false,
-                        name: 'Двухкомнатный номер',
-                        code: 'SS2',
+                        active: true,
+                        name: 'Стандарт Привилегия',
+                        code: 'SPFF',
                         prices: {
-                            1: [8540, 8540, 8540, 7770, 7770, 7770, 7770, 5740, 5740, 5740],
-                            2: [8540, 8540, 8540, 7770, 7770, 7770, 7770, 5740, 5740, 5740],
+                            1: [6090, 6090, 5320, 5320, 5320, 5320, 5320, 3640, 3640, 3640],
+                            2: [6090, 6090, 5320, 5320, 5320, 5320, 5320, 3640, 3640, 3640],
                         },
                         breakfasts: {
                             1: [630, 630, 630, 630, 630, 630, 630, 630, 630, 630],
@@ -2906,26 +2972,29 @@ let vm = new Vue({
                             {
                                 'code': 1,
                                 'name': '1 двуспальная кровать',
+                            },
+                            {
+                                'code': 2,
+                                'name': '2 односпальные кровати'
                             }
                         ],
                         desc: {
-                            'ru': '<ul><li>48 кв. м. </li>' +
-                                '<li>2-х комнатный</li>' +
+                            'ru': '<ul><li>26 кв. м. </li>' +
                                 '<li>Вид на реку</li>' +
-                                '<li>Спальня и гостиная</li>' +
-                                '<li>Халат и тапочки</li>' +
+                                '<li>Высоокий этаж </li>' +
                                 '<li>Кофе-машина</li>' +
+                                '<li>Халат и тапочки</li>' +
                                 '<li>WI-FI</li>' +
                                 '<li>Минеральная вода</li>' +
                                 '<li>Рабочий стол</li></ul>',
                             'en': ''
                         },
-                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-3-suite-1.jpg'
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-2-standard-1.jpg'
                     },
                     {
-                        active: true,
-                        name: 'Эксклюзивный номер',
-                        code: 'EX11',
+                        active: false,
+                        name: 'Двухкомнатный номер',
+                        code: 'SS2',
                         prices: {
                             1: [8540, 8540, 8540, 7770, 7770, 7770, 7770, 5740, 5740, 5740],
                             2: [8540, 8540, 8540, 7770, 7770, 7770, 7770, 5740, 5740, 5740],
