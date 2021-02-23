@@ -2437,6 +2437,7 @@ let vm = new Vue({
                         active: true,
                         name: 'Стандарт',
                         code: 'S2FF',
+                        maxGuests: 2,
                         prices: {
                             1: [4700, 4700, 4700, 3500, 3500, 3500, 3500, 3500, 3500, 3500],
                             2: [4700, 4700, 4700, 3500, 3500, 3500, 3500, 3500, 3500, 3500],
@@ -2795,7 +2796,7 @@ let vm = new Vue({
                 desc: {
                     'ru': 'Отель Park Inn by Radisson 4* расположен в самом сердце горного курорта «Роза Хутор», в шаговой доступности от главных канатных дорог «Олимпия» и «Стрела».' +
                         'Отель Park Inn by Radisson Rosa Khutor 4* предлагает своим гостям современные комфортабельные номера с видом на горные вершины. Кроме того, отель располагает номерами для людей с ограниченными возможностями. На первом этаже отеля расположен баварский ресторан, где можно насладиться европейскими блюдами от нашего шеф-повара, а в лобби баре хорошо провести время с друзьями около камина.',
-                    'en': 'Park Inn is one of the first hotels that has been opened at Rosa Khutor Resort. In 2012, the hotel hosted participants and facilitators of the first mountain festival. In the spacious and comfortable lobby, you might often see guest music stars, sportsmen and organisers. The festival’s second information desk is also located there. Stylish and attractive rooms will help you fully recover after a busy day, and due to its convenient location and proximity to chairlifts you will be first to arrive at the main festival site.'
+                    'en': 'Park Inn is one of the first hotels that has been opened at Rosa Khutor Resort. In 2021, the hotel hosted participants and facilitators of the first mountain festival. In the spacious and comfortable lobby, you might often see guest music stars, sportsmen and organisers. The festival’s second information desk is also located there. Stylish and attractive rooms will help you fully recover after a busy day, and due to its convenient location and proximity to chairlifts you will be first to arrive at the main festival site.'
                 }
             },
             {
@@ -4097,15 +4098,15 @@ let vm = new Vue({
             let adults = ''
             if (this.form.kids) {
                 if (this.form.kids === 1) {
-                    kids = ' / ' + this.form.kids + ' ребенок'
+                    kids = ' / ' + this.form.kids + ' '
                 } else if (this.form.kids > 1) {
-                    kids = ' / ' + this.form.kids + ' детей'
+                    kids = ' / ' + this.form.kids + ' '
                 }
             }
             if (this.form.adults > 1) {
-                adults = this.form.adults + ' взрослых'
+                adults = this.form.adults + ' '
             } else {
-                adults = this.form.adults + ' взрослый'
+                adults = this.form.adults + ' '
             }
             return adults + kids;
         },

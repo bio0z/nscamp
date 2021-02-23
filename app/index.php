@@ -113,7 +113,7 @@ $timestamp = '1614086154';
     <!--        </div>-->
     <!--      </button>-->
     <!--    </div>-->
-    <!--    <div class="col-8"><h1>{{ translations.title[selectedLocale] }}</h1></div>-->
+        <div class="col-8" v-if="step > 1"><h1>{{ steps[step-1].name[selectedLocale] }}</h1></div>
     <div class="col text-center pt-2 nsc-logo">
       <a href="https://newstarcamp.ru">
         <img src="<?= $path ?>images/svg/nsc-logo.svg?v=2">
@@ -145,7 +145,7 @@ $timestamp = '1614086154';
                 </div>
                 <div class="col-8 col-sm-8 col-md-8 col-lg-8">
                   <p>Привет!</p>
-                  <p>Для путешествия на Quiksilver New Star Camp 2012 тебе осталось несколько шагов. Эта страница
+                  <p>Для путешествия на Quiksilver New Star Camp 2021 тебе осталось несколько шагов. Эта страница
                     сделана специально для друзей фестиваля. Здесь ты можешь подобрать тур и получить приятный бонус от
                     нас в виде ски-пасса и браслета участника!</p>
                   <p>Введи номер телефона чтобы продолжить.</p>
@@ -389,7 +389,7 @@ $timestamp = '1614086154';
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img src="<?= $path ?>images/svg/step4.svg?v=2"/>
                 </div>
-                <div class="col-6 col-sm-6 col-md-8 col-lg-8">
+                <div class="col-8 col-sm-8 col-md-8 col-lg-8">
                   {{ translations.stepThree[selectedLocale] }}
                 </div>
               </div>
@@ -399,7 +399,7 @@ $timestamp = '1614086154';
                 <div class="col-md-12 pl-4 pr-4 pb-3 pt-3 mb-2 present-skipass">
                   <p>Команда NewStarCamp дарит тебе ски-пасс на выбранные дни фестиваля. Если у тебя нет горнолыжного
                     оборудования, ты можешь взять его в прокате Riders Rent со скидкой 50%, сообщив при оплате свои
-                    фамилию и номер телефона.'</p>
+                    фамилию и номер телефона.</p>
                 </div>
               </div>
               <div class="form-row">
