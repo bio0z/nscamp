@@ -288,7 +288,7 @@ let vm = new Vue({
                 'en': 'Tour start'
             },
             dateTill: {
-                'ru': 'Грустный камбек',
+                'ru': 'Грустный камбэк',
                 'en': 'Tour end'
             },
             dateNote: {
