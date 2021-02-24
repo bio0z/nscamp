@@ -158,6 +158,7 @@ $timestamp = '1614181929';
                   <input type="phone"
                          width="261px"
                          v-model.trim="friendPhone"
+                         v-if="!friendPhoneCheck"
                          name="phone"
                          id="phone"
                          autocomplete="tel"
@@ -165,6 +166,13 @@ $timestamp = '1614181929';
                          placeholder="8 (___) ___-____"
                          maxlength="17"
                          v-phone
+                         required />
+                  <input type="text"
+                         class="form-control phone"
+                         placeholder="введите код из смс"
+                         v-if="friendPhoneCheck"
+                         v-model.trim="smsCode"
+                         name="smscode"
                          required />
                   <div class="phone-error p-2" v-if="errors != null">{{ errors }}</div>
                 </div>
@@ -719,7 +727,7 @@ $timestamp = '1614181929';
           </div>
           <button
               class="col-3 col-sm-3 col-md-2 col-lg-2 ml-auto p-2 bd-highlight form-control col-2  nsc-button"
-              v-if="step !== totalsteps"
+              v-if="step !== totalsteps && form.phone"
               id="stepper"
               @click.prevent="nextStep">{{ translations.stepNext[selectedLocale] }}
           </button>

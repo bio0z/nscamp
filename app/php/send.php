@@ -47,7 +47,7 @@ if (isset($_POST['tourNumber'])) {
         $backColor = '#DB9EA7';
       } elseif ($ar['passcode'] == 'F') {
         $pass = 'FRIENDS';
-        $backColor = '#F2D046';
+        $backColor = '#6BC9B9';
       }
 
       $body = file_get_contents('../html/mail.html');

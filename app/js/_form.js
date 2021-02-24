@@ -442,6 +442,7 @@ let vm = new Vue({
         step: 1,
         phonestatus: false,
         friendPhone: null,
+        friendPhoneCheck : false,
         totalsteps: 6,
         errors: null,
         guests: 1,
@@ -4293,6 +4294,9 @@ let vm = new Vue({
         friendPhone() {
             if (this.friendPhone.length > 10) {
                 this.checkFriendPhone()
+                if (this.friendPhoneCheck) {
+
+                }
             }
         }
     },
@@ -4305,9 +4309,28 @@ let vm = new Vue({
                 responseType: 'text'
             };
             const data = {
-                phoneToCheck: this.friendPhone
+                friendPhone: this.friendPhone
             };
             return axios.post(this.phpPath + "php/checkFriendPhone.php", data, conf).then(response => {
+                if (response.data.length > 10) {
+                    this.sendSms(response.data)
+                    this.friendPhoneCheck = true
+                } else {
+                    this.form.phone = null
+                }
+            }).catch(error => {
+                console.log("error", error);
+                this.errors = 'Непредвиденная ошибка проверки телефона.';
+            });
+        },
+        sendSms: function (tel){
+            const conf = {
+                responseType: 'text'
+            };
+            const data = {
+                phoneToCheck: this.friendPhone
+            };
+            return axios.post(this.phpPath + "php/sendSms.php", data, conf).then(response => {
                 if (response.data.length > 10) {
                     this.form.phone = response.data
                 } else {
