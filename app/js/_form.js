@@ -47,7 +47,7 @@ let router = new VueRouter({
     routes: []
 });
 
-Vue.config.devtools = true
+Vue.config.devtools = false
 
 let vm = new Vue({
     router,
@@ -292,7 +292,7 @@ let vm = new Vue({
                 'en': 'FAQ'
             },
             stepThree: {
-                'ru': 'Заполни, персональные данные и оставь контактную информацию.',
+                'ru': 'Заполни персональные данные и оставь контактную информацию.',
                 'en': 'Please, fill the personal information.'
             },
             stepFour: {
@@ -4151,6 +4151,9 @@ let vm = new Vue({
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
         }
+        window.reload = function () {
+            window.scrollTo(0, 0);
+        }
     },
     computed: {
         getDomain() {
@@ -4206,11 +4209,8 @@ let vm = new Vue({
         },
         activeRoomBeds() {
             let curHotel = this.hotels.indexOf(this.hotels.find(hotel => hotel.code === this.form.hotel))
-            console.log('curHotel ' + curHotel)
             if (this.form.room) {
                 let curRoom = this.hotels[curHotel].rooms.indexOf(this.hotels[curHotel].rooms.find(room => room.code === this.form.room))
-                console.log('this.hotels[curHotel].rooms ' + this.hotels[curHotel].rooms)
-                console.log('curRoom ' + curRoom)
                 return this.hotels[curHotel].rooms[curRoom].beds
             }
         },
@@ -4291,9 +4291,7 @@ let vm = new Vue({
     },
     watch: {
         friendPhone() {
-            console.log("Шаг 1 : friendPhone ")
             if (this.friendPhone.length > 10) {
-                console.log("Шаг 2 : to checkFriendPhone ")
                 this.checkFriendPhone()
             }
         }
@@ -4312,7 +4310,6 @@ let vm = new Vue({
             return axios.post(this.phpPath + "php/checkFriendPhone.php", data, conf).then(response => {
                 if (response.data.length > 10) {
                     this.form.phone = response.data
-                    console.log("Шаг 4 response.data = ", response.data);
                 } else {
                     this.form.phone = null
                 }
@@ -4338,15 +4335,13 @@ let vm = new Vue({
         },
         nextStep() {
             if (this.step === 1) {
-                console.log('Шаг nextStep ' + this.form.phone)
                 if (!this.form.phone) {
                     this.errors = this.translations.errorWrongPhone[this.selectedLocale]
-                    console.log('Шаг 5  step false')
                     return false
                 } else {
-                    console.log('Шаг 5 step forward')
                     this.errors = null
                     this.step++
+                    window.scrollTo(0, 0)
                 }
             } else if (this.step === 2) {
                 this.form.room = ''
@@ -4364,6 +4359,7 @@ let vm = new Vue({
                     this.errors = null
                     this.activeHotelRooms()
                     this.step++
+                    window.scrollTo(0, 0)
                 }
             } else if (this.step === 3) {
 
@@ -4375,7 +4371,8 @@ let vm = new Vue({
                     return false;
                 } else {
                     this.errors = null;
-                    this.step++;
+                    this.step++
+                    window.scrollTo(0, 0)
                 }
             } else if (this.step === 4) {
                 if (!this.form.fname || !this.form.sname) {
@@ -4410,11 +4407,13 @@ let vm = new Vue({
                     return false;
                 } else {
                     this.errors = null;
-                    this.step++;
+                    this.step++
+                    window.scrollTo(0, 0)
                 }
             } else if (this.step === 5) {
                 if (this.errors === null) {
-                   this.step++;
+                    this.step++
+                    window.scrollTo(0, 0)
                 }
             }
         },
@@ -4496,8 +4495,10 @@ let vm = new Vue({
             }
         },
         applyFriendPassPrice() {
-            this.form.passPrice = this.friendPassPrice
-            this.form.friendPassAdded = null
+            if (!this.form.friendPassAdded) {
+                this.form.passPrice = this.friendPassPrice
+                this.form.friendPassAdded = null
+            }
         },
         applyFullFriendPassPrice() {
             let curPass = this.passes.indexOf(this.passes.find(pass => pass.code === this.form.pass))
@@ -4572,7 +4573,6 @@ let vm = new Vue({
                 ]);
 
                 let adultsGuests = this.form.adults + ' ' + guestsText.get(this.form.adults);
-                console.log(adultsGuests)
 
                 let breakfast = this.form.hotelBreakfast === true ? this.translations.hotelMailBreakfast[this.selectedLocale] : this.translations.hotelMailNoBreakfast[this.selectedLocale]
 

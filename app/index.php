@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp-friends/app/' : $path = 'friends/';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1614113557';
+$timestamp = '1614181929';
 ?>
 
 <html lang="ru">
