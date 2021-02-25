@@ -483,7 +483,7 @@ let vm = new Vue({
                 active: false,
                 id: 4,
                 name: {
-                    'ru': 'Оформление',
+                    'ru': 'Данные',
                     'en': 'Guests'
                 },
                 text: 'text-center',
@@ -2436,7 +2436,7 @@ let vm = new Vue({
                     }
                 ],
                 desc: {
-                    'ru': 'Расположенный среди знаменитых Кавказских гор на знаменитом российском горном курорте "Роза Хутор", отель Radisson Rosa Khutor 5* предлагает первоклассный сервис, комфортное проживание и широкий спектр дополнительных услуг.Гостям отеля Radisson Hotel Rosa Khutor представится возможность не только увидеть поразительные горные вершины Кавказа, но и заняться самыми популярными в мире зимними видами спорта. В шаговой доступности от отеля находятся подъемники «Олимпия» и «Стрела».Отель Radisson Hotel Rosa Khutor предлагает своим гостям комфортабельные номера различных категорий, оснащённых всем необходимым согласно международным стандартам Radisson Hotel Group, как для деловых поездок, так и для отдыха.Гордостью отеля является открытая терраса Mercedes Sky Lounge с двумя подогреваемыми джакузи и панорамным баром, расположенная на высоте птичьего полёта.',
+                    'ru': 'Расположенный среди знаменитых Кавказских гор на знаменитом российском горном курорте "Роза Хутор", отель Radisson Rosa Khutor 5* предлагает первоклассный сервис, комфортное проживание и широкий спектр дополнительных услуг.Гостям отеля Radisson Hotel Rosa Khutor представится возможность не только увидеть поразительные горные вершины Кавказа, но и заняться самыми популярными в мире зимними видами спорта. В шаговой доступности от отеля находятся подъемники «Олимпия» и «Стрела». Отель Radisson Hotel Rosa Khutor предлагает своим гостям комфортабельные номера различных категорий, оснащённых всем необходимым согласно международным стандартам Radisson Hotel Group, как для деловых поездок, так и для отдыха.Гордостью отеля является открытая терраса Mercedes Sky Lounge с двумя подогреваемыми джакузи и панорамным баром, расположенная на высоте птичьего полёта.',
                     'en': 'The best hotel at Rosa Khutor Resort, named The Best Ski Resort Hotel by the World Ski Awards in 2014 and 2015. All the rooms in the hotel are designed by Swedish designer Christian Lundwall and furnished in full compliance with world-class standards. Two restaurants and an amazing spa area are available in the hotel. For the guests’ convenience, the hotel offers a fully equipped room for storage and drying of the sports equipment. The major benefit of the hotel is its convenient location within a few steps from «Olympia» and «Strela» ropeways.' +
                         'Rosa Dolina, level 560'
                 }
@@ -2862,8 +2862,7 @@ let vm = new Vue({
                     }
                 ],
                 desc: {
-                    'ru': 'Отель Park Inn by Radisson 4* расположен в самом сердце горного курорта «Роза Хутор», в шаговой доступности от главных канатных дорог «Олимпия» и «Стрела».' +
-                        'Отель Park Inn by Radisson Rosa Khutor 4* предлагает своим гостям современные комфортабельные номера с видом на горные вершины. Кроме того, отель располагает номерами для людей с ограниченными возможностями. На первом этаже отеля расположен баварский ресторан, где можно насладиться европейскими блюдами от нашего шеф-повара, а в лобби баре хорошо провести время с друзьями около камина.',
+                    'ru': 'Отель Park Inn by Radisson 4* расположен в самом сердце горного курорта «Роза Хутор», в шаговой доступности от главных канатных дорог «Олимпия» и «Стрела». Отель Park Inn by Radisson Rosa Khutor 4* предлагает своим гостям современные комфортабельные номера с видом на горные вершины. Кроме того, отель располагает номерами для людей с ограниченными возможностями. На первом этаже отеля расположен баварский ресторан, где можно насладиться европейскими блюдами от шеф-повара, а в лобби баре хорошо провести время с друзьями около камина.',
                     'en': 'Park Inn is one of the first hotels that has been opened at Rosa Khutor Resort. In 2021, the hotel hosted participants and facilitators of the first mountain festival. In the spacious and comfortable lobby, you might often see guest music stars, sportsmen and organisers. The festival’s second information desk is also located there. Stylish and attractive rooms will help you fully recover after a busy day, and due to its convenient location and proximity to chairlifts you will be first to arrive at the main festival site.'
                 }
             },
@@ -4292,11 +4291,8 @@ let vm = new Vue({
     },
     watch: {
         friendPhone() {
-            if (this.friendPhone.length > 10) {
+            if (this.friendPhone.length > 14) {
                 this.checkFriendPhone()
-                if (this.friendPhoneCheck) {
-
-                }
             }
         }
     },
@@ -4309,11 +4305,11 @@ let vm = new Vue({
                 responseType: 'text'
             };
             const data = {
-                friendPhone: this.friendPhone
+                phoneToCheck: this.friendPhone
             };
             return axios.post(this.phpPath + "php/checkFriendPhone.php", data, conf).then(response => {
                 if (response.data.length > 10) {
-                    this.sendSms(response.data)
+                    // this.sendSms(response.data,this.tourNumber)
                     this.friendPhoneCheck = true
                 } else {
                     this.form.phone = null
@@ -4323,18 +4319,23 @@ let vm = new Vue({
                 this.errors = 'Непредвиденная ошибка проверки телефона.';
             });
         },
-        sendSms: function (tel){
+        sendSms: function (tel,num){
             const conf = {
-                responseType: 'text'
+                responseType: 'json'
             };
             const data = {
-                phoneToCheck: this.friendPhone
+                tourNumber: num,
+                friendPhone: tel
             };
             return axios.post(this.phpPath + "php/sendSms.php", data, conf).then(response => {
-                if (response.data.length > 10) {
-                    this.form.phone = response.data
+                let result = json_encode(response.data)
+                if (result['success'] === true) {
+                    this.form.phone = tel
                 } else {
                     this.form.phone = null
+                    this.friendPhoneCheck = false
+                    let error = result['result']
+                    console.log(error)
                 }
             }).catch(error => {
                 console.log("error", error);

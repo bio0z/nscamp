@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp-friends/app/' : $path = 'friends/';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1614181929';
+$timestamp = '1614213363';
 ?>
 
 <html lang="ru">
@@ -155,25 +155,25 @@ $timestamp = '1614181929';
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-2 pl-0 pr-0">
               <div class="row p-3 justify-content-md-end justify-content-center">
                 <div class="col-12 col-sm-12 col-lg-12 text-center">
-                  <input type="phone"
+                  <!--                         v-if="!friendPhoneCheck"-->
+                  <input type="tel"
                          width="261px"
                          v-model.trim="friendPhone"
-                         v-if="!friendPhoneCheck"
                          name="phone"
                          id="phone"
-                         autocomplete="tel"
-                         class="form-control phone"
+                         class="form-control m-1 phone"
                          placeholder="8 (___) ___-____"
                          maxlength="17"
                          v-phone
                          required />
+
                   <input type="text"
-                         class="form-control phone"
+                         class="form-control m-1 phone"
                          placeholder="введите код из смс"
                          v-if="friendPhoneCheck"
-                         v-model.trim="smsCode"
-                         name="smscode"
+                         @click="step++"
                          required />
+
                   <div class="phone-error p-2" v-if="errors != null">{{ errors }}</div>
                 </div>
               </div>
@@ -182,100 +182,71 @@ $timestamp = '1614181929';
         </section>
         <section v-if="step === 2">
           <div class="row">
-            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row step-num">
-                <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
+                <div class="col-2 col-lg-1 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img alt="" src="<?= $path ?>images/svg/step2.svg?v=2"/>
                 </div>
-                <div class="col-6 col-sm-6 col-md-8 col-lg-8">
-                  {{ translations.stepDates[selectedLocale] }}
+                <div class="col-8 col-sm-8 col-md-9 col-lg-9">
+                  <p>Дорогой друг!</p>
+                  <p>При выборе срока пребывания важно помнить, что фестиваль — это не просто горы, а горы эмоций!
+                    Красивые виды и заряд энергии тоже никто не отменял.</p>
+                  <p>Поэтому мы рекомендуем тебе оставаться на 4 ночи и больше, чтобы успеть хоть что-то)</p>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-8 col-lg-8 p-sm-2">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row">
-                <p>Дорогой друг!</p>
-                <p>При выборе срока пребывания важно помнить, что фестиваль — это не просто горы, а горы эмоций!
-                  Красивые виды и заряд энергии тоже никто не отменял.</p>
-                <p>Поэтому мы рекомендуем тебе оставаться на 4 ночи и больше, чтобы успеть хоть что-то)</p>
-              </div>
-              <div class="row">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <vuejs-datepicker
-                      input-class="form-control nsc-select"
-                      calendar-class="datepicker"
-                      v-model="form.dateFrom"
-                      :placeholder="translations.dateFrom[selectedLocale]"
-                      open-date="2021-03-26"
-                      monday-first="true"
-                      bootstrap-styling="true"
-                      :disabled-dates=disabledDates
-                  >
-                  </vuejs-datepicker>
-                  <!--                  <input class="form-control  nsc-select"-->
-                  <!--                         type="date" v-model="form.dateFrom"-->
-                  <!--                         :placeholder="translations.dateFrom[selectedLocale]"/>-->
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <!--                  <input class="form-control  nsc-select"-->
-                  <!--                        type="date" v-model="form.dateTill"-->
-                  <!--                        :placeholder="translations.dateTill[selectedLocale]"/>-->
-                  <vuejs-datepicker
-                      input-class="form-control  nsc-select"
-                      calendar-class="datepicker"
-                      v-model="form.dateTill"
-                      :placeholder="translations.dateTill[selectedLocale]"
-                      open-date="2021-04-01"
-                      monday-first="true"
-                      bootstrap-styling="true"
-                      :disabled-dates=disabledDates
-                  >
-                  </vuejs-datepicker>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                  <div class="pt-2 pb-2 nsc-datesnote">
-                    <!--                    <span>{{ translations.dateNote[selectedLocale] }}</span>-->
+                <div class="col-2 col-lg-1"></div>
+                <div class="col-10">
+                  <div class="row">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 pt-2 pb-2">
+                      <vuejs-datepicker
+                          input-class="form-control nsc-select"
+                          calendar-class="datepicker"
+                          v-model="form.dateFrom"
+                          :placeholder="translations.dateFrom[selectedLocale]"
+                          open-date="2021-03-26"
+                          monday-first="true"
+                          bootstrap-styling="true"
+                          :disabled-dates=disabledDates
+                      >
+                      </vuejs-datepicker>
+                      <!--                  <input class="form-control  nsc-select"-->
+                      <!--                         type="date" v-model="form.dateFrom"-->
+                      <!--                         :placeholder="translations.dateFrom[selectedLocale]"/>-->
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 pt-2 pb-2">
+                      <!--                  <input class="form-control  nsc-select"-->
+                      <!--                        type="date" v-model="form.dateTill"-->
+                      <!--                        :placeholder="translations.dateTill[selectedLocale]"/>-->
+                      <vuejs-datepicker
+                          input-class="form-control  nsc-select"
+                          calendar-class="datepicker"
+                          v-model="form.dateTill"
+                          :placeholder="translations.dateTill[selectedLocale]"
+                          open-date="2021-04-01"
+                          monday-first="true"
+                          bootstrap-styling="true"
+                          :disabled-dates=disabledDates
+                      >
+                      </vuejs-datepicker>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 pt-2 pb-2">
+                      <select v-model.number="form.adults"
+                              class="custom-select  nsc-select"
+                              :placeholder="translations.tourAdults[selectedLocale]"
+                              required>
+                        <option value="" disabled selected>{{ translations.tourAdults[selectedLocale] }}</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <!--                    <option value="3">3</option>-->
+                        <!--                    <option value="4">4</option>-->
+                        <!--                    <option value="5">5</option>-->
+                        <!--                    <option value="6">6</option>-->
+                      </select>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <!--                  <input class="form-control custom-select  nsc-select"-->
-                  <!--                         type="text" v-model.number="form.adults"-->
-                  <!--                         :placeholder="translations.tourAdults[selectedLocale]"/>-->
-                  <select v-model.number="form.adults"
-                          class="custom-select  nsc-select"
-                          :placeholder="translations.tourAdults[selectedLocale]"
-                          required>
-                    <option value="" disabled selected>{{ translations.tourAdults[selectedLocale] }}</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <!--                    <option value="3">3</option>-->
-                    <!--                    <option value="4">4</option>-->
-                    <!--                    <option value="5">5</option>-->
-                    <!--                    <option value="6">6</option>-->
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-                  <!--                  <select v-model.number="form.kids"-->
-                  <!--                          class="custom-select  nsc-select"-->
-                  <!--                          :placeholder="translations.tourKids[selectedLocale]"-->
-                  <!--                          required>-->
-                  <!--                    <option value="" disabled selected>{{ translations.tourKids[selectedLocale] }}</option>-->
-                  <!--                    <option value="0">без детей</option>-->
-                  <!--                    <option value="1">1</option>-->
-                  <!--                    <option value="2">2</option>-->
-                  <!--                  </select>-->
                 </div>
               </div>
             </div>
@@ -392,16 +363,13 @@ $timestamp = '1614181929';
                   <img alt="" src="<?= $path ?>images/svg/step4.svg?v=2"/>
                 </div>
                 <div class="col-8 col-sm-8 col-md-8 col-lg-8">
-                  {{ translations.stepThree[selectedLocale] }}
+                  <p>Команда New Star Camp дарит тебе ски-пасс на выбранные дни фестиваля. Если у тебя нет горнолыжного
+                    оборудования, ты можешь взять его в прокате Riders Rent со скидкой 50%, сообщив при оплате свои
+                    фамилию и номер телефона.</p>
                 </div>
               </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-8 pt-sm-2" id="Guests">
-              <div class="form-row">
-                <p>Команда New Star Camp дарит тебе ски-пасс на выбранные дни фестиваля. Если у тебя нет горнолыжного
-                  оборудования, ты можешь взять его в прокате Riders Rent со скидкой 50%, сообщив при оплате свои
-                  фамилию и номер телефона.</p>
-              </div>
               <div class="form-row">
                 <h5>{{ translations.firstGuest[selectedLocale] }}</h5>
                 <div class="col-md-12 mb-4">
@@ -534,13 +502,11 @@ $timestamp = '1614181929';
           <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-4">
               <div class="row">
-                <div class="col-12 col-md-1">
-                </div>
-                <div class="col-8 col-sm-6 col-md-5">
+                <div class="col-7 col-sm-6 col-md-5">
                   <img alt="" src="<?= $path ?>images/svg/friend_card_step5.svg"/>
                 </div>
                 <div class="col-4 col-sm-6 col-md-6">
-                  <div class="row">
+                  <div class="row mb-4">
                     <label for="addFriendPass">
                       <input v-model.trim="form.friendPassAdded"
                              class="custom-control-input"
@@ -551,7 +517,7 @@ $timestamp = '1614181929';
                       <div class="border-0 mr-1 nsc-checkbox"
                            :class="[form.friendPassAdded ? ' active' : '']"></div>
                     </label>
-                    <div class="col-9">
+                    <div class="col-8 col-lg-10">
                       <p class="f2">
                         {{ translations.friendPassAdded[selectedLocale] }}
                       </p>
@@ -727,7 +693,7 @@ $timestamp = '1614181929';
           </div>
           <button
               class="col-3 col-sm-3 col-md-2 col-lg-2 ml-auto p-2 bd-highlight form-control col-2  nsc-button"
-              v-if="step !== totalsteps && form.phone"
+              v-if="step !== totalsteps && step !== 1"
               id="stepper"
               @click.prevent="nextStep">{{ translations.stepNext[selectedLocale] }}
           </button>
