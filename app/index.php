@@ -551,7 +551,6 @@ $timestamp = '1614213363';
             </div>
           </div>
           <div class="row">
-            <div class="row p-2 pb-5">
               <div class="col-12 col-sm-12 col-md-6 col-lg-6 tour-final-f">
                 <div class="tour-final tourIncluded p-3">
                   <h5>FRIENDS TOUR</h5>
@@ -608,49 +607,48 @@ $timestamp = '1614213363';
                   <!--                  </div>-->
                 </div>
               </div>
-            </div>
-            <div class="row p-2">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 form-check">
-                <div class="row">
-                  <label for="guestAgreement">
-                    <input v-model.trim="form.consent"
-                           class="custom-control-input"
-                           type="checkbox"
-                           id="guestAgreement"
-                           required>
-                    <div class="border-0 mr-1 nsc-checkbox"
-                         :class="[form.consent ? ' active' : '']"></div>
-                  </label>
-                  <div class="col-9">
-                    <p>
-                      {{ translations.guestAgreement[selectedLocale] }}
-                      <span class="nsc-btn-link" @click.prevent="showModal = true">
+          </div>
+          <div class="row pb-4 pt-5">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 form-check">
+              <div class="row">
+                <label for="guestAgreement">
+                  <input v-model.trim="form.consent"
+                         class="custom-control-input"
+                         type="checkbox"
+                         id="guestAgreement"
+                         required>
+                  <div class="border-0 mr-1 nsc-checkbox"
+                       :class="[form.consent ? ' active' : '']"></div>
+                </label>
+                <div class="col-9">
+                  <p>
+                    {{ translations.guestAgreement[selectedLocale] }}
+                    <span class="nsc-btn-link" @click.prevent="showModal = true">
                         {{ translations.guestAgreement1[selectedLocale] }}</span>
-                      {{ translations.guestAgreement2[selectedLocale] }}
-                    </p>
-                  </div>
+                    {{ translations.guestAgreement2[selectedLocale] }}
+                  </p>
                 </div>
               </div>
-              <div class="col-12 col-sm-12 col-md-1 col-lg-1"></div>
-              <div class="col-12 col-sm-12 col-md-5 col-lg-5 form-check">
-                <div class="row">
-                  <label for="guestOfferAccept">
-                    <input v-model.trim="form.offer"
-                           class="custom-control-input"
-                           type="checkbox"
-                           id="guestOfferAccept"
-                           required>
-                    <div class="border-0 nsc-checkbox"
-                         :class="[form.offer ? ' active' : '']"></div>
-                  </label>
-                  <div class="col-9">
-                    <p>
-                      {{ translations.guestOfferAccept[selectedLocale] }}
-                      <span class="nsc-btn-link" @click.prevent="showOffer = true">
+            </div>
+            <div class="col-12 col-sm-12 col-md-1 col-lg-1"></div>
+            <div class="col-12 col-sm-12 col-md-5 col-lg-5 form-check">
+              <div class="row">
+                <label for="guestOfferAccept">
+                  <input v-model.trim="form.offer"
+                         class="custom-control-input"
+                         type="checkbox"
+                         id="guestOfferAccept"
+                         required>
+                  <div class="border-0 nsc-checkbox"
+                       :class="[form.offer ? ' active' : '']"></div>
+                </label>
+                <div class="col-9 col-lg-11">
+                  <p>
+                    {{ translations.guestOfferAccept[selectedLocale] }}
+                    <span class="nsc-btn-link" @click.prevent="showOffer = true">
                         {{ translations.guestOfferAccept1[selectedLocale] }}
                       </span>
-                    </p>
-                  </div>
+                  </p>
                 </div>
               </div>
             </div>
