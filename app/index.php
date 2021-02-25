@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp-friends/app/' : $path = 'friends/';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1614213363';
+$timestamp = '1614276650';
 ?>
 
 <html lang="ru">
@@ -171,7 +171,7 @@ $timestamp = '1614213363';
                          class="form-control m-1 phone"
                          placeholder="введите код из смс"
                          v-if="friendPhoneCheck"
-                         @click="step++"
+                         v-model.trim="friendCode"
                          required />
 
                   <div class="phone-error p-2" v-if="errors != null">{{ errors }}</div>
@@ -691,7 +691,7 @@ $timestamp = '1614213363';
           </div>
           <button
               class="col-3 col-sm-3 col-md-2 col-lg-2 ml-auto p-2 bd-highlight form-control col-2  nsc-button"
-              v-if="step !== totalsteps && step !== 1"
+              v-if="step !== totalsteps && form.phone"
               id="stepper"
               @click.prevent="nextStep">{{ translations.stepNext[selectedLocale] }}
           </button>

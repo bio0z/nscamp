@@ -443,6 +443,8 @@ let vm = new Vue({
         phonestatus: false,
         friendPhone: null,
         friendPhoneCheck : false,
+        friendCode : null,
+        friendCodeCheck : false,
         totalsteps: 6,
         errors: null,
         guests: 1,
@@ -4294,6 +4296,12 @@ let vm = new Vue({
             if (this.friendPhone.length > 14) {
                 this.checkFriendPhone()
             }
+        },
+        friendCode() {
+            if (this.friendCode.length === 6) {
+                this.checkCode()
+            }
+
         }
     },
     methods: {
@@ -4309,7 +4317,7 @@ let vm = new Vue({
             };
             return axios.post(this.phpPath + "php/checkFriendPhone.php", data, conf).then(response => {
                 if (response.data.length > 10) {
-                    // this.sendSms(response.data,this.tourNumber)
+                    this.sendSms(response.data)
                     this.friendPhoneCheck = true
                 } else {
                     this.form.phone = null
@@ -4319,18 +4327,17 @@ let vm = new Vue({
                 this.errors = 'Непредвиденная ошибка проверки телефона.';
             });
         },
-        sendSms: function (tel,num){
+        sendSms: function (tel){
             const conf = {
-                responseType: 'json'
+                responseType: 'text'
             };
             const data = {
-                tourNumber: num,
                 friendPhone: tel
             };
             return axios.post(this.phpPath + "php/sendSms.php", data, conf).then(response => {
-                let result = json_encode(response.data)
+                let result = response.data
                 if (result['success'] === true) {
-                    this.form.phone = tel
+                    console.log('SMS сообщение отправлено')
                 } else {
                     this.form.phone = null
                     this.friendPhoneCheck = false
@@ -4341,6 +4348,31 @@ let vm = new Vue({
                 console.log("error", error);
                 this.errors = 'Непредвиденная ошибка проверки телефона.';
             });
+        },
+        checkCode: function (){
+                const conf = {
+                    responseType: 'text'
+                };
+                const data = {
+                    friendCode: this.friendCode,
+                    friendPhone: this.friendPhone
+                };
+                return axios.post(this.phpPath + "php/checkCode.php", data, conf).then(response => {
+                    console.log('response.data type ' + typeof response.data)
+                    console.log('response.data ' + response.data)
+                    if (response.data === 1) {
+                        this.friendCodeCheck = true
+                        this.form.phone = this.friendPhone
+                        this.step++
+                    } else {
+                        this.form.phone = null
+                        this.friendCodeCheck = false
+                        this.error = 'Такой код мы не отправляли'
+                    }
+                }).catch(error => {
+                    console.log("error", error);
+                    this.errors = 'Непредвиденная ошибка проверки кода.';
+                });
         },
         validEmail: function (email) {
             let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

@@ -6,7 +6,8 @@ $token = 'y54n53qkrcr8z99grcj7ctiinyllkzb4lr2dve0qjk6tbjt1gn4yeb1n2rbotsge';
 
 if ($_GET['friendPhone']) $_POST['friendPhone'] = $_GET['friendPhone'];
 
-$code = 'ТЕСТ';
+$phone =  preg_replace('/[^0-9]/', '', $_POST['friendPhone']);
+$code = decoct((string) substr($phone,7,4)) . mt_rand(1,9);
 
 if (isset($_POST['friendPhone'])) {
 
@@ -19,7 +20,7 @@ if (isset($_POST['friendPhone'])) {
       "source": "nswpay.ru",
       "timeout": 3600,
       "shortenUrl": true,
-      "text": "Благодарим за регистрацию! Ваш пароль: ' . $code . '"
+      "text": "New Star Camp Friends. код авторизации: ' . $code . '"
     }
   ],
   "validate": false,
@@ -46,8 +47,9 @@ if (isset($_POST['friendPhone'])) {
   ]);
 
   $result = curl_exec($ch);
-  var_dump($message);
-  var_dump($result, true);
+//  $res = json_decode($result, true);
+
+  echo $result;
 
 } else {
   echo 'POST empty';
