@@ -11,6 +11,8 @@ if (isset($_POST)) {
     '89110106919',
     '89262096108',
     '89269748191',
+    '89643809419',
+    '89216509673'
   ];
 
   if (in_array($phoneToCheck, $arFriendsPhones)) {

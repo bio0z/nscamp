@@ -2451,12 +2451,8 @@ let vm = new Vue({
                 maxGuests: 2,
                 gain: 1,
                 gallery: [
-                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.jpg',
+                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-1.png',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg',
-                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-3-family-1.jpg',
-                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-4-half-lux-1.jpg',
-                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-5-lux-1.jpg',
-                    'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-6-president-lux-1.jpg',
                 ],
                 rooms: [
                     {
@@ -2465,14 +2461,14 @@ let vm = new Vue({
                         code: 'S2FF',
                         maxGuests: 2,
                         prices: {
-                            1: [5300, 5300, 4400, 4400, 4400, 4400, 4400, 4400, 4400, 4400],
-                            2: [5300, 5300, 4400, 4400, 4400, 4400, 4400, 4400, 4400, 4400],
+                            1: [6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000],
+                            2: [7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000],
                         },
                         breakfasts: {
                             1: [600, 600, 600, 900, 900, 900, 900, 900, 900, 900],
                             2: [1500, 1500, 1500, 1800, 1800, 1800, 1800, 1800, 1800, 1800]
                         },
-                        breakfasts_included: false,
+                        breakfasts_included: true,
                         breakfasts_no: false,
                         beds: [
                             {
@@ -2547,14 +2543,58 @@ let vm = new Vue({
                         name: 'Стандарт с видом на реку',
                         code: 'S2RVFF',
                         prices: {
-                            1: [5300, 5300, 4400, 4400, 4400, 4400, 4400, 4400, 4400, 4400],
-                            2: [5300, 5300, 4400, 4400, 4400, 4400, 4400, 4400, 4400, 4400],
+                            1: [7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000],
+                            2: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
                         },
                         breakfasts: {
                             1: [600, 600, 600, 900, 900, 900, 900, 900, 900, 900],
                             2: [1500, 1500, 1500, 1800, 1800, 1800, 1800, 1800, 1800, 1800]
                         },
-                        breakfasts_included: false,
+                        breakfasts_included: true,
+                        breakfasts_no: false,
+                        maxGuests: 2,
+                        beds: [
+                            {
+                                'code': 1,
+                                'name': '1 двуспальная кровать',
+                            },
+                            {
+                                'code': 2,
+                                'name': '2 односпальные кровати'
+                            }
+                        ],
+                        desc: {
+                            'ru': '<ul><li>28 кв. м.</li>' +
+                                '<li>Вид на реку</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Тапочки</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Бесплатная бутилированная вода</li>' +
+                                '<li>Бесплатный Wi-Fi</li></ul>',
+                            'en': '<ul><li>28 m2</li>' +
+                                '<li>Espresso machine, Teapot</li>' +
+                                '<li>Iron</li>' +
+                                '<li>TV</li>' +
+                                '<li>Hair Dryer</li>' +
+                                '<li>Water</li>' +
+                                '<li>WI-FI</li></ul>'
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg'
+                    },
+                    {
+                        active: false,
+                        name: 'Стандартный номер с балконом и видом на реку',
+                        code: 'S2RVBFF',
+                        prices: {
+                            1: [5500, 5500, 5500, 5500, 5500, 5500, 5500, 5500, 5500, 5500],
+                            2: [6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500],
+                        },
+                        breakfasts: {
+                            1: [600, 600, 600, 900, 900, 900, 900, 900, 900, 900],
+                            2: [1500, 1500, 1500, 1800, 1800, 1800, 1800, 1800, 1800, 1800]
+                        },
+                        breakfasts_included: true,
                         breakfasts_no: false,
                         maxGuests: 2,
                         beds: [
@@ -2869,7 +2909,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 maxGuests: 2,
@@ -4364,6 +4404,7 @@ let vm = new Vue({
                         this.friendCodeCheck = true
                         this.form.phone = this.friendPhone
                         this.step++
+                        window.scrollTo(0, 0);
                     } else {
                         this.form.phone = null
                         this.friendCodeCheck = false

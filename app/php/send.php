@@ -34,7 +34,7 @@ if (isset($_POST['tourNumber'])) {
       } else {
         $Username = 'pool@awsd.cc';
         $emailFrom = 'pool@awsd.cc';
-        $emailTo = 'bezs@mail.ru'; // $ar['email'];
+        $emailTo = $ar['email']; // $ar['email'];
         $passwrd = 'uS3BwxOGqA';
         $emailCopy = 'pool@awsd.cc';
       }
