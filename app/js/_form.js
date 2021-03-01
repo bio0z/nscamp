@@ -4229,7 +4229,7 @@ let vm = new Vue({
             return this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
         },
         setTourName() {
-            this.form.tourName = 'New Star Camp ' + ' tour, hotel: ' + this.form.hotelName;
+            this.form.tourName = 'New Star Camp ' + ' Friends tour, hotel: ' + this.form.hotelName;
             return this.form.tourName;
         },
         calcTourDays() {

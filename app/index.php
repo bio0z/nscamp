@@ -673,7 +673,7 @@ $timestamp = '1614362664';
                   v-if="step !== 1"
                   @click.prevent="prevStep">{{ translations.stepPrevious[selectedLocale] }}
           </button>
-          <div v-if="step > 2 && step < 7" class="row col-5 col-sm-6 col-lg-8 text-right nsc-tour-sum">
+          <div v-if="step > 2 && step < 7" class="row col-5 col-sm-6 col-lg-6 text-right nsc-tour-sum">
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
