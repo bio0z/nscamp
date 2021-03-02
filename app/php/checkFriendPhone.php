@@ -5,7 +5,7 @@ if ($_GET['phoneToCheck']) $_POST['phoneToCheck'] = $_GET['phoneToCheck'];
 
 if (isset($_POST)) {
 
-  (string) $phoneToCheck = preg_replace('/[^0-9]/', '', $_POST['phoneToCheck']);
+  (string)$phoneToCheck = preg_replace('/[^0-9]/', '', $_POST['phoneToCheck']);
 
   $arFriendsPhones = [
     '89110106919',
@@ -14,7 +14,10 @@ if (isset($_POST)) {
     '89643809419',
     '89216509673',
     '89112101738',
-    '89857844280'
+    '89857844280',
+    '89163216088',
+    '89197727108',
+    '89163086699'
   ];
 
   if (in_array($phoneToCheck, $arFriendsPhones)) {

@@ -4264,8 +4264,7 @@ let vm = new Vue({
             let hotelTotalPrice = 0
             let allBreakfasts = 0
             let gain = this.hotels[curHotel].gain
-            let passDayPrice = this.form.passPrice
-            let passPrice = (passDayPrice * this.form.adults) * this.form.passDiscount
+            let passPrice = this.form.passPrice
 
             if (this.form.passDiscount < 1) {
                 this.form.promocode = this.promocode
@@ -4305,7 +4304,7 @@ let vm = new Vue({
                 }
                 if (this.form.adults > 0 && daysTour > 3) {
                     totalPrice =
-                        passPrice + ((hotelTotalPrice + allBreakfasts) * gain)
+                        Number(passPrice) + ((hotelTotalPrice + allBreakfasts) * gain)
 
                     if (window.location.href !== 'https://nswpay.ru/') {
                         console.log('adults ' + this.form.adults)
@@ -4334,14 +4333,25 @@ let vm = new Vue({
     watch: {
         friendPhone() {
             if (this.friendPhone.length > 14) {
-                this.checkFriendPhone()
+                if (window.location.href !== 'https://nswpay.ru/') {
+                    this.friendCodeCheck = true
+                    this.form.phone = this.friendPhone
+                    this.step++
+                } else {
+                    this.checkFriendPhone()
+                }
             }
         },
         friendCode() {
             if (this.friendCode.length === 6) {
-                this.checkCode()
+                if (window.location.href !== 'https://nswpay.ru/') {
+                    this.friendCodeCheck = true
+                    this.form.phone = this.friendPhone
+                    this.step++
+                } else {
+                    this.checkCode()
+                }
             }
-
         }
     },
     methods: {
@@ -4600,7 +4610,7 @@ let vm = new Vue({
         applyFullFriendPassPrice() {
             let curPass = this.passes.indexOf(this.passes.find(pass => pass.code === this.form.pass))
             if (this.form.friendPassAdded) {
-              this.form.passPrice = this.passes[curPass].fullprice
+              this.form.passPrice = this.passes[curPass].fullprice * this.form.adults
             } else {
                this.form.passPrice = this.friendPassPrice
             }
