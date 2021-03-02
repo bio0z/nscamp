@@ -154,7 +154,7 @@ if (isset($_POST['tourNumber'])) {
           $username = "host1817609";
           $password = "RtYyvvrI7O";
           $database = 'host1817609_nsctemp';
-        } elseif ($host == 'nswpay.ru'){
+        } elseif ($host == 'nswpay.ru') {
           $username = "host1211741_nsctemp";
           $password = "5zN0t0AF";
           $database = 'host1211741_nsctemp';
@@ -164,24 +164,24 @@ if (isset($_POST['tourNumber'])) {
           $database = 'nscTemp';
         }
 
-        $conn = new mysqli($servername, $username, $password, $database);
+          $conn = new mysqli($servername, $username, $password, $database);
 
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        } else {
-          $hotelCode = $conn->real_escape_string(trim($ar['hotel']));
-          $roomCode = $conn->real_escape_string(trim($ar['room']));
+          if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+          } else {
+            $hotelCode = $conn->real_escape_string(trim($ar['hotel']));
+            $roomCode = $conn->real_escape_string(trim($ar['room']));
 
-          $result = $conn->query('SELECT * FROM temp_rooms_quota WHERE hotelCode = "' . $hotelCode . '" AND roomCode = "' . $roomCode .'"');
-          if ($result) {
-            $conn->query("UPDATE temp_rooms_quota 
+            $result = $conn->query('SELECT * FROM temp_rooms_quota WHERE hotelCode = "' . $hotelCode . '" AND roomCode = "' . $roomCode . '"');
+            if ($result) {
+              $conn->query("UPDATE temp_rooms_quota 
                         SET quota = quota-1
                         WHERE hotelCode = '" . $hotelCode . "' 
-                          AND roomCode = '" . $roomCode."'");
-            echo 'Updated.';
-          } else {
-            echo 'Incorrest Hotel or Room !' . '<br>';
-            echo "Error: " . $result . "<br>" . $conn->error;
+                          AND roomCode = '" . $roomCode . "'");
+              echo 'Updated quota.';
+            } else {
+              echo 'Incorrest Hotel or Room !' . '<br>';
+              echo "Error: " . $result . "<br>" . $conn->error;
           }
         }
 

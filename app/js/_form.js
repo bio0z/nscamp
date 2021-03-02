@@ -1343,7 +1343,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'AYS Design Hotel **',
                 code: 'AYSD',
                 address: 'Краснодарский край, с. Эстосадок, Горная Олимпийская деревня, ул. Сулимовка, д. 5',
@@ -1858,7 +1858,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Rosa Springs ****',
                 code: 'ROS',
                 address: 'Роза Хутор, п. Эсто-Садок, ул. Медовея, д. 4',
@@ -1886,14 +1886,14 @@ let vm = new Vue({
                 },
                 rooms: [
                     {
-                        active: false,
+                        active: true,
                         name: 'Стандарт',
                         code: 'STD',
                         maxGuests: 2,
                         quota: 65,
                         prices: {
-                            1: [7350, 7350, 7350, 8400, 8400, 8400, 8400, 8400, 7350, 7350],
-                            2: [8050, 8050, 9200, 9200, 9200, 9200, 9200, 9200, 8050, 8050],
+                            1: [14625, 14625, 16575, 16575, 16575, 16575, 16575, 16575, 16575, 16575],
+                            2: [15450, 15450, 17510, 17510, 17510, 17510, 17510, 17510, 15450, 15450],
                         },
                         breakfasts: {},
                         breakfasts_included: true,
@@ -2754,7 +2754,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 formula: 99,
@@ -3722,7 +3722,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Freestyle by Azimut',
                 code: 'FREEBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.5',
@@ -3834,7 +3834,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Valset by Azimut',
                 code: 'VALBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.4',
