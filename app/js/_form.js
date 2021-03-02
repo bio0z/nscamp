@@ -4299,9 +4299,6 @@ let vm = new Vue({
                     this.form.hotelBreakfastPrice = 0;
                     allBreakfasts = 0;
                 }
-                if (window.location.href !== 'https://nswpay.ru/') {
-                    console.log('daysTour ' + daysTour)
-                }
                 if (this.form.adults > 0 && daysTour > 3) {
                     totalPrice =
                         Number(passPrice) + ((hotelTotalPrice + allBreakfasts) * gain)
@@ -4333,24 +4330,12 @@ let vm = new Vue({
     watch: {
         friendPhone() {
             if (this.friendPhone.length > 14) {
-                if (window.location.href !== 'https://nswpay.ru/') {
-                    this.friendCodeCheck = true
-                    this.form.phone = this.friendPhone
-                    this.step++
-                } else {
-                    this.checkFriendPhone()
-                }
+                this.checkFriendPhone()
             }
         },
         friendCode() {
             if (this.friendCode.length === 6) {
-                if (window.location.href !== 'https://nswpay.ru/') {
-                    this.friendCodeCheck = true
-                    this.form.phone = this.friendPhone
-                    this.step++
-                } else {
-                    this.checkCode()
-                }
+                this.checkCode()
             }
         }
     },
@@ -4441,6 +4426,7 @@ let vm = new Vue({
             this.form.consent = null
         },
         nextStep() {
+            console.log('.href ' + window.location.href)
             if (this.step === 1) {
                 if (!this.form.phone) {
                     this.errors = this.translations.errorWrongPhone[this.selectedLocale]
