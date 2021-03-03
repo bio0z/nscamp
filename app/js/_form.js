@@ -367,6 +367,16 @@ let vm = new Vue({
                 'ru': 'Укажите корректный телефон.',
                 'en': 'Please, fill correct number of cell phone'
             },
+            tourIncludedP: {
+                'ru': '<p><b>В тур включено:</b></p></li>' +
+                    '<ul></li>' +
+                    '<li> Браслет участника</li></li>' +
+                    '</ul>',
+                'en': '<p><b>Tour details:</b></p></li>' +
+                    '<ul></li>' +
+                    '<li> Festival PASS</li></li>' +
+                    '</ul>',
+            },
             tourIncluded: {
                 'ru': '<p><b>В тур включено:</b></p></li>' +
                     '<ul></li>' +
@@ -4069,11 +4079,8 @@ let vm = new Vue({
         }
         // check available rooms
         let step = document.getElementById("stepper");
-        console.log('this.form.pass' + this.form.pass)
 
         if (this.form.pass !== 'P') {
-            console.log('activeHotelRooms ' + this.form.pass)
-            console.log('activeHotelRooms ' + this.form.pass)
             step.addEventListener('click',()=>{
                 this.activeHotelRooms()
             })
@@ -4147,16 +4154,18 @@ let vm = new Vue({
             let totalPrice = 0;
             let skiPass = 1470;
             let curPass = this.passes.indexOf(this.passes.find(pass => pass.code === this.form.pass))
-            if (curPass !== 'P') {
+            let curPassCode = this.passes[curPass].code
+
+            if (curPassCode !== 'P') {
                 let curHotel = this.hotels.indexOf(this.hotels.find(hotel => hotel.code === this.form.hotel))
                 let curRoom = this.hotels[curHotel].rooms.indexOf(this.hotels[curHotel].rooms.find(room => room.code === this.form.room))
+                let gain = this.hotels[curHotel].gain
                 let hotelTotalPrice = 0
                 let allBreakfasts = 0
             }
             let daysTour = this.form.tourDays
-            let gain = this.hotels[curHotel].gain
             let passDayPrice = 0
-            daysTour < 3 && (this.form.pass === 'S' || this.form.pass === 'P') ?
+            daysTour < 3 && (curPassCode === 'S' || curPassCode === 'P') ?
                 passDayPrice = 5000 :
                 passDayPrice = this.passes[curPass].price
             let passPrice = (passDayPrice * this.form.adults) * this.form.passDiscount
@@ -4165,7 +4174,7 @@ let vm = new Vue({
                 this.form.promocode = this.promocode
             }
 
-            if (this.form.room !== undefined) {
+            if (this.form.room !== undefined && this.form.pass !== 'P') {
                 let option = {
                     day: 'numeric',
                 };
@@ -4193,9 +4202,6 @@ let vm = new Vue({
                 } else {
                     this.form.hotelBreakfastPrice = 0;
                     allBreakfasts = 0;
-                }
-                if (window.location.href !== 'https://nswpay.ru/') {
-                    console.log('daysTour ' + daysTour)
                 }
                 if (this.form.adults > 0 && daysTour > 3) {
                     totalPrice =
@@ -4226,9 +4232,17 @@ let vm = new Vue({
                     this.form.tourPrice = Math.ceil(totalPrice)
                     return Math.ceil(totalPrice) + '₽'
                 }
-            } else if (curPass == 'P') {
-                totalPrice =
-                    passPrice
+            } else if (curPassCode == 'P') {
+                totalPrice = passPrice
+
+                this.form.tourPrice = Math.ceil(totalPrice)
+
+                console.log('passPrice ' + passPrice)
+                console.log('curPassCode ' + curPassCode)
+                console.log('passDayPrice ' + passDayPrice)
+                console.log('this.form.adults ' + this.form.adults)
+
+                return Math.ceil(totalPrice) + '₽'
             }
             return false;
         }
@@ -4251,8 +4265,19 @@ let vm = new Vue({
             return true;
         },
         prevStep() {
-            this.step--;
-            this.form.consent = null
+            if (this.form.pass !== 'P') {
+                this.step--;
+                this.form.consent = null
+            } else {
+                if (this.step === 4) {
+                    this.step = this.step - 2;
+                    this.form.consent = null
+                } else {
+                    this.step--;
+                    this.form.consent = null
+                }
+            }
+
         },
         nextStep() {
             if (this.step === 1) {

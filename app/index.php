@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp/app/' : '';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1614722900'
+$timestamp = '1614769446'
 ?>
 
 <html lang="ru">
@@ -146,6 +146,7 @@ $timestamp = '1614722900'
             </div>
             <div class="col-12 col-sm-12 col-md-9 col-lg-9 mb-2 pl-0 pr-0">
               <div class="row justify-content-end">
+                <?php if ($env == 'test') { ?>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
                   <label class="m-1 nsc-pass-label p-0"
                          v-bind:class="[!passPDetails ? 'nsc-pass-p' : 'nsc-pass-p-back']"
@@ -173,6 +174,7 @@ $timestamp = '1614722900'
                        @click="showPassPDetail()">{{ translations.passDetails[selectedLocale] }}
                   </div>
                 </div>
+                <?php } ?>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
                   <label class="m-1 nsc-pass-label p-0"
                          v-bind:class="[!passSDetails ? 'nsc-pass-s' : 'nsc-pass-s-back']"
@@ -560,7 +562,7 @@ $timestamp = '1614722900'
           <div clas="row">
             <div class="row p-2">
               <div class="col-12 col-sm-12 col-md-6 col-lg-6"
-                   v-bind:class="[ form.pass === 'V' ? 'tour-final-v' : 'tour-final-s']">
+                   v-bind:class="'tour-final-' + form.pass">
                 <div class="tour-final tourIncluded p-3">
                   <h5 v-if="form.pass === 'V'">VIP TOUR</h5>
                   <h5 v-if="form.pass === 'S'">STANDARD TOUR</h5>
@@ -578,7 +580,7 @@ $timestamp = '1614722900'
                     <input class="col-8 border-0" type="email" class="tourClientEmail" id="tourPersonEmail"
                            :value="form.email" readonly></div>
                   <div class="row">
-                    <label v-if="form.pass !== 'P'" class="col-4" for="tourPersonPhone">{{ translations.guestPhone[selectedLocale] }}</label>
+                    <label  class="col-4" for="tourPersonPhone">{{ translations.guestPhone[selectedLocale] }}</label>
                     <input  class="col-8 border-0" type="text" id="tourPersonPhone"
                            :value="form.phone" readonly></div>
                   <div class="row">
@@ -589,15 +591,15 @@ $timestamp = '1614722900'
                     <!--                                                       :value="val" readonly>-->
                   </div>
                   <div class="row">
-                    <label class="col-4" for="tourPersonRoom">Номер</label>
+                    <label v-if="form.pass !== 'P'" class="col-4" for="tourPersonRoom">Номер</label>
                     <input class="col-8 border-0" type="text" id="tourPersonRoom"
                            :value="roomName" readonly></div>
                 </div>
               </div>
               <div class="col-12 col-sm-12 col-md-1 col-lg-1"></div>
               <div class="col pt-3">
-                <div class="tourIncluded" v-html="translations.tourIncluded[selectedLocale]">
-                </div>
+                <div v-if="form.pass !== 'P'" class="tourIncluded" v-html="translations.tourIncluded[selectedLocale]"></div>
+                <div v-if="form.pass === 'P'" class="tourIncluded" v-html="translations.tourIncludedP[selectedLocale]"></div>
                 <div class="row">
                   <input type="text" class="form-control col promocode"
                          v-model.prevent="promocode"
@@ -681,12 +683,12 @@ $timestamp = '1614722900'
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
-            <label v-if="this.form.room" for="toursum"
+            <label v-if="step > 2" for="toursum"
                    class="col-7 col-sm-7 col-md-7 col-lg-7 align-middle nsw-toursum-label">
               {{ translations.tourPriceText[selectedLocale] }}
             </label>
             <input class="col-5 border-0 nsw-toursum"
-                   v-if="this.form.room"
+                   v-if="step > 2 && this.form.pass"
                    type="text"
                    id="toursum"
                    name="toursum"
