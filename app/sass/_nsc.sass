@@ -200,7 +200,7 @@ main
 
   .nsc-pass-label .pass-price
     display: table-cell
-    padding: 0 22px 25px 110px
+    padding: 0 22px 25px 20px
     font-size: 18px
     line-height: 21px
     text-align: left
@@ -234,7 +234,8 @@ main
     line-height: 21px
     position: absolute
     bottom: 20px
-    padding: 0 100px 0 10px
+    padding: 0 10px 0 10px
+    text-align: left
 
   .nsc-pass-label.active
     box-sizing: border-box
@@ -302,6 +303,35 @@ main
     display: none
     @media (max-width: 576px)
       display: table-cell
+
+  .nsc-pass-p .pass-front
+    background: url("../images/svg/tour-fest.svg?v=5") no-repeat
+    color: #000000
+    background-position-y: 25px
+    @media (max-width: 576px)
+      background: url("../images/svg/tour-fest-mob.svg?v=5") no-repeat
+      background-size: contain
+      background-origin: content-box
+
+  .nsc-pass-p-back .pass-front
+    background: #DB9EA7 url("../images/svg/tour-fest-back.svg?v=5") no-repeat
+    color: #ffffff
+    box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
+    border-radius: 11px
+    background-position-y: 25px
+    @media (max-width: 576px)
+      background: #f6d000 url("../images/svg/tour-fest-mob.svg?v=5") no-repeat
+      background-size: contain
+      background-origin: content-box
+      color: #232559
+      height: 216px
+    @media (max-width: 375px)
+      height: 193px
+
+  .nsc-pass-p-back .pass-detail
+    @media (max-width: 576px)
+      background: no-repeat #DB9EA7
+
 
   .nsc-button
     background-color: #777fa8

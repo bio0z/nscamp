@@ -34,6 +34,7 @@ let vm = new Vue({
             'ru': "RU",
             'en': "EN",
         },
+        phpPath: '',
         selectedLocale: 'ru',
         days: [26, 27, 28, 29, 30, 31, 1, 2, 3, 4],
         promocode: '',
@@ -126,17 +127,27 @@ let vm = new Vue({
                 'ru': 'Подробнее',
                 'en': 'More'
             },
+            passPDetails: {
+                'ru': '1–3 дня — 5000<span>₽</span></br> 4–10 дня — 8000<span>₽</span>',
+                'en': '1–3 дня — 5000<span>₽</span></br> 4–10 дня — 8000<span>₽</span>',
+            },
             passSDetails: {
-                'ru': 'от 28 986<span>₽ </span> от 5 дней',
-                'en': 'from 28 986<span>₽ </span> from 5 days'
+                'ru': 'от 15 000<span>₽ </span></br> от 5 дней',
+                'en': 'from 15 000<span>₽ </span></br> from 5 days'
             },
             passVDetails: {
-                'ru': 'от 40 986<span>₽ </span> от 5 дней ',
-                'en': 'from 40 986<span>₽ </span> from 5 days'
+                'ru': 'от 40 986<span>₽ </span></br> от 5 дней ',
+                'en': 'from 40 986<span>₽ </span></br> from 5 days'
             },
             soldOut: {
                 'ru': 'SOLD OUT',
                 'en': 'SOLD OUT'
+            },
+            passPDetailsFull: {
+                'ru': '<p class="mb-2">Браслет участника*</p>' +
+                    '<p class="minitext">* Информация о браслете участника доступна в разделе FAQ</p>',
+                'en': '<p class="mb-2">Браслет участника*</p>' +
+                    '<p class="minitext">* Информация о браслете участника доступна в разделе FAQ</p>',
             },
             passSDetailsFull: {
                 'ru': '<p class="mb-2">Браслет участника</p></li>' +
@@ -479,6 +490,7 @@ let vm = new Vue({
 
         passSDetails: false,
         passVDetails: false,
+        passPDetails: false,
 
         passes: [
             {
@@ -492,6 +504,12 @@ let vm = new Vue({
                 code: 'V',
                 color: '#777FA8',
                 price: 20000,
+            },
+            {
+                name: 'fest',
+                code: 'P',
+                color: '#6BC9B9',
+                price: 8000,
             }
         ],
         disabledDates: {
@@ -4049,15 +4067,26 @@ let vm = new Vue({
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
         }
-        window.addEventListener('load',()=>{
-            this.activeHotelRooms()
-        })
+        // check available rooms
         let step = document.getElementById("stepper");
-        step.addEventListener('click',()=>{
-            this.activeHotelRooms()
-        })
+        console.log('this.form.pass' + this.form.pass)
+
+        if (this.form.pass !== 'P') {
+            console.log('activeHotelRooms ' + this.form.pass)
+            console.log('activeHotelRooms ' + this.form.pass)
+            step.addEventListener('click',()=>{
+                this.activeHotelRooms()
+            })
+        }
     },
     computed: {
+        getDomain() {
+            let domain = document.domain
+            console.log('domain ' + domain)
+            if (domain === 'localhost') {
+                this.phpPath = 'nscamp/app/'
+            }
+        },
         userFIO() {
             return this.form.fname + ' ' + this.form.sname;
         },
@@ -4079,8 +4108,10 @@ let vm = new Vue({
             return adults + kids;
         },
         roomName() {
-            this.form.roomName = this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
-            return this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
+            if (this.form.pass !== 'P') {
+                this.form.roomName = this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
+                return this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
+            }
         },
         setTourName() {
             this.form.tourName = 'New Star Camp ' + ' tour, hotel: ' + this.form.hotelName;
@@ -4116,14 +4147,16 @@ let vm = new Vue({
             let totalPrice = 0;
             let skiPass = 1470;
             let curPass = this.passes.indexOf(this.passes.find(pass => pass.code === this.form.pass))
-            let curHotel = this.hotels.indexOf(this.hotels.find(hotel => hotel.code === this.form.hotel))
-            let curRoom = this.hotels[curHotel].rooms.indexOf(this.hotels[curHotel].rooms.find(room => room.code === this.form.room))
+            if (curPass !== 'P') {
+                let curHotel = this.hotels.indexOf(this.hotels.find(hotel => hotel.code === this.form.hotel))
+                let curRoom = this.hotels[curHotel].rooms.indexOf(this.hotels[curHotel].rooms.find(room => room.code === this.form.room))
+                let hotelTotalPrice = 0
+                let allBreakfasts = 0
+            }
             let daysTour = this.form.tourDays
-            let hotelTotalPrice = 0
-            let allBreakfasts = 0
             let gain = this.hotels[curHotel].gain
             let passDayPrice = 0
-            daysTour < 3 && this.form.pass === 'S' ?
+            daysTour < 3 && (this.form.pass === 'S' || this.form.pass === 'P') ?
                 passDayPrice = 5000 :
                 passDayPrice = this.passes[curPass].price
             let passPrice = (passDayPrice * this.form.adults) * this.form.passDiscount
@@ -4193,6 +4226,9 @@ let vm = new Vue({
                     this.form.tourPrice = Math.ceil(totalPrice)
                     return Math.ceil(totalPrice) + '₽'
                 }
+            } else if (curPass == 'P') {
+                totalPrice =
+                    passPrice
             }
             return false;
         }
@@ -4224,7 +4260,8 @@ let vm = new Vue({
                     this.errors = this.translations.errorChoosePass[this.selectedLocale];
                     return false;
                 } else {
-                    this.errors = null;
+                    this.errors = null
+                    this.step++
                 }
             } else if (this.step === 2) {
                 this.form.room = ''
@@ -4239,9 +4276,15 @@ let vm = new Vue({
                     this.errors = this.translations.errorMinDates[this.selectedLocale];
                     return false;
                 } else {
-                    this.errors = null;
+                    this.errors = null
+                    if (this.form.pass !== 'P') {
+                        this.step++
+                    } else if (this.form.pass === 'P') {
+                        this.step = this.step + 2
+                    }
+
                 }
-            } else if (this.step === 3) {
+            } else if (this.step === 3 && this.form.pass !== 'P') {
 
                 this.form.hotelName = this.hotels[this.currentHotel].name;
                 this.form.address = this.hotels[this.currentHotel].address;
@@ -4250,7 +4293,8 @@ let vm = new Vue({
                     this.errors = this.translations.errorChooseRoom[this.selectedLocale];
                     return false;
                 } else {
-                    this.errors = null;
+                    this.errors = null
+                    this.step++
                 }
             } else if (this.step === 4) {
                 if (!this.form.fname || !this.form.sname) {
@@ -4285,9 +4329,9 @@ let vm = new Vue({
                     return false;
                 } else {
                     this.errors = null;
+                    this.step++
                 }
             }
-            this.step++;
         },
         showPassVDetail() {
             if (!this.passVDetails) {
@@ -4303,22 +4347,27 @@ let vm = new Vue({
                 this.passSDetails = false;
             }
         },
+        showPassPDetail() {
+            if (!this.passPDetails) {
+                this.passPDetails = true;
+            } else {
+                this.passPDetails = false;
+            }
+        },
         setPassActive(pass) {
             if (pass === 'S') {
+                this.form.pass = 'S'
                 this.$refs.passSLabel.className += " active";
+                this.$refs.passPLabel.classList.remove("active");
                 // this.$refs.passVLabel.classList.remove("active");
             } else if (pass === 'V') {
                 // this.$refs.passVLabel.className += " active";
                 // this.$refs.passSLabel.classList.remove("active");
-            }
-        },
-        choosePass() {
-            if (form.pass === 'S') {
-                this.form.pass = 'S'
-                this.step = 2
-            } else if (form.pass === 'V') {
-                this.form.pass = 'V'
-                this.step = 2
+            } else if (pass === 'P') {
+                this.form.pass = 'P'
+                this.$refs.passPLabel.className += " active";
+                this.$refs.passSLabel.classList.remove("active");
+                 // this.$refs.passVLabel.classList.remove("active");
             }
         },
         showHotelPhoto() {
@@ -4327,8 +4376,10 @@ let vm = new Vue({
             this.form.room = null;
             this.$refs.hotelImage.src = this.hotels[curHotelIndex].gallery[0];
             this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].desc[this.selectedLocale];
+            if (this.form.pass !== 'P') {
+                this.activeHotelRooms()
+            }
 
-            this.activeHotelRooms()
         },
         showRoomPhoto() {
             let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
@@ -4378,7 +4429,7 @@ let vm = new Vue({
                 tourPass: this.form.pass
             };
             axios
-                .post("php/checkPCode.php", data, conf)
+                .post(this.phpPath + "php/checkPCode.php", data, conf)
                 .then(response => {
                     this.form.passDiscount = response.data;
                 })
@@ -4396,7 +4447,7 @@ let vm = new Vue({
 
             axios({
                 method: 'post',
-                url: 'php/send.php',
+                url: this.phpPath + 'php/send.php',
                 data: sdata,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             })
@@ -4435,9 +4486,10 @@ let vm = new Vue({
                 let adultsGuests = this.form.adults + ' ' + guestsText.get(this.form.adults);
                 console.log(adultsGuests)
 
-                let breakfast = this.form.hotelBreakfast === true ? this.translations.hotelMailBreakfast[this.selectedLocale] : this.translations.hotelMailNoBreakfast[this.selectedLocale]
-
-                let roomName = this.form.roomName
+                if (this.form.pass !== 'P') {
+                    let breakfast = this.form.hotelBreakfast === true ? this.translations.hotelMailBreakfast[this.selectedLocale] : this.translations.hotelMailNoBreakfast[this.selectedLocale]
+                    let roomName = this.form.roomName
+                }
 
                 let kids = this.form.kids !== 1 || this.form.kids !== 2 ? 0 : this.form.kids
 
@@ -4456,12 +4508,17 @@ let vm = new Vue({
                 fdata.append('lastname', this.form.sname);
                 fdata.append('email', this.form.email);
                 fdata.append('phone', this.form.phone);
-                fdata.append('room', this.form.room);
-                fdata.append('bed', this.form.bed);
-                fdata.append('roomName', roomName);
-                fdata.append('hotel', this.form.hotel);
-                fdata.append('hotelName', this.form.hotelName);
-                fdata.append('address', this.form.address);
+
+                if (this.form.pass !== 'P') {
+                    fdata.append('room', this.form.room);
+                    fdata.append('bed', this.form.bed);
+                    fdata.append('roomName', roomName);
+                    fdata.append('hotel', this.form.hotel);
+                    fdata.append('hotelName', this.form.hotelName);
+                    fdata.append('address', this.form.address);
+                    fdata.append('hotelBreakfast', breakfast);
+                }
+
                 fdata.append('passname', this.form.pass);
                 fdata.append('g2fname', this.form.gfname);
                 fdata.append('g2sname', this.form.gsname);
@@ -4480,7 +4537,6 @@ let vm = new Vue({
                 fdata.append('dateTill', this.form.dateTill.toLocaleString("ru", options));
                 fdata.append('adults', adultsGuests);
                 fdata.append('kids', kids);
-                fdata.append('hotelBreakfast', breakfast);
                 fdata.append('hotelPrice', this.form.hotelPrice);
                 fdata.append('tourPrice', this.form.tourPrice);
                 fdata.append('skipassPrice', this.form.skipassPrice);
@@ -4490,7 +4546,7 @@ let vm = new Vue({
 
                 axios({
                     method: 'post',
-                    url: 'php/saveVoucher.php',
+                    url: this.phpPath + 'php/saveVoucher.php',
                     data: fdata,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 })
@@ -4506,7 +4562,7 @@ let vm = new Vue({
         activeHotelRooms() {
             let adults = this.form.adults
             let arRooms = this.hotels.find(hotel => hotel.code === this.form.hotel)
-            if (Object.keys(arRooms).length > 0) {
+            if (Object.keys(arRooms).length > 0 && this.form.pass !== 'P') {
                 const conf = {
                     responseType: 'text'
                 };
@@ -4514,7 +4570,7 @@ let vm = new Vue({
                     hotelCode: this.form.hotel
                 };
                 axios
-                    .post("php/checkQuota.php", data, conf)
+                    .post(this.phpPath + "php/checkQuota.php", data, conf)
                     .then(response => {
                         if (response.data) {
                             this.errors = null;

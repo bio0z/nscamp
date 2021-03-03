@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp/app/' : '';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1614631874'
+$timestamp = '1614722900'
 ?>
 
 <html lang="ru">
@@ -101,7 +101,7 @@ $timestamp = '1614631874'
 
 <body>
 <div id="orderForm" class="container" v-cloak>
-  <header class="row m-0 mt-2">
+  <header :onload.once="getDomain" class="row m-0 mt-2">
     <div class="col-12 pb-3 lang-mob">
       <button class="btn btn-link p-0 link">
         <div v-for="(locale,code) in locales">
@@ -146,6 +146,33 @@ $timestamp = '1614631874'
             </div>
             <div class="col-12 col-sm-12 col-md-9 col-lg-9 mb-2 pl-0 pr-0">
               <div class="row justify-content-end">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
+                  <label class="m-1 nsc-pass-label p-0"
+                         v-bind:class="[!passPDetails ? 'nsc-pass-p' : 'nsc-pass-p-back']"
+                         @click="setPassActive('P')"
+                         ref="passPLabel">
+                    <div class="row pass-front" id="pass-front">
+                      <div class="f1 pass-detail-dt" v-if="passPDetails">
+                        <div v-html="translations.passPDetailsFull[selectedLocale]"></div>
+<!--                        <div class="pass-price-dt" v-html="translations.passPDetails[selectedLocale]"></div>-->
+                      </div>
+                      <div class="pass-price"
+                           v-bind:class="[!passPDetails ? '' : 'pass-price-dt']"
+                           v-html="translations.passPDetails[selectedLocale]"></div>
+                    </div>
+                    <div class="row f1 pass-detail" id="pass-detail" v-if="passPDetails"
+                         v-html="translations.passPDetailsFull[selectedLocale]">
+                    </div>
+                    <input type="radio" class="form-control "
+                           v-model.trim="form.pass"
+                           value="P"
+                           hidden
+                           required>
+                  </label>
+                  <div class="btn nsc-button btn-more"
+                       @click="showPassPDetail()">{{ translations.passDetails[selectedLocale] }}
+                  </div>
+                </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
                   <label class="m-1 nsc-pass-label p-0"
                          v-bind:class="[!passSDetails ? 'nsc-pass-s' : 'nsc-pass-s-back']"
@@ -537,6 +564,7 @@ $timestamp = '1614631874'
                 <div class="tour-final tourIncluded p-3">
                   <h5 v-if="form.pass === 'V'">VIP TOUR</h5>
                   <h5 v-if="form.pass === 'S'">STANDARD TOUR</h5>
+                  <h5 v-if="form.pass === 'P'">FESTIVAL PASS</h5>
                   <div class="row">
                     <label class="col-4" for="tourPersonName">{{ translations.guestName[selectedLocale] }}</label>
                     <input class="col-8 border-0" type="text" id="tourPersonName"
@@ -550,11 +578,11 @@ $timestamp = '1614631874'
                     <input class="col-8 border-0" type="email" class="tourClientEmail" id="tourPersonEmail"
                            :value="form.email" readonly></div>
                   <div class="row">
-                    <label class="col-4" for="tourPersonPhone">{{ translations.guestPhone[selectedLocale] }}</label>
-                    <input class="col-8 border-0" type="text" id="tourPersonPhone"
+                    <label v-if="form.pass !== 'P'" class="col-4" for="tourPersonPhone">{{ translations.guestPhone[selectedLocale] }}</label>
+                    <input  class="col-8 border-0" type="text" id="tourPersonPhone"
                            :value="form.phone" readonly></div>
                   <div class="row">
-                    <label class="col-4" for="tourPersonHotel">{{ translations.guestHotel[selectedLocale] }}</label>
+                    <label v-if="form.pass !== 'P'" class="col-4" for="tourPersonHotel">{{ translations.guestHotel[selectedLocale] }}</label>
                     <input class="col-8 border-0" type="text" id="tourPersonHotel"
                            :value="form.hotelName" readonly>
                     <!--                                                <input v-for="(val, key) in hotels" v-if="key == form.hotel" :some-data="key" class="col-8 border-0" type="text" id="tourPersonHotel"-->
