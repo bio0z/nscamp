@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp/app/' : '';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1614769446'
+$timestamp = '1614805950'
 ?>
 
 <html lang="ru">
@@ -109,7 +109,11 @@ $timestamp = '1614769446'
         </div>
       </button>
     </div>
-    <div class="col-8"><h1>{{ translations.title[selectedLocale] }}</h1></div>
+    <div class="col-8">
+      <h1 v-if="step < 2">{{ translations.title[selectedLocale] }}</h1>
+      <h1 v-if="step > 1 && form.pass !== 'P'">{{ translations.title[selectedLocale] }}</h1>
+      <h1 v-if="step > 1 && form.pass === 'P'">{{ translations.titleP[selectedLocale] }}</h1>
+    </div>
     <div class="col text-right pt-2 nsc-logo">
       <a href="https://newstarcamp.ru">
         <img src="<?= $path ?>images/svg/nsc-logo.svg?v=2">
@@ -243,7 +247,7 @@ $timestamp = '1614769446'
                       input-class="form-control nsc-select"
                       calendar-class="datepicker"
                       v-model="form.dateFrom"
-                      :placeholder="translations.dateFrom[selectedLocale]"
+                      :placeholder="dateFrom"
                       open-date="2021-03-26"
                       monday-first="true"
                       bootstrap-styling="true"
@@ -262,7 +266,7 @@ $timestamp = '1614769446'
                       input-class="form-control  nsc-select"
                       calendar-class="datepicker"
                       v-model="form.dateTill"
-                      :placeholder="translations.dateTill[selectedLocale]"
+                      :placeholder="dateTill"
                       open-date="2021-04-01"
                       monday-first="true"
                       bootstrap-styling="true"

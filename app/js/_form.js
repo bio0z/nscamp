@@ -89,11 +89,14 @@ let vm = new Vue({
             payed: null,
             passDiscount: 1
         },
-
         translations: {
             title: {
                 'ru': 'Купить тур',
                 'en': 'Tour Booking',
+            },
+            titleP: {
+                'ru': 'Купить Festival Pass',
+                'en': 'Tour Pass',
             },
             stepTour: {
                 'ru': 'Выберите категорию размещения',
@@ -179,8 +182,8 @@ let vm = new Vue({
                 'en': 'Next'
             },
             tourPriceText: {
-                'ru': 'cтоимость тура: ',
-                'en': 'Tour Cost: '
+                'ru': 'cтоимость: ',
+                'en': 'сost: '
             },
             stepPrevious: {
                 'ru': 'Назад',
@@ -282,14 +285,6 @@ let vm = new Vue({
             stepDates: {
                 'ru': 'Выберите даты',
                 'en': 'Please, choose dates'
-            },
-            dateFrom: {
-                'ru': 'Даты заезда',
-                'en': 'Date in'
-            },
-            dateTill: {
-                'ru': 'Даты выезда',
-                'en': 'Date out'
             },
             dateNote: {
                 'ru': '* Туры длительностью менее 9 дней станут доступны с 01.01.2021',
@@ -4094,6 +4089,20 @@ let vm = new Vue({
                 this.phpPath = 'nscamp/app/'
             }
         },
+        dateFrom(){
+            if (this.form.pass !== 'P') {
+                return 'дата приезда'
+            } else {
+                return 'дата действия браслета с'
+            }
+        },
+        dateTill() {
+            if (this.form.pass !== 'P') {
+                return 'дата выезда'
+            } else {
+                return 'дата действия браслета по'
+            }
+        },
         userFIO() {
             return this.form.fname + ' ' + this.form.sname;
         },
@@ -4121,7 +4130,11 @@ let vm = new Vue({
             }
         },
         setTourName() {
-            this.form.tourName = 'New Star Camp ' + ' tour, hotel: ' + this.form.hotelName;
+            if (this.form.pass !== 'P') {
+                this.form.tourName = 'New Star Camp ' + ' tour, hotel: ' + this.form.hotelName;
+            } else {
+                this.form.tourName = 'New Star Camp Festival Pass';
+            }
             return this.form.tourName;
         },
         calcTourDays() {
