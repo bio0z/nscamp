@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp/app/' : '';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1614805950'
+$timestamp = '1614875257'
 ?>
 
 <html lang="ru">
@@ -687,12 +687,12 @@ $timestamp = '1614805950'
             <input type="text" class="nsw-tourid" value="<?= $tourID ?>" readonly hidden/>
             <input type="text" class="nsw-tournumber" value="<?= $tourNumber ?>" readonly hidden/>
             <input v-if="form.pass" type="text" class="nsw-tourname" :value="setTourName" readonly hidden/>
-            <label v-if="step > 2" for="toursum"
+            <label v-if="form.room || form.pass == 'P'" for="toursum"
                    class="col-7 col-sm-7 col-md-7 col-lg-7 align-middle nsw-toursum-label">
               {{ translations.tourPriceText[selectedLocale] }}
             </label>
             <input class="col-5 border-0 nsw-toursum"
-                   v-if="step > 2 && this.form.pass"
+                   v-if="form.room && form.pass || form.pass == 'P'"
                    type="text"
                    id="toursum"
                    name="toursum"

@@ -1,17 +1,19 @@
-<script>
-    let guestsText = new Map([
-        ['1', 'гость'],
-        ['2', 'гостя'],
-        ['3', 'гостя'],
-        ['4', 'гостя'],
-        ['5', 'гостей']
-    ]);
 
-    let guests = guestsText.get('5');
-
-    console.log(guests)
-</script>
 <?php
+
+$days = [1, 2, 3];
+$row['days'] = [26, 27, 28, 29, 30, 31, 1, 2, 3];
+
+$checkDays = array_diff($days,$row['days']);
+
+print_r($checkDays);
+echo '<br>' . $checkDays . '<br>';
+
+if (empty($checkDays)) {
+  echo '<br>' . ' true';
+} else {
+  echo '<br>' . ' false';
+}
 //require '../vendor/autoload.php';
 
 //if ($_GET['admin'] == 000000 ) {
@@ -24,11 +26,11 @@
 //    foreach ($ar as $prop){
 //      echo '<p>'. $prop . '</p>';
 //    }
-$timestamp = 1601479956;
+//$timestamp = 1601479956;
 //echo date('d M Y H:i:s', $timestamp);
-echo json_encode(['status'=> accept,'percent'=>100,]);
-echo '<br>';
-echo json_encode(['status'=> reject,]);
+//echo json_encode(['status'=> accept,'percent'=>100,]);
+//echo '<br>';
+//echo json_encode(['status'=> reject,]);
 /*
     $files1 = '../sent/vaucher_num_1601568580.json';
     $json1 = file_get_contents($files1);
