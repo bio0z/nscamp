@@ -1,5 +1,6 @@
 <?php
 $_POST = json_decode(file_get_contents('php://input'), true);
+$host = $_SERVER['HTTP_HOST'];
 
 $url = 'https://lcab.sms-uslugi.ru/json/v1.0/sms/send/text';
 $token = 'y54n53qkrcr8z99grcj7ctiinyllkzb4lr2dve0qjk6tbjt1gn4yeb1n2rbotsge';
@@ -11,7 +12,8 @@ $code = decoct((string) substr($phone,7,4)) . mt_rand(1,9);
 
 if (isset($_POST['friendPhone'])) {
 
-  $message = '{
+  if ($host == 'nswpay.ru') {
+    $message = '{
   "messages": [
     {
       "recipient": "'. $_POST["friendPhone"] . '",
@@ -34,22 +36,27 @@ if (isset($_POST['friendPhone'])) {
   "transliterate": false
 }';
 
-  $ch = curl_init();
-  curl_setopt_array($ch, [
-    CURLOPT_URL => $url,
-    CURLOPT_POST => true,
-    CURLOPT_HTTPHEADER => [
-      "X-Token: $token",
-      "Content-Type: application/json"
-    ],
-    CURLOPT_POSTFIELDS => $message,
-    CURLOPT_RETURNTRANSFER => true
-  ]);
+    $ch = curl_init();
+    curl_setopt_array($ch, [
+      CURLOPT_URL => $url,
+      CURLOPT_POST => true,
+      CURLOPT_HTTPHEADER => [
+        "X-Token: $token",
+        "Content-Type: application/json"
+      ],
+      CURLOPT_POSTFIELDS => $message,
+      CURLOPT_RETURNTRANSFER => true
+    ]);
 
-  $result = curl_exec($ch);
-//  $res = json_decode($result, true);
+    $result = curl_exec($ch);
 
-  echo $result;
+    echo $result;
+  } else {
+    $result = [
+      'success' => true
+    ];
+    echo json_encode($result);
+  }
 
 } else {
   echo 'POST empty';
