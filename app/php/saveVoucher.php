@@ -11,7 +11,7 @@ if(isset($_POST)) {
   $ar['tourNumber'] = $_POST['tourNumber'];
   $ar['tourID'] = $_POST['tourID'];
   $ar['passcode'] = $_POST['passname'];
-  $ar['passname'] = $_POST['passname'] == 'S' ? 'STANDARD TOUR' : 'VIP TOUR';
+  $ar['passname'] = 'FRIENDS TOUR';
   $ar['guest1'] = $_POST['name'] . ' ' . $_POST['lastname'];
   $ar['guest2'] = $_POST['g2fname'] . ' ' . $_POST['g2sname'];
   $ar['guest3'] = $_POST['g3fname'] . ' ' . $_POST['g3sname'];

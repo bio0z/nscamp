@@ -39,31 +39,16 @@ if (isset($_POST['tourNumber'])) {
         $emailCopy = 'pool@awsd.cc';
       }
 
-      if ($ar['passcode'] == 'V') {
-        $pass = 'VIP';
-        $backColor = '#F2D046';
-      } elseif ($ar['passcode'] == 'S') {
-        $pass = 'STANDARD';
-        $backColor = '#DB9EA7';
-      } elseif ($ar['passcode'] == 'F') {
-        $pass = 'FRIENDS';
-        $backColor = '#6BC9B9';
-      }
+      $pass = 'FRIENDS';
+      $backColor = '#6BC9B9';
 
       $body = file_get_contents('../html/mail.html');
       $body = preg_replace("/#HTTP_HOST#/", 'http://' . $_SERVER["HTTP_HOST"], $body);
 
-      if (strlen($_POST['tourNumber']) === 10) {
-        $voucher = file_get_contents('../html/voucher2.html');
-      } else if ($ar['passcode'] == 'P') {
-        $voucher = file_get_contents('../html/voucherP.html');
-        $skiPassDays = $ar['tourDays'] - 1;
-        $tourDays = $ar['tourDays'] + 1;
-      } else {
-        $voucher = file_get_contents('../html/voucher3.html');
-        $skiPassDays = $ar['tourDays'] - 1;
-        $tourDays = $ar['tourDays'] + 1;
-      }
+
+      $voucher = file_get_contents('../html/voucherP.html');
+      $skiPassDays = $ar['tourDays'] - 1;
+      $tourDays = $ar['tourDays'] + 1;
 
       $voucher = preg_replace("/#FIO#/", $ar['name'], $voucher);
       $voucher = preg_replace("/#HTTP_HOST#/", 'http://' . $_SERVER["HTTP_HOST"], $voucher);
@@ -224,6 +209,7 @@ if (isset($_POST['tourNumber'])) {
       echo 'No json file' . $file;
     }
   } else {
+    echo 'Message from $host ' . $host . '<br>';
     echo 'Mail for this voucher ' . $tourNumber . ' already sent';
   }
 } else {
