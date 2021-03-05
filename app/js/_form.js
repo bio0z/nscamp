@@ -1722,8 +1722,8 @@ let vm = new Vue({
                         maxGuests: 2,
                         quota: 65,
                         prices: {
-                            1: [10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550],
-                            2: [10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550, 10550]
+                            1: [15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660],
+                            2: [15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660]
                         },
                         breakfasts: {},
                         breakfasts_included: true,
@@ -1775,8 +1775,8 @@ let vm = new Vue({
                         maxGuests: 2,
                         quota: 65,
                         prices: {
-                            1: [11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350],
-                            2: [11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350, 11350]
+                            1: [15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660],
+                            2: [15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660, 15660]
                         },
                         breakfasts: {},
                         breakfasts_included: true,
@@ -4200,7 +4200,6 @@ let vm = new Vue({
                 };
                 let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
                 let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
-                let daysCount = daysTour;
 
                 const reducer = (accumulator, currentValue) => accumulator + currentValue
 
@@ -4208,6 +4207,7 @@ let vm = new Vue({
                 hotelTotalPrice = arrPrices.reduce(reducer);
 
                 let skiPassDays = daysTour < 6 ? daysTour : daysTour - 1;
+                skiPassDays = daysTour = 2 ? daysTour + 1 : skiPassDays;
                 let skiPassPrice = ((skiPass * skiPassDays) * this.form.adults);
 
                 if (this.hotels[curHotel].rooms[curRoom].breakfasts_included === true) {
@@ -4224,7 +4224,7 @@ let vm = new Vue({
                     allBreakfasts = 0;
                 }
 
-                if (this.form.adults > 0 && daysTour > this.minDays) {
+                if (this.form.adults > 0 && daysTour >= this.minDays) {
                     totalPrice =
                         (passPrice
                             + hotelTotalPrice
@@ -4238,12 +4238,13 @@ let vm = new Vue({
                         console.log('hotelTotalPrice dayStart ' + dayStart)
                         console.log('hotelTotalPrice dayEnd indexOf ' + vm.days.indexOf(dayEnd))
                         console.log('hotelTotalPrice dayEnd ' + dayEnd)
-                        console.log('hotelTotalPrice daysCount ' + daysCount)
+                        console.log('hotelTotalPrice daysTourCount ' + daysTour)
                         console.log('passPrice no discount ' + (this.passes[curPass].price * this.form.adults))
                         console.log('passPrice ' + passPrice)
                         console.log('discount ' + this.form.passDiscount)
                         console.log('hotelTotalPrice ' + hotelTotalPrice)
-                        console.log('skipassPrice ' + ((skiPass * (daysTour - 1)) * this.form.adults))
+                        console.log('skiPassDays ' + skiPassDays)
+                        console.log('skipassPrice ' + skiPassPrice)
                         console.log('allBreakfasts ' + allBreakfasts)
                     }
 
