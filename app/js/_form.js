@@ -136,11 +136,11 @@ let vm = new Vue({
                 'en': '1–3 дня — 5000<span>₽</span></br> 4–10 дня — 8000<span>₽</span>',
             },
             passSDetails: {
-                'ru': 'от 15 000<span>₽ </span></br> от 5 дней',
+                'ru': 'от 15 000<span>₽ </span></br> от 3 дней',
                 'en': 'from 15 000<span>₽ </span></br> from 5 days'
             },
             passVDetails: {
-                'ru': 'от 40 986<span>₽ </span></br> от 5 дней ',
+                'ru': 'от 40 986<span>₽ </span></br> от 3 дней ',
                 'en': 'from 40 986<span>₽ </span></br> from 5 days'
             },
             soldOut: {
@@ -4528,9 +4528,10 @@ let vm = new Vue({
 
                 let adultsGuests = this.form.adults + ' ' + guestsText.get(this.form.adults);
 
+                let breakfast = '';
+
                 if (this.form.pass !== 'P') {
-                    let breakfast = this.form.hotelBreakfast === true ? this.translations.hotelMailBreakfast[this.selectedLocale] : this.translations.hotelMailNoBreakfast[this.selectedLocale]
-                    let roomName = this.form.roomName
+                    breakfast = this.form.hotelBreakfast === true ? this.translations.hotelMailBreakfast[this.selectedLocale] : this.translations.hotelMailNoBreakfast[this.selectedLocale]
                 }
 
                 let kids = this.form.kids !== 1 || this.form.kids !== 2 ? 0 : this.form.kids
@@ -4554,7 +4555,7 @@ let vm = new Vue({
                 if (this.form.pass !== 'P') {
                     fdata.append('room', this.form.room);
                     fdata.append('bed', this.form.bed);
-                    fdata.append('roomName', roomName);
+                    fdata.append('roomName', this.form.roomName);
                     fdata.append('hotel', this.form.hotel);
                     fdata.append('hotelName', this.form.hotelName);
                     fdata.append('address', this.form.address);
