@@ -4334,7 +4334,7 @@ let vm = new Vue({
             }
         },
         friendCode() {
-            if (this.friendCode.length > 4) {
+            if (this.friendCode.length >= 4) {
                 this.checkCode()
             }
         }
@@ -4371,6 +4371,7 @@ let vm = new Vue({
             };
             return axios.post(this.phpPath + "php/sendSms.php", data, conf).then(response => {
                 let result = response.data
+                console.log(response.data)
                 if (result['success'] === true) {
                     console.log('SMS сообщение отправлено')
                 } else {
