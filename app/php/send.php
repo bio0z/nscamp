@@ -169,6 +169,8 @@ if (isset($_POST['tourNumber'])) {
           $database = 'nscTemp';
         }
 
+        if (!$_GET['num']) {
+
           $conn = new mysqli($servername, $username, $password, $database);
 
           if ($conn->connect_error) {
@@ -187,8 +189,10 @@ if (isset($_POST['tourNumber'])) {
             } else {
               echo 'Incorrest Hotel or Room !' . '<br>';
               echo "Error: " . $result . "<br>" . $conn->error;
+            }
           }
         }
+
 
 ////        require_once '';
 //        $myCurl = curl_init();

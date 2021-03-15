@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp/app/' : '';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1615315434'
+$timestamp = '1615750902'
 ?>
 
 <html lang="ru">
@@ -301,7 +301,8 @@ $timestamp = '1615315434'
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-<!--                    <option value="6">6</option>-->
+                    <option value="6">6</option>
+                    <option value="7">7</option>
                   </select>
                 </div>
               </div>
