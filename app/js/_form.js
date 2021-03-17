@@ -4334,7 +4334,7 @@ let vm = new Vue({
             }
         },
         friendCode() {
-            if (this.friendCode.length >= 4) {
+            if (this.friendCode.length >= 3) {
                 this.checkCode()
             }
         }
