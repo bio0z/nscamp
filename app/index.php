@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp/app/' : '';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1615750902'
+$timestamp = '1615993601'
 ?>
 
 <html lang="ru">
@@ -150,7 +150,6 @@ $timestamp = '1615750902'
             </div>
             <div class="col-12 col-sm-12 col-md-9 col-lg-9 mb-2 pl-0 pr-0">
               <div class="row justify-content-end">
-                <?php if ($env == 'test') { ?>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
                   <label class="m-1 nsc-pass-label p-0"
                          v-bind:class="[!passPDetails ? 'nsc-pass-p' : 'nsc-pass-p-back']"
@@ -178,7 +177,6 @@ $timestamp = '1615750902'
                        @click="showPassPDetail()">{{ translations.passDetails[selectedLocale] }}
                   </div>
                 </div>
-                <?php } ?>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
                   <label class="m-1 nsc-pass-label p-0"
                          v-bind:class="[!passSDetails ? 'nsc-pass-s' : 'nsc-pass-s-back']"

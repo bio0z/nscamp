@@ -4433,7 +4433,7 @@ let vm = new Vue({
         },
         setTourName() {
             if (this.form.pass !== 'P') {
-                this.form.tourName = 'New Star Camp ' + ' tour, hotel: ' + this.form.hotelName;
+                this.form.tourName = 'New Star Camp tour, hotel: ' + this.form.hotelName;
             } else {
                 this.form.tourName = 'New Star Camp Festival Pass';
             }
