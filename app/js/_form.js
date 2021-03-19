@@ -340,8 +340,8 @@ let vm = new Vue({
                 'en': 'Please, choose your the dates of tour.'
             },
             errorMinDates: {
-                'ru': 'Туры менее 4 дней пока недоступны.',
-                'en': 'Minimal tour 4 days at this moment.'
+                'ru': 'Туры менее 3 дней пока недоступны.',
+                'en': 'Minimal tour 3 days at this moment.'
             },
             errorChooseAdults: {
                 'ru': 'Вы забыли выбрать количество человек.',
@@ -537,7 +537,7 @@ let vm = new Vue({
                 // new Date(2021, 3, 2),
             ],
         },
-        hotelQuota: '',
+        hotelQuota: null,
         hotels: [
             {
                 active: false,
@@ -2444,7 +2444,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Отель Park Inn by Radisson Rosa Khutor ****',
                 code: 'PIRRS4',
                 address: 'Улица Олимпийская 35, Эсто-Садок, Россия',
@@ -2539,7 +2539,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pirrs4-2-standard-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт с видом на реку',
                         code: 'S2RVFF',
                         prices: {
@@ -3261,15 +3261,15 @@ let vm = new Vue({
                         code: 'DB',
                         maxGuests: 2,
                         prices: {
-                            1: [3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600],
-                            2: [3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600],
+                            1: [4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000],
+                            2: [4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000],
                         },
                         breakfasts: {
                             1: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
                             2: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
                         },
                         breakfasts_included: false,
-                        breakfasts_no: false,
+                        breakfasts_no: true,
                         beds: [
                             {
                                 'code': 1,
@@ -3296,6 +3296,45 @@ let vm = new Vue({
                     },
                     {
                         active: true,
+                        name: 'Двухместный номер в блоке',
+                        code: 'DBFF',
+                        maxGuests: 2,
+                        prices: {
+                            1: [4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000],
+                            2: [4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000],
+                        },
+                        breakfasts: {
+                            1: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                            2: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+                        },
+                        breakfasts_included: false,
+                        breakfasts_no: true,
+                        beds: [
+                            {
+                                'code': 1,
+                                'name': '1 двуспальная кровать',
+                            },
+                            {
+                                'code': 2,
+                                'name': '2 односпальные кровати'
+                            }
+                        ],
+                        desc: {
+                            'ru': '<ul><li>15 кв. м </li>' +
+                                '<li>Двуспальная / Две односпальные </li>' +
+                                '<li>Общий санузел</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Чайник</li>' +
+                                '<li>Банные пренадлежности</li>' +
+                                '<li>Банные полотенца</li>' +
+                                '<li>Тапочки</li>' +
+                                '<li>Фен</li></ul>',
+                            'en': ''
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-2-double_block.jpg'
+                    },
+                    {
+                        active: false,
                         name: 'Семейный двухкомнатный',
                         code: 'S2',
                         maxGuests: 3,
@@ -3337,7 +3376,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-3-standard.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Семейный трехкомнатный',
                         code: 'S3',
                         maxGuests: 4,
@@ -4234,6 +4273,7 @@ let vm = new Vue({
         },
         calcTourDays() {
             let tourDays = 0
+
             if (this.form.dateFrom && this.form.dateTill) {
                 tourDays = ((this.form.dateTill - this.form.dateFrom) / 1000 / 60 / 60 / 24)
                 this.form.tourDays = tourDays
@@ -4299,7 +4339,7 @@ let vm = new Vue({
                     this.form.hotelBreakfastPrice = 0;
                     allBreakfasts = 0;
                 }
-                if (this.form.adults > 0 && daysTour > 3) {
+                if (this.form.adults > 0 && daysTour >= 3) {
                     totalPrice =
                         Number(passPrice) + ((hotelTotalPrice + allBreakfasts) * gain)
 
@@ -4371,7 +4411,7 @@ let vm = new Vue({
             };
             return axios.post(this.phpPath + "php/sendSms.php", data, conf).then(response => {
                 let result = response.data
-                console.log(response.data)
+
                 if (result['success'] === true) {
                     console.log('SMS сообщение отправлено')
                 } else {
@@ -4394,8 +4434,7 @@ let vm = new Vue({
                     friendPhone: this.friendPhone
                 };
                 return axios.post(this.phpPath + "php/checkCode.php", data, conf).then(response => {
-                    console.log('response.data type ' + typeof response.data)
-                    console.log('response.data ' + response.data)
+
                     if (response.data === 1) {
                         this.friendCodeCheck = true
                         this.form.phone = this.friendPhone
@@ -4427,7 +4466,6 @@ let vm = new Vue({
             this.form.consent = null
         },
         nextStep() {
-            console.log('.href ' + window.location.href)
             if (this.step === 1) {
                 if (!this.form.phone) {
                     this.errors = this.translations.errorWrongPhone[this.selectedLocale]
@@ -4446,7 +4484,7 @@ let vm = new Vue({
                 } else if (!this.form.adults) {
                     this.errors = this.translations.errorChooseAdults[this.selectedLocale];
                     return false
-                } else if (this.calcTourDays < 4) {
+                } else if (this.calcTourDays < 2) {
                     this.errors = this.translations.errorMinDates[this.selectedLocale];
                     return false
                 } else {
@@ -4549,6 +4587,7 @@ let vm = new Vue({
             this.form.room = null;
             this.$refs.hotelImage.src = this.hotels[curHotelIndex].gallery[0];
             this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].desc[this.selectedLocale];
+            this.activeHotelRooms()
         },
         showRoomPhoto() {
             let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
@@ -4740,6 +4779,7 @@ let vm = new Vue({
         activeHotelRooms() {
             let adults = this.form.adults
             let arRooms = this.hotels.find(hotel => hotel.code === this.form.hotel)
+
             if (Object.keys(arRooms).length > 0) {
                 const conf = {
                     responseType: 'text'
@@ -4754,6 +4794,7 @@ let vm = new Vue({
                             this.errors = null;
                             let hotelQuota = Array.from(response.data);
                             let activeRooms = [];
+
                             arRooms.rooms.forEach(function (item, i, arRooms) {
                                 if (item.maxGuests >= adults && item.active && hotelQuota.indexOf(item.code) > -1) {
                                     activeRooms.push(item);
@@ -4761,7 +4802,7 @@ let vm = new Vue({
                             })
                             this.hotelQuota = activeRooms;
                         } else {
-                            this.hotelQuota = [];
+                            this.hotelQuota = null;
                             this.errors = 'Все номера в этом отеле проданы.';
                         }
                     })
@@ -4769,7 +4810,7 @@ let vm = new Vue({
                         this.errors = 'Нет информации по отелю.';
                         console.log("error", error);
                     });
-                return Array.from(this.hotelQuota);
+                // return Array.from(this.hotelQuota);
             } else {
                 console.log('arRooms empty');
             }

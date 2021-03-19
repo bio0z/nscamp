@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp-friends/app/' : $path = 'friends/';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1615979357';
+$timestamp = '1616105502';
 ?>
 
 <html lang="ru">
@@ -307,6 +307,7 @@ $timestamp = '1615979357';
                     form.hotel !== 'FREEBAZ' &&
                     form.hotel !== 'AYSL' &&
                     form.hotel !== 'GRF' &&
+                    form.hotel !== 'H28' &&
                     form.hotel !== 'PIRRS4' &&
                     form.hotel !== 'ROS'" class="row m-0">
                     <input v-model.trim="form.hotelBreakfast"
@@ -320,7 +321,7 @@ $timestamp = '1615979357';
                   <label v-if="form.hotel === 'RIL' || form.hotel === 'PIRRS4' || form.hotel === 'ROS' || form.hotel === 'GRF'" class="row m-0">
                     <div class="col" v-html="translations.hotelBreakfastIncluded[selectedLocale]"></div>
                   </label>
-                  <label v-if="form.hotel === 'VALBAZ' || form.hotel === 'FREEBAZ' || form.hotel === 'AYSL'"
+                  <label v-if="form.hotel === 'VALBAZ' || form.hotel === 'FREEBAZ' || form.hotel === 'AYSL' || form.hotel === 'H28'"
                          class="row m-0">
                     <div class="col" v-html="translations.hotelBreakfastNotIncluded[selectedLocale]"></div>
                   </label>
