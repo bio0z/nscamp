@@ -3308,7 +3308,7 @@ let vm = new Vue({
                             2: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
                         },
                         breakfasts_included: false,
-                        breakfasts_no: true,
+                        breakfasts_no: false,
                         beds: [
                             {
                                 'code': 1,
