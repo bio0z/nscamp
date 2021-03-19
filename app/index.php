@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp-friends/app/' : $path = 'friends/';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1616105502';
+$timestamp = '1616147014';
 ?>
 
 <html lang="ru">
@@ -693,7 +693,7 @@ $timestamp = '1616105502';
           </div>
           <button
               class="col-3 col-sm-3 col-md-2 col-lg-2 ml-auto p-2 bd-highlight form-control col-2  nsc-button"
-              v-if="step !== totalsteps && form.phone"
+              v-if="step !== totalsteps"
               id="stepper"
               @click.prevent="nextStep">{{ translations.stepNext[selectedLocale] }}
           </button>

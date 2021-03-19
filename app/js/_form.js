@@ -25,12 +25,12 @@ Vue.directive('phone', {
             return replaceNumberForInput(val)
         }
 
-        el.oninput = function(e) {
+        el.oninput = function (e) {
             if (!e.isTrusted) {
                 return
             }
             this.value = replaceNumberForInput(this.value)
-        }
+            }
 
         el.onpaste = function() {
             setTimeout(() => {
@@ -38,7 +38,6 @@ Vue.directive('phone', {
                 this.value = replaceNumberForPaste(pasteVal)
             })
         }
-
     }
 });
 
@@ -63,6 +62,7 @@ let vm = new Vue({
         days: [26, 27, 28, 29, 30, 31, 1, 2, 3, 4],
         promocode: '',
         friendPassPrice: '',
+        freeHotels: null,
         form: {
             pass: 'F',
             friendPassAdded: null,
@@ -1437,8 +1437,8 @@ let vm = new Vue({
                             2: [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500]
                         },
                         breakfasts: {
-                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
-                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
+                            1:[450,450,450,450,450,450,450,450,450,450],
+                            2:[900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1478,8 +1478,8 @@ let vm = new Vue({
                             2: [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500]
                         },
                         breakfasts: {
-                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
-                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
+                            1:[450,450,450,450,450,450,450,450,450,450],
+                            2:[900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1515,8 +1515,8 @@ let vm = new Vue({
                             2: [4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800]
                         },
                         breakfasts: {
-                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
-                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
+                            1: [450,450,450,450,450,450,450,450,450,450],
+                            2: [900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1554,8 +1554,8 @@ let vm = new Vue({
                             2: [5100, 5100, 5100, 5100, 5100, 5100, 5100, 5100, 5100, 5100]
                         },
                         breakfasts: {
-                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
-                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
+                            1: [450,450,450,450,450,450,450,450,450,450],
+                            2: [900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1589,8 +1589,8 @@ let vm = new Vue({
                             2: [6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500]
                         },
                         breakfasts: {
-                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
-                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
+                            1: [450,450,450,450,450,450,450,450,450,450],
+                            2: [900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1626,8 +1626,8 @@ let vm = new Vue({
                             2: [6800, 6800, 6800, 6800, 6800, 6800, 6800, 6800, 6800, 6800]
                         },
                         breakfasts: {
-                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
-                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
+                            1: [450,450,450,450,450,450,450,450,450,450],
+                            2: [900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1663,8 +1663,8 @@ let vm = new Vue({
                             2: [7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100]
                         },
                         breakfasts: {
-                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
-                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
+                            1: [450,450,450,450,450,450,450,450,450,450],
+                            2: [900,900,900,900,900,900,900,900,900,900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -2438,7 +2438,7 @@ let vm = new Vue({
                     }
                 ],
                 desc: {
-                    'ru': 'Расположенный среди знаменитых Кавказских гор на знаменитом российском горном курорте "Роза Хутор", отель Radisson Rosa Khutor 5* предлагает первоклассный сервис, комфортное проживание и широкий спектр дополнительных услуг.Гостям отеля Radisson Hotel Rosa Khutor представится возможность не только увидеть поразительные горные вершины Кавказа, но и заняться самыми популярными в мире зимними видами спорта. В шаговой доступности от отеля находятся подъемники «Олимпия» и «Стрела». Отель Radisson Hotel Rosa Khutor предлагает своим гостям комфортабельные номера различных категорий, оснащённых всем необходимым согласно международным стандартам Radisson Hotel Group, как для деловых поездок, так и для отдыха.Гордостью отеля является открытая терраса Mercedes Sky Lounge с двумя подогреваемыми джакузи и панорамным баром, расположенная на высоте птичьего полёта.',
+                    'ru': 'Расположенный среди знаменитых Кавказских гор на знаменитом российском горном курорте "Роза Хутор", отель Radisson Rosa Khutor 5* предлагает первоклассный сервис, комфортное проживание и широкий спектр дополнительных услуг.Гостям отеля Radisson Hotel Rosa Khutor представится возможность не только увидеть поразительные горные вершины Кавказа, но и заняться самыми популярными в мире зимними видами спорта. В шаговой доступности от отеля находятся подъемники «Олимпия» и «Стрела».Отель Radisson Hotel Rosa Khutor предлагает своим гостям комфортабельные номера различных категорий, оснащённых всем необходимым согласно международным стандартам Radisson Hotel Group, как для деловых поездок, так и для отдыха.Гордостью отеля является открытая терраса Mercedes Sky Lounge с двумя подогреваемыми джакузи и панорамным баром, расположенная на высоте птичьего полёта.',
                     'en': 'The best hotel at Rosa Khutor Resort, named The Best Ski Resort Hotel by the World Ski Awards in 2014 and 2015. All the rooms in the hotel are designed by Swedish designer Christian Lundwall and furnished in full compliance with world-class standards. Two restaurants and an amazing spa area are available in the hotel. For the guests’ convenience, the hotel offers a fully equipped room for storage and drying of the sports equipment. The major benefit of the hotel is its convenient location within a few steps from «Olympia» and «Strela» ropeways.' +
                         'Rosa Dolina, level 560'
                 }
@@ -2985,7 +2985,7 @@ let vm = new Vue({
                         desc: {
                             'ru': '<ul><li>26 кв. м. </li>' +
                                 '<li>Вид на реку</li>' +
-                                '<li>Высоокий этаж </li>' +
+                                '<li>Высокий этаж </li>' +
                                 '<li>Кофе-машина</li>' +
                                 '<li>Халат и тапочки</li>' +
                                 '<li>WI-FI</li>' +
@@ -3242,7 +3242,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Отель «28» **',
                 code: 'H28',
                 address: 'Краснодарский край, Горная Олимпийская деревня, ул. Сулимовка, д. 7',
@@ -4232,6 +4232,19 @@ let vm = new Vue({
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
         }
+
+        // check available rooms
+        let step = document.getElementById("stepper");
+
+        if (this.form.pass !== 'P') {
+            step.addEventListener('click',() => {
+                if (this.form.adults) {
+                    this.getActiveHotels()
+                    this.activeHotelRooms()
+                }
+            })
+        }
+
         window.reload = function () {
             window.scrollTo(0, 0);
         }
@@ -4241,6 +4254,20 @@ let vm = new Vue({
             let domain = document.domain
             if (domain === 'localhost') {
                 this.phpPath = 'nscamp-friends/app/'
+            }
+        },
+        dateFrom(){
+            if (this.form.pass !== 'P') {
+                return 'дата приезда'
+            } else {
+                return 'дата действия браслета с'
+            }
+        },
+        dateTill() {
+            if (this.form.pass !== 'P') {
+                return 'дата выезда'
+            } else {
+                return 'дата действия браслета по'
             }
         },
         userFIO() {
@@ -4264,8 +4291,8 @@ let vm = new Vue({
             return adults + kids;
         },
         roomName() {
-            this.form.roomName = this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
-            return this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
+                this.form.roomName = this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
+                return this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
         },
         setTourName() {
             this.form.tourName = 'New Star Camp ' + ' Friends tour, hotel: ' + this.form.hotelName;
@@ -4298,17 +4325,24 @@ let vm = new Vue({
         },
         calcTourPrice() {
             let totalPrice = 0;
-            let curHotel = this.hotels.indexOf(this.hotels.find(hotel => hotel.code === this.form.hotel))
-            let curRoom = this.hotels[curHotel].rooms.indexOf(this.hotels[curHotel].rooms.find(room => room.code === this.form.room))
+            let curHotel = ''
+            let curRoom = ''
             let daysTour = this.form.tourDays
             let hotelTotalPrice = 0
             let allBreakfasts = 0
-            let gain = this.hotels[curHotel].gain
+            let gain = ''
             let passPrice = this.form.passPrice
+
+            curHotel = this.hotels.indexOf(this.hotels.find(hotel => hotel.code === this.form.hotel))
+            curRoom = this.hotels[curHotel].rooms.indexOf(this.hotels[curHotel].rooms.find(room => room.code === this.form.room))
+            gain = this.hotels[curHotel].gain
 
             if (this.form.passDiscount < 1) {
                 this.form.promocode = this.promocode
             }
+
+            console.log('daysTour ' + daysTour)
+            console.log('this.form.room ' + this.form.room)
 
             if (this.form.room !== undefined) {
                 let option = {
@@ -4318,13 +4352,10 @@ let vm = new Vue({
                 let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
                 let daysCount = daysTour;
 
-                const reducer = (accumulator, currentValue) => accumulator + currentValue;
+                const reducer = (accumulator, currentValue) => accumulator + currentValue
 
                 let arrPrices = this.hotels[curHotel].rooms[curRoom].prices[this.form.adults].slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd));
                 hotelTotalPrice = arrPrices.reduce(reducer);
-
-                // let skiPassDays = daysTour < 6 ? daysTour : daysTour - 1;
-                // let skiPassPrice = ((skiPass * skiPassDays) * this.form.adults);
 
                 if (this.hotels[curHotel].rooms[curRoom].breakfasts_included === true) {
                     this.form.hotelBreakfast = true;
@@ -4339,7 +4370,8 @@ let vm = new Vue({
                     this.form.hotelBreakfastPrice = 0;
                     allBreakfasts = 0;
                 }
-                if (this.form.adults > 0 && daysTour >= 3) {
+
+                if (this.form.adults > 0 && daysTour >= 2) {
                     totalPrice =
                         Number(passPrice) + ((hotelTotalPrice + allBreakfasts) * gain)
 
@@ -4462,8 +4494,19 @@ let vm = new Vue({
             return true;
         },
         prevStep() {
-            this.step--;
-            this.form.consent = null
+            if (this.form.pass !== 'P') {
+                this.step--;
+                this.form.consent = null
+            } else {
+                if (this.step === 4) {
+                    this.step = this.step - 2;
+                    this.form.consent = null
+                } else {
+                    this.step--;
+                    this.form.consent = null
+                }
+            }
+
         },
         nextStep() {
             if (this.step === 1) {
@@ -4489,11 +4532,10 @@ let vm = new Vue({
                     return false
                 } else {
                     this.errors = null
-                    this.activeHotelRooms()
                     this.step++
                     window.scrollTo(0, 0)
                 }
-            } else if (this.step === 3) {
+            } else if (this.step === 3 && this.form.pass !== 'P') {
 
                 this.form.hotelName = this.hotels[this.currentHotel].name;
                 this.form.address = this.hotels[this.currentHotel].address;
@@ -4502,7 +4544,7 @@ let vm = new Vue({
                     this.errors = this.translations.errorChooseRoom[this.selectedLocale];
                     return false;
                 } else {
-                    this.errors = null;
+                    this.errors = null
                     this.step++
                     window.scrollTo(0, 0)
                 }
@@ -4776,25 +4818,69 @@ let vm = new Vue({
                     });
             }
         },
+        getActiveHotels() {
+            let option = {
+                day: 'numeric',
+            };
+            let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
+            let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
+
+            let thisTourDays = this.days.slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd))
+
+            if (this.step > 2 && this.form.pass !== 'P') {
+                const conf = {
+                    responseType: 'text'
+                };
+                const data = {
+                    tourDays: thisTourDays
+                };
+                axios
+                    .post(this.phpPath + "php/checkHotels.php", data, conf)
+                    .then(response => {
+                        if (response.data) {
+                            this.errors = null;
+                            this.freeHotels = Array.from(response.data);
+                            this.form.hotel = this.freeHotels[0]
+                        } else {
+                            this.errors = 'Нет доступных отелей на эти даты.';
+                        }
+                    })
+                    .catch(error => {
+                        this.errors = 'Нет информации по отелю.';
+                        console.log("error", error);
+                    });
+            }
+        },
         activeHotelRooms() {
             let adults = this.form.adults
             let arRooms = this.hotels.find(hotel => hotel.code === this.form.hotel)
+
+            let option = {
+                day: 'numeric',
+            };
+
+            let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
+            let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
+
+            let thisTourDays = this.days.slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd))
 
             if (Object.keys(arRooms).length > 0) {
                 const conf = {
                     responseType: 'text'
                 };
                 const data = {
-                    hotelCode: this.form.hotel
+                    hotelCode: this.form.hotel,
+                    tourDays: thisTourDays
                 };
+                console.log('data ' + data)
                 axios
                     .post(this.phpPath + "php/checkQuota.php", data, conf)
                     .then(response => {
                         if (response.data) {
+                            console.log(response.data)
                             this.errors = null;
                             let hotelQuota = Array.from(response.data);
                             let activeRooms = [];
-
                             arRooms.rooms.forEach(function (item, i, arRooms) {
                                 if (item.maxGuests >= adults && item.active && hotelQuota.indexOf(item.code) > -1) {
                                     activeRooms.push(item);
@@ -4802,15 +4888,14 @@ let vm = new Vue({
                             })
                             this.hotelQuota = activeRooms;
                         } else {
-                            this.hotelQuota = null;
-                            this.errors = 'Все номера в этом отеле проданы.';
+                            this.hotelQuota = null
+                            this.errors = 'Все номера в этом отеле проданы.'
                         }
                     })
                     .catch(error => {
                         this.errors = 'Нет информации по отелю.';
                         console.log("error", error);
                     });
-                // return Array.from(this.hotelQuota);
             } else {
                 console.log('arRooms empty');
             }

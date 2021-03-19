@@ -1,11 +1,9 @@
 <?php
 $_POST = json_decode(file_get_contents('php://input'), true);
 
-if ($_GET['hotelCode']) $_POST['hotelCode'] = $_GET['hotelCode'];
 if ($_GET['tourDays']) $_POST['tourDays'] = $_GET['tourDays'];
 
 if (isset($_POST)) {
-  $_POST['hotelCode'] ? $hotel = $_POST['hotelCode'] : $hotel = 'AYSD';
   $_POST['tourDays'] ? $days = $_POST['tourDays'] : $days = null;
 
   $host = $_SERVER['HTTP_HOST'];
@@ -31,17 +29,17 @@ if (isset($_POST)) {
     die("Connection failed: " . $conn->connect_error);
   } else {
 
-    if ($result = $conn->query("SELECT hotelCode, roomCode, days, quota FROM temp_rooms_quota WHERE roomCode like '%FF%'")) {
+    if ($result = $conn->query("SELECT hotelCode, roomCode, days, quota FROM temp_rooms_quota")) {
 
       while ($row = $result->fetch_assoc()) {
         $freeDays = array_map('intval', explode(',',$row['days']));
         $checkDays = array_diff($days,$freeDays);
 
-        if ($row['quota'] > 0 && $row['hotelCode'] === $hotel && empty($checkDays)) {
-          $arRooms[] = $row['roomCode'];
+        if ($row['quota'] > 0 && empty($checkDays)) {
+          $arHotels[] = $row['hotelCode'];
         }
       }
-      echo json_encode($arRooms);
+      echo json_encode($arHotels);
     }
   }
 } else {
