@@ -72,7 +72,7 @@ let vm = new Vue({
             adults: '',
             kids: '',
 
-            hotel: 'PIRRS4',
+            hotel: '',
             hotelName: '',
             hotelBreakfast: true,
             hotelBreakfastPrice: null,
@@ -3242,13 +3242,13 @@ let vm = new Vue({
                 }
             },
             {
-                active: true,
+                active: false,
                 name: 'Отель «28» **',
                 code: 'H28',
                 address: 'Краснодарский край, Горная Олимпийская деревня, ул. Сулимовка, д. 7',
                 formula: 99,
                 maxGuests: 4,
-                gain: 1.17,
+                gain: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-h28-2-double_block.jpg',
@@ -3430,7 +3430,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Rosa Village **',
                 code: 'ROV',
                 address: 'Краснодарский край, Горная Олимпийская деревня, ул. Сулимовка, д. 27',
@@ -3445,7 +3445,7 @@ let vm = new Vue({
                 ],
                 rooms: [
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт',
                         code: 'S',
                         maxGuests: 2,
@@ -3484,7 +3484,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-2-standard.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Трехместный',
                         code: 'T',
                         maxGuests: 3,
@@ -3586,12 +3586,12 @@ let vm = new Vue({
                     {
                         active: true,
                         name: 'Семейный двухкомнатный',
-                        code: 'FAM',
+                        code: 'FAMFF',
                         maxGuests: 3,
                         prices: {
-                            1: [7500, 7500, 7500, 7500, 7500, 7500, 7500, 7500, 7500, 7500],
-                            2: [7500, 7500, 7500, 7500, 7500, 7500, 7500, 7500, 7500, 7500],
-                            3: [7500, 7500, 7500, 7500, 7500, 7500, 7500, 7500, 7500, 7500],
+                            1: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
+                            2: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
+                            3: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
                         },
                         breakfasts: {
                             1: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
@@ -3953,13 +3953,13 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Freestyle by Azimut',
                 code: 'FREEBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.5',
                 formula: 99,
                 maxGuests: 2,
-                gain: 1.12,
+                gain: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-freebaz-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-freebaz-sup-1.jpg',
@@ -4010,12 +4010,57 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-freebaz-sup-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Супериор с видом на реку',
                         code: 'SUPR',
                         prices: {
                             1: [5500, 5500, 5500, 5500, 5500, 5500, 5500, 5500, 5500, 5500],
                             2: [5500, 5500, 5500, 5500, 5500, 5500, 5500, 5500, 5500, 5500],
+                        },
+                        breakfasts: {
+                            1: [],
+                            2: [],
+                        },
+                        breakfasts_included: false,
+                        breakfasts_no: true,
+                        maxGuests: 2,
+                        beds: [
+                            {
+                                'code': 1,
+                                'name': '1 двуспальная кровать',
+                            },
+                            {
+                                'code': 2,
+                                'name': '2 односпальные кровати'
+                            }
+                        ],
+                        desc: {
+                            'ru': '<ul><li>27 кв. м.</li>' +
+                                '<li>Принадлежности для приготовления чая/кофе</li>' +
+                                '<li>Вид на реку</li>' +
+                                '<li>Тапочки</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Рабочее место</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Бесплатный Wi-Fi</li>',
+                            'en': '<ul><li>27 кв. м.</li>' +
+                                '<li>Принадлежности для приготовления чая/кофе</li>' +
+                                '<li>Вид на реку</li>' +
+                                '<li>Тапочки</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Рабочее место</li>' +
+                                '<li>Телевизор</li>' +
+                                '<li>Бесплатный Wi-Fi</li>',
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-freebaz-sup-2.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Супериор с видом на реку',
+                        code: 'SUPRFF',
+                        prices: {
+                            1: [6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000],
+                            2: [6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000],
                         },
                         breakfasts: {
                             1: [],
@@ -4065,13 +4110,13 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Valset by Azimut',
                 code: 'VALBAZ',
                 address: 'Краснодарский край, с. Эстосадок, наб. Полянки, д.4',
                 formula: 99,
                 maxGuests: 5,
-                gain: 1.12,
+                gain: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-1.jpg',
@@ -4080,7 +4125,7 @@ let vm = new Vue({
                 ],
                 rooms: [
                     {
-                        active: true,
+                        active: false,
                         name: 'Апартаменты Студия (корпуса Центр и Спорт)',
                         code: 'APSCS',
                         prices: {
@@ -4212,6 +4257,50 @@ let vm = new Vue({
                                 '<li>WI-FI</li>',
                         },
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-3.jpg'
+                    },
+                    {
+                        active: true,
+                        name: 'Большая студия (2 корпус)',
+                        code: 'APSCSFF',
+                        prices: {
+                            1: [6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000],
+                            2: [6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000],
+                        },
+                        breakfasts: {},
+                        breakfasts_included: false,
+                        breakfasts_no: true,
+                        maxGuests: 2,
+                        beds: [
+                            {
+                                'code': 1,
+                                'name': '1 двуспальная кровать',
+                            },
+                            {
+                                'code': 2,
+                                'name': '2 односпальные кровати'
+                            }
+                        ],
+                        desc: {
+                            'ru': '<ul><li>28 кв. м. </li>' +
+                                '<li>Единое пространство спальни и обеденной зоны</li>' +
+                                '<li>Кухня</li>' +
+                                '<li>Чайная станция</li>' +
+                                '<li>Посудомоечная машина</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Балкон</li>' +
+                                '<li>WI-FI</li>',
+                            'en': '<ul><li>28 кв. м. </li>' +
+                                '<li>Единое пространство спальни и обеденной зоны</li>' +
+                                '<li>Кухня</li>' +
+                                '<li>Чайная станция</li>' +
+                                '<li>Посудомоечная машина</li>' +
+                                '<li>Холодильник</li>' +
+                                '<li>Фен</li>' +
+                                '<li>Балкон</li>' +
+                                '<li>WI-FI</li>',
+                        },
+                        photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-valbaz-ap-1.jpg'
                     }
                 ],
                 desc: {
@@ -4239,8 +4328,10 @@ let vm = new Vue({
         if (this.form.pass !== 'P') {
             step.addEventListener('click',() => {
                 if (this.form.adults) {
-                    this.getActiveHotels()
-                    this.activeHotelRooms()
+                    if (this.step <= 3) {
+                        this.getActiveHotels()
+                        this.activeHotelRooms()
+                    }
                 }
             })
         }
