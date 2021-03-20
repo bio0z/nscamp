@@ -2909,7 +2909,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 maxGuests: 2,
@@ -2922,18 +2922,18 @@ let vm = new Vue({
                 ],
                 rooms: [
                     {
-                        active: false,
+                        active: true,
                         name: 'Стандарт',
-                        code: 'S',
+                        code: 'SFF',
                         prices: {
-                            1: [5040, 5040, 5040, 4270, 4270, 4270, 4270, 2940, 2940, 2940],
-                            2: [5040, 5040, 5040, 4270, 4270, 4270, 4270, 2940, 2940, 2940],
+                            1: [7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000],
+                            2: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
                         },
                         breakfasts: {
                             1: [630, 630, 630, 630, 630, 630, 630, 630, 630, 630],
                             2: [1260, 1260, 1260, 1260, 1260, 1260, 1260, 1260, 1260, 1260]
                         },
-                        breakfasts_included: false,
+                        breakfasts_included: true,
                         breakfasts_no: false,
                         maxGuests: 2,
                         beds: [
@@ -2996,7 +2996,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-2-standard-1.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт Привилегия',
                         code: 'SPFF',
                         prices: {
@@ -3435,7 +3435,7 @@ let vm = new Vue({
                 code: 'ROV',
                 address: 'Краснодарский край, Горная Олимпийская деревня, ул. Сулимовка, д. 27',
                 formula: 99,
-                gain: 1.17,
+                gain: 1,
                 maxGuests: 3,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-rov-1.jpg',
@@ -3641,13 +3641,13 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Tulip Inn ***',
                 address: 'Краснодарский край, с. Эстосадок, наб. Панорама, д.2',
                 code: 'TINN',
                 formula: 99,
                 maxGuests: 2,
-                gain: 1.12,
+                gain: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-tinn-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-tinn-1-standard.jpg',
@@ -3657,10 +3657,10 @@ let vm = new Vue({
                     {
                         active: true,
                         name: 'Стандарт',
-                        code: 'S',
+                        code: 'SFF',
                         prices: {
-                            1: [6200, 6200, 6200, 6200, 6200, 6200, 6200, 6200, 6200, 6200],
-                            2: [6200, 6200, 6200, 6200, 6200, 6200, 6200, 6200, 6200, 6200],
+                            1: [6700, 6700, 6700, 6700, 6700, 6700, 6700, 6700, 6700, 6700],
+                            2: [6700, 6700, 6700, 6700, 6700, 6700, 6700, 6700, 6700, 6700],
                         },
                         breakfasts: {
                             1: [800, 800, 800, 800, 800, 800, 800, 800, 800, 800],
@@ -3696,7 +3696,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-tinn-1-standard.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Стандарт с видом на реку',
                         code: 'SRV',
                         prices: {
@@ -3739,7 +3739,7 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-tinn-1-standard.jpg'
                     },
                     {
-                        active: true,
+                        active: false,
                         name: 'Супериор',
                         code: 'SUP',
                         prices: {
