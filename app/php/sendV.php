@@ -22,7 +22,7 @@ if(is_uploaded_file($tmp_path))
   }
 }
 
-if (isset($_POST['subject']) && isset($_POST['email'])) {
+if (!empty($_POST['subject']) && !empty($_POST['email']) && !empty($tmp_path)) {
 
   if ($host == 'nswpay.ru') {
     $Username = 'sendmail@nswpay.ru';
@@ -83,5 +83,5 @@ if (isset($_POST['subject']) && isset($_POST['email'])) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
   }
 } else {
-  echo 'Mail not sent, POST empty';
+  echo 'Письмо не отправлено! Не корректно заполнена форма отправки';
 }
