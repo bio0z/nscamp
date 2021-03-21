@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp-friends/app/' : $path = 'friends/';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1616250067';
+$timestamp = '1616336641';
 ?>
 
 <html lang="ru">
@@ -336,16 +336,16 @@ $timestamp = '1616250067';
               <div class="row hotel mainbg">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-4 order-12 order-lg-1">
                   <div :data-val="currentHotel">
-                    <h3>{{ hotels[currentHotel].name }}</h3>
-                    <div class="f1" ref="hotelText">{{ hotels[currentHotel].desc[selectedLocale] }}</div>
+                    <h3 v-if="form.hotel">{{ hotels[currentHotel].name }}</h3>
+                    <div v-if="form.hotel" class="f1" ref="hotelText">{{ hotels[currentHotel].desc[selectedLocale] }}</div>
                   </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-0 hotel-photo text-right order-1 order-lg-12">
                   <button type="button" aria-label="Previous Photo" class="gallery previous" @click="previousPhoto()">
                     <
                   </button>
-                  <div :hotel-id="currentHotel" ref="hotelDiv" class="hotel-gallery">
-                    <img image-id='0' class="img-fluid active" ref="hotelImage"
+                  <div v-if="form.hotel" :hotel-id="currentHotel" ref="hotelDiv" class="hotel-gallery">
+                    <img v-if="form.hotel" image-id='0' class="img-fluid active" ref="hotelImage"
                          :id="hotels[currentHotel].code" :src="hotels[currentHotel].gallery[0]"
                          :alt="hotels[currentHotel].name"/>
                   </div>

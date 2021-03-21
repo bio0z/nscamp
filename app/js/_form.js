@@ -4404,7 +4404,7 @@ let vm = new Vue({
         },
         activeHotels() {
             return this.hotels.filter(hotel => {
-                return hotel.maxGuests >= this.form.adults && hotel.active
+                return hotel.maxGuests >= this.form.adults && hotel.active && this.freeHotels.indexOf(hotel.code) !== -1
             })
         },
         activeRoomBeds() {
@@ -4621,6 +4621,9 @@ let vm = new Vue({
                 } else if (this.calcTourDays < 2) {
                     this.errors = this.translations.errorMinDates[this.selectedLocale];
                     return false
+                } else if (!this.freeHotels) {
+                    console.log('step this.errors')
+                    window.scrollTo(0, 0)
                 } else {
                     this.errors = null
                     this.step++
@@ -4628,13 +4631,12 @@ let vm = new Vue({
                 }
             } else if (this.step === 3 && this.form.pass !== 'P') {
 
-                this.form.hotelName = this.hotels[this.currentHotel].name;
-                this.form.address = this.hotels[this.currentHotel].address;
-
                 if (!this.form.hotel || !this.form.room) {
                     this.errors = this.translations.errorChooseRoom[this.selectedLocale];
                     return false;
                 } else {
+                    this.form.hotelName = this.hotels[this.currentHotel].name;
+                    this.form.address = this.hotels[this.currentHotel].address;
                     this.errors = null
                     this.step++
                     window.scrollTo(0, 0)
@@ -4918,7 +4920,7 @@ let vm = new Vue({
 
             let thisTourDays = this.days.slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd))
 
-            if (this.step > 2 && this.form.pass !== 'P') {
+            if (this.step >= 2 && this.form.pass !== 'P') {
                 const conf = {
                     responseType: 'text'
                 };
@@ -4928,12 +4930,15 @@ let vm = new Vue({
                 axios
                     .post(this.phpPath + "php/checkHotels.php", data, conf)
                     .then(response => {
-                        if (response.data) {
+
+                        if (response.data !== null) {
                             this.errors = null;
-                            this.freeHotels = Array.from(response.data);
+                            this.freeHotels = Array.from(response.data)
                             this.form.hotel = this.freeHotels[0]
                         } else {
-                            this.errors = 'Нет доступных отелей на эти даты.';
+                            this.freeHotels = null
+                            this.form.hotel = null
+                            this.errors = 'Нет доступных отелей на выбранные даты.'
                         }
                     })
                     .catch(error => {
@@ -4955,7 +4960,7 @@ let vm = new Vue({
 
             let thisTourDays = this.days.slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd))
 
-            if (Object.keys(arRooms).length > 0) {
+            if (arRooms !== undefined && Object.keys(arRooms).length > 0) {
                 const conf = {
                     responseType: 'text'
                 };
@@ -4967,8 +4972,8 @@ let vm = new Vue({
                 axios
                     .post(this.phpPath + "php/checkQuota.php", data, conf)
                     .then(response => {
-                        if (response.data) {
-                            console.log(response.data)
+
+                        if (response.data !== null) {
                             this.errors = null;
                             let hotelQuota = Array.from(response.data);
                             let activeRooms = [];
@@ -4988,7 +4993,8 @@ let vm = new Vue({
                         console.log("error", error);
                     });
             } else {
-                console.log('arRooms empty');
+                this.hotelQuota = null
+                this.errors = 'Нет свободных номеров на выбранные даты.';
             }
         },
     },

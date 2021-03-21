@@ -29,7 +29,7 @@ if (isset($_POST)) {
     die("Connection failed: " . $conn->connect_error);
   } else {
 
-    if ($result = $conn->query("SELECT hotelCode, roomCode, days, quota FROM temp_rooms_quota")) {
+    if ($result = $conn->query("SELECT hotelCode, roomCode, days, quota FROM temp_rooms_quota WHERE quota > 0 AND days > 0 AND roomCode like '%FF%'")) {
 
       while ($row = $result->fetch_assoc()) {
         $freeDays = array_map('intval', explode(',',$row['days']));
