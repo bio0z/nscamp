@@ -45,7 +45,7 @@ if (isset($_POST['tourNumber'])) {
       } elseif ($ar['passcode'] == 'S') {
         $pass = 'STANDARD';
         $backColor = '#DB9EA7';
-      }  elseif ($ar['passcode'] == 'P') {
+      } elseif ($ar['passcode'] == 'P') {
         $pass = 'FESTIVAL';
         $backColor = '#6BC9B9';
       }
@@ -94,6 +94,7 @@ if (isset($_POST['tourNumber'])) {
       $voucher = preg_replace("/#ADULTS#/", $ar['adults'], $voucher);
       $voucher = preg_replace("/#BACKCOLOR#/", $backColor, $voucher);
       $voucher = preg_replace("/#BED#/", $ar['bed'], $voucher);
+      $voucher = preg_replace("/#ADDITIONAL#/", $ar['additional'], $voucher);
 
       $voucher = mb_convert_encoding($voucher, 'HTML-ENTITIES', "UTF-8");
 
@@ -170,25 +171,27 @@ if (isset($_POST['tourNumber'])) {
         }
 
         if (!$_GET['num']) {
+          if (strlen($_POST['tourNumber']) === 10 && $ar['passcode'] !== 'P') {
 
-          $conn = new mysqli($servername, $username, $password, $database);
+            $conn = new mysqli($servername, $username, $password, $database);
 
-          if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          } else {
-            $hotelCode = $conn->real_escape_string(trim($ar['hotel']));
-            $roomCode = $conn->real_escape_string(trim($ar['room']));
+            if ($conn->connect_error) {
+              die("Connection failed: " . $conn->connect_error);
+            } else {
+              $hotelCode = $conn->real_escape_string(trim($ar['hotel']));
+              $roomCode = $conn->real_escape_string(trim($ar['room']));
 
-            $result = $conn->query('SELECT * FROM temp_rooms_quota WHERE hotelCode = "' . $hotelCode . '" AND roomCode = "' . $roomCode . '"');
-            if ($result) {
-              $conn->query("UPDATE temp_rooms_quota 
+              $result = $conn->query('SELECT * FROM temp_rooms_quota WHERE hotelCode = "' . $hotelCode . '" AND roomCode = "' . $roomCode . '"');
+              if ($result) {
+                $conn->query("UPDATE temp_rooms_quota 
                         SET quota = quota-1
                         WHERE hotelCode = '" . $hotelCode . "' 
                           AND roomCode = '" . $roomCode . "'");
-              echo 'Updated quota.';
-            } else {
-              echo 'Incorrest Hotel or Room !' . '<br>';
-              echo "Error: " . $result . "<br>" . $conn->error;
+                echo 'Updated quota.';
+              } else {
+                echo 'Incorrest Hotel or Room !' . '<br>';
+                echo "Error: " . $result . "<br>" . $conn->error;
+              }
             }
           }
         }
