@@ -22,23 +22,29 @@ $arPromoSTD100 = [
 
 $_POST = json_decode(file_get_contents('php://input'), true);
 
+$pass = $_POST['tourPass'] === 'P' ? 'S' : $_POST['tourPass'];
+$promoCode = $_POST['promocode'];
+
 // var_dump($_POST['promocode']);
 
-if(isset($_POST['promocode']) && isset($_POST['tourPass'])) {
-  if ($_POST['tourPass'] == 'V' && in_array($_POST['promocode'],$arPromoVIP100)) {
+if(isset($promoCode) && isset($pass)) {
+
+  if ($pass === 'V' && in_array($promoCode, $arPromoVIP100, true)) {
 //    $response = json_encode(['status' => accept,'percent' => 0]);
     $response = json_encode(0);
-  }
-  else if ($_POST['tourPass'] == 'S' && in_array($_POST['promocode'],$arPromoSTD50)) {
+
+  } else if ($pass === 'S' && in_array($promoCode, $arPromoSTD50, true)) {
 //    $response =  json_encode(['status' => accept,'percent' => 0.5]);
     $response =  json_encode(0.5);
-  }
-  else if ($_POST['tourPass'] == 'S' && in_array($_POST['promocode'],$arPromoSTD100)) {
+
+  } else if ($pass === 'S' && in_array($promoCode, $arPromoSTD100, true)) {
 //    $response =  json_encode(['status' => accept,'percent' => 0]);
     $response =  json_encode(0);
+
   } else {
 //    $response =  json_encode(['status' => reject]);
     $response =  json_encode(1);
+
   }
 } else {
 //  $response =  json_encode(['status' => reject]);
