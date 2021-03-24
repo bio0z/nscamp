@@ -340,8 +340,8 @@ let vm = new Vue({
                 'en': 'Please, choose your the dates of tour.'
             },
             errorMinDates: {
-                'ru': 'Туры менее 3 дней пока недоступны.',
-                'en': 'Minimal tour 3 days at this moment.'
+                'ru': 'Туры менее 2 дней пока недоступны.',
+                'en': 'Minimal tour 2 days at this moment.'
             },
             errorChooseAdults: {
                 'ru': 'Вы забыли выбрать количество человек.',
@@ -2996,18 +2996,18 @@ let vm = new Vue({
                         photo: 'https://444803.selcdn.ru/cdn.awsd.cc/hotel-mrk4-2-standard-1.jpg'
                     },
                     {
-                        active: false,
+                        active: true,
                         name: 'Стандарт Привилегия',
                         code: 'SPFF',
                         prices: {
-                            1: [6090, 6090, 5320, 5320, 5320, 5320, 5320, 3640, 3640, 3640],
-                            2: [6090, 6090, 5320, 5320, 5320, 5320, 5320, 3640, 3640, 3640],
+                            1: [7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000],
+                            2: [8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000],
                         },
                         breakfasts: {
                             1: [630, 630, 630, 630, 630, 630, 630, 630, 630, 630],
                             2: [1260, 1260, 1260, 1260, 1260, 1260, 1260, 1260, 1260, 1260]
                         },
-                        breakfasts_included: false,
+                        breakfasts_included: true,
                         breakfasts_no: false,
                         maxGuests: 2,
                         beds: [
@@ -3794,13 +3794,13 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Golden Tulip ****',
                 code: 'GTINN',
                 address: 'Краснодарский край, с. Эстосадок, наб. Панорама, д.3',
                 formula: 99,
                 maxGuests: 2,
-                gain: 1.12,
+                gain: 1,
                 gallery: [
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-gtinn-1.jpg',
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-gtinn-2.jpg',
@@ -3854,14 +3854,14 @@ let vm = new Vue({
                     {
                         active: true,
                         name: 'Стандарт с видом на реку',
-                        code: 'SRV',
+                        code: 'SRVFF',
                         prices: {
-                            1: [5410, 5410, 5410, 5410, 5030, 5030, 5030, 5030, 5030, 5030],
-                            2: [5410, 5410, 5410, 5410, 5030, 5030, 5030, 5030, 5030, 5030],
+                            1: [9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000],
+                            2: [9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000],
                         },
                         breakfasts: {
-                            1: [830, 830, 830, 830, 660, 660, 660, 660, 660, 660],
-                            2: [1430, 1430, 1430, 1430, 1260, 1260, 1260, 1260, 1260, 1260],
+                            1: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+                            2: [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000],
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
