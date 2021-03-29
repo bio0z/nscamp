@@ -3,7 +3,6 @@ require '../vendor/autoload.php';
 
 use Dompdf\Dompdf;
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 if ($_GET['num']) $_POST['tourNumber'] = $_GET['num'];
@@ -31,6 +30,7 @@ if (isset($_POST['tourNumber'])) {
         $passwrd = 't2tuUEVC4e';
         $emailCopy = 'info@newstarcamp.ru';
         $emailCopy2 = 'pool@awsd.cc';
+        $emailCopy3 = 'Liza.biller@gmail.com';
       } else {
         $Username = 'pool@awsd.cc';
         $emailFrom = 'pool@awsd.cc';
@@ -148,6 +148,7 @@ if (isset($_POST['tourNumber'])) {
         $mail->addReplyTo('info@newstarcamp.ru', 'NewStarCamp');
         $mail->addBCC($emailCopy);
         $mail->addBCC($emailCopy2);
+        $mail->addBCC($emailCopy3);
 
         $mail->AddAttachment($filename);
 //        $mail->ConfirmReadingTo = $emailFrom;

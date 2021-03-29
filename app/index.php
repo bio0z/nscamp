@@ -176,11 +176,12 @@ $timestamp = '1616524002'
                   <div class="btn nsc-button btn-more"
                        @click="showPassPDetail()">{{ translations.passDetails[selectedLocale] }}
                   </div>
+<!--                  <div class="btn nsc-button btn-more"-->
+<!--                       @click="showPassPDetail()">{{ translations.passDetails[selectedLocale] }}-->
+<!--                  </div>-->
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
-                  <label class="m-1 nsc-pass-label p-0"
-                         v-bind:class="[!passSDetails ? 'nsc-pass-s' : 'nsc-pass-s-back']"
-                         @click="setPassActive('S')"
+                  <label class="m-1 nsc-pass-label p-0 nsc-pass-s" style="opacity: 0.3;"
                          ref="passSLabel">
                     <div class="row pass-front" id="pass-front">
                       <div class="f1 pass-detail-dt" v-if="passSDetails">
@@ -198,9 +199,12 @@ $timestamp = '1616524002'
                            hidden
                            required>
                   </label>
-                  <div class="btn  nsc-button btn-more"
-                       @click="showPassSDetail()">{{ translations.passDetails[selectedLocale] }}
+                  <div class="p-1 font-weight-bold text-uppercase">
+                    {{ translations.soldOut[selectedLocale] }}
                   </div>
+<!--                  <div class="btn  nsc-button btn-more"-->
+<!--                       @click="showPassSDetail()">{{ translations.passDetails[selectedLocale] }}-->
+<!--                  </div>-->
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
                   <label class="m-1 nsc-pass-label p-0 nsc-pass-v" style="opacity: 0.3;">

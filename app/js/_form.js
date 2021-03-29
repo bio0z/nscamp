@@ -2441,7 +2441,7 @@ let vm = new Vue({
                 active: false,
                 name: 'Отель Park Inn by Radisson Rosa Khutor ****',
                 code: 'PIRRS4',
-                address: 'Улица Олимпийская 35, Эсто-Садок, Россия',
+                address: 'Улица Олимпийская 35, Эсто-Садок',
                 formula: 99,
                 maxGuests: 2,
                 gain: 1.12,
