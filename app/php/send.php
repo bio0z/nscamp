@@ -30,7 +30,7 @@ if (isset($_POST['tourNumber'])) {
         $passwrd = 't2tuUEVC4e';
         $emailCopy = 'info@newstarcamp.ru';
         $emailCopy2 = 'pool@awsd.cc';
-        $emailCopy3 = 'Liza.biller@gmail.com';
+//        $emailCopy3 = 'Liza.biller@gmail.com';
       } else {
         $Username = 'pool@awsd.cc';
         $emailFrom = 'pool@awsd.cc';
