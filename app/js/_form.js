@@ -2779,7 +2779,7 @@ let vm = new Vue({
                 }
             },
             {
-                active: false,
+                active: true,
                 name: 'Отель Mercure Rosa Khutor ****',
                 code: 'MRK4',
                 formula: 99,
@@ -2793,7 +2793,7 @@ let vm = new Vue({
                 ],
                 rooms: [
                     {
-                        active: false,
+                        active: true,
                         name: 'Стандарт',
                         code: 'S',
                         prices: {
@@ -4500,10 +4500,7 @@ let vm = new Vue({
                 if (this.form.adults) {
 
                     this.getActiveHotels()
-
-                    if (this.form.hotelName) {
-                        this.activeHotelRooms()
-                    }
+                    this.activeHotelRooms()
                 }
             })
         }
