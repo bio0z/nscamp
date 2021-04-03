@@ -143,7 +143,7 @@ $timestamp = '1616503660';
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img alt="" src="<?= $path ?>images/svg/step1.svg?v=2"/>
                 </div>
-                <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+                <div hidden class="col-8 col-sm-8 col-md-8 col-lg-8">
                   <p>Привет!</p>
                   <p>Для путешествия на Quiksilver New Star Camp 2021 тебе осталось несколько шагов. Эта страница
                     сделана специально для друзей фестиваля. Здесь ты можешь подобрать тур и получить приятный бонус от
@@ -161,11 +161,15 @@ $timestamp = '1616503660';
                          v-model.trim="friendPhone"
                          name="phone"
                          id="phone"
+                         hidden
                          class="form-control m-1 phone"
                          placeholder="8 (___) ___-____"
                          maxlength="17"
                          v-phone
                          required />
+                  <div class="p-1 font-weight-bold text-uppercase">
+                    SOLD OUT
+                  </div>
 
                   <input type="text"
                          class="form-control m-1 phone"
@@ -695,6 +699,7 @@ $timestamp = '1616503660';
               class="col-3 col-sm-3 col-md-2 col-lg-2 ml-auto p-2 bd-highlight form-control col-2  nsc-button"
               v-if="step !== totalsteps"
               id="stepper"
+              hidden
               @click.prevent="nextStep">{{ translations.stepNext[selectedLocale] }}
           </button>
           <?php $env == 'prod' ? $token = 'qlsnf995gkvurbqpc3qm4nbvqs' : $token = '5ul0u41eam2n3qpsuicfjim7fj' ?>
