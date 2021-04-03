@@ -519,12 +519,12 @@ let vm = new Vue({
             }
         ],
         disabledDates: {
-            to: new Date(2021, 2, 26),
+            to: new Date(2021, 3, 1),
             from: new Date(2021, 3, 5),
             dates: [
+                // new Date(2021, 2, 26),
+                // new Date(2021, 2, 27),
                 // new Date(2021, 2, 28),
-                // new Date(2021, 2, 29),
-                // new Date(2021, 2, 30),
                 // new Date(2021, 2, 31),
                 // new Date(2021, 3, 1),
                 // new Date(2021, 3, 2),
@@ -4605,7 +4605,7 @@ let vm = new Vue({
 
             let daysTour = this.form.tourDays
             let passDayPrice = 0
-            daysTour < 3 && (curPassCode === 'S' || curPassCode === 'P') ?
+            daysTour < 4 && (curPassCode === 'S' || curPassCode === 'P') ?
                 passDayPrice = 5000 :
                 passDayPrice = this.passes[curPass].price
             let passPrice = (passDayPrice * this.form.adults) * this.form.passDiscount

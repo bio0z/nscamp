@@ -4,7 +4,7 @@ $host = $_SERVER['HTTP_HOST'];
 $host == 'localhost' ? $path = 'nscamp/app/' : '';
 $tourNumber = time();
 $env = $host == 'nswpay.ru' ? 'prod' : 'test';
-$timestamp = '1617122514'
+$timestamp = '1617269879'
 ?>
 
 <html lang="ru">
@@ -151,10 +151,7 @@ $timestamp = '1617122514'
             <div class="col-12 col-sm-12 col-md-9 col-lg-9 mb-2 pl-0 pr-0">
               <div class="row justify-content-end">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
-                  <label class="m-1 nsc-pass-label p-0"
-                         v-bind:class="[!passPDetails ? 'nsc-pass-p' : 'nsc-pass-p-back']"
-                         @click="setPassActive('P')"
-                         ref="passPLabel">
+                  <label class="m-1 nsc-pass-label p-0 nsc-pass-p" style="opacity: 0.3;" ref="passPLabel">
                     <div class="row pass-front" id="pass-front">
                       <div class="f1 pass-detail-dt" v-if="passPDetails">
                         <div v-html="translations.passPDetailsFull[selectedLocale]"></div>
@@ -173,15 +170,12 @@ $timestamp = '1617122514'
                            hidden
                            required>
                   </label>
-                  <div class="btn nsc-button btn-more"
-                       @click="showPassPDetail()">{{ translations.passDetails[selectedLocale] }}
+                  <div class="p-1 font-weight-bold text-uppercase">
+                    {{ translations.soldOut[selectedLocale] }}
                   </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
-                  <label class="m-1 nsc-pass-label p-0"
-                         v-bind:class="[!passSDetails ? 'nsc-pass-s' : 'nsc-pass-s-back']"
-                         @click="setPassActive('S')"
-                         ref="passSLabel">
+                  <label class="m-1 nsc-pass-label p-0 nsc-pass-s" style="opacity: 0.3;" ref="passSLabel">
                     <div class="row pass-front" id="pass-front">
                       <div class="f1 pass-detail-dt" v-if="passSDetails">
                         <div v-html="translations.passSDetailsFull[selectedLocale]"></div>
@@ -198,12 +192,9 @@ $timestamp = '1617122514'
                            hidden
                            required>
                   </label>
-                  <div class="btn  nsc-button btn-more" @click="showPassSDetail()">
-                    {{ translations.passDetails[selectedLocale] }}
+                  <div class="p-1 font-weight-bold text-uppercase">
+                    {{ translations.soldOut[selectedLocale] }}
                   </div>
-<!--                  <div class="btn  nsc-button btn-more"-->
-<!--                       @click="showPassSDetail()">{{ translations.passDetails[selectedLocale] }}-->
-<!--                  </div>-->
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 nsc-pass">
                   <label class="m-1 nsc-pass-label p-0 nsc-pass-v" style="opacity: 0.3;">
@@ -249,7 +240,7 @@ $timestamp = '1617122514'
                       calendar-class="datepicker"
                       v-model="form.dateFrom"
                       :placeholder="dateFrom"
-                      open-date="2021-03-26"
+                      open-date="2021-04-01"
                       monday-first="true"
                       bootstrap-styling="true"
                       :disabled-dates=disabledDates
