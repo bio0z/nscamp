@@ -1,0 +1,601 @@
+h1
+  font-weight: bold
+  @media(max-width: 576px)
+    font-size: 25px
+h3
+  font-weight: 700
+
+.f1
+  font-size: 12px
+
+[v-cloak]
+  display: none
+
+input.form-control, button.form-control
+  background-color: rgba(229, 229, 229, 0.5)
+  border-radius: 30px
+  border: none
+
+input.form-control::placeholder
+  color: #777fa8
+  opacity: 1
+  font-size: 1rem
+
+.form-control.promocode
+  boreder-radius: 30px 0 0 30px
+  margin-right: -30px
+
+.container-fluid
+  background-color: rgb(255, 255, 255)
+  max-width: 1440px
+  margin: 0px auto
+
+header
+  max-height: 134px
+  padding: 10px 0px
+
+header .lang-top
+  display: block
+  @media(max-width: 576px)
+    display: none
+
+header .lang-mob
+  display: none
+  @media(max-width: 576px)
+    display: block
+
+header .nsc-logo
+  height: auto
+  width: 120px
+  margin: -10px 0 -20px 0
+
+header .nsc-logo img
+  @media(max-width: 576px)
+    width: 80px
+
+header .nav-item
+  text-align: center
+  font-weight: 700
+
+header .nav-item.active
+  border: 1px solid
+
+header .navbar-light .navbar-nav .nav-link.hotels
+  color: #fff
+
+header .btn-link a
+  font-weight: bold
+  font-size: 16px
+  line-height: 19px
+  color: #000
+
+#progressbar
+  overflow: hidden
+  padding-inline-start: 0
+  margin: 0
+
+#progressbar .active
+  font-weight: bold
+
+#progressbar li
+  list-style-type: none
+  width: 20%
+  float: left
+  position: relative
+  @media (max-width: 770px)
+    font-size: 10px
+    line-height: 12px
+  @media (max-width: 576px)
+    font-size: 8px
+    line-height: 12px
+
+#progressbar :before
+  content: " "
+
+#progressbar li:before
+  width: 11px
+  height: 11px
+  line-height: 45px
+  display: block
+  font-size: 18px
+  color: #000
+  background: #F6D000
+  border: 1px solid #000
+  border-radius: 50%
+  margin: 0 auto 10px auto
+  padding: 2px
+  @media (max-width: 576px)
+    line-height: 12px
+
+#progressbar li.step1:before
+  margin: 0 auto 10px 0
+
+#progressbar li.step2:before
+  margin: 0 50% 10px 50%
+
+#progressbar li.step3:before
+  margin: 0 50% 10px 50%
+
+#progressbar li.step4:before
+  margin: 0 50% 10px 50%
+
+#progressbar li.step5:before
+  margin: 0 0 10px auto
+
+#progressbar li:after
+  content: ''
+  width: 100%
+  height: 1px
+  background: #000
+  position: absolute
+  left: 0
+  top: 5px
+  z-index: -1
+
+#progressbar li.active:before
+  background: #000
+
+#progressbar li.active:after
+  background: #000
+
+.invalid-feedback
+  display: block
+  text-align: center
+  position: fixed
+  top: 10px
+  background: white
+  padding: 10px
+  z-index: 6
+
+.nsc-button:hover+ .invalid-feedback
+  opacity: 1
+  transition: 1s
+
+main
+  color: #000
+  padding: 20px 0px
+
+  .nsc-step-num svg
+    width: 100%
+
+  .menu-text
+    max-width: 70px
+
+  .nsc-pass
+    text-align: center
+    @media (max-width: 576px)
+      text-align: right
+      padding-right: 25px
+
+  .nsc-pass p
+    line-height: 16px
+
+  .nsc-pass .nsc-button
+    width: 178px
+
+  .nsc-pass-label
+    width: 243px
+    padding-top: 55px
+    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
+    border-radius: 11px
+    position: relative
+    @media (max-width: 576px)
+      width: 100%
+      min-width: 320px
+
+  .nsc-pass-label .pass-front
+    width: 100%
+    height: 355px
+    margin: 0
+    display: table
+    position: relative
+    @media(max-width: 576px)
+      height: 217px
+      box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
+      border-radius: 11px
+    @media(max-width: 375px)
+      height: 193px
+
+  #pass-front, #pass-front-v
+    z-index: 4
+
+  #pass-detail, #pass-detail-v
+    z-index: 2
+
+  .nsc-pass-label .pass-price
+    display: table-cell
+    padding: 0 22px 25px 20px
+    font-size: 18px
+    line-height: 21px
+    text-align: left
+    vertical-align: bottom
+    @media(max-width: 576px)
+      padding: 0 22px 25px 210px
+
+  .nsc-pass-label .pass-detail
+    margin: auto
+    padding: 10px
+    position: relative
+    display: none
+    @media(max-width: 576px)
+      box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
+      border-radius: 0 0 11px 11px
+      height: 170px
+      margin: -10px 0 auto
+      padding: 25px
+      display: block
+      text-align: left
+
+  .nsc-pass-label .pass-detail-dt
+    display: block
+    text-align: left
+    padding: 90px 0 0 20px
+    @media(max-width: 576px)
+      display: none
+
+  .nsc-pass-label .pass-price-dt
+    font-size: 18px
+    line-height: 21px
+    position: absolute
+    bottom: 20px
+    padding: 0 10px 0 10px
+    text-align: left
+
+  .nsc-pass-label.active
+    box-sizing: border-box
+    box-shadow: 3px 3px 15px #000000, -3px -3px 15px rgba(255, 244, 186, 0.7)
+
+  .nsc-pass-s .pass-front
+    background: url("../images/svg/tour-standard.svg?v=5") no-repeat
+    color: #000000
+    @media (max-width: 576px)
+      background: url("../images/svg/tour-standard-mob.svg?v=5") no-repeat
+      background-size: contain
+      background-origin: content-box
+
+  .nsc-pass-s-back .pass-front
+    background: #6BC9B9 url("../images/svg/tour-standard-back.svg?v=5") no-repeat
+    color: #ffffff
+    box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
+    border-radius: 11px
+    @media (max-width: 576px)
+      background: #f6d000 url("../images/svg/tour-standard-mob.svg?v=5") no-repeat
+      background-size: contain
+      background-origin: content-box
+      color: #232559
+      height: 216px
+    @media (max-width: 375px)
+      height: 193px
+
+  .nsc-pass-s-back .pass-detail
+    @media (max-width: 576px)
+      background: no-repeat #6BC9B9
+      height: 200px
+
+  .nsc-pass-label .pass-price span
+      font-family: Roboto
+
+  .nsc-pass-v .pass-front
+    background: url("../images/svg/tour-vip.svg?v=5") no-repeat
+    color: #000000
+    @media (max-width: 576px)
+      background: url("../images/svg/tour-vip-mob.svg?v=5") no-repeat
+      background-size: contain
+      background-origin: content-box
+
+  .nsc-pass-v-back .pass-front
+    background: url("../images/svg/tour-vip-back.svg?v=5") no-repeat #777FA8
+    color: #ffffff
+    box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
+    border-radius: 11px
+    @media (max-width: 576px)
+      background: #f6d000 url("../images/svg/tour-vip-mob.svg?v=5") no-repeat
+      background-size: cover
+      background-origin: content-box
+      color: #232559
+      height: 216px
+    @media (max-width: 375px)
+      height: 193px
+
+  .nsc-pass-v-back .pass-detail
+    @media (max-width: 576px)
+      background: no-repeat #777FA8
+      height: 193px
+    @media (max-width: 375px)
+      height: 230px
+
+  .nsc-pass-v-back .pass-price, .nsc-pass-s-back .pass-price
+    display: none
+    @media (max-width: 576px)
+      display: table-cell
+
+  .nsc-pass-p .pass-front
+    background: url("../images/svg/tour-fest.svg?v=5") no-repeat
+    color: #000000
+    background-position-y: 25px
+    @media (max-width: 576px)
+      background: url("../images/svg/tour-fest-mob.svg?v=5") no-repeat
+      background-size: contain
+      background-origin: content-box
+      padding: 10px 0 0 0
+
+  .nsc-pass-p-back .pass-front
+    background: #DB9EA7 url("../images/svg/tour-fest-back.svg?v=5") no-repeat
+    color: #ffffff
+    box-shadow: 3px 3px 15px #d3ae14,-3px -3px 15px rgba(255,244,186,.7)
+    border-radius: 11px
+    background-position-y: 25px
+    @media (max-width: 576px)
+      background: #f6d000 url("../images/svg/tour-fest-mob.svg?v=5") no-repeat
+      background-size: contain
+      background-origin: content-box
+      color: #232559
+      height: 216px
+      padding: 10px 0 0 0
+    @media (max-width: 375px)
+      height: 193px
+
+
+  .nsc-pass-p-back .pass-detail
+    @media (max-width: 576px)
+      background: no-repeat #DB9EA7
+      height: 82px
+
+
+  .nsc-button
+    background-color: #777fa8
+    color: #fff
+    border: none
+    border-radius: 30px
+    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
+    text-transform: uppercase
+    text-align: center
+
+  .nsc-datesnote
+    font-size: 12px
+
+  .nsc-button.btn-more
+    width: 156px
+    height: 40px
+    filter: drop-shadow(3px 3px 15px #D3AE14), drop-shadow(-3px -3px 15px rgba(255, 244, 186, 0.7))
+    margin-top: 10px
+    @media (max-width: 576px)
+      margin: 10px
+
+  .nsc-button #alfa-payment__button
+    position: absolute
+    display: block
+    background-color: #777fa8
+    color: #fff
+    border: none
+    width: 100%
+    border-radius: 30px
+    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
+    font-size: 1rem
+    font-weight: 400
+    line-height: 1.5
+    min-height: 38px
+    left: 0px
+    top: 0px
+
+  .nsc-button .alfa-payment__message
+    position: absolute
+    display: block
+    top: 20px
+    left: -200px
+
+  .nsc-select
+    background: rgba(229, 229, 229, 0.5) url("../images/svg/nsc-select-dropdown.svg?v=5") 95% center no-repeat
+    border: none
+    color: #777fa8
+    border-radius: 30px
+    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
+    height: 40px
+
+  .nsc-select option[value=""][disabled]
+    display: contents
+    color: #777fa8
+
+  .nsc-select.form-control:disabled, .form-control[readonly]
+    background-color: rgba(229, 229, 229, 0.5)
+
+  .datepicker
+    background: #777fa8
+    color: #fff
+
+  .datepicker .disabled
+    opacity: 0.4
+
+  .nsc-checkbox
+    width: 30px
+    height: 30px
+    background: #f4f4f4
+
+  .nsc-checkbox.active
+    background: url("../images/svg/tour-consent.svg?v=5") no-repeat
+
+  .nsc-bf-checkbox
+    width: 30px
+    height: 30px
+    background: rgba(229, 229, 229, 0.5)
+
+  .nsc-bf-checkbox.active
+    background: url("../images/svg/tour-bf-checkbox.svg?v=5") no-repeat
+
+  section
+    padding: 10px 10px
+    min-height: 450px
+
+    .step-num
+      margin: 0 0 20px 0
+
+  .btn-group
+    width: 100%
+
+  .guest-plus
+    width: 30px
+    height: 30px
+    text-align: center
+    padding: 0
+    font-size: 1.2rem
+    float: left
+    margin: 0 10px 0 0
+    cursor: cell
+
+  .hotel-photo
+    margin: auto
+
+  .hotel
+    color: #ffffff
+    background: #777FA8
+
+    .hotel-gallery img.passive
+      display: block
+      width: 25%
+      float: left
+      padding: 10px 1px
+
+    .hotel-gallery img.active
+      display: block
+
+  .hotel img
+    @media (max-width: 768px)
+      width: 100%
+
+  button.gallery
+      border: none
+      background-color: transparent
+      font-size: 32px
+      color: #fff
+      opacity: 0.5
+      position: absolute
+      outline: none
+      top: 50%
+
+      &:hover
+        opacity: 1
+
+      &.previous
+        padding: 0 1em 0 0.7em
+        left: 0
+
+      &.next
+        padding: 0 0.7em 0 1em
+        right: 0
+
+  .tour-final-V
+    background: #777FA8 url("../images/svg/tour-final-V.svg?v=5") no-repeat 0 100%
+    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
+    border-radius: 11px
+    background-size: contain
+    //min-height: 364px
+
+  .tour-final-S
+    background: #6BC9B9 url("../images/svg/tour-final-S.svg?v=5") no-repeat 0 100%
+    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
+    border-radius: 11px
+    background-size: contain
+    //min-height: 364px
+
+  .tour-final-P
+    background: #DB9EA7 url("../images/svg/tour-final-P.svg?v=5") no-repeat 0 100%
+    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
+    border-radius: 11px
+    background-size: contain
+    //min-height: 364px
+
+  .tour-final input
+    background: transparent
+    line-height: 16px
+    margin: 0
+
+  .tour-final label
+    margin: 0
+    line-height: 16px
+
+  .tourIncluded
+    font-size: 18px
+    line-height: 200%
+
+  .nsc-tour-sum
+    @media (max-width: 768px)
+      position: absolute
+      right: 1px
+      top: -40px
+      width: 100%
+      max-width: 100%
+      text-align: right
+
+  .nsw-toursum
+    font-family: Roboto
+    font-style: italic
+    font-weight: bold
+    font-size: 24px
+    color: #000
+    line-height: 100%
+    text-align: left
+    padding-right: 5px
+    overflow: visible
+    box-sizing: border-box
+    @media (max-width: 768px)
+      text-align: right
+
+  .nsw-toursum-label
+    color: #000
+
+.header
+  color: #777fa8
+  font-weight: 700
+
+.bg-nsc-grey
+  background: rgba(229, 229, 229, 0.5)
+  border-radius: 30px
+
+.bg-nsc-grey label
+  margin: auto
+
+.bg-nsc-grey input[readonly]
+  background: none
+
+.nsc-btn-link
+  margin-bottom: 10px
+  margin-top: 10px
+  text-decoration: underline
+  width: 100%
+  text-align: right
+  @media (max-width: 768px)
+    text-align: left
+  img
+    margin-right: 13px
+  a
+    font-size: 12px
+    color: #000
+    margin: 0 0 10px 18px
+    @media (max-width: 768px)
+      margin: 0 0 30px 18px
+
+.form-check .nsc-btn-link
+  color: #777FA8
+  @media (max-width: 375px)
+    color: #000
+    margin: 0
+
+.footer .link p
+  font-size: 12px
+  line-height: 12px
+  @media (max-width: 768px)
+    padding-left: 32px
+  a
+    text-decoration: underline
+
+.footer p, footer a
+  font-size: 8px
+  line-height: 10px
+  padding: 0
+  margin: 0
+
+.footer .nsc-logo
+  max-width: 34px
+
+.minitext
+  font-size: 8px
