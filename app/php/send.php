@@ -41,27 +41,16 @@ if (isset($_POST['tourNumber'])) {
 
       if ($ar['passcode'] == 'V') {
         $pass = 'VIP';
-        $backColor = '#F2D046';
+        $backColor = '#232559';
       } elseif ($ar['passcode'] == 'S') {
         $pass = 'STANDARD';
-        $backColor = '#DB9EA7';
-      } elseif ($ar['passcode'] == 'P') {
-        $pass = 'FESTIVAL';
-        $backColor = '#6BC9B9';
+        $backColor = '#232559';
       }
 
       $body = file_get_contents('../html/mail.html');
       $body = preg_replace("/#HTTP_HOST#/", 'http://' . $_SERVER["HTTP_HOST"], $body);
 
-      if (strlen($_POST['tourNumber']) === 10 && $ar['passcode'] !== 'P') {
-        $voucher = file_get_contents('../html/voucher2.html');
-      } else if ($ar['passcode'] === 'P') {
-        $voucher = file_get_contents('../html/voucherP.html');
-      } else {
-        $voucher = file_get_contents('../html/voucher3.html');
-        $skiPassDays = $ar['tourDays'] - 1;
-        $tourDays = $ar['tourDays'] + 1;
-      }
+      $voucher = file_get_contents('../html/voucher_nsw.html');
 
       $voucher = preg_replace("/#FIO#/", $ar['name'], $voucher);
       $voucher = preg_replace("/#HTTP_HOST#/", 'http://' . $_SERVER["HTTP_HOST"], $voucher);

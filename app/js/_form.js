@@ -30,32 +30,33 @@ let vm = new Vue({
     el: "#orderForm",
     component: {},
     data: {
+        domain: document.domain,
         locales: {
             'ru': "RU",
             'en': "EN",
         },
         phpPath: '',
         selectedLocale: 'ru',
-        days: [26, 27, 28, 29, 30, 31, 1, 2, 3, 4],
+        days: [1, 2],
         minDays: 2,
-        promocode: '',
+        promocode: null,
         form: {
             pass: null,
-            dateFrom: null,
-            dateTill: null,
-            adults: '',
-            kids: '',
+            dateFrom: '1 октября 2021 года',
+            dateTill: '3 октября 2021 года',
+            adults: null,
+            kids: null,
 
-            hotel: 'TINN',
-            hotelName: '',
+            hotel: null,
+            hotelName: null,
             hotelBreakfast: null,
             hotelBreakfastPrice: null,
             hotelPrice: null,
             address: null,
-            room: '',
-            roomName: '',
-            bed: '',
-            bedName: '',
+            room: null,
+            roomName: null,
+            bed: null,
+            bedName: null,
 
             fname: null,
             sname: null,
@@ -136,12 +137,12 @@ let vm = new Vue({
                 'en': '1–3 дня — 5000<span>₽</span></br> 4–10 дня — 8000<span>₽</span>',
             },
             passSDetails: {
-                'ru': 'от 15 000<span>₽ </span></br> от 3 дней',
-                'en': 'from 15 000<span>₽ </span></br> from 5 days'
+                'ru': 'от 10 000<span>₽ </span></br>3 дня 2 ночи',
+                'en': 'from 10 000<span>₽ </span></br>3 days 2 nights'
             },
             passVDetails: {
-                'ru': 'от 40 986<span>₽ </span></br> от 3 дней ',
-                'en': 'from 40 986<span>₽ </span></br> from 5 days'
+                'ru': 'от 15 000<span>₽ </span></br>3 дня 2 ночи',
+                'en': 'from 15 000<span>₽ </span></br>3 days 2 nights'
             },
             soldOut: {
                 'ru': 'SOLD OUT',
@@ -154,11 +155,10 @@ let vm = new Vue({
                     '<p class="minitext">* Информация о браслете участника доступна в разделе FAQ</p>',
             },
             passSDetailsFull: {
-                'ru': '<p class="mb-2">Браслет участника</p></li>' +
-                    '<p class="mb-2">Проживание в отеле</p></li>' +
+                'ru': '<p class="mb-2">Доступ ко всем площадкам</p></li>' +
+                    '<p class="mb-2">Доступ ко всей программе</p></li>' +
                     '<p class="mb-2">Скидки и привилегии участника фестиваля</p></li>' +
-                    '<p class="mb-2">Ски пасс*</p><p class="minitext">*информация по ски-пасс доступна в разделе F.A.Q</p></li>' +
-                    '<p class="mb-2">Первые 500 покупателей получают фирменную футболку фестиваля</p></li>',
+                    '<p class="mb-2">Первые 500 покупателей получают футболку кемпа</p></li>',
                 'en': '<p class="mb-2">Hotel accommodation</p></li>' +
                     '<p class="mb-2">Festival PASS</p></li>' +
                     '<p class="mb-2">Cable lifts pass</p></li>' +
@@ -378,7 +378,7 @@ let vm = new Vue({
                     '<ul></li>' +
                     '<li> Браслет участника</li></li>' +
                     '<li> Проживание в отеле</li></li>' +
-                    '<li> Ски-пасс</li></li>' +
+                    '<li> Прогулочный ски-пасс на канатной дороге</li></li>' +
                     '</ul>',
                 'en': '<p><b>Tour details:</b></p></li>' +
                     '<ul></li>' +
@@ -452,19 +452,19 @@ let vm = new Vue({
                 text: 'text-left',
                 col: 'col',
             },
+            // {
+            //     active: false,
+            //     id: 2,
+            //     name: {
+            //         'ru': 'Выбор<br> даты',
+            //         'en': 'Choose<br> dates'
+            //     },
+            //     text: 'text-center',
+            //     col: 'col-3',
+            // },
             {
                 active: false,
                 id: 2,
-                name: {
-                    'ru': 'Выбор<br> даты',
-                    'en': 'Choose<br> dates'
-                },
-                text: 'text-center',
-                col: 'col-3',
-            },
-            {
-                active: false,
-                id: 3,
                 name: {
                     'ru': 'Выбор<br> отеля',
                     'en': 'Choose<br> accommodation'
@@ -474,7 +474,7 @@ let vm = new Vue({
             },
             {
                 active: false,
-                id: 4,
+                id: 3,
                 name: {
                     'ru': 'Персональные<br> данные',
                     'en': 'Personal<br> details'
@@ -484,7 +484,7 @@ let vm = new Vue({
             },
             {
                 active: false,
-                id: 5,
+                id: 4,
                 name: {
                     'ru': 'Покупка<br> тура',
                     'en': 'Tour<br> purchasing'
@@ -1431,8 +1431,8 @@ let vm = new Vue({
                             2: [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500]
                         },
                         breakfasts: {
-                            1:[450,450,450,450,450,450,450,450,450,450],
-                            2:[900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1472,8 +1472,8 @@ let vm = new Vue({
                             2: [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500]
                         },
                         breakfasts: {
-                            1:[450,450,450,450,450,450,450,450,450,450],
-                            2:[900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1509,8 +1509,8 @@ let vm = new Vue({
                             2: [4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800]
                         },
                         breakfasts: {
-                            1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1548,8 +1548,8 @@ let vm = new Vue({
                             2: [5100, 5100, 5100, 5100, 5100, 5100, 5100, 5100, 5100, 5100]
                         },
                         breakfasts: {
-                            1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1583,8 +1583,8 @@ let vm = new Vue({
                             2: [6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500, 6500]
                         },
                         breakfasts: {
-                            1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1620,8 +1620,8 @@ let vm = new Vue({
                             2: [6800, 6800, 6800, 6800, 6800, 6800, 6800, 6800, 6800, 6800]
                         },
                         breakfasts: {
-                            1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -1657,8 +1657,8 @@ let vm = new Vue({
                             2: [7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100, 7100]
                         },
                         breakfasts: {
-                            1: [450,450,450,450,450,450,450,450,450,450],
-                            2: [900,900,900,900,900,900,900,900,900,900]
+                            1: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450],
+                            2: [900, 900, 900, 900, 900, 900, 900, 900, 900, 900]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -2922,7 +2922,7 @@ let vm = new Vue({
                     'https://444803.selcdn.ru/cdn.awsd.cc/hotel-pp-3-standard-1.jpg',
                 ],
                 rooms: [
-                     {
+                    {
                         active: true,
                         name: 'Стандартный двухместный',
                         code: 'S2',
@@ -4202,8 +4202,8 @@ let vm = new Vue({
                             2: [4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800, 4800],
                         },
                         breakfasts: {
-                            1: [500,500,500,500,500,500,500,500,500,500],
-                            2: [1000,1000,1000,1000,1000,1000,1000,1000,1000,1000]
+                            1: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                            2: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -4244,10 +4244,10 @@ let vm = new Vue({
                             3: [6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000, 6000],
                         },
                         breakfasts: {
-                            1: [500,500,500,500,500,500,500,500,500,500],
-                            2: [1000,1000,1000,1000,1000,1000,1000,1000,1000,1000],
-                            3: [1500,1500,1500,1500,1500,1500,1500,1500,1500,1500],
-                            4: [2000,2000,2000,2000,2000,2000,2000,2000,2000,2000],
+                            1: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                            2: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+                            3: [1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500],
+                            4: [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000],
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -4287,8 +4287,8 @@ let vm = new Vue({
                             2: [3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600],
                         },
                         breakfasts: {
-                            1: [500,500,500,500,500,500,500,500,500,500],
-                            2: [1000,1000,1000,1000,1000,1000,1000,1000,1000,1000]
+                            1: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                            2: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -4331,13 +4331,13 @@ let vm = new Vue({
                             7: [22800, 22800, 22800, 22800, 22800, 22800, 22800, 22800, 22800, 22800]
                         },
                         breakfasts: {
-                            1: [500,500,500,500,500,500,500,500,500,500],
-                            2: [1000,1000,1000,1000,1000,1000,1000,1000,1000,1000],
-                            3: [1500,1500,1500,1500,1500,1500,1500,1500,1500,1500],
-                            4: [2000,2000,2000,2000,2000,2000,2000,2000,2000,2000],
-                            5: [2500,2500,2500,2500,2500,2500,2500,2500,2500,2500],
-                            6: [3000,3000,3000,3000,3000,3000,3000,3000,3000,3000],
-                            7: [3500,3500,3500,3500,3500,3500,3500,3500,3500,3500],
+                            1: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                            2: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+                            3: [1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500],
+                            4: [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000],
+                            5: [2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500],
+                            6: [3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000],
+                            7: [3500, 3500, 3500, 3500, 3500, 3500, 3500, 3500, 3500, 3500],
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -4385,12 +4385,12 @@ let vm = new Vue({
                             6: [10400, 10400, 10400, 10400, 10400, 10400, 10400, 10400, 10400, 10400],
                         },
                         breakfasts: {
-                            1: [500,500,500,500,500,500,500,500,500,500],
-                            2: [1000,1000,1000,1000,1000,1000,1000,1000,1000,1000],
-                            3: [1500,1500,1500,1500,1500,1500,1500,1500,1500,1500],
-                            4: [2000,2000,2000,2000,2000,2000,2000,2000,2000,2000],
-                            5: [2500,2500,2500,2500,2500,2500,2500,2500,2500,2500],
-                            6: [3000,3000,3000,3000,3000,3000,3000,3000,3000,3000],
+                            1: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                            2: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+                            3: [1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500],
+                            4: [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000],
+                            5: [2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500],
+                            6: [3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000],
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -4436,12 +4436,12 @@ let vm = new Vue({
                             6: [10400, 10400, 10400, 10400, 10400, 10400, 10400, 10400, 10400, 10400],
                         },
                         breakfasts: {
-                            1: [500,500,500,500,500,500,500,500,500,500],
-                            2: [1000,1000,1000,1000,1000,1000,1000,1000,1000,1000],
-                            3: [1500,1500,1500,1500,1500,1500,1500,1500,1500,1500],
-                            4: [2000,2000,2000,2000,2000,2000,2000,2000,2000,2000],
-                            5: [2500,2500,2500,2500,2500,2500,2500,2500,2500,2500],
-                            6: [3000,3000,3000,3000,3000,3000,3000,3000,3000,3000],
+                            1: [500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                            2: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+                            3: [1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500],
+                            4: [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000],
+                            5: [2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500],
+                            6: [3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000, 3000],
                         },
                         breakfasts_included: false,
                         breakfasts_no: false,
@@ -4484,35 +4484,46 @@ let vm = new Vue({
     },
     mounted: function () {
         get_parameters = this.$route.query
-        if (get_parameters.step == 6 && get_parameters.par != 0) {
-            this.step = 6;
+        if (get_parameters.step == 5 && get_parameters.par != 0) {
+            this.step = 5;
             this.form.payed = 0;
-        } else if (get_parameters.step == 6 && get_parameters.par == 0) {
-            this.step = 6;
+        } else if (get_parameters.step == 5 && get_parameters.par == 0) {
+            this.step = 5;
             this.form.payed = 1;
             this.sendMail(get_parameters.tourNumber);
         }
         // check available rooms
         let step = document.getElementById("stepper");
+        // let select_adults = document.getElementById("select_adults");
+        if (this.domain === 'localhost') {
+            this.freeHotels = ['RIL']
+        }
 
         if (this.form.pass !== 'P') {
-            step.addEventListener('click',() => {
+            step.addEventListener('click', () => {
                 if (this.form.adults) {
-
-                    this.getActiveHotels()
-                    this.activeHotelRooms()
+                    if (this.domain !== 'localhost') {
+                        this.getActiveHotels()
+                    }
                 }
-            })
+            });
+            if (this.step === 2) {
+                let select = document.querySelector('#selectadults');
+                select.addEventListener('change', () => {
+                    if (this.domain !== 'localhost') {
+                        this.getActiveHotels()
+                    }
+                })
+            }
         }
     },
     computed: {
         getDomain() {
-            let domain = document.domain
-            if (domain === 'localhost') {
+            if (this.domain === 'localhost') {
                 this.phpPath = 'nscamp/app/'
             }
         },
-        dateFrom(){
+        dateFrom() {
             if (this.form.pass !== 'P') {
                 return 'дата приезда'
             } else {
@@ -4547,9 +4558,11 @@ let vm = new Vue({
             return adults + kids;
         },
         roomName() {
-            if (this.form.pass !== 'P') {
+            if (this.form.pass !== 'P' && this.form.hotel) {
                 this.form.roomName = this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
                 return this.hotels[this.currentHotel].rooms.find(room => room.code === this.form.room).name
+            } else {
+                return false
             }
         },
         setTourName() {
@@ -4573,6 +4586,9 @@ let vm = new Vue({
             return this.hotels.indexOf(curHotel)
         },
         activeHotels() {
+            console.log('this.freeHotels')
+            console.log(this.freeHotels)
+            console.log('this.domain ' + this.domain)
             return this.hotels.filter(hotel => {
                 return hotel.maxGuests >= this.form.adults && hotel.active && this.freeHotels.includes(hotel.code)
             })
@@ -4677,17 +4693,19 @@ let vm = new Vue({
                 }
             } else if (curPassCode == 'P') {
                 totalPrice = passPrice
-                if (totalPrice == 0) { totalPrice = 1 }
+                if (totalPrice == 0) {
+                    totalPrice = 1
+                }
 
                 this.form.tourPrice = Math.ceil(totalPrice)
 
                 return Math.ceil(totalPrice) + '₽'
+            } else {
+                return 'Ошибка расчета';
             }
-            return false;
         }
     },
-    watch: {
-    },
+    watch: {},
     methods: {
         setLocale: function (locale) {
             this.selectedLocale = locale;
@@ -4727,39 +4745,19 @@ let vm = new Vue({
                     this.errors = null
                     this.step++
                 }
-            } else if (this.step === 2) {
-                this.form.room = ''
-                this.form.tourDays = this.calcTourDays
-                if (!this.form.dateTill || !this.form.dateFrom) {
-                    this.errors = this.translations.errorChooseDates[this.selectedLocale];
-                    return false;
-                } else if (!this.form.adults) {
-                    this.errors = this.translations.errorChooseAdults[this.selectedLocale];
-                    return false;
-                } else if (this.calcTourDays < this.minDays) {
-                    this.errors = this.translations.errorMinDates[this.selectedLocale];
-                    return false;
-                } else {
-                    this.errors = null
-                    if (this.form.pass !== 'P') {
-                        this.step++
-                    } else if (this.form.pass === 'P') {
-                        this.step = this.step + 2
-                    }
-                }
-            } else if (this.step === 3 && this.form.pass !== 'P') {
-
-                this.form.hotelName = this.hotels[this.currentHotel].name;
-                this.form.address = this.hotels[this.currentHotel].address;
+            } else if (this.step === 2 && this.form.pass !== 'P') {
 
                 if (!this.form.hotel || !this.form.room) {
                     this.errors = this.translations.errorChooseRoom[this.selectedLocale];
+                    return false;
+                } else if (!this.form.adults) {
+                    this.errors = this.translations.errorChooseAdults[this.selectedLocale];
                     return false;
                 } else {
                     this.errors = null
                     this.step++
                 }
-            } else if (this.step === 4) {
+            } else if (this.step === 3) {
                 if (!this.form.fname || !this.form.sname) {
                     this.errors = this.translations.errorFillFIO[this.selectedLocale];
                     return false;
@@ -4821,39 +4819,50 @@ let vm = new Vue({
             if (pass === 'S') {
                 this.form.pass = 'S'
                 this.$refs.passSLabel.className += " active";
-                this.$refs.passPLabel.classList.remove("active");
-                // this.$refs.passVLabel.classList.remove("active");
+                this.$refs.passVLabel.classList.remove("active");
+                // this.$refs.passPLabel.classList.remove("active");
             } else if (pass === 'V') {
-                // this.$refs.passVLabel.className += " active";
-                // this.$refs.passSLabel.classList.remove("active");
+                this.$refs.passVLabel.className += " active";
+                this.$refs.passSLabel.classList.remove("active");
+                // this.$refs.passPLabel.classList.remove("active");
             } else if (pass === 'P') {
                 this.form.pass = 'P'
                 this.$refs.passPLabel.className += " active";
                 this.$refs.passSLabel.classList.remove("active");
-                 // this.$refs.passVLabel.classList.remove("active");
+                this.$refs.passVLabel.classList.remove("active");
+            } else {
+                this.$refs.passPLabel.classList.remove("active");
+                this.$refs.passSLabel.classList.remove("active");
+                this.$refs.passVLabel.classList.remove("active");
             }
         },
         showHotelPhoto() {
             let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
-            let curHotelIndex = this.hotels.indexOf(curHotel)
             this.form.room = null;
-            this.$refs.hotelImage.src = this.hotels[curHotelIndex].gallery[0];
-            this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].desc[this.selectedLocale];
-            this.form.hotelName = this.hotels[this.currentHotel].name;
+            // this.$refs.hotelImage.src = curHotel.gallery[0];
+            // this.$refs.hotelText.innerHTML = curHotel.desc[this.selectedLocale];
+            this.form.hotelName = curHotel.name;
 
             if (this.form.pass !== 'P' && this.form.hotelName) {
-                this.activeHotelRooms()
+                if (this.domain !== 'localhost') {
+                    this.activeHotelRooms()
+                } else {
+                    this.hotelQuota = curHotel.rooms
+                }
+
             }
 
         },
         showRoomPhoto() {
-            let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
-            let curHotelIndex = this.hotels.indexOf(curHotel)
-            if (this.form.room !== undefined) {
-                let curRoom = this.hotels[curHotelIndex].rooms.find(room => room.code === this.form.room)
-                let curRoomIndex = this.hotels[curHotelIndex].rooms.indexOf(curRoom)
-                this.$refs.hotelImage.src = this.hotels[curHotelIndex].rooms[curRoomIndex].photo;
-                this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].rooms[curRoomIndex].desc[this.selectedLocale];
+            if (this.form.hotel) {
+                let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
+                let curHotelIndex = this.hotels.indexOf(curHotel)
+                if (this.form.room !== undefined) {
+                    let curRoom = this.hotels[curHotelIndex].rooms.find(room => room.code === this.form.room)
+                    let curRoomIndex = this.hotels[curHotelIndex].rooms.indexOf(curRoom)
+                    this.$refs.hotelImage.src = this.hotels[curHotelIndex].rooms[curRoomIndex].photo;
+                    this.$refs.hotelText.innerHTML = this.hotels[curHotelIndex].rooms[curRoomIndex].desc[this.selectedLocale];
+                }
             }
         },
         nextPhoto() {
@@ -5055,8 +5064,10 @@ let vm = new Vue({
                         console.log("error", error);
                     });
             }
+
         },
         activeHotelRooms() {
+            let activeRooms = [];
             let adults = this.form.adults
             let arRooms = this.hotels.find(hotel => hotel.code === this.form.hotel)
 
@@ -5083,7 +5094,6 @@ let vm = new Vue({
                         if (response.data) {
                             this.errors = null;
                             let hotelQuota = Array.from(response.data);
-                            let activeRooms = [];
                             arRooms.rooms.forEach(function (item, i, arRooms) {
                                 if (item.maxGuests >= adults && item.active && hotelQuota.indexOf(item.code) > -1) {
                                     activeRooms.push(item);

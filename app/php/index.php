@@ -1,19 +1,21 @@
 
 <?php
 
-$days = [1, 2, 3];
-$row['days'] = [26, 27, 28, 29, 30, 31, 1, 2, 3];
+echo time();
 
-$checkDays = array_diff($days,$row['days']);
-
-print_r($checkDays);
-echo '<br>' . $checkDays . '<br>';
-
-if (empty($checkDays)) {
-  echo '<br>' . ' true';
-} else {
-  echo '<br>' . ' false';
-}
+//$days = [1, 2, 3];
+//$row['days'] = [26, 27, 28, 29, 30, 31, 1, 2, 3];
+//
+//$checkDays = array_diff($days,$row['days']);
+//
+//print_r($checkDays);
+//echo '<br>' . $checkDays . '<br>';
+//
+//if (empty($checkDays)) {
+//  echo '<br>' . ' true';
+//} else {
+//  echo '<br>' . ' false';
+//}
 //require '../vendor/autoload.php';
 
 //if ($_GET['admin'] == 000000 ) {
