@@ -37,13 +37,13 @@ let vm = new Vue({
         },
         phpPath: '',
         selectedLocale: 'ru',
-        days: [1, 2],
-        minDays: 2,
+        days: [1, 2, 3],
+        minDays: 3,
         promocode: null,
         form: {
             pass: null,
-            dateFrom: '1 октября 2021 года',
-            dateTill: '3 октября 2021 года',
+            dateFrom: 'Oct 1 2021 12:00:00 GMT+0300 (MSK)',
+            dateTill: 'Oct 3 2021 12:00:00 GMT+0300 (MSK)',
             adults: null,
             kids: null,
 
@@ -86,7 +86,7 @@ let vm = new Vue({
             tourID: null,
             tourPrice: 0,
             skipassPrice: 0,
-            tourDays: 0,
+            tourDays: 3,
             arrTourDays: null,
             payed: null,
             passDiscount: 1
@@ -412,7 +412,7 @@ let vm = new Vue({
                 'en': 'Buy tour'
             },
             tourSuccess: {
-                'ru': '<p>Вы успешно оформили тур New Star Camp.</p></li>' +
+                'ru': '<p>Вы успешно оформили тур New Star Weekend.</p></li>' +
                     '<p>Ваучер отправлен на email.</p></li>' +
                     '<p>Скоро увидимся ;)</p></li>',
                 'en': '<p>You win! :)</p>' +
@@ -426,10 +426,10 @@ let vm = new Vue({
                     '<a href="#">try again</a>.</p>'
             },
             newStarDesc: {
-                'ru': 'ООО «Нью Стар» — организатор спортивно-музыкального фестиваля New Star Camp, который пройдёт 26 марта -</li>' +
-                    '4 апреля 2021 года на всесезонном горном курорте «Роза Хутор» (Сочи).',
-                'en': '“New Star” LLC is the organizer of “New Star Camp” sports and music festival, that will</li>' +
-                    ' be held on March 26 - 4 April, 2020 at Russian ski resort “Rosa Khutor” (Sochi).'
+                'ru': 'ООО «Нью Стар» — организатор спортивно-музыкального фестиваля New Star Weekend,</li>' +
+                    'который пройдёт 1 -3 октября 2021 года на всесезонном горном курорте «Роза Хутор» (Сочи).',
+                'en': '“New Star” LLC is the organizer of “New Star Weekend” sports and music festival, that will</li>' +
+                    ' be held on March 1 - 3 October, 2021 at Russian ski resort “Rosa Khutor” (Sochi).'
             }
         },
         sent: false,
@@ -518,18 +518,6 @@ let vm = new Vue({
                 price: 8000,
             }
         ],
-        disabledDates: {
-            to: new Date(2021, 3, 1),
-            from: new Date(2021, 3, 5),
-            dates: [
-                // new Date(2021, 2, 26),
-                // new Date(2021, 2, 27),
-                // new Date(2021, 2, 28),
-                // new Date(2021, 2, 31),
-                // new Date(2021, 3, 1),
-                // new Date(2021, 3, 2),
-            ],
-        },
         hotelQuota: '',
         freeHotels: [],
         hotels: [
@@ -4495,26 +4483,25 @@ let vm = new Vue({
         // check available rooms
         let step = document.getElementById("stepper");
         // let select_adults = document.getElementById("select_adults");
-        if (this.domain === 'localhost') {
+        if (this.domain !== 'nswpay.ru') {
             this.freeHotels = ['RIL']
         }
 
-        if (this.form.pass !== 'P') {
-            step.addEventListener('click', () => {
-                if (this.form.adults) {
-                    if (this.domain !== 'localhost') {
-                        this.getActiveHotels()
-                    }
+        step.addEventListener('click', () => {
+            if (this.form.adults) {
+                if (this.domain === 'nswpay.ru') {
+                    this.getActiveHotels()
                 }
-            });
-            if (this.step === 2) {
-                let select = document.querySelector('#selectadults');
-                select.addEventListener('change', () => {
-                    if (this.domain !== 'localhost') {
-                        this.getActiveHotels()
-                    }
-                })
             }
+        });
+
+        if (this.step === 2) {
+            let select = document.querySelector('#selectadults');
+            select.addEventListener('change', () => {
+                if (this.domain === 'nswpay.ru') {
+                    this.getActiveHotels()
+                }
+            })
         }
     },
     computed: {
@@ -4567,28 +4554,25 @@ let vm = new Vue({
         },
         setTourName() {
             if (this.form.pass !== 'P') {
-                this.form.tourName = 'New Star Camp tour, hotel: ' + this.form.hotelName;
+                this.form.tourName = 'New Star Weekend tour, hotel: ' + this.form.hotelName;
             } else {
-                this.form.tourName = 'New Star Camp Festival Pass';
+                this.form.tourName = 'New Star Weekend Festival Pass';
             }
             return this.form.tourName;
         },
         calcTourDays() {
-            let tourDays = 0
-            if (this.form.dateFrom && this.form.dateTill) {
-                tourDays = ((this.form.dateTill - this.form.dateFrom) / 1000 / 60 / 60 / 24)
-                this.form.tourDays = tourDays
-            }
-            return tourDays
+            // let tourDays = 0
+            // if (this.form.dateFrom && this.form.dateTill) {
+            //     tourDays = ((this.form.dateTill - this.form.dateFrom) / 1000 / 60 / 60 / 24)
+            //     this.form.tourDays = tourDays
+            // }
+            return 3
         },
         currentHotel() {
             let curHotel = this.hotels.find(hotel => hotel.code === this.form.hotel)
             return this.hotels.indexOf(curHotel)
         },
         activeHotels() {
-            console.log('this.freeHotels')
-            console.log(this.freeHotels)
-            console.log('this.domain ' + this.domain)
             return this.hotels.filter(hotel => {
                 return hotel.maxGuests >= this.form.adults && hotel.active && this.freeHotels.includes(hotel.code)
             })
@@ -4630,12 +4614,12 @@ let vm = new Vue({
                 this.form.promocode = this.promocode
             }
 
-            if (this.form.room !== undefined && this.form.pass !== 'P') {
+            if (this.form.room !== undefined) {
                 let option = {
                     day: 'numeric',
                 };
-                let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
-                let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
+                let dayStart = 1 // parseInt(this.form.dateFrom.toLocaleString("ru", option));
+                let dayEnd = 3 //parseInt(this.form.dateTill.toLocaleString("ru", option));
 
                 const reducer = (accumulator, currentValue) => accumulator + currentValue
 
@@ -4843,8 +4827,8 @@ let vm = new Vue({
             // this.$refs.hotelText.innerHTML = curHotel.desc[this.selectedLocale];
             this.form.hotelName = curHotel.name;
 
-            if (this.form.pass !== 'P' && this.form.hotelName) {
-                if (this.domain !== 'localhost') {
+            if (this.form.hotelName) {
+                if (this.domain === 'nswpay.ru') {
                     this.activeHotelRooms()
                 } else {
                     this.hotelQuota = curHotel.rooms
@@ -5039,31 +5023,28 @@ let vm = new Vue({
             };
             let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
             let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
-
             let thisTourDays = this.days.slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd))
 
-            if (this.step > 2 && this.form.pass !== 'P') {
-                const conf = {
-                    responseType: 'text'
-                };
-                const data = {
-                    tourDays: thisTourDays
-                };
-                axios
-                    .post(this.phpPath + "php/checkHotels.php", data, conf)
-                    .then(response => {
-                        if (response.data) {
-                            this.errors = null;
-                            this.freeHotels = Array.from(response.data);
-                        } else {
-                            this.errors = 'Нет доступных отелей на эти даты.';
-                        }
-                    })
-                    .catch(error => {
-                        this.errors = 'Нет информации по отелю.';
-                        console.log("error", error);
-                    });
-            }
+            const conf = {
+                responseType: 'text'
+            };
+            const data = {
+                tourDays: thisTourDays
+            };
+            axios
+                .post(this.phpPath + "php/checkHotels.php", data, conf)
+                .then(response => {
+                    if (response.data) {
+                        this.errors = null;
+                        this.freeHotels = Array.from(response.data);
+                    } else {
+                        this.errors = 'Нет доступных отелей на эти даты.';
+                    }
+                })
+                .catch(error => {
+                    this.errors = 'Ошибка запроса информации по выбранному отелю.';
+                    console.log("error", error);
+                });
 
         },
         activeHotelRooms() {
@@ -5106,7 +5087,7 @@ let vm = new Vue({
                         }
                     })
                     .catch(error => {
-                        this.errors = 'Нет информации по отелю.';
+                        this.errors = 'Ошибка запроса информации по выбранному номеру в отеле.';
                         console.log("error", error);
                     });
                 return Array.from(this.hotelQuota);
@@ -5115,7 +5096,4 @@ let vm = new Vue({
             }
         },
     },
-    components: {
-        vuejsDatepicker
-    }
 });

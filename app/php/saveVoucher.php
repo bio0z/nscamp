@@ -19,8 +19,8 @@ if(isset($_POST)) {
   $ar['guest5'] = $_POST['g5fname'] . ' ' . $_POST['g5sname'];
   $ar['guest6'] = $_POST['g6fname'] . ' ' . $_POST['g6sname'];
   $ar['hotel'] = $_POST['hotel'];
-  $ar['dateFrom'] = $_POST['dateFrom'];
-  $ar['dateTill'] = $_POST['dateTill'];
+  $ar['dateFrom'] = '1 октября 2021';//$_POST['dateFrom'];
+  $ar['dateTill'] = '3 октября 2021'; //$_POST['dateTill'];
   $ar['adults'] = $_POST['adults'];
   $ar['kids'] = $_POST['kids'];
   $ar['hotelName'] = $_POST['hotelName'];
