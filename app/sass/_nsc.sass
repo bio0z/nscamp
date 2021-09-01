@@ -13,7 +13,7 @@ h3
 
 input.form-control, button.form-control
   background-color: rgba(229, 229, 229, 0.5)
-  border-radius: unset
+  border-radius: 30px
   border: none
 
 input.form-control::placeholder
@@ -22,7 +22,7 @@ input.form-control::placeholder
   font-size: 1rem
 
 .form-control.promocode
-  //boreder-radius: 30px 0 0 30px
+  boreder-radius: 30px 0 0 30px
   margin-right: -30px
 
 .container
@@ -103,9 +103,9 @@ header .btn-link a
   display: block
   font-size: 18px
   color: #000
-  background: #78c0b5
+  background: #FFD366
   border: 1px solid #000
-  //border-radius: 50%
+  border-radius: 50%
   margin: 0 auto 10px auto
   padding: 2px
   @media (max-width: 576px)
@@ -148,10 +148,6 @@ header .btn-link a
   padding: 10px
   z-index: 6
 
-.nsc-button:hover+ .invalid-feedback
-  opacity: 1
-  transition: 1s
-
 main
   color: #000
   padding: 20px 0px
@@ -177,9 +173,9 @@ main
   .nsc-pass-label
     width: 243px
     padding-top: 55px
-    //box-shadow: 3px 3px 15px #777FA8, -3px -3px 15px rgb(119, 127, 168)
-    //border-radius: 11px
+    color: #FFF
     position: relative
+    border-radius: 10px
     @media (max-width: 576px)
       width: 100%
       min-width: 320px
@@ -188,49 +184,41 @@ main
     width: 100%
     height: 355px
     margin: 0
-    display: table
     position: relative
+    background-repeat: no-repeat
+    background-position: center
+    background-position-x: 10px
     @media(max-width: 576px)
       height: 217px
-      //box-shadow: 3px 3px 15px #777FA8,-3px -3px 15px rgb(119, 127, 168)
-      //border-radius: 11px
+      background-size: contain
+      background-origin: content-box
     @media(max-width: 375px)
       height: 193px
 
-  #pass-front, #pass-front-v
-    z-index: 4
-
-  #pass-detail, #pass-detail-v
-    z-index: 2
+  .nsc-pass-label .pass-title
+    font-size: 24px
+    font-family: Verdana, serif
+    text-transform: uppercase
+    font-weight: 700
+    padding: 20px
+    text-align: left
+    word-spacing: 100vw
+    line-height: 29.17px
 
   .nsc-pass-label .pass-price
-    display: table-cell
-    padding: 0 22px 25px 20px
+    padding: 190px 22px 25px 20px
     font-size: 18px
     line-height: 21px
     text-align: left
-    vertical-align: bottom
     @media(max-width: 576px)
-      padding: 0 22px 25px 210px
+      padding: 0 22px 0 100px
+
+  .nsc-pass-label .pass-price span
+      font-family: Roboto
 
   .nsc-pass-label .pass-detail
-    margin: auto
-    padding: 10px
-    position: relative
-    display: none
-    @media(max-width: 576px)
-      box-shadow: 3px 3px 15px #777FA8,-3px -3px 15px rgb(119, 127, 168)
-      //border-radius: 0 0 11px 11px
-      height: 170px
-      margin: -10px 0 auto
-      padding: 25px
-      display: block
-      text-align: left
-
-  .nsc-pass-label .pass-detail-dt
-    display: block
     text-align: left
-    padding: 50px 0 0 20px
+    padding: 20px 20px 0 20px
 
   .nsc-pass-label .pass-price-dt
     font-size: 18px
@@ -244,56 +232,22 @@ main
     box-sizing: border-box
     box-shadow: 3px 3px 15px #000000, -3px -3px 15px rgb(119, 127, 168)
 
-  .nsc-pass-s .pass-front
-    background: #232559 url("../images/svg/tour-standard.svg?v=1") no-repeat
-    color: #FFFFFF
+  .nsc-pass.back .pass-front
     @media (max-width: 576px)
-      background: #232559 url("../images/svg/tour-standard-mob.svg?v=1") no-repeat
       background-size: contain
       background-origin: content-box
-
-  .nsc-pass-s-back .pass-front
-    background: #232559
-    color: #FFFFFF
-    //box-shadow: 3px 3px 15px #777FA8,-3px -3px 15px rgb(119, 127, 168)
-    //border-radius: 11px
-    @media (max-width: 576px)
-      background: #232559
-      background-size: contain
-      background-origin: content-box
-      color: #FFFFFF
-
-  .nsc-pass-s-back .pass-detail
-    background: no-repeat #232559
-    color: #FFFFFF
-
-  .nsc-pass-label .pass-price span
-      font-family: Roboto
 
   .nsc-pass-v .pass-front
-    background: #777FA8 url("../images/svg/tour-vip.svg?v=1") no-repeat
-    color: #FFFFFF
     @media (max-width: 576px)
-      background: #777FA8 url("../images/svg/tour-vip-mob.svg?v=1") no-repeat
       background-size: contain
       background-origin: content-box
 
-  .nsc-pass-v-back .pass-front
-    background: #777FA8
-    color: #ffffff
-    //box-shadow: 3px 3px 15px #777FA8,-3px -3px 15px rgb(119, 127, 168)
-    //border-radius: 11px
+  .nsc-pass.back .pass-front
     @media (max-width: 576px)
-      background: #777FA8
       background-size: cover
       background-origin: content-box
-      color: #FFFFFF
 
-  .nsc-pass-v-back .pass-detail
-    @media (max-width: 576px)
-      background: no-repeat #777FA8
-
-  .nsc-pass-v-back .pass-price, .nsc-pass-s-back .pass-price
+  .nsc-pass.back .pass-price, .nsc-pass.back .pass-price
     display: none
     @media (max-width: 576px)
       display: table-cell
@@ -302,10 +256,14 @@ main
     background-color: #777fa8
     color: #fff
     border: none
-    border-radius: unset
+    border-radius: 30px
     //box-shadow: 3px 3px 15px #777fa8, -3px -3px 15px rgb(152, 163, 184)
     text-transform: uppercase
     text-align: center
+    cursor: pointer
+
+  .nsc-button:hover
+    color: #FFD366
 
   .nsc-datesnote
     font-size: 12px
@@ -314,14 +272,14 @@ main
     width: 156px
     height: 40px
     background-color: #777FA8
-    //filter: drop-shadow(3px 3px 15px #777fa8), drop-shadow(-3px -3px 15px rgb(119, 127, 168))
+    filter: drop-shadow(3px 3px 15px #777fa8), drop-shadow(-3px -3px 15px rgb(119, 127, 168))
     margin-top: 10px
     @media (max-width: 576px)
       margin: 10px
 
   .nsc-button.btn-more.btn-more-s
     background-color: #232559
-    //filter: drop-shadow(3px 3px 15px #232559), drop-shadow(-3px -3px 15px rgb(35, 37, 89))
+    filter: drop-shadow(3px 3px 15px #232559), drop-shadow(-3px -3px 15px rgb(35, 37, 89))
 
   .nsc-button #alfa-payment__button
     position: absolute
@@ -330,7 +288,7 @@ main
     color: #fff
     border: none
     width: 100%
-    //border-radius: 30px
+    border-radius: 30px
     //box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
     font-size: 1rem
     font-weight: 400
@@ -346,14 +304,13 @@ main
     left: -200px
 
   .custom-select
-    border-radius: unset
+    border-radius: 30px
 
   .nsc-select
     background: rgba(229, 229, 229, 0.2) url("../images/svg/nsc-select-dropdown.svg?v=5") 95% center no-repeat
     border: none
-    //border-radius: 30px
-    //box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
-    height: 40px
+    height: auto
+    white-space: pre-wrap
 
   .nsc-select option[value=""][disabled]
     display: contents
@@ -418,6 +375,9 @@ main
     color: #ffffff
     background: #777FA8
 
+    .hotel-desc p span
+      color: #fff !important
+
     .hotel-gallery img.passive
       display: block
       width: 25%
@@ -452,29 +412,12 @@ main
         padding: 0 0.7em 0 1em
         right: 0
 
-  .tour-final-V
-    background: #777FA8 url("../images/svg/tour-final-V.svg?v=5") no-repeat left bottom
-    //box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
-    //border-radius: 11px
-    background-size: 128px
+  .tour-final-card
     color: #ffffff
-    //min-height: 364px
-
-  .tour-final-S
-    background: #232559 url("../images/svg/tour-final-S.svg?v=5") no-repeat left bottom
-    //box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
-    //border-radius: 11px
-    color: #ffffff
-    background-size: 128px
-    //min-height: 364px
-
-  .tour-final-P
-    background: #DB9EA7 url("../images/svg/tour-final-P.svg?v=5") no-repeat 0 100%
-    box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
-    //border-radius: 11px
-    color: #ffffff
-    background-size: contain
-    //min-height: 364px
+    background-color: #232559
+    background-size: 380px
+    background-repeat: no-repeat
+    background-position: bottom left
 
   .tour-final input
     background: transparent
@@ -484,12 +427,18 @@ main
 
   .tour-final label
     margin: 0
-    line-height: 16px
+    line-height: 36px
 
   .tour-final-text
     padding: 20px 0
+    font-weight: 400
+    font-size: 18px
+    line-height: 36px
     h5
-      padding: 0 0 20px 0
+      padding: 0 0 10px 0
+      font-weight: 700
+      font-size: 24px
+      line-height: 29.17px
 
   .tourIncluded
     font-size: 18px
@@ -527,7 +476,7 @@ main
 
 .bg-nsc-grey
   background: rgba(229, 229, 229, 0.5)
-  //border-radius: 30px
+  border-radius: 30px
 
 .bg-nsc-grey label
   margin: auto

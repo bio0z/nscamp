@@ -19,7 +19,7 @@ if (isset($_POST)) {
   } else {
     $username = "root";
     $password = "root";
-    $database = 'nscTemp';
+    $database = 'nscbooking';
   }
 
   $conn = new mysqli($servername, $username, $password, $database);

@@ -211,8 +211,11 @@ $timestamp = $tourNumber;
                 <div class="col-2 d-flex align-items-start flex-column p-0 mr-3 nsc-step-num">
                   <img src="<?= $path ?>images/svg/step2.svg?v=1"/>
                 </div>
-                <div class="col-6 col-sm-6 col-md-8 col-lg-8">
+                <div v-if="form.pass !== 'P'" class="col-6 col-sm-6 col-md-8 col-lg-8">
                   {{ translations.stepHotel[selectedLocale] }}
+                </div>
+                <div v-if="form.pass !== 'P'" class="col-6 col-sm-6 col-md-8 col-lg-8">
+                  {{ translations.stepGuests[selectedLocale] }}
                 </div>
               </div>
             </div>
@@ -222,6 +225,7 @@ $timestamp = $tourNumber;
                   <select id="selectadults"
                           v-model.number="form.adults"
                           class="custom-select nsc-select"
+                          @change="getActiveHotels"
                           :placeholder="translations.tourAdults[selectedLocale]"
                           required>
                     <option value="" disabled selected>{{ translations.tourAdults[selectedLocale] }}</option>
@@ -304,9 +308,9 @@ $timestamp = $tourNumber;
               <div class="row hotel mainbg">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-4 order-12 order-lg-1">
                   <div :data-val="currentHotel">
-                    <h3 v-if="form.hotel">{{ hotels[currentHotel].name }}</h3>
+                    <h3 v-if="form.hotel" v-model.trim="form.hotelName" :value="form.curHotel.name">{{ form.curHotel.name }}</h3>
                     <h3 v-if="!form.hotel">Отель</h3>
-                    <div class="f1" v-if="form.hotel" ref="hotelText">{{ hotels[currentHotel].desc[selectedLocale]}}
+                    <div class="f1" v-if="form.hotel" ref="hotelText">{{ form.curHotel.desc }}
                     </div>
                     <div class="f1" v-if="!form.hotel">Описание</div>
                   </div>
@@ -321,7 +325,7 @@ $timestamp = $tourNumber;
                          :alt="hotels[currentHotel].name"/>
                   </div>
                   <div v-if="!form.hotel" class="hotel-gallery">
-                    <img class="img-fluid active" src="<?= $path ?>images/hotels/hotel-freebaz-1.jpg">
+                    <img class="img-fluid active" src="<?= $path ?>images/hotels/take1.width-1200.jpegquality-99.png">
                   </div>
                   <button type="button" aria-label="Next Photo" class="gallery next" @click="nextPhoto()">
                     >
@@ -494,16 +498,17 @@ $timestamp = $tourNumber;
                       <label class="col-4" for="tourPersonPhone">{{ translations.guestPhone[selectedLocale] }}</label>
                       <input class="col-8 border-0" type="text" id="tourPersonPhone"
                              :value="form.phone" readonly></div>
-                    <div class="row">
-                      <label v-if="form.pass !== 'P'" class="col-4"
+                    <div class="row" v-if="form.pass !== 'P'">
+                      <label  class="col-4"
                              for="tourPersonHotel">{{ translations.guestHotel[selectedLocale] }}</label>
                       <input class="col-8 border-0" type="text" id="tourPersonHotel"
                              :value="form.hotelName" readonly>
                     </div>
-                    <div class="row">
-                      <label v-if="form.pass !== 'P'" class="col-4" for="tourPersonRoom">Номер</label>
+                    <div class="row" v-if="form.pass !== 'P'">
+                      <label class="col-4" for="tourPersonRoom">Номер</label>
                       <input class="col-8 border-0" type="text" id="tourPersonRoom"
-                             :value="roomName" readonly></div>
+                             :value="roomName" readonly>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -585,7 +590,7 @@ $timestamp = $tourNumber;
           </div>
         </section>
         <div>
-          <div class="invalid-feedback" v-if="errors != null">{{ errors }}</div>
+          <div class="invalid-feedback" v-if="errors">{{ errors }}</div>
         </div>
         <div class="row col-12 d-flex pl-0 pr-0 ml-0 mr-0 mb-3 mt-sm-3 mt-3 mt-md-0 mt-lg-0 bg-nsc-grey">
           <button class="col-3 col-sm-3 col-md-2 col-lg-2 p-2 bd-highlight form-control col-2  nsc-button"
