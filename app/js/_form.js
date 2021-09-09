@@ -25,11 +25,17 @@ let router = new VueRouter({
 
 Vue.config.devtools = false
 
+const { CalendarPanel } = DatePicker;
+
+function isValidDate(date) {
+    return date instanceof Date && !isNaN(date);
+}
 let vm = new Vue({
     router,
     el: "#orderForm",
     components: {
-        DatePicker
+        DatePicker,
+        CalendarPanel
     },
     data: {
         domain: document.domain,
@@ -43,13 +49,7 @@ let vm = new Vue({
         minDays: 8,
         firstDay: new Date(2022, 3, 1),
         dateClearable: false,
-        datesDisabledDays: [
-            new Date(2022, 3, 3),
-            new Date(2022, 3, 4),
-            new Date(2022, 3, 5),
-            new Date(2022, 3, 6),
-            new Date(2022, 3, 7),
-        ],
+        innerValue: [new Date(NaN), new Date(NaN)],
         promocode: null,
         activePass: null,
         passDetails: null,
@@ -60,7 +60,7 @@ let vm = new Vue({
             event: 2,
             pass: null,
             pasCurrent: null,
-            dateRange: null,
+            dateRange: [],
             dateFrom: null,
             dateTill: null,
             tourDays: null,
@@ -307,10 +307,6 @@ let vm = new Vue({
                 'ru': 'Вы забыли выбрать даты заезда',
                 'en': 'Please, choose your the dates of tour'
             },
-            errorMinDates: {
-                'ru': 'Туры менее '+ this.minDays +' дней недоступны',
-                'en': 'Minimal tour, '+ this.minDays +' days'
-            },
             errorChooseAdults: {
                 'ru': 'Вы забыли выбрать количество человек',
                 'en': 'Please, choose number of people'
@@ -507,6 +503,30 @@ let vm = new Vue({
 
             return date < firstDay || date > new Date(firstDay.getTime() + 9 * 24 * 3600 * 1000);
         },
+        getClasses(cellDate, currentDates, classes) {
+            if (
+                !/disabled|active|not-current-month/.test(classes) &&
+                currentDates.length === 2 &&
+                cellDate.getTime() > currentDates[0].getTime() &&
+                cellDate.getTime() < currentDates[1].getTime()
+            ) {
+                return "in-range";
+            }
+            return "";
+        },
+        handleSelect(date) {
+            const [startValue, endValue] = this.innerValue;
+            if (isValidDate(startValue) && !isValidDate(endValue)) {
+                if (startValue.getTime() > date.getTime()) {
+                    this.innerValue = [date, startValue];
+                } else {
+                    this.innerValue = [startValue, date];
+                }
+                this.form.dateRange = this.innerValue;
+            } else {
+                this.innerValue = [date, new Date(NaN)];
+            }
+        },
         setLocale: function (locale) {
             this.selectedLocale = locale;
         },
@@ -521,12 +541,13 @@ let vm = new Vue({
             // return re.test(phone.replace(/\s+/g, ''));
             return true;
         },
-        scrollToTop(){
+        scrollToTop() {
             let element = document.getElementById("orderForm");
             window.scrollTo(0, element.offsetTop)
         },
         calcTourDays() {
             let tourDays = 0
+            this.form.dateRange = this.innerValue;
             this.form.dateFrom = this.form.dateRange[0];
             this.form.dateTill = this.form.dateRange[1];
 
@@ -570,7 +591,11 @@ let vm = new Vue({
                     this.errors = this.translations.errorChooseAdults[this.selectedLocale];
                     return false;
                 } else if (this.form.tourDays < this.minDays) {
-                    this.errors = this.translations.errorMinDates[this.selectedLocale];
+                    let text = {
+                        'ru': 'Туры менее '+ this.minDays +' суток, недоступны',
+                        'en': 'Minimal tour '+ this.minDays +' days'
+                    };
+                    this.errors = text[this.selectedLocale];
                     return false;
                 } else {
                     this.errors = null
@@ -969,8 +994,8 @@ let vm = new Vue({
                 day: 'numeric',
             };
 
-            let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
-            let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
+            // let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
+            // let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
 
             // let thisTourDays = this.days.slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd))
             let tourDays = this.form.tourDays
