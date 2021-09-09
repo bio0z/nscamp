@@ -45,8 +45,8 @@ let paths = {
 
 const { src, dest, parallel, series, watch } = require('gulp');
 const gulp         = require('gulp');
-const sass         = require('gulp-sass');
-const scss         = require('gulp-sass');
+const sass = require("gulp-sass")(require("node-sass"));
+const scss         = require('gulp-scss');
 const less         = require('gulp-less');
 const styl         = require('gulp-stylus');
 const cleancss     = require('gulp-clean-css');

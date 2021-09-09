@@ -28,7 +28,9 @@ Vue.config.devtools = false
 let vm = new Vue({
     router,
     el: "#orderForm",
-    component: {},
+    components: {
+        DatePicker
+    },
     data: {
         domain: document.domain,
         locales: {
@@ -38,7 +40,16 @@ let vm = new Vue({
         phpPath: '',
         selectedLocale: 'ru',
         days: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        minDays: 10,
+        minDays: 8,
+        firstDay: new Date(2022, 3, 1),
+        dateClearable: false,
+        datesDisabledDays: [
+            new Date(2022, 3, 3),
+            new Date(2022, 3, 4),
+            new Date(2022, 3, 5),
+            new Date(2022, 3, 6),
+            new Date(2022, 3, 7),
+        ],
         promocode: null,
         activePass: null,
         passDetails: null,
@@ -49,9 +60,10 @@ let vm = new Vue({
             event: 2,
             pass: null,
             pasCurrent: null,
-            dateFrom: '2022-04-01',
-            dateTill: '2022-04-10',
-            tourDays: 9,
+            dateRange: null,
+            dateFrom: null,
+            dateTill: null,
+            tourDays: null,
             adults: null,
             adultsText: null,
             kids: null,
@@ -259,6 +271,14 @@ let vm = new Vue({
                 'ru': 'Выберите даты',
                 'en': 'Please, choose dates'
             },
+            dateFrom: {
+                'ru': 'Дата заезда',
+                'en': 'Date in'
+            },
+            dateTill: {
+                'ru': 'Дата выезда',
+                'en': 'Date out'
+            },
             dateNote: {
                 'ru': '* Туры длительностью менее 9 дней станут доступны с 01.01.2021',
                 'en': '* Туры длительностью менее 9 дней станут доступны с 01.01.2021',
@@ -288,8 +308,8 @@ let vm = new Vue({
                 'en': 'Please, choose your the dates of tour'
             },
             errorMinDates: {
-                'ru': 'Туры менее 2 дней недоступны',
-                'en': 'Minimal tour, 2 days'
+                'ru': 'Туры менее '+ this.minDays +' дней недоступны',
+                'en': 'Minimal tour, '+ this.minDays +' days'
             },
             errorChooseAdults: {
                 'ru': 'Вы забыли выбрать количество человек',
@@ -481,6 +501,12 @@ let vm = new Vue({
         hotels: [],
     },
     methods: {
+        datesCampRange(date) {
+            const firstDay = this.firstDay;
+            firstDay.setHours(0, 0, 0, 0);
+
+            return date < firstDay || date > new Date(firstDay.getTime() + 9 * 24 * 3600 * 1000);
+        },
         setLocale: function (locale) {
             this.selectedLocale = locale;
         },
@@ -498,6 +524,16 @@ let vm = new Vue({
         scrollToTop(){
             let element = document.getElementById("orderForm");
             window.scrollTo(0, element.offsetTop)
+        },
+        calcTourDays() {
+            let tourDays = 0
+            this.form.dateFrom = this.form.dateRange[0];
+            this.form.dateTill = this.form.dateRange[1];
+
+            if (this.form.dateFrom && this.form.dateTill) {
+                tourDays = ((this.form.dateTill - this.form.dateFrom) / 1000 / 60 / 60 / 24)
+                this.form.tourDays = tourDays
+            }
         },
         prevStep() {
             if (this.form.pasCurrent.is_hotel === 1) {
@@ -527,8 +563,14 @@ let vm = new Vue({
                     this.scrollToTop()
                 }
             } else if (this.step === 2) {
-                if (!this.form.adults) {
+                if (!this.form.dateTill || !this.form.dateFrom) {
+                    this.errors = this.translations.errorChooseDates[this.selectedLocale];
+                    return false;
+                } else if (!this.form.adults) {
                     this.errors = this.translations.errorChooseAdults[this.selectedLocale];
+                    return false;
+                } else if (this.form.tourDays < this.minDays) {
+                    this.errors = this.translations.errorMinDates[this.selectedLocale];
                     return false;
                 } else {
                     this.errors = null
@@ -883,7 +925,7 @@ let vm = new Vue({
                     }
                 })
                 .catch(error => {
-                    this.errors = 'Error axios.get query.'
+                    this.errors = 'Error get query api/passes.'
                     console.log("error", error)
                 });
         },
@@ -965,7 +1007,7 @@ let vm = new Vue({
                     this.errors = 'Количество гостей не выбрано.';
                 }
             } else {
-                console.log('arRooms empty');
+                console.log('Rooms empty');
             }
         },
         getActiveRoomBeds() {
@@ -984,7 +1026,7 @@ let vm = new Vue({
                     }
                 })
                 .catch(error => {
-                    this.errors = 'Ошибка запроса.';
+                    this.errors = 'Ошибка запроса api/roombeds/.';
                     console.log("error", error);
                 });
         },
@@ -1010,7 +1052,7 @@ let vm = new Vue({
                     }
                 })
                 .catch(error => {
-                    this.errors = 'Ошибка запроса saveGuest.';
+                    this.errors = 'Ошибка запроса api/guest/.';
                     console.log("error", error);
                 });
         },
@@ -1037,7 +1079,7 @@ let vm = new Vue({
                     }
                 })
                 .catch(error => {
-                    this.errors = 'Ошибка запроса saveVoucher.';
+                    this.errors = 'Ошибка запроса api/voucher/.';
                     console.log("error", error);
                 });
         },
@@ -1059,7 +1101,7 @@ let vm = new Vue({
                     }
                 })
                 .catch(error => {
-                    this.errors = 'Ошибка запроса updateQuota.';
+                    this.errors = 'Ошибка запроса api/quota/.';
                     console.log("error", error);
                 });
         }
@@ -1161,13 +1203,6 @@ let vm = new Vue({
                 this.form.tourName = 'New Star Camp Festival Pass';
             }
             return this.form.tourName;
-        },
-        calcTourDays() {
-            let tourDays = 0
-            if (this.form.dateFrom && this.form.dateTill) {
-                tourDays = ((this.form.dateTill - this.form.dateFrom) / 1000 / 60 / 60 / 24)
-                this.form.tourDays = tourDays
-            }
         },
         activePasses() {
             if (this.passes) {
@@ -1331,5 +1366,5 @@ let vm = new Vue({
     watch: {},
     destroyed() {
 
-    }
+    },
 });
