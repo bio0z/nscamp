@@ -25,11 +25,12 @@ let router = new VueRouter({
 
 Vue.config.devtools = false
 
-const { CalendarPanel } = DatePicker;
+const {CalendarPanel} = DatePicker;
 
 function isValidDate(date) {
     return date instanceof Date && !isNaN(date);
 }
+
 let vm = new Vue({
     router,
     el: "#orderForm",
@@ -49,7 +50,7 @@ let vm = new Vue({
         minDays: 8,
         firstDay: new Date(2022, 3, 1),
         dateClearable: false,
-        innerValue: [new Date(NaN), new Date(NaN)],
+        innerValue: [new Date('2022-04-01'), new Date('2022-04-10')],
         promocode: null,
         activePass: null,
         passDetails: null,
@@ -58,13 +59,13 @@ let vm = new Vue({
         roomGallery: null,
         form: {
             event: 2,
-            pass: null,
+            passColor: '#777fa8',
             pasCurrent: null,
-            dateRange: [],
-            dateFrom: null,
-            dateTill: null,
-            tourDays: null,
-            adults: null,
+            dateRange: [new Date('2022-04-01'), new Date('2022-04-10')],
+            dateFrom: '2022-04-01',
+            dateTill: '2022-04-10',
+            tourDays: 9,
+            adults: 2,
             adultsText: null,
             kids: null,
             kidsText: null,
@@ -126,8 +127,8 @@ let vm = new Vue({
                 'ru': 'Купить Festival Pass',
                 'en': 'Tour Pass',
             },
-            stepTour: {
-                'ru': 'Выберите тип посещения фестваля',
+            step1: {
+                'ru': 'Выберите тур',
                 'en': 'Choose your tour',
             },
             roomType: {
@@ -258,18 +259,17 @@ let vm = new Vue({
                 'ru': 'Часто задаваемые вопросы и ответы',
                 'en': 'FAQ'
             },
-            stepThree: {
-                'ru': 'Заполните персональные данные и оставьте контактную информацию',
-                'en': 'Please fill the personal information'
+            step3: {
+                'ru': 'Выберите тип номера',
+                'en': 'Choose room type'
             },
-            stepFour: {
-                'ru': 'Проверьте введенные данные, подтвердите согласие на их обработку, введите промокод, если имеется, и ' +
-                    'нажмите кнопку «Купить тур»',
-                'en': 'Check your details, enter promocode'
+            step4: {
+                'ru': 'Давайте знакомиться',
+                'en': 'Lets get to know each other'
             },
-            stepDates: {
-                'ru': 'Выберите даты',
-                'en': 'Please, choose dates'
+            step5: {
+                'ru': 'Дабл-чек',
+                'en': 'Double check your details, please :)'
             },
             dateFrom: {
                 'ru': 'Дата заезда',
@@ -291,8 +291,8 @@ let vm = new Vue({
                 'ru': 'Количество детей',
                 'en': 'Number of children',
             },
-            stepHotel: {
-                'ru': 'Выберите отель и тип номера',
+            step2: {
+                'ru': 'Выберите отель',
                 'en': 'Please, choose your accommodation'
             },
             stepGuests: {
@@ -427,7 +427,7 @@ let vm = new Vue({
         showModal: false,
         showOffer: false,
         step: 1,
-        totalsteps: 4,
+        totalsteps: 5,
         errors: null,
         guests: 1,
         error: null,
@@ -442,46 +442,51 @@ let vm = new Vue({
                 },
                 text: 'text-left',
                 col: 'col',
+                desc: 'До путешествия на Quiksilver New Star Camp 2022 осталось несколько шагов. Здесь ты можешь подобрать тур и узнать, что именно в него входит. Выбери один из вариантов, чтобы начать.',
             },
-            // {
-            //     active: false,
-            //     id: 2,
-            //     name: {
-            //         'ru': 'Выбор<br> даты',
-            //         'en': 'Choose<br> dates'
-            //     },
-            //     text: 'text-center',
-            //     col: 'col-3',
-            // },
             {
                 active: false,
                 id: 2,
                 name: {
                     'ru': 'Выбор<br> отеля',
-                    'en': 'Choose<br> accommodation'
+                    'en': 'Choose<br> dates'
                 },
                 text: 'text-center',
                 col: 'col-3',
+                desc: 'Любой из отелей курорта «Роза Хутор» гарантирует удобную логистику до площадок фестиваля и сэкономит твоё время, чтобы ты всё успел.'
             },
             {
                 active: false,
                 id: 3,
+                name: {
+                    'ru': 'Выбор<br> номера',
+                    'en': 'Choose<br> room'
+                },
+                text: 'text-center',
+                col: 'col-3',
+                desc: 'Во всех отелях курорта есть номера на любой вкус и кошелек. Просто выбери подходящий номер.<br> Рекомендуем добавить завтрак, чтобы начать день в горах полным энергии!'
+            },
+            {
+                active: false,
+                id: 4,
                 name: {
                     'ru': 'Персональные<br> данные',
                     'en': 'Personal<br> details'
                 },
                 text: 'text-center',
                 col: 'col-3',
+                desc: 'Мы рекомендуем покупать тур на все 10 дней фестиваля, ведь его программа очень насыщенная!'
             },
             {
                 active: false,
-                id: 4,
+                id: 5,
                 name: {
                     'ru': 'Покупка<br> тура',
                     'en': 'Tour<br> purchasing'
                 },
                 text: 'text-right',
                 col: 'col',
+                desc: 'Проверьте введенные данные, подтвердите согласие на их обработку и нажмите кнопку «Купить тур»'
             }
         ],
 
@@ -497,6 +502,20 @@ let vm = new Vue({
         hotels: [],
     },
     methods: {
+        activePasses() {
+            if (this.passes) {
+                return this.passes.filter(pass => {
+                    return pass.is_hotel === 1
+                })
+            }
+        },
+        activeHotels() {
+            if (this.passes && this.form.adults && this.form.dateFrom && this.form.dateTill) {
+                return this.hotels.filter(hotel => {
+                    return hotel.maxGuests >= this.form.adults
+                })
+            }
+        },
         datesCampRange(date) {
             const firstDay = this.firstDay;
             firstDay.setHours(0, 0, 0, 0);
@@ -562,20 +581,15 @@ let vm = new Vue({
                 this.form.consent = null
                 this.scrollToTop()
             } else {
-                if (this.step === 4) {
-                    this.step = this.step - 2;
-                    this.form.consent = null
-                } else {
-                    this.step--;
-                    this.form.consent = null
-                    this.scrollToTop()
-                }
+                this.step--;
+                this.form.consent = null
+                this.scrollToTop()
             }
 
         },
         nextStep() {
             if (this.step === 1) {
-                if (!this.form.pass) {
+                if (!this.form.pasCurrent) {
                     this.errors = this.translations.errorChoosePass[this.selectedLocale];
                     return false;
                 } else {
@@ -592,8 +606,8 @@ let vm = new Vue({
                     return false;
                 } else if (this.form.tourDays < this.minDays) {
                     let text = {
-                        'ru': 'Туры менее '+ this.minDays +' суток, недоступны',
-                        'en': 'Minimal tour '+ this.minDays +' days'
+                        'ru': 'Туры менее ' + this.minDays + ' суток, недоступны',
+                        'en': 'Minimal tour ' + this.minDays + ' days'
                     };
                     this.errors = text[this.selectedLocale];
                     return false;
@@ -608,7 +622,7 @@ let vm = new Vue({
                     this.step++
                     this.scrollToTop()
                 }
-            } else if (this.step === 3) {
+            } else if (this.step === 4) {
                 if (!this.form.fname || !this.form.sname) {
                     this.errors = this.translations.errorFillFIO[this.selectedLocale];
                     return false;
@@ -657,17 +671,33 @@ let vm = new Vue({
                 this.passes[curPass].back = false;
             }
         },
-        setPassActive(code) {
-            this.activePass = code
+        setPassActive(passCode) {
+            this.activePass = passCode
             let pasCurrent = this.passes.filter(pass => {
-                return pass.code === code
+                return pass.code === passCode
             })
+            this.form.passColor = pasCurrent[0].color
             this.form.pasCurrent = pasCurrent[0]
-            if (this.form.pasCurrent.is_hotel === 1) {
-                this.getActiveHotels()
-            }
-
-            this.form.pass = code
+            this.getActiveHotels()
+            this.step++
+        },
+        setHotelActive(hotelId) {
+            this.form.hotel = hotelId
+            let hotelCurrent = this.hotels.filter(hotel => {
+                return hotel.code === hotelId
+            })
+            this.form.hotelCurrent = hotelCurrent[0]
+            this.getActiveHotelRooms()
+            this.step++
+        },
+        setRoomActive(roomId) {
+            this.form.room = roomId
+            let roomCurrent = this.hotelRooms.filter(room => {
+                return room.id === roomId
+            })
+            this.form.roomCurrent = roomCurrent[0]
+            this.form.tourPrice = this.form.roomCurrent.total_price
+            this.step++
         },
         getHotelPhotos() {
             const conf = {
@@ -681,8 +711,6 @@ let vm = new Vue({
                 .then(response => {
                     if (response.data) {
                         this.errors = null
-                        this.cleanCurrentRoom()
-                        this.getActiveHotelRooms()
                         this.hotelGallery = Object.values(response.data)
                         this.gallery = Object.values(response.data)
                     } else {
@@ -768,7 +796,7 @@ let vm = new Vue({
             };
             const data = {
                 promocode: this.promocode,
-                tourPass: this.form.pass
+                tourPass: this.form.pasCurrent.code
             };
             axios
                 .post(this.phpPath + "php/checkPCode.php", data, conf)
@@ -862,7 +890,7 @@ let vm = new Vue({
                     fdata.append('breakfasts', this.form.hotelBreakfast);
                 }
 
-                fdata.append('passname', this.form.pass);
+                fdata.append('passname', this.form.pasCurrent.name);
                 fdata.append('g2fname', this.form.gfname);
                 fdata.append('g2sname', this.form.gsname);
                 fdata.append('g3fname', this.form.g3fname);
@@ -955,85 +983,76 @@ let vm = new Vue({
                 });
         },
         getActiveHotels() {
-            if (this.form.pasCurrent.is_hotel === 1) {
-                let option = {
-                    day: 'numeric',
-                };
-                // let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
-                // let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
-                // let thisTourDays = this.days.slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd))
-                let thisTourDays = this.form.tourDays
-
-                const conf = {
-                    responseType: 'text'
-                };
-                const data = {
-                    tourDays: thisTourDays
-                };
-                axios
-                    .get(this.phpPath + "api/hotels", data, conf)
-                    .then(response => {
-                        if (response.data) {
-                            this.cleanCurrentRoom()
-                            if (this.form.adults && this.form.hotel) {
-                                this.getActiveHotelRooms()
-                            }
-                            this.hotels = Object.values(response.data)
-                        } else {
-                            this.errors = 'Нет доступных отелей на эти даты.';
-                        }
-                    })
-                    .catch(error => {
-                        this.errors = 'Ошибка запроса информации по выбранному отелю.';
-                        console.log("error", error);
-                    });
-            }
-        },
-        getActiveHotelRooms() {
             let option = {
                 day: 'numeric',
             };
+            let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
+            let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
+            let thisTourDays = this.days.slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd))
 
-            // let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
-            // let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
+            const conf = {
+                responseType: 'text'
+            };
+            const data = {
+                tourDays: thisTourDays
+            };
+            axios
+                .get(this.phpPath + "api/hotels", data, conf)
+                .then(response => {
+                    if (response.data) {
+                        this.hotels = Object.values(response.data)
+                    } else {
+                        this.errors = 'Нет доступных отелей на эти даты.';
+                    }
+                })
+                .catch(error => {
+                    this.errors = 'Ошибка запроса информации по выбранному отелю.';
+                    console.log("error", error);
+                });
+        },
+        getActiveHotelRooms() {
+            let option = {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+            };
 
-            // let thisTourDays = this.days.slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd))
+            this.form.skipassPrice = 1500;
+
+            let dayStart = this.form.dateFrom; // .toLocaleString("ru", option);
+            let dayEnd = this.form.dateTill; // .toLocaleString("ru", option);
+
             let tourDays = this.form.tourDays
 
-            if (this.form.pasCurrent.is_hotel === 1) {
-                if (this.form.adults) {
-                    const conf = {
-                        responseType: 'text'
-                    };
-                    axios
-                        .get(this.phpPath + "api/hotelrooms/" + this.form.hotel, {
-                            params: {
-                                hotelId: this.form.hotel,
-                                tourDays: tourDays,
-                                adults: this.form.adults,
-                                dateStart: this.form.dateFrom,
-                                dateEnd: this.form.dateTill
-                            }
-                        }, conf)
-                        .then(response => {
-                            if (response.data) {
-                                this.errors = null;
-                                this.hotelRooms = Object.values(response.data);
-                            } else {
-                                this.hotelRooms = [];
-                                this.errors = 'Все номера в этом отеле проданы.';
-                            }
-                        })
-                        .catch( error  => {
-                            this.errors = 'Ошибка запроса информации по выбранному номеру в отеле.';
-                            console.log("error", error);
-                        });
-                } else {
-                    this.errors = 'Количество гостей не выбрано.';
-                }
-            } else {
-                console.log('Rooms empty');
-            }
+            const conf = {
+                responseType: 'text'
+            };
+
+            axios
+                .get(this.phpPath + "api/hotelrooms/" + this.form.hotelCurrent.id, {
+                    params: {
+                        hotelId: this.form.hotelCurrent.id,
+                        tourDays: tourDays,
+                        adults: this.form.adults,
+                        dateStart: dayStart,
+                        dateEnd: dayEnd,
+                        passPrice: this.form.pasCurrent.price,
+                        skiPassPrice: this.form.skipassPrice,
+                    }
+                }, conf)
+                .then(response => {
+                    if (response.data) {
+                        this.errors = null;
+                        this.hotelRooms = Object.values(response.data);
+                    } else {
+                        this.hotelRooms = [];
+                        this.errors = 'Все номера в этом отеле проданы.';
+                    }
+                })
+                .catch(error => {
+                    this.errors = 'Ошибка запроса информации по выбранному номеру в отеле.';
+                    console.log("error", error);
+                });
         },
         getActiveRoomBeds() {
             const conf = {
@@ -1108,7 +1127,7 @@ let vm = new Vue({
                     console.log("error", error);
                 });
         },
-        updateQuota(tourNumber){
+        updateQuota(tourNumber) {
             const conf = {
                 responseType: 'text',
                 timeout: 1000
@@ -1132,12 +1151,12 @@ let vm = new Vue({
         }
     },
     created: function () {
-        this.getActivePasses()
     },
     beforeMount() {
+        this.getActivePasses()
     },
     mounted: function () {
-        get_parameters = this.$route.query
+        let get_parameters = this.$route.query
         console.log('step 1' + this.step)
         if (get_parameters.step === '5' && get_parameters.par !== '0') {
             this.step = 5
@@ -1151,15 +1170,6 @@ let vm = new Vue({
             this.sendMail(get_parameters.tourNumber)
             this.updateQuota(get_parameters.tourNumber)
         }
-        // check available rooms
-        let step = document.getElementById("stepper");
-        step.addEventListener('click', () => {
-            if (this.form.adults && this.step !== 5) {
-                if (this.form.pasCurrent.is_hotel === 1) {
-                    this.getActiveHotels()
-                }
-            }
-        });
     },
     updated() {
 
@@ -1214,13 +1224,6 @@ let vm = new Vue({
                 return false
             }
         },
-        currentHotel() {
-            if (this.hotels && this.form.hotel) {
-                let curHotel = this.hotels.find(hotel => hotel.id === this.form.hotel)
-                this.form.hotelCurrent = curHotel
-                return this.hotels.indexOf(curHotel)
-            }
-        },
         setTourName() {
             if (this.form.pasCurrent.is_hotel === 1 && this.form.hotel) {
                 this.form.tourName = 'New Star Camp tour, hotel: ' + this.form.hotelCurrent.name;
@@ -1228,17 +1231,6 @@ let vm = new Vue({
                 this.form.tourName = 'New Star Camp Festival Pass';
             }
             return this.form.tourName;
-        },
-        activePasses() {
-            if (this.passes) {
-                return this.passes
-            } else {
-            }
-        },
-        activeHotels() {
-            return this.hotels.filter(hotel => {
-                return hotel.maxGuests >= this.form.adults
-            })
         },
         activeRooms() {
             return this.hotelRooms.filter(room => {
@@ -1251,7 +1243,6 @@ let vm = new Vue({
         calcTourPrice() {
             let totalPrice = 0;
             let skiPass = 0;
-            let curPass = this.passes.indexOf(this.passes.find(pass => pass.code === this.form.pass))
 
             let curRoom = ''
             let gain = ''
@@ -1264,17 +1255,8 @@ let vm = new Vue({
             }
 
             let daysTour = this.form.tourDays
-            let passDayPrice = this.passes[curPass].price
-            let passPrice = 0
-            if (this.form.pasCurrent.is_hotel === 1) {
-                passPrice  = (passDayPrice * this.form.adults) * this.form.passDiscount
-            } else {
-                if (this.form.adults >= 4) {
-                    passPrice = (passDayPrice * this.form.adults) * 0.8
-                } else {
-                    passPrice  = (passDayPrice * this.form.adults) * this.form.passDiscount
-                }
-            }
+            let passDayPrice = this.form.pasCurrent.price
+            let passPrice = (passDayPrice * this.form.adults) * this.form.passDiscount
 
 
             if (this.form.passDiscount < 1) {
@@ -1285,8 +1267,8 @@ let vm = new Vue({
                 let option = {
                     day: 'numeric',
                 };
-                let dayStart = 1 // parseInt(this.form.dateFrom.toLocaleString("ru", option));
-                let dayEnd = 3 //parseInt(this.form.dateTill.toLocaleString("ru", option));
+                let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
+                let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
 
                 const reducer = (accumulator, currentValue) => accumulator + currentValue
 
@@ -1358,7 +1340,7 @@ let vm = new Vue({
                         console.log('hotelTotalPrice dayStart ' + dayStart)
                         console.log('hotelTotalPrice dayEnd indexOf ' + vm.days.indexOf(dayEnd))
                         console.log('hotelTotalPrice dayEnd ' + dayEnd)
-                        console.log('passPrice no discount ' + (this.passes[curPass].price * this.form.adults))
+                        console.log('passPrice no discount ' + (this.form.pasCurrent.price * this.form.adults))
                         console.log('passPrice ' + passPrice)
                         console.log('skipassPrice ' + skiPassPrice)
                         console.log('discount ' + this.form.passDiscount)
