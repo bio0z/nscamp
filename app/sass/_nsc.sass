@@ -12,19 +12,6 @@ h3
 [v-cloak]
   display: none
 
-input.form-control, button.form-control
-  background-color: rgba(229, 229, 229, 0.5)
-  border: none
-
-input.form-control::placeholder
-  color: #777fa8
-  opacity: 1
-  font-size: 1rem
-
-.form-control.promocode
-  boreder-radius: 30px 0 0 30px
-  margin-right: -30px
-
 .container
   @media (min-width: 768px) and (max-width: 940px)
     max-width: 780px
@@ -159,6 +146,9 @@ main
   ul
     padding-inline-start: 20px
 
+  input
+    border: none
+
   .row
     margin-left: auto
     margin-right: auto
@@ -172,9 +162,6 @@ main
   .nsc-tour
     text-align: left
     margin-bottom: 20px
-    border: 1px solid
-    border-collapse: collapse
-    height: 20rem
 
     td
       border: 1px solid #000000
@@ -194,53 +181,35 @@ main
     color: #fff
     border: none
     text-transform: uppercase
-    text-align: center
     cursor: pointer
     border-radius: 0
-    display: table
 
     label
-      margin: auto
       width: 100%
       height: 80px
-      text-align: center
-      vertical-align: middle
-      display: table-cell
-      align-items: center
 
-  .nsc-button:hover
-    color: #FFD366
+  .nsc-button.disabled
+    background-color: #6c757d
+    opacity: .65
+    cursor: none
 
   .nsc-datesnote
     font-size: 12px
 
-  .nsc-button.btn-more
-    width: 156px
-    height: 40px
-    background-color: #777FA8
-    filter: drop-shadow(3px 3px 15px #777fa8), drop-shadow(-3px -3px 15px rgb(119, 127, 168))
-    margin-top: 10px
-    @media (max-width: 576px)
-      margin: 10px
+  .nsc-button-pre
+    width: 210px
 
-  .nsc-button.btn-more.btn-more-s
-    background-color: #232559
-    filter: drop-shadow(3px 3px 15px #232559), drop-shadow(-3px -3px 15px rgb(35, 37, 89))
-
-  .nsc-button #alfa-payment__button
-    position: absolute
+  .nsc-button-pre #alfa-payment__button
     display: block
     background-color: #777fa8
     color: #fff
-    border: none
-    width: 100%
-    //box-shadow: 3px 3px 15px #D3AE14, -3px -3px 15px rgba(255, 244, 186, 0.7)
     font-size: 1rem
     font-weight: 400
     line-height: 1.5
-    min-height: 38px
-    left: 0px
-    top: 0px
+    height: 81px
+    width: 196px
+    border: 1px solid #000
+    border-radius: 0
 
   .nsc-button .alfa-payment__message
     position: absolute
@@ -314,19 +283,16 @@ main
   table .nsc-line
     margin: auto
 
-    @media (max-width: 768px)
+    @media (max-width: 975px)
       border-bottom: 1px solid
 
   section
-    padding: 10px 10px
-    min-height: 450px
 
     .step-num
       margin: 0 0 20px 0
       font-size: 20px
 
     .nsc-step-text
-      word-spacing: 5rem
       font-size: 24px
       line-height: 34px
 
@@ -335,16 +301,6 @@ main
 
     .btn-group
       width: 100%
-
-    .guest-plus
-      width: 30px
-      height: 30px
-      text-align: center
-      padding: 0
-      font-size: 1.2rem
-      float: left
-      margin: 0 10px 0 0
-      cursor: cell
 
     .hotel-photo
       margin: auto
@@ -394,64 +350,22 @@ main
         padding: 0 0.7em 0 1em
         right: 0
 
-    .tour-final-card
-      color: #ffffff
-      background-color: #232559
-      background-size: 380px
-      background-repeat: no-repeat
-      background-position: bottom left
+  .nsc-buttons
+    padding: 10px
 
-    .tour-final input
-      background: transparent
-      line-height: 16px
-      margin: 0
-      color: #FFFFFF
+    .nsc-button
+      height: 81px
+      width: 196px
+      border: 1px solid #000
 
-    .tour-final label
-      margin: 0
-      line-height: 36px
-
-    .tour-final-text
-      padding: 20px 0
-      font-weight: 400
-      font-size: 18px
-      line-height: 36px
-
-      h5
-        padding: 0 0 10px 0
-        font-weight: 700
-        font-size: 24px
-        line-height: 29.17px
-
-    .tourIncluded
-      font-size: 18px
-      line-height: 200%
-
-    .nsc-tour-sum
-      @media (max-width: 768px)
-        position: absolute
-        right: 1px
-        top: -40px
-        width: 100%
-        max-width: 100%
-        text-align: right
-
-    .nsw-toursum
-      font-family: Roboto
-      font-style: italic
-      font-weight: bold
-      font-size: 24px
-      color: #000
-      line-height: 100%
-      text-align: left
-      padding-right: 5px
-      overflow: visible
-      box-sizing: border-box
-      @media (max-width: 768px)
-        text-align: right
-
-    .nsw-toursum-label
-      color: #000
+  .nsc-tour-sum
+    @media (max-width: 768px)
+      position: absolute
+      right: 1px
+      top: -40px
+      width: 100%
+      max-width: 100%
+      text-align: right
 
 .header
   color: #777fa8

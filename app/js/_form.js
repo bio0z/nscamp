@@ -2,6 +2,18 @@ Vue.component('modal', {
     template: "#modal-template"
 });
 
+Vue.filter('toCurrency', function (value) {
+    if (typeof value !== "number") {
+        return value;
+    }
+    var formatter = new Intl.NumberFormat('ru-RU', {
+        style: 'currency',
+        currency: 'RUB',
+        minimumFractionDigits: 0
+    });
+    return formatter.format(value);
+});
+
 Vue.directive('phone', {
     bind(el) {
         el.oninput = function (e) {
@@ -44,7 +56,6 @@ let vm = new Vue({
             'ru': "RU",
             'en': "EN",
         },
-        phpPath: '',
         selectedLocale: 'ru',
         days: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         minDays: 8,
@@ -58,28 +69,29 @@ let vm = new Vue({
         hotelGallery: null,
         roomGallery: null,
         form: {
-            event: 2,
+            event: 'NSC22',
+            currentEvent: null,
             passColor: '#777fa8',
             pasCurrent: null,
+            passCurrentPrice: 0,
             dateRange: [new Date('2022-04-01'), new Date('2022-04-10')],
             dateFrom: '2022-04-01',
             dateTill: '2022-04-10',
             tourDays: 9,
+            skiPassDays: 8,
             adults: 2,
             adultsText: null,
             kids: null,
             kidsText: null,
 
             hotel: null,
-            hotelName: null,
             hotelCurrent: null,
-            hotelBreakfast: null,
+            hotelBreakfast: 0,
             hotelBreakfastText: null,
             hotelBreakfastPrice: null,
             hotelPrice: null,
             address: null,
             room: null,
-            roomName: null,
             roomCurrent: null,
             bed: null,
             bedId: null,
@@ -98,12 +110,20 @@ let vm = new Vue({
 
             g3sname: null,
             g3fname: null,
+            g3Phone: null,
+            g3Email: null,
             g4fname: null,
             g4sname: null,
+            g4Phone: null,
+            g4Email: null,
             g5fname: null,
             g5sname: null,
+            g5Phone: null,
+            g5Email: null,
             g6sname: null,
             g6fname: null,
+            g6Phone: null,
+            g6Email: null,
 
             promocode: null,
             consent: null,
@@ -112,8 +132,12 @@ let vm = new Vue({
             tourName: null,
             tourNumber: null,
             tourID: null,
-            skipassPrice: 0,
+            skiPassPrice: 1500,
             tourPrice: 0,
+            hotelTotal: 0,
+            passTotal: 0,
+            skiPassTotal: 0,
+            hotelBreakfastTotal: 0,
             arrTourDays: null,
             payed: null,
             passDiscount: 1
@@ -168,8 +192,8 @@ let vm = new Vue({
                 'en': 'Next'
             },
             tourPriceText: {
-                'ru': 'cтоимость: ',
-                'en': 'сost: '
+                'ru': 'cтоимость тура ',
+                'en': 'tour сost '
             },
             stepPrevious: {
                 'ru': 'Назад',
@@ -403,17 +427,15 @@ let vm = new Vue({
                 'en': 'Buy tour'
             },
             tourSuccess: {
-                'ru': '<p>Вы успешно оформили тур New Star Camp.</p></li>' +
-                    '<p>Ваучер отправлен на email.</p></li>' +
-                    '<p>Скоро увидимся ;)</p></li>',
+                'ru': '<p>Благодарим вас за покупку тура на Quiksilver New Star Camp 2022</p>',
                 'en': '<p>You win! :)</p>' +
                     '<p>Voucher goes to email right now.</p></li>' +
                     '<p>See you soon ;)</p></li>',
             },
             tourFail: {
-                'ru': '<p>Возникла ошибка при проведении платежа,</li>' +
+                'ru': '<p>Возникла ошибка при проведении платежа</p>' +
                     '<a href="#">попробуйте еще раз</a>.</p>',
-                'en': '<p>An error occurred while making a payment, </li>' +
+                'en': '<p>An error occurred while making a payment, </p>' +
                     '<a href="#">try again</a>.</p>'
             },
             newStarDesc: {
@@ -555,8 +577,6 @@ let vm = new Vue({
         },
         validPhone: function (phone) {
             // let re = /^\d(\d{3})?\d{7}$/;
-            // console.log(phone);
-            // console.log(phone.replace(/\s+/g, ''));
             // return re.test(phone.replace(/\s+/g, ''));
             return true;
         },
@@ -573,19 +593,20 @@ let vm = new Vue({
             if (this.form.dateFrom && this.form.dateTill) {
                 tourDays = ((this.form.dateTill - this.form.dateFrom) / 1000 / 60 / 60 / 24)
                 this.form.tourDays = tourDays
+                this.form.skiPassDays = (tourDays >= 7) ? tourDays - 1 : tourDays
+                this.getActiveHotels()
             }
         },
+        cleanCurrentForm() {
+            this.hotels = [];
+            this.form.hotelCurrent = [];
+            this.form.roomCurrent = [];
+            this.form.hotelBreakfast = 0;
+        },
         prevStep() {
-            if (this.form.pasCurrent.is_hotel === 1) {
-                this.step--;
-                this.form.consent = null
-                this.scrollToTop()
-            } else {
-                this.step--;
-                this.form.consent = null
-                this.scrollToTop()
-            }
-
+            this.step--;
+            this.form.consent = null
+            this.scrollToTop()
         },
         nextStep() {
             if (this.step === 1) {
@@ -641,16 +662,16 @@ let vm = new Vue({
                 } else if (this.form.adults >= 2 && (!this.form.gfname || !this.form.gsname)) {
                     this.errors = this.translations.errorFillFIO2[this.selectedLocale];
                     return false;
-                } else if (this.form.adults >= 3 && (!this.form.g3fname || !this.form.g3sname)) {
+                } else if (this.form.adults >= 3 && (!this.form.g3fname || !this.form.g3sname || !this.form.g3Email || !this.form.g3Phone)) {
                     this.errors = this.translations.errorFillFIO3[this.selectedLocale];
                     return false;
-                } else if (this.form.adults >= 4 && (!this.form.g4fname || !this.form.g4sname)) {
+                } else if (this.form.adults >= 4 && (!this.form.g4fname || !this.form.g4sname || !this.form.g4Email || !this.form.g4Phone)) {
                     this.errors = this.translations.errorFillFIO4[this.selectedLocale];
                     return false;
-                } else if (this.form.adults >= 5 && (!this.form.g5fname || !this.form.g5sname)) {
+                } else if (this.form.adults >= 5 && (!this.form.g5fname || !this.form.g5sname || !this.form.g5Email || !this.form.g5Phone)) {
                     this.errors = this.translations.errorFillFIO5[this.selectedLocale];
                     return false;
-                } else if (this.form.adults >= 6 && (!this.form.g6fname || !this.form.g6sname)) {
+                } else if (this.form.adults >= 6 && (!this.form.g6fname || !this.form.g6sname || !this.form.g5Email || !this.form.g6Phone)) {
                     this.errors = this.translations.errorFillFIO6[this.selectedLocale];
                     return false;
                 } else {
@@ -676,19 +697,23 @@ let vm = new Vue({
             let pasCurrent = this.passes.filter(pass => {
                 return pass.code === passCode
             })
+            this.form.skiPassPrice = this.form.currentEvent.skipass_price
             this.form.passColor = pasCurrent[0].color
+            this.form.passCurrentPrice = pasCurrent[0].price
             this.form.pasCurrent = pasCurrent[0]
             this.getActiveHotels()
             this.step++
+            this.scrollToTop()
         },
         setHotelActive(hotelId) {
             this.form.hotel = hotelId
             let hotelCurrent = this.hotels.filter(hotel => {
-                return hotel.code === hotelId
+                return hotel.id === hotelId
             })
             this.form.hotelCurrent = hotelCurrent[0]
             this.getActiveHotelRooms()
             this.step++
+            this.scrollToTop()
         },
         setRoomActive(roomId) {
             this.form.room = roomId
@@ -696,8 +721,13 @@ let vm = new Vue({
                 return room.id === roomId
             })
             this.form.roomCurrent = roomCurrent[0]
-            this.form.tourPrice = this.form.roomCurrent.total_price
+            this.form.hotelBreakfastTotal = roomCurrent[0].total_breakfasts
+            this.form.skiPassTotal = roomCurrent[0].total_skiPass
+            this.form.hotelTotal = roomCurrent[0].total_hotel
+            this.form.passTotal = roomCurrent[0].total_pass
+            this.form.tourPrice = (this.form.hotelBreakfast === 1) ? this.form.roomCurrent.total_price + this.form.roomCurrent.total_breakfasts : this.form.roomCurrent.total_price
             this.step++
+            this.scrollToTop()
         },
         getHotelPhotos() {
             const conf = {
@@ -707,7 +737,7 @@ let vm = new Vue({
                 hotelId: this.form.hotel
             };
             axios
-                .get(this.phpPath + "api/hotelimg/" + this.form.hotel, data, conf)
+                .get("api/hotelimg/" + this.form.hotel, data, conf)
                 .then(response => {
                     if (response.data) {
                         this.errors = null
@@ -722,14 +752,6 @@ let vm = new Vue({
                     console.log("error", error)
                 });
         },
-        cleanCurrentRoom() {
-            if (this.step === 2) {
-                this.form.roomCurrent = null
-                this.form.room = null
-                this.form.hotelBreakfast = null
-                this.form.hotelBreakfastPrice = null
-            }
-        },
         getRoomPhotos() {
             const conf = {
                 responseType: 'text'
@@ -739,7 +761,7 @@ let vm = new Vue({
                 roomId: this.form.room
             };
             axios
-                .get(this.phpPath + "api/roomimg/" + this.form.room, data, conf)
+                .get("api/roomimg/" + this.form.room, data, conf)
                 .then(response => {
                     this.getActiveRoomBeds()
                     if (response.data) {
@@ -752,7 +774,7 @@ let vm = new Vue({
                         this.gallery = Object.values(response.data)
                     } else {
                         this.gallery = [{
-                            "url": this.domain + 'app/images/hotels/take1.width-1200.jpegquality-99.png'
+                            "url": this.domain + 'nsc/images/hotels/take1.width-1200.jpegquality-99.png'
                         }]
                     }
                 })
@@ -789,6 +811,24 @@ let vm = new Vue({
                 this.$refs.hotelImage.setAttribute('image-id', String(imgImageNum));
             }
         },
+        getEvent(url, config) {
+            const conf = {
+                responseType: 'text',
+            };
+            axios
+                .get("api/curevent", {
+                    params: {
+                        code: this.form.event
+                    }
+                }, conf)
+                .then(response => {
+                    this.form.currentEvent = response.data[0]
+                })
+                .catch(error => {
+                    this.errors = 'Ошибка запроса api/event/.';
+                    console.log("error", error);
+                });
+        },
         applyPromoCode() {
             this.errors = null;
             const conf = {
@@ -799,7 +839,7 @@ let vm = new Vue({
                 tourPass: this.form.pasCurrent.code
             };
             axios
-                .post(this.phpPath + "php/checkPCode.php", data, conf)
+                .post("nsc/php/checkPCode.php", data, conf)
                 .then(response => {
                     this.form.passDiscount = response.data;
                 })
@@ -817,7 +857,7 @@ let vm = new Vue({
 
             axios({
                 method: 'post',
-                url: this.phpPath + 'app/php/send.php',
+                url: 'nsc/php/send.php',
                 data: sdata,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             })
@@ -831,6 +871,26 @@ let vm = new Vue({
                     console.log("error", error);
                 });
             this.errors = null;
+        },
+        saveApiVoucher() {
+            const conf = {
+                responseType: 'text',
+                timeout: 1000
+            };
+            const data = this.form
+            axios
+                .post("api/voucher/", data, conf, {timeout: 1000})
+                .then(response => {
+                    if (response.data.status === 201) {
+                        this.errors = null
+                    } else if (response.data.status === 200) {
+                        this.errors = null
+                    }
+                })
+                .catch(error => {
+                    this.errors = 'Ошибка запроса api/voucher/.';
+                    console.log("error", error);
+                });
         },
         saveVoucher(tournumber, tourid) {
             if (!this.form.consent) {
@@ -875,14 +935,14 @@ let vm = new Vue({
                     if (this.form.roomCurrent.breakfasts === 1) {
                         breakfast = this.translations.hotelMailBreakfast[this.selectedLocale]
                     } else {
-                        breakfast = this.form.hotelBreakfast === true ?
+                        breakfast = this.form.hotelBreakfast === 1 ?
                             this.translations.hotelMailBreakfast[this.selectedLocale] : this.translations.hotelMailNoBreakfast[this.selectedLocale]
                     }
 
                     fdata.append('room', this.form.room);
                     fdata.append('bed', this.form.bed);
                     fdata.append('roomName', this.form.roomCurrent.name);
-                    fdata.append('hotel', this.form.hotel);
+                    fdata.append('hotel', this.form.hotelCurrent.id);
                     fdata.append('hotelName', this.form.hotelCurrent.name);
                     fdata.append('address', this.form.hotelCurrent.address);
                     fdata.append('hotelBreakfast', breakfast);
@@ -891,6 +951,8 @@ let vm = new Vue({
                 }
 
                 fdata.append('passname', this.form.pasCurrent.name);
+                fdata.append('passcode', this.form.pasCurrent.code);
+                fdata.append('passColor', this.form.passColor);
                 fdata.append('g2fname', this.form.gfname);
                 fdata.append('g2sname', this.form.gsname);
                 fdata.append('g3fname', this.form.g3fname);
@@ -911,16 +973,18 @@ let vm = new Vue({
                 fdata.append('adultsNum', this.form.adults);
                 fdata.append('kids', kids);
                 this.form.kidsText = kids
-                fdata.append('hotelPrice', this.form.hotelPrice);
+                fdata.append('hotelPrice', this.form.hotelTotal);
                 fdata.append('tourPrice', this.form.tourPrice);
-                fdata.append('skipassPrice', this.form.skipassPrice);
-                fdata.append('breakfastPrice', this.form.hotelBreakfastPrice);
+                fdata.append('skiPassPrice', this.form.skiPassTotal);
+                fdata.append('breakfastPrice', this.form.hotelBreakfastTotal);
+                fdata.append('passTotal', this.form.passTotal);
                 fdata.append('passDiscount', this.form.passDiscount);
                 fdata.append('tourDays', String(tourDaysCount));
+                fdata.append('skiPassDays', this.form.skiPassDays);
 
                 axios({
                     method: 'post',
-                    url: this.phpPath + 'app/php/saveVoucher.php',
+                    url: 'nsc/php/saveVoucher.php',
                     data: fdata,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 })
@@ -933,33 +997,7 @@ let vm = new Vue({
                     });
             }
         },
-        getPassPrice(pass) {
-            const conf = {
-                responseType: 'text'
-            };
-            const data = {
-                event: 'nsc',
-                pass: pass
-            };
-            axios
-                .post(this.phpPath + "php/getPassPrice.php", data, conf)
-                .then(response => {
-                    if (response.data) {
-                        this.errors = null;
-                        this.freeHotels = Array.from(response.data);
-                    } else {
-                        console.log('response.data')
-                        console.log(response.data)
-                        this.errors = 'Ошибка получения цены.';
-                    }
-                })
-                .catch(error => {
-                    this.errors = 'Ошибка запроса информации по ценам.';
-                    console.log("error", error);
-                });
-
-        },
-        getActivePasses() {
+        getActivePasses(url, config) {
             const conf = {
                 responseType: 'text'
             };
@@ -967,7 +1005,7 @@ let vm = new Vue({
                 event: this.form.event
             };
             axios
-                .get(this.phpPath + "api/passes", data, conf)
+                .get("api/passes", data, conf)
                 .then(response => {
                     if (response.data) {
                         this.errors = null
@@ -983,21 +1021,27 @@ let vm = new Vue({
                 });
         },
         getActiveHotels() {
-            let option = {
-                day: 'numeric',
-            };
-            let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
-            let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
-            let thisTourDays = this.days.slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd))
+
+            let dateStart = this.form.dateFrom;
+            let dateEnd = this.form.dateTill;
+            let tourDays = this.form.tourDays
+
+            this.cleanCurrentForm()
 
             const conf = {
                 responseType: 'text'
             };
-            const data = {
-                tourDays: thisTourDays
-            };
             axios
-                .get(this.phpPath + "api/hotels", data, conf)
+                .get("api/hotels", {
+                    params: {
+                        tourDays: tourDays,
+                        adults: this.form.adults,
+                        dateStart: dateStart,
+                        dateEnd: dateEnd,
+                        passPrice: this.form.passCurrentPrice,
+                        skiPassPrice: this.form.skiPassPrice,
+                    }
+                }, conf)
                 .then(response => {
                     if (response.data) {
                         this.hotels = Object.values(response.data)
@@ -1006,7 +1050,6 @@ let vm = new Vue({
                     }
                 })
                 .catch(error => {
-                    this.errors = 'Ошибка запроса информации по выбранному отелю.';
                     console.log("error", error);
                 });
         },
@@ -1017,11 +1060,8 @@ let vm = new Vue({
                 day: 'numeric',
             };
 
-            this.form.skipassPrice = 1500;
-
             let dayStart = this.form.dateFrom; // .toLocaleString("ru", option);
             let dayEnd = this.form.dateTill; // .toLocaleString("ru", option);
-
             let tourDays = this.form.tourDays
 
             const conf = {
@@ -1029,15 +1069,15 @@ let vm = new Vue({
             };
 
             axios
-                .get(this.phpPath + "api/hotelrooms/" + this.form.hotelCurrent.id, {
+                .get("api/hotelrooms/" + this.form.hotelCurrent.id, {
                     params: {
                         hotelId: this.form.hotelCurrent.id,
                         tourDays: tourDays,
                         adults: this.form.adults,
                         dateStart: dayStart,
                         dateEnd: dayEnd,
-                        passPrice: this.form.pasCurrent.price,
-                        skiPassPrice: this.form.skipassPrice,
+                        passPrice: this.form.passCurrentPrice,
+                        skiPassPrice: this.form.skiPassPrice,
                     }
                 }, conf)
                 .then(response => {
@@ -1054,13 +1094,25 @@ let vm = new Vue({
                     console.log("error", error);
                 });
         },
+        setBreakfast(index,val) {
+            this.hotelRooms[index].breakfast = val
+        },
+        setRoomBed(index,bed) {
+            this.form.bed = bed
+            this.hotelRooms[index].bedChoosen = bed
+            this.hotelRooms.forEach(function(item, key, array) {
+                if (key !== index) {
+                    item.bedChoosen = null
+                }
+            })
+        },
         getActiveRoomBeds() {
             const conf = {
                 responseType: 'text'
             };
             const data = {};
             axios
-                .get(this.phpPath + "api/roombeds/" + this.form.room, data, conf)
+                .get("api/roombeds/" + this.form.room, data, conf)
                 .then(response => {
                     if (response.data) {
                         this.errors = null
@@ -1086,7 +1138,7 @@ let vm = new Vue({
                 lastname: this.form.sname,
             };
             axios
-                .post(this.phpPath + "api/guest/", data, conf, {timeout: 1000})
+                .post("api/guest/", data, conf, {timeout: 1000})
                 .then(response => {
                     if (response.data.status === 201) {
                         this.errors = null
@@ -1100,33 +1152,6 @@ let vm = new Vue({
                     console.log("error", error);
                 });
         },
-        saveApiVoucher() {
-            this.form.guests = [
-                this.form.gfname + ' ' + this.form.gsname,
-                this.form.g3fname + ' ' + this.form.g3sname,
-                this.form.g4fname + ' ' + this.form.g4sname,
-                this.form.g5fname + ' ' + this.form.g5sname,
-                this.form.g6fname + ' ' + this.form.g6sname,
-            ]
-            const conf = {
-                responseType: 'text',
-                timeout: 1000
-            };
-            const data = this.form
-            axios
-                .post(this.phpPath + "api/voucher/", data, conf, {timeout: 1000})
-                .then(response => {
-                    if (response.data.status === 201) {
-                        this.errors = null
-                    } else if (response.data.status === 200) {
-                        this.errors = null
-                    }
-                })
-                .catch(error => {
-                    this.errors = 'Ошибка запроса api/voucher/.';
-                    console.log("error", error);
-                });
-        },
         updateQuota(tourNumber) {
             const conf = {
                 responseType: 'text',
@@ -1136,7 +1161,7 @@ let vm = new Vue({
                 tourNumber: tourNumber
             }
             axios
-                .post(this.phpPath + "api/quota/", data, conf, {timeout: 1000})
+                .post("api/quota/", data, conf, {timeout: 1000})
                 .then(response => {
                     if (response.data.status === 201) {
                         this.errors = null
@@ -1154,34 +1179,22 @@ let vm = new Vue({
     },
     beforeMount() {
         this.getActivePasses()
+        this.getEvent()
     },
     mounted: function () {
         let get_parameters = this.$route.query
-        console.log('step 1' + this.step)
-        if (get_parameters.step === '5' && get_parameters.par !== '0') {
-            this.step = 5
+        if (get_parameters.step === '6' && get_parameters.par !== '0') {
+            this.step = 6
             this.form.payed = 0
-            console.log('step ' + this.step)
-        } else if (get_parameters.step === '5' && get_parameters.par === '0') {
-            console.log('step 2' + this.step)
-            this.step = 5
+        } else if (get_parameters.step === '6' && get_parameters.par === '0') {
+            this.step = 6
             this.form.payed = 1
-            console.log('step 3' + this.step)
-            this.sendMail(get_parameters.tourNumber)
-            this.updateQuota(get_parameters.tourNumber)
         }
     },
     updated() {
 
     },
     computed: {
-        getDomain() {
-            if (this.domain === 'localhost') {
-                this.phpPath = 'nscamp/app/'
-            } else {
-                this.phpPath = ''
-            }
-        },
         dateFrom() {
             if (this.form.pasCurrent.is_hotel === 1) {
                 return 'дата приезда'
@@ -1216,14 +1229,6 @@ let vm = new Vue({
             }
             return adults + kids;
         },
-        roomName() {
-            if (this.form.pasCurrent.is_hotel === 1 && this.form.hotel) {
-                this.form.roomName = this.form.roomCurrent.name
-                return this.form.roomName
-            } else {
-                return false
-            }
-        },
         setTourName() {
             if (this.form.pasCurrent.is_hotel === 1 && this.form.hotel) {
                 this.form.tourName = 'New Star Camp tour, hotel: ' + this.form.hotelCurrent.name;
@@ -1240,135 +1245,6 @@ let vm = new Vue({
         activeRoomBeds() {
             return this.hotelRoomBeds
         },
-        calcTourPrice() {
-            let totalPrice = 0;
-            let skiPass = 0;
-
-            let curRoom = ''
-            let gain = ''
-            let hotelTotalPrice = 0
-            let allBreakfasts = 0
-
-            if (this.form.pasCurrent.is_hotel === 1 && this.form.hotelCurrent && this.form.roomCurrent) {
-                curRoom = this.form.room
-                gain = this.form.hotelCurrent.gain
-            }
-
-            let daysTour = this.form.tourDays
-            let passDayPrice = this.form.pasCurrent.price
-            let passPrice = (passDayPrice * this.form.adults) * this.form.passDiscount
-
-
-            if (this.form.passDiscount < 1) {
-                this.form.promocode = this.promocode
-            }
-
-            if (this.form.roomCurrent && this.form.pasCurrent.is_hotel === 1) {
-                let option = {
-                    day: 'numeric',
-                };
-                let dayStart = parseInt(this.form.dateFrom.toLocaleString("ru", option));
-                let dayEnd = parseInt(this.form.dateTill.toLocaleString("ru", option));
-
-                const reducer = (accumulator, currentValue) => accumulator + currentValue
-
-                // let arrPrices = this.hotels[curHotel].rooms[curRoom].prices[this.form.adults].slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd));
-                arCurRoom = this.form.roomCurrent
-
-                let arrPrices = 0
-                if (this.form.adults === 1) {
-                    arrPrices = arCurRoom.price_room * daysTour
-                } else if (this.form.adults === 2) {
-                    arrPrices = arCurRoom.price_room2 * daysTour
-                } else if (this.form.adults === 3) {
-                    arrPrices = arCurRoom.price_room3 * daysTour
-                } else if (this.form.adults === 4) {
-                    arrPrices = arCurRoom.price_room4 * daysTour
-                } else if (this.form.adults === 5) {
-                    arrPrices = arCurRoom.price_room5 * daysTour
-                } else if (this.form.adults === 6) {
-                    arrPrices = arCurRoom.price_room6 * daysTour
-                }
-
-                if (this.form.hotelBreakfast) {
-                    if (this.form.adults === 1) {
-                        allBreakfasts = arCurRoom.price_breakfasts * daysTour
-                    } else if (this.form.adults === 2) {
-                        allBreakfasts = arCurRoom.price_breakfasts2 * daysTour
-                    } else if (this.form.adults === 3) {
-                        allBreakfasts = arCurRoom.price_breakfasts3 * daysTour
-                    } else if (this.form.adults === 4) {
-                        allBreakfasts = arCurRoom.price_breakfasts4 * daysTour
-                    } else if (this.form.adults === 5) {
-                        allBreakfasts = arCurRoom.price_breakfasts5 * daysTour
-                    } else if (this.form.adults === 6) {
-                        allBreakfasts = arCurRoom.price_breakfasts6 * daysTour
-                    }
-                }
-
-                // hotelTotalPrice = arrPrices.reduce(reducer);
-                hotelTotalPrice = arrPrices;
-
-                // let skiPassDays = daysTour < 6 ? daysTour : daysTour - 1;
-                // skiPassDays = daysTour = 2 ? daysTour + 1 : skiPassDays;
-                // skiPassDays = daysTour > 6 ? skiPassDays - 2 : skiPassDays;
-                // let skiPassPrice = ((skiPass * skiPassDays) * this.form.adults);
-                let skiPassPrice = 0;
-
-                /*if (this.hotels[curHotel].rooms[curRoom].breakfasts_included === true) {
-                    this.form.hotelBreakfast = true;
-                    allBreakfasts = 0;
-                    this.form.hotelBreakfastPrice = allBreakfasts;
-                } else if (this.hotels[curHotel].rooms[curRoom].breakfasts_no === false
-                    && this.form.hotelBreakfast === true) {
-                    let arrBreakfast = vm.hotels[curHotel].rooms[curRoom].breakfasts[this.form.adults].slice(vm.days.indexOf(dayStart), vm.days.indexOf(dayEnd));
-                    allBreakfasts = arrBreakfast.reduce(reducer);
-                    this.form.hotelBreakfastPrice = allBreakfasts;
-                } else {
-                    this.form.hotelBreakfastPrice = 0
-                    allBreakfasts = 0
-                }*/
-
-                if (this.form.adults > 0 && daysTour >= this.minDays) {
-                    totalPrice =
-                        skiPassPrice + passPrice + ((hotelTotalPrice + allBreakfasts) * gain)
-
-                    if (window.location.href !== 'https://nswpay.ru/') {
-                        console.log('Start -- adults ' + this.form.adults)
-                        console.log('daysTour ' + daysTour)
-                        console.log('hotelTotalPrice dayStart indexOf ' + vm.days.indexOf(dayStart))
-                        console.log('hotelTotalPrice dayStart ' + dayStart)
-                        console.log('hotelTotalPrice dayEnd indexOf ' + vm.days.indexOf(dayEnd))
-                        console.log('hotelTotalPrice dayEnd ' + dayEnd)
-                        console.log('passPrice no discount ' + (this.form.pasCurrent.price * this.form.adults))
-                        console.log('passPrice ' + passPrice)
-                        console.log('skipassPrice ' + skiPassPrice)
-                        console.log('discount ' + this.form.passDiscount)
-                        console.log('hotelTotalPrice ' + hotelTotalPrice)
-                        console.log('allBreakfasts ' + allBreakfasts)
-                        console.log('gain ' + gain)
-                        console.log('hotelTotalPrice + breafast * gain ' + (hotelTotalPrice + allBreakfasts) * gain)
-                    }
-
-                    this.form.hotelPrice = hotelTotalPrice
-                    this.form.skipassPrice = ((skiPass * (daysTour - 1)) * this.form.adults)
-                    this.form.hotelBreakfastPrice = allBreakfasts
-                    this.form.tourPrice = Math.ceil(totalPrice)
-                    return Math.ceil(totalPrice) + '₽'
-                }
-            } else if (this.form.pasCurrent.is_hotel === 0) {
-                totalPrice = passPrice
-                if (totalPrice === 0) {
-                    totalPrice = 1
-                }
-
-                this.form.tourPrice = Math.ceil(totalPrice)
-
-                return Math.ceil(totalPrice) + '₽'
-            } else {
-                return 'Ошибка расчета';
-            }
-        }
     },
     watch: {},
     destroyed() {
