@@ -26,8 +26,6 @@ Vue.directive('phone', {
             el.dispatchEvent(new Event('input'));
         }
     },
-    touch(el) {
-    }
 });
 
 let router = new VueRouter({
@@ -524,6 +522,10 @@ let vm = new Vue({
         hotels: [],
     },
     methods: {
+        acceptNumber() {
+            let x = this.form.phone.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,4})/);
+            this.form.phone = x[1] + ' (' + x[2] + ') ' + x[3] + ' ' + x[4];
+        },
         activePasses() {
             if (this.passes) {
                 return this.passes.filter(pass => {
@@ -682,14 +684,6 @@ let vm = new Vue({
                         this.scrollToTop()
                     }
                 }
-            }
-        },
-        showPassDetail(passCode) {
-            let curPass = this.passes.indexOf(this.passes.find(pass => pass.code === passCode))
-            if (!this.passes[curPass].back) {
-                this.passes[curPass].back = true;
-            } else {
-                this.passes[curPass].back = false;
             }
         },
         setPassActive(passCode) {
@@ -981,6 +975,7 @@ let vm = new Vue({
                 fdata.append('passDiscount', this.form.passDiscount);
                 fdata.append('tourDays', String(tourDaysCount));
                 fdata.append('skiPassDays', this.form.skiPassDays);
+                fdata.append('event', this.form.event);
 
                 axios({
                     method: 'post',
@@ -1001,11 +996,12 @@ let vm = new Vue({
             const conf = {
                 responseType: 'text'
             };
-            const data = {
-                event: this.form.event
-            };
             axios
-                .get("api/passes", data, conf)
+                .get("api/passes", {
+                    params: {
+                        event: this.form.event
+                    }
+                }, conf)
                 .then(response => {
                     if (response.data) {
                         this.errors = null
@@ -1094,13 +1090,19 @@ let vm = new Vue({
                     console.log("error", error);
                 });
         },
-        setBreakfast(index,val) {
+        setBreakfast(index, val) {
             this.hotelRooms[index].breakfast = val
+            this.hotelRooms[index].breakfastChoosen = 1
         },
-        setRoomBed(index,bed) {
+        setRoomBed(index, bed) {
             this.form.bed = bed
             this.hotelRooms[index].bedChoosen = bed
-            this.hotelRooms.forEach(function(item, key, array) {
+            if (this.hotelRooms[index].breakfasts === 1) {
+                this.hotelRooms[index].breakfastChoosen = 1
+            } else if (this.hotelRooms[index].breakfasts_no === 1) {
+                this.hotelRooms[index].breakfastChoosen = 1
+            }
+            this.hotelRooms.forEach(function (item, key, array) {
                 if (key !== index) {
                     item.bedChoosen = null
                 }
