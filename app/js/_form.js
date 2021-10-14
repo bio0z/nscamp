@@ -637,10 +637,6 @@ let vm = new Vue({
                 } else {
                     this.errors = null
                 }
-                if ((!this.form.hotel || !this.form.room || !this.form.bed) && (this.form.pasCurrent.is_hotel === 1 && this.form.adults)) {
-                    this.errors = this.translations.errorChooseRoom[this.selectedLocale];
-                    return false;
-                }
                 if (this.form.adults && this.errors == null) {
                     this.step++
                     this.scrollToTop()
@@ -700,14 +696,23 @@ let vm = new Vue({
             this.scrollToTop()
         },
         setHotelActive(hotelId) {
-            this.form.hotel = hotelId
-            let hotelCurrent = this.hotels.filter(hotel => {
-                return hotel.id === hotelId
-            })
-            this.form.hotelCurrent = hotelCurrent[0]
-            this.getActiveHotelRooms()
-            this.step++
-            this.scrollToTop()
+            if (this.form.tourDays < this.minDays) {
+                let text = {
+                    'ru': 'Туры менее ' + this.minDays + ' суток, недоступны',
+                    'en': 'Minimal tour ' + this.minDays + ' days'
+                };
+                this.errors = text[this.selectedLocale];
+                return false;
+            } else {
+                this.form.hotel = hotelId
+                let hotelCurrent = this.hotels.filter(hotel => {
+                    return hotel.id === hotelId
+                })
+                this.form.hotelCurrent = hotelCurrent[0]
+                this.getActiveHotelRooms()
+                this.step++
+                this.scrollToTop()
+            }
         },
         setRoomActive(roomId) {
             this.form.room = roomId
@@ -1092,15 +1097,19 @@ let vm = new Vue({
         },
         setBreakfast(index, val) {
             this.hotelRooms[index].breakfast = val
+            this.form.hotelBreakfast = val
             this.hotelRooms[index].breakfastChoosen = 1
         },
         setRoomBed(index, bed) {
             this.form.bed = bed
             this.hotelRooms[index].bedChoosen = bed
+
             if (this.hotelRooms[index].breakfasts === 1) {
                 this.hotelRooms[index].breakfastChoosen = 1
+                this.form.hotelBreakfast = 1
             } else if (this.hotelRooms[index].breakfasts_no === 1) {
                 this.hotelRooms[index].breakfastChoosen = 1
+                this.form.hotelBreakfast = 0
             }
             this.hotelRooms.forEach(function (item, key, array) {
                 if (key !== index) {
