@@ -917,7 +917,7 @@ let vm = new Vue({
                 let tourDaysCount = Math.round(Number(this.form.tourDays))
                 let options = {
                     year: 'numeric',
-                    month: 'long',
+                    month: 'numeric',
                     day: 'numeric',
                 }
 
