@@ -143,11 +143,23 @@ let vm = new Vue({
         translations: {
             title: {
                 'ru': 'Купить тур',
-                'en': 'Tour Booking',
+                'en': 'Book your tour',
             },
             titleP: {
                 'ru': 'Купить Festival Pass',
                 'en': 'Tour Pass',
+            },
+            festPass : {
+                'ru': '<p>Если ты просто хочешь приобрести браслет участника фестиваля, это можно сделать в штабе в период с 31.03 по 10.04.2022.</p>' +
+                    '<p>Стоимость браслета участника – 8000 руб., стоимость VIP браслета – 20 000 руб.</p>' +
+                    '<p>Туры длительностью менее 8 суток появятся в продаже после Нового Года</p>',
+                'en': '<p>If you just want to buy a festival pass, you can do it at the festival HQ from 31.03 to 10.04.2022.</p>' +
+                    '<p>The cost of a festival pass (bracelet) is 8,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.</p>' +
+                    '<p>Tours lasting less than 8 days will be on sale in January 2022</p>',
+            },
+            chooseButton : {
+                'ru' : 'Выбрать',
+                'en' : 'Book now'
             },
             step1: {
                 'ru': 'Выберите тур',
@@ -458,29 +470,35 @@ let vm = new Vue({
                 id: 1,
                 name: {
                     'ru': 'Выбор<br> категории',
-                    'en': 'Choose<br> your tour'
+                    'en': 'Tour<br> category'
                 },
                 text: 'text-left',
                 col: 'col',
-                desc: 'До путешествия на Quiksilver New Star Camp 2022 осталось несколько шагов. Здесь ты можешь подобрать тур и узнать, что именно в него входит. Выбери один из вариантов, чтобы начать.',
+                desc: {
+                    'ru' : 'До путешествия на Quiksilver New Star Camp 2022 осталось несколько шагов. Здесь ты можешь подобрать тур и узнать, что именно в него входит. Выбери один из вариантов, чтобы начать.',
+                    'en' : 'There are a few steps left before traveling to Quiksilver New Star Camp 2022. Here you can choose a tour and find out what exactly is included in it. Choose one of the options to get started.',
+                },
             },
             {
                 active: false,
                 id: 2,
                 name: {
                     'ru': 'Выбор<br> отеля',
-                    'en': 'Choose<br> dates'
+                    'en': 'Hotel'
                 },
                 text: 'text-center',
                 col: 'col-3',
-                desc: 'Любой из отелей курорта «Роза Хутор» гарантирует удобную логистику до площадок фестиваля и сэкономит твоё время, чтобы ты всё успел.'
+                desc: {
+                    'ru' : 'Любой из отелей курорта «Роза Хутор» гарантирует удобную логистику до площадок фестиваля и сэкономит твоё время, чтобы ты всё успел.',
+                    'en' : 'All the hotels in the Rosa Khutor resort guarantee convenient logistics to the festival sites and will save your time so you can enjoy its fun in full.'
+                },
             },
             {
                 active: false,
                 id: 3,
                 name: {
                     'ru': 'Выбор<br> номера',
-                    'en': 'Choose<br> room'
+                    'en': 'Accomodation'
                 },
                 text: 'text-center',
                 col: 'col-3',
@@ -491,7 +509,7 @@ let vm = new Vue({
                 id: 4,
                 name: {
                     'ru': 'Персональные<br> данные',
-                    'en': 'Personal<br> details'
+                    'en': 'Personal<br> вata'
                 },
                 text: 'text-center',
                 col: 'col-3',
@@ -502,7 +520,7 @@ let vm = new Vue({
                 id: 5,
                 name: {
                     'ru': 'Покупка<br> тура',
-                    'en': 'Tour<br> purchasing'
+                    'en': 'Purchasing'
                 },
                 text: 'text-right',
                 col: 'col',
