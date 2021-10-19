@@ -876,6 +876,15 @@ let vm = new Vue({
                 responseType: 'text',
                 timeout: 1000
             };
+
+            let options = {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+            }
+            this.form.dateFrom = this.form.dateFrom.toLocaleString("ru", options)
+            this.form.dateTill = this.form.dateTill.toLocaleString("ru", options)
+
             const data = this.form
             axios
                 .post("api/voucher/", data, conf, {timeout: 1000})
