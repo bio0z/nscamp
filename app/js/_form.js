@@ -155,6 +155,30 @@ let vm = new Vue({
                 'en': '<p>If you just want to buy a festival pass, you can do it at the festival HQ from 31.03 to 10.04.2022.</p>' +
                     '<p>The cost of a festival pass (bracelet) is 8,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.</p>',
             },
+            bracelet :{
+                'ru' : 'Браслет участника',
+                'en' : 'Festival pass'
+            },
+            skipass : {
+              'ru' : 'Скипасс',
+              'en' : 'Ski pass'
+            },
+            skipassDays : {
+              'ru' : 'дней',
+              'en' : 'days'
+            },
+            tourNights : {
+              'ru' : 'ночей',
+              'en' : 'nights'
+            },
+            tourSum : {
+              'ru' : 'стоимость тура:',
+              'en' : ''
+            },
+            tourSumFrom : {
+              'ru' : 'От',
+              'en' : 'From'
+            },
             chooseButton : {
                 'ru' : 'Выбрать',
                 'en' : 'Book now'
@@ -163,8 +187,76 @@ let vm = new Vue({
                 'ru': 'Выберите тур',
                 'en': 'Choose your tour',
             },
+            guest1 : {
+              'ru' : '1 гость',
+              'en' : '1 guest'
+            },
+            guest2 : {
+              'ru' : '2 гостя',
+              'en' : '2 guests'
+            },
+            guest3 : {
+              'ru' : '3 гостя',
+              'en' : '3 guests'
+            },
+            guest4 : {
+              'ru' : '4 гостя',
+              'en' : '4 guests'
+            },
+            guest5 : {
+              'ru' : '5 гостей',
+              'en' : '5 guests'
+            },
+            guest6 : {
+              'ru' : '6 гостей',
+              'en' : '6 guests'
+            },
+            guest7 : {
+              'ru' : '7 гостей',
+              'en' : '7 guests'
+            },
+            guest8 : {
+              'ru' : '8 гостей',
+              'en' : '8 guests'
+            },
+            guest9 : {
+              'ru' : '9 гостей',
+              'en' : '9 guests'
+            },
+            guest10 : {
+              'ru' : '10 гостей',
+              'en' : '10 guests'
+            },
+            guest11 : {
+              'ru' : '11 гостей',
+              'en' : '11 guests'
+            },
+            guest12 : {
+              'ru' : '12 гостей',
+              'en' : '12 guests'
+            },
+            guest13 : {
+              'ru' : '13 гостей',
+              'en' : '13 guests'
+            },
+            guest14 : {
+              'ru' : '14 гостей',
+              'en' : '14 guests'
+            },
+            guest15 : {
+              'ru' : '15 гостей',
+              'en' : '15 guests'
+            },
+            breakfastIncluded : {
+              'ru' : 'Завтрак включен в стоимость',
+              'en' : 'breakfast included',
+            },
             roomType: {
                 'ru': 'Тип номера',
+                'en': 'Type of room',
+            },
+            roomNumber: {
+                'ru': 'Номер',
                 'en': 'Type of room',
             },
             bedType: {
@@ -387,6 +479,18 @@ let vm = new Vue({
                 'ru': 'Укажите корректный телефон',
                 'en': 'Please, fill correct number of cell phone'
             },
+            tourIncludedHeader: {
+                'ru': 'В тур включено:',
+                'en': 'Tour included:'
+            },
+            tourIncludedHotel: {
+                'ru': 'Проживание в отеле',
+                'en': 'Hotel accommodation'
+            },
+            tourUsePromo: {
+                'ru': 'Введите промокод, если имеется',
+                'en': 'Insert your promo code if you have one'
+            },
             tourIncludedP: {
                 'ru': '<p><b>В тур включено:</b></p></li>' +
                     '<ul></li>' +
@@ -434,11 +538,16 @@ let vm = new Vue({
                 'ru': 'Купить тур',
                 'en': 'Buy tour'
             },
+            tourTanks: {
+                'ru': 'Спасибо',
+                'en': 'Thank you'
+            },
             tourSuccess: {
-                'ru': '<p>Благодарим вас за покупку тура на Quiksilver New Star Camp 2022</p>',
-                'en': '<p>You win! :)</p>' +
-                    '<p>Voucher goes to email right now.</p></li>' +
-                    '<p>See you soon ;)</p></li>',
+                'ru': '<p>Благодарим вас за покупку тура на Quiksilver New Star Camp 2022</p>\n' +
+                    '<p>Тур и ваучеры на получение ски-пасса <br>отправлены на указанную вами почту.</p>',
+                'en': '<p>Thank you for your purchase!</p>' +
+                    '<p>The tour voucher has been sent to your e-mail.</p>' +
+                    '<p>Please expect the ski pass voucher closer to festival dates.</p>',
             },
             tourFail: {
                 'ru': '<p>Возникла ошибка при проведении платежа</p>' +
@@ -447,9 +556,9 @@ let vm = new Vue({
                     '<a href="#">try again</a>.</p>'
             },
             newStarDesc: {
-                'ru': 'ООО «Нью Стар» — организатор спортивно-музыкального фестиваля New Star Camp,</li>' +
+                'ru': 'ООО «Нью Стар» — организатор спортивно-музыкального фестиваля New Star Camp,' +
                     'который пройдёт 1 - 3 октября 2021 года на всесезонном горном курорте «Роза Хутор» (Сочи)',
-                'en': '“New Star” LLC is the organizer of “New Star Camp” sports and music festival, that will</li>' +
+                'en': '“New Star” LLC is the organizer of “New Star Camp” sports and music festival, that will' +
                     ' be held on March 1 - 3 October, 2021 at Russian ski resort “Rosa Khutor” (Sochi).'
             }
         },
