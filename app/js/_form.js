@@ -108,20 +108,20 @@ let vm = new Vue({
 
             g3sname: null,
             g3fname: null,
-            g3Phone: null,
-            g3Email: null,
+            g3phone: null,
+            g3email: null,
             g4fname: null,
             g4sname: null,
-            g4Phone: null,
-            g4Email: null,
+            g4phone: null,
+            g4email: null,
             g5fname: null,
             g5sname: null,
-            g5Phone: null,
-            g5Email: null,
+            g5phone: null,
+            g5email: null,
             g6sname: null,
             g6fname: null,
-            g6Phone: null,
-            g6Email: null,
+            g6phone: null,
+            g6email: null,
 
             promocode: null,
             consent: null,
@@ -151,11 +151,9 @@ let vm = new Vue({
             },
             festPass : {
                 'ru': '<p>Если ты просто хочешь приобрести браслет участника фестиваля, это можно сделать в штабе в период с 31.03 по 10.04.2022.</p>' +
-                    '<p>Стоимость браслета участника – 8000 руб., стоимость VIP браслета – 20 000 руб.</p>' +
-                    '<p>Туры длительностью менее 8 суток появятся в продаже после Нового Года</p>',
+                    '<p>Стоимость браслета участника – 8000 руб., стоимость VIP браслета – 20 000 руб.</p>',
                 'en': '<p>If you just want to buy a festival pass, you can do it at the festival HQ from 31.03 to 10.04.2022.</p>' +
-                    '<p>The cost of a festival pass (bracelet) is 8,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.</p>' +
-                    '<p>Tours lasting less than 8 days will be on sale in January 2022</p>',
+                    '<p>The cost of a festival pass (bracelet) is 8,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.</p>',
             },
             chooseButton : {
                 'ru' : 'Выбрать',
@@ -475,8 +473,10 @@ let vm = new Vue({
                 text: 'text-left',
                 col: 'col',
                 desc: {
-                    'ru' : 'До путешествия на Quiksilver New Star Camp 2022 осталось несколько шагов. Здесь ты можешь подобрать тур и узнать, что именно в него входит. Выбери один из вариантов, чтобы начать.',
-                    'en' : 'There are a few steps left before traveling to Quiksilver New Star Camp 2022. Here you can choose a tour and find out what exactly is included in it. Choose one of the options to get started.',
+                    'ru' : '<p>До путешествия на Quiksilver New Star Camp 2022 осталось несколько шагов. Здесь ты можешь подобрать тур и узнать, что именно в него входит. Выбери один из вариантов, чтобы начать.</p>' +
+                        '<p>Туры длительностью менее 8 суток появятся в продаже после Нового Года</p>',
+                    'en' : '<p>There are a few steps left before traveling to Quiksilver New Star Camp 2022. Here you can choose a tour and find out what exactly is included in it. Choose one of the options to get started.</p>' +
+                        '<p>Tours lasting less than 8 days will be on sale in January 2022</p>',
                 },
             },
             {
@@ -678,16 +678,16 @@ let vm = new Vue({
                 } else if (this.form.adults >= 2 && (!this.form.gfname || !this.form.gsname)) {
                     this.errors = this.translations.errorFillFIO2[this.selectedLocale];
                     return false;
-                } else if (this.form.adults >= 3 && (!this.form.g3fname || !this.form.g3sname || !this.form.g3Email || !this.form.g3Phone)) {
+                } else if (this.form.adults >= 3 && (!this.form.g3fname || !this.form.g3sname || !this.form.g3email || !this.form.g3phone)) {
                     this.errors = this.translations.errorFillFIO3[this.selectedLocale];
                     return false;
-                } else if (this.form.adults >= 4 && (!this.form.g4fname || !this.form.g4sname || !this.form.g4Email || !this.form.g4Phone)) {
+                } else if (this.form.adults >= 4 && (!this.form.g4fname || !this.form.g4sname || !this.form.g4email || !this.form.g4phone)) {
                     this.errors = this.translations.errorFillFIO4[this.selectedLocale];
                     return false;
-                } else if (this.form.adults >= 5 && (!this.form.g5fname || !this.form.g5sname || !this.form.g5Email || !this.form.g5Phone)) {
+                } else if (this.form.adults >= 5 && (!this.form.g5fname || !this.form.g5sname || !this.form.g5email || !this.form.g5phone)) {
                     this.errors = this.translations.errorFillFIO5[this.selectedLocale];
                     return false;
-                } else if (this.form.adults >= 6 && (!this.form.g6fname || !this.form.g6sname || !this.form.g5Email || !this.form.g6Phone)) {
+                } else if (this.form.adults >= 6 && (!this.form.g6fname || !this.form.g6sname || !this.form.g5email || !this.form.g6phone)) {
                     this.errors = this.translations.errorFillFIO6[this.selectedLocale];
                     return false;
                 } else {
