@@ -151,9 +151,9 @@ let vm = new Vue({
             },
             festPass : {
                 'ru': '<p>Если ты просто хочешь приобрести браслет участника фестиваля, это можно сделать в штабе в период с 31.03 по 10.04.2022.</p>' +
-                    '<p>Стоимость браслета участника – 8000 руб., стоимость VIP браслета – 20 000 руб.</p>',
+                    '<p>Стоимость браслета участника – 8000 руб., стоимость VIP браслета – 20 000 руб. Все VIP билеты sold out.</p>',
                 'en': '<p>If you just want to buy a festival pass, you can do it at the festival HQ from 31.03 to 10.04.2022.</p>' +
-                    '<p>The cost of a festival pass (bracelet) is 8,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.</p>',
+                    '<p>The cost of a festival pass (bracelet) is 8,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.  All VIP tickets sold out.</p>',
             },
             bracelet :{
                 'ru' : 'Браслет участника',
