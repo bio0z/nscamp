@@ -60,7 +60,6 @@ let vm = new Vue({
         firstDay: new Date(2022, 3, 1),
         dateClearable: false,
         innerValue: [new Date('2022-04-01'), new Date('2022-04-10')],
-        promocode: null,
         activePass: null,
         passDetails: null,
         gallery: null,
@@ -138,7 +137,7 @@ let vm = new Vue({
             hotelBreakfastTotal: 0,
             arrTourDays: null,
             payed: null,
-            passDiscount: 1
+            passDiscount: 0
         },
         translations: {
             title: {
@@ -961,13 +960,16 @@ let vm = new Vue({
                 responseType: 'text'
             };
             const data = {
-                promocode: this.promocode,
+                promoCode: this.form.promocode,
+                eventCode: this.form.event,
                 tourPass: this.form.pasCurrent.code
             };
             axios
-                .post("nsc/php/checkPCode.php", data, conf)
+                .post("api/promo", data, conf)
                 .then(response => {
-                    this.form.passDiscount = response.data;
+                    if (response.data !== false) {
+                        this.form.passDiscount = response.data;
+                    }
                 })
                 .catch(error => {
                     this.errors = 'Такой промокод нам не известен.';
@@ -1348,6 +1350,9 @@ let vm = new Vue({
             } else {
                 return 'дата действия браслета с'
             }
+        },
+        calcTourPrice() {
+            return  this.form.tourPrice - this.form.passDiscount;
         },
         dateTill() {
             if (this.form.pasCurrent.is_hotel === 1) {
