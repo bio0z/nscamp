@@ -962,7 +962,8 @@ let vm = new Vue({
             const data = {
                 promoCode: this.form.promocode,
                 eventCode: this.form.event,
-                tourPass: this.form.pasCurrent.code
+                tourPass: this.form.pasCurrent.code,
+                hotelId: this.form.hotelCurrent.id
             };
             axios
                 .post("api/promo", data, conf)
