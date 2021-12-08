@@ -154,6 +154,14 @@ let vm = new Vue({
                 'en': '<p>If you just want to buy a festival pass, you can do it at the festival HQ from 31.03 to 10.04.2022.</p>' +
                     '<p>The cost of a festival pass (bracelet) is 8,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.  All VIP tickets sold out.</p>',
             },
+            bannerVisaTitle :{
+                'ru': 'Выиграй сноуборд с VISA',
+                'en': 'Выиграй сноуборд с VISA'
+            },
+            bannerVisaText :{
+                'ru': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! Подробности на newstarcamp.ru',
+                'en': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! Подробности на newstarcamp.ru'
+            },
             bracelet :{
                 'ru' : 'Браслет участника',
                 'en' : 'Festival pass'
