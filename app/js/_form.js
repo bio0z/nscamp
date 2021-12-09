@@ -159,8 +159,8 @@ let vm = new Vue({
                 'en': 'Выиграй сноуборд с VISA'
             },
             bannerVisaText :{
-                'ru': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! Подробности на newstarcamp.ru',
-                'en': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! Подробности на newstarcamp.ru'
+                'ru': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! Подробности на <a href="http://newstarcamp.ru">newstarcamp.ru</a>',
+                'en': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! Подробности на <a href="http://newstarcamp.ru">newstarcamp.ru</a>'
             },
             bracelet :{
                 'ru' : 'Браслет участника',
