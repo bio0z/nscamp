@@ -155,12 +155,12 @@ let vm = new Vue({
                     '<p>The cost of a festival pass (bracelet) is 8,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.  All VIP tickets sold out.</p>',
             },
             bannerVisaTitle :{
-                'ru': 'Выиграй сноуборд с VISA',
-                'en': 'Выиграй сноуборд с VISA'
+                'ru': 'Выиграй сноуборд с VISA!',
+                'en': 'Выиграй сноуборд с VISA!'
             },
             bannerVisaText :{
-                'ru': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! Подробности на <a href="http://newstarcamp.ru">newstarcamp.ru</a>',
-                'en': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! Подробности на <a href="http://newstarcamp.ru">newstarcamp.ru</a>'
+                'ru': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! <br> Подробности на <a href="http://newstarcamp.ru">newstarcamp.ru</a>',
+                'en': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! <br> Подробности на <a href="http://newstarcamp.ru">newstarcamp.ru</a>'
             },
             bracelet :{
                 'ru' : 'Браслет участника',
@@ -656,6 +656,9 @@ let vm = new Vue({
         hotels: [],
     },
     methods: {
+        goToNSCsite(){
+            window.open('https://newstarcamp.ru/news/visa_snowboards/?utm_source=nswpay&utm_medium=banner&utm_campaign=visa')
+        },
         acceptNumber() {
             let x = this.form.phone.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,4})/);
             this.form.phone = x[1] + ' (' + x[2] + ') ' + x[3] + ' ' + x[4];

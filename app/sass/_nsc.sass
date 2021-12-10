@@ -288,6 +288,10 @@ main
     .nsc-banner-visa-bg
       background: #ffffff
 
+      a, ::after, ::before
+        text-decoration: underline
+        color: #1434CB
+
       h2
         font-size: 20px
 
@@ -297,8 +301,18 @@ main
       .nsc-banner-visa-snowboard
         height: 160%
         position: absolute
-        left: -98px
-        top: -43px
+        left: -12px
+        top: -32px
+        @media (max-width: 1080px)
+          left: -87px
+          top: -43px
+        @media (max-width: 812px)
+          height: 157px
+          left: 109px
+          top: -175px
+          width: auto
+        @media (max-width: 475px)
+          height: 166px
 
   table .nsc-line
     margin: auto
