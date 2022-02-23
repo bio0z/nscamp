@@ -10,6 +10,7 @@ class ComposerStaticInitfe70c54dd3960fae563616f3bb7670a6
         'S' => 
         array (
             'Svg\\' => 4,
+            'Sabberworm\\CSS\\' => 15,
         ),
         'P' => 
         array (
@@ -30,6 +31,10 @@ class ComposerStaticInitfe70c54dd3960fae563616f3bb7670a6
         array (
             0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
         ),
+        'Sabberworm\\CSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/src',
+        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
@@ -44,17 +49,8 @@ class ComposerStaticInitfe70c54dd3960fae563616f3bb7670a6
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'S' => 
-        array (
-            'Sabberworm\\CSS' => 
-            array (
-                0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib',
-            ),
-        ),
-    );
-
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'HTML5_Data' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Data.php',
         'HTML5_InputStream' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/InputStream.php',
@@ -68,7 +64,6 @@ class ComposerStaticInitfe70c54dd3960fae563616f3bb7670a6
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitfe70c54dd3960fae563616f3bb7670a6::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitfe70c54dd3960fae563616f3bb7670a6::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitfe70c54dd3960fae563616f3bb7670a6::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitfe70c54dd3960fae563616f3bb7670a6::$classMap;
 
         }, null, ClassLoader::class);

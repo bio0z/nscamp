@@ -56,7 +56,7 @@ let vm = new Vue({
         },
         selectedLocale: 'ru',
         days: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        minDays: 8,
+        minDays: 3,
         firstDay: new Date(2022, 3, 1),
         dateClearable: false,
         innerValue: [new Date('2022-04-01'), new Date('2022-04-10')],
@@ -148,115 +148,115 @@ let vm = new Vue({
                 'ru': 'Купить Festival Pass',
                 'en': 'Tour Pass',
             },
-            festPass : {
+            festPass: {
                 'ru': '<p>Если ты просто хочешь приобрести браслет участника фестиваля, это можно сделать в штабе в период с 31.03 по 10.04.2022.</p>' +
-                    '<p>Стоимость браслета участника – 8000 руб., стоимость VIP браслета – 20 000 руб. Все VIP билеты sold out.</p>',
+                    '<p>Стоимость браслета участника – 10 000 руб., стоимость VIP браслета – 20 000 руб. Все VIP билеты sold out.</p>',
                 'en': '<p>If you just want to buy a festival pass, you can do it at the festival HQ from 31.03 to 10.04.2022.</p>' +
-                    '<p>The cost of a festival pass (bracelet) is 8,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.  All VIP tickets sold out.</p>',
+                    '<p>The cost of a festival pass (bracelet) is 10,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.  All VIP tickets sold out.</p>',
             },
-            bannerVisaTitle :{
+            bannerVisaTitle: {
                 'ru': 'Выиграй сноуборд с VISA!',
                 'en': 'Выиграй сноуборд с VISA!'
             },
-            bannerVisaText :{
+            bannerVisaText: {
                 'ru': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! <br> Подробности на <a href="http://newstarcamp.ru">newstarcamp.ru</a>',
                 'en': 'С 7 декабря по 7 марта оплати тур на New Star Camp картой VISA и стань участником розыгрыша трех сноубордов! <br> Подробности на <a href="http://newstarcamp.ru">newstarcamp.ru</a>'
             },
-            bracelet :{
-                'ru' : 'Браслет участника',
-                'en' : 'Festival pass'
+            bracelet: {
+                'ru': 'Браслет участника',
+                'en': 'Festival pass'
             },
-            skipass : {
-              'ru' : 'Скипасс',
-              'en' : 'Ski pass'
+            skipass: {
+                'ru': 'Скипасс',
+                'en': 'Ski pass'
             },
-            skipassDays : {
-              'ru' : 'дней',
-              'en' : 'days'
+            skipassDays: {
+                'ru': 'дней',
+                'en': 'days'
             },
-            tourNights : {
-              'ru' : 'ночей',
-              'en' : 'nights'
+            tourNights: {
+                'ru': 'ночей',
+                'en': 'nights'
             },
-            tourSum : {
-              'ru' : 'стоимость тура:',
-              'en' : ''
+            tourSum: {
+                'ru': 'стоимость тура:',
+                'en': ''
             },
-            tourSumFrom : {
-              'ru' : 'От',
-              'en' : 'From'
+            tourSumFrom: {
+                'ru': 'От',
+                'en': 'From'
             },
-            chooseButton : {
-                'ru' : 'Выбрать',
-                'en' : 'Book now'
+            chooseButton: {
+                'ru': 'Выбрать',
+                'en': 'Book now'
             },
             step1: {
                 'ru': 'Выберите тур',
                 'en': 'Choose your tour',
             },
-            guest1 : {
-              'ru' : '1 гость',
-              'en' : '1 guest'
+            guest1: {
+                'ru': '1 гость',
+                'en': '1 guest'
             },
-            guest2 : {
-              'ru' : '2 гостя',
-              'en' : '2 guests'
+            guest2: {
+                'ru': '2 гостя',
+                'en': '2 guests'
             },
-            guest3 : {
-              'ru' : '3 гостя',
-              'en' : '3 guests'
+            guest3: {
+                'ru': '3 гостя',
+                'en': '3 guests'
             },
-            guest4 : {
-              'ru' : '4 гостя',
-              'en' : '4 guests'
+            guest4: {
+                'ru': '4 гостя',
+                'en': '4 guests'
             },
-            guest5 : {
-              'ru' : '5 гостей',
-              'en' : '5 guests'
+            guest5: {
+                'ru': '5 гостей',
+                'en': '5 guests'
             },
-            guest6 : {
-              'ru' : '6 гостей',
-              'en' : '6 guests'
+            guest6: {
+                'ru': '6 гостей',
+                'en': '6 guests'
             },
-            guest7 : {
-              'ru' : '7 гостей',
-              'en' : '7 guests'
+            guest7: {
+                'ru': '7 гостей',
+                'en': '7 guests'
             },
-            guest8 : {
-              'ru' : '8 гостей',
-              'en' : '8 guests'
+            guest8: {
+                'ru': '8 гостей',
+                'en': '8 guests'
             },
-            guest9 : {
-              'ru' : '9 гостей',
-              'en' : '9 guests'
+            guest9: {
+                'ru': '9 гостей',
+                'en': '9 guests'
             },
-            guest10 : {
-              'ru' : '10 гостей',
-              'en' : '10 guests'
+            guest10: {
+                'ru': '10 гостей',
+                'en': '10 guests'
             },
-            guest11 : {
-              'ru' : '11 гостей',
-              'en' : '11 guests'
+            guest11: {
+                'ru': '11 гостей',
+                'en': '11 guests'
             },
-            guest12 : {
-              'ru' : '12 гостей',
-              'en' : '12 guests'
+            guest12: {
+                'ru': '12 гостей',
+                'en': '12 guests'
             },
-            guest13 : {
-              'ru' : '13 гостей',
-              'en' : '13 guests'
+            guest13: {
+                'ru': '13 гостей',
+                'en': '13 guests'
             },
-            guest14 : {
-              'ru' : '14 гостей',
-              'en' : '14 guests'
+            guest14: {
+                'ru': '14 гостей',
+                'en': '14 guests'
             },
-            guest15 : {
-              'ru' : '15 гостей',
-              'en' : '15 guests'
+            guest15: {
+                'ru': '15 гостей',
+                'en': '15 guests'
             },
-            breakfastIncluded : {
-              'ru' : 'Завтрак включен в стоимость',
-              'en' : 'breakfast included',
+            breakfastIncluded: {
+                'ru': 'Завтрак включен в стоимость',
+                'en': 'breakfast included',
             },
             roomType: {
                 'ru': 'Тип номера',
@@ -589,9 +589,9 @@ let vm = new Vue({
                 text: 'text-left',
                 col: 'col',
                 desc: {
-                    'ru' : '<p>До путешествия на Quiksilver New Star Camp 2022 осталось несколько шагов. Здесь ты можешь подобрать тур и узнать, что именно в него входит. Выбери один из вариантов, чтобы начать.</p>' +
+                    'ru': '<p>До путешествия на Quiksilver New Star Camp 2022 осталось несколько шагов. Здесь ты можешь подобрать тур и узнать, что именно в него входит. Выбери один из вариантов, чтобы начать.</p>' +
                         '<p>Туры длительностью менее 8 суток появятся в продаже после Нового Года</p>',
-                    'en' : '<p>There are a few steps left before traveling to Quiksilver New Star Camp 2022. Here you can choose a tour and find out what exactly is included in it. Choose one of the options to get started.</p>' +
+                    'en': '<p>There are a few steps left before traveling to Quiksilver New Star Camp 2022. Here you can choose a tour and find out what exactly is included in it. Choose one of the options to get started.</p>' +
                         '<p>Tours lasting less than 8 days will be on sale in January 2022</p>',
                 },
             },
@@ -605,8 +605,8 @@ let vm = new Vue({
                 text: 'text-center',
                 col: 'col-3',
                 desc: {
-                    'ru' : 'Любой из отелей курорта «Роза Хутор» гарантирует удобную логистику до площадок фестиваля и сэкономит твоё время, чтобы ты всё успел.',
-                    'en' : 'All the hotels in the Rosa Khutor resort guarantee convenient logistics to the festival sites and will save your time so you can enjoy its fun in full.'
+                    'ru': 'Любой из отелей курорта «Роза Хутор» гарантирует удобную логистику до площадок фестиваля и сэкономит твоё время, чтобы ты всё успел.',
+                    'en': 'All the hotels in the Rosa Khutor resort guarantee convenient logistics to the festival sites and will save your time so you can enjoy its fun in full.'
                 },
             },
             {
@@ -656,7 +656,7 @@ let vm = new Vue({
         hotels: [],
     },
     methods: {
-        goToNSCsite(){
+        goToNSCsite() {
             window.open('https://newstarcamp.ru/news/visa_snowboards/?utm_source=nswpay&utm_medium=banner&utm_campaign=visa')
         },
         acceptNumber() {
@@ -758,6 +758,12 @@ let vm = new Vue({
                     this.scrollToTop()
                 }
             } else if (this.step === 2) {
+                const startDates = [1, 2, 6,];
+                const endDates = [6, 9, 10,];
+
+                let dateStartNan = startDates.includes(new Date(this.form.dateFrom).getDate())
+                let dateEndNan = endDates.includes(new Date(this.form.dateTill).getDate())
+
                 if (!this.form.dateTill || !this.form.dateFrom) {
                     this.errors = this.translations.errorChooseDates[this.selectedLocale];
                     return false;
@@ -766,8 +772,15 @@ let vm = new Vue({
                     return false;
                 } else if (this.form.tourDays < this.minDays) {
                     let text = {
-                        'ru': 'Туры менее ' + this.minDays + ' суток, недоступны',
+                        'ru': 'Туры менее ' + this.minDays + ' дней, недоступны',
                         'en': 'Minimal tour ' + this.minDays + ' days'
+                    };
+                    this.errors = text[this.selectedLocale];
+                    return false;
+                } else if ( dateEndNan !== true || dateStartNan !== true) {
+                    let text = {
+                        'ru': 'Короткие туры должны начинаться 1, 2 или 6 и заканчиваться 6, 9 или 10 апреля',
+                        'en': 'Короткие туры должны начинаться 1, 2 или 6 и заканчиваться 6, 9 или 10 апреля'
                     };
                     this.errors = text[this.selectedLocale];
                     return false;
@@ -833,10 +846,23 @@ let vm = new Vue({
             this.scrollToTop()
         },
         setHotelActive(hotelId) {
+            const startDates = [1, 2, 6,];
+            const endDates = [6, 9, 10,];
+
+            let dateStartNan = startDates.includes(new Date(this.form.dateFrom).getDate())
+            let dateEndNan = endDates.includes(new Date(this.form.dateTill).getDate())
+
             if (this.form.tourDays < this.minDays) {
                 let text = {
-                    'ru': 'Туры менее ' + this.minDays + ' суток, недоступны',
+                    'ru': 'Туры менее ' + this.minDays + ' дней недоступны',
                     'en': 'Minimal tour ' + this.minDays + ' days'
+                };
+                this.errors = text[this.selectedLocale];
+                return false;
+            } else if ( dateEndNan !== true || dateStartNan !== true) {
+                let text = {
+                    'ru': 'Короткие туры должны начинаться 1, 2 или 6 и заканчиваться 6, 9 или 10 апреля',
+                    'en': 'Короткие туры должны начинаться 1, 2 или 6 и заканчиваться 6, 9 или 10 апреля'
                 };
                 this.errors = text[this.selectedLocale];
                 return false;
@@ -1172,37 +1198,38 @@ let vm = new Vue({
                 });
         },
         getActiveHotels() {
+            if (isNaN(this.form.dateTill) === false) {
+                let dateStart = this.form.dateFrom
+                let dateEnd = this.form.dateTill
+                let tourDays = this.form.tourDays
 
-            let dateStart = this.form.dateFrom;
-            let dateEnd = this.form.dateTill;
-            let tourDays = this.form.tourDays
+                this.cleanCurrentForm()
 
-            this.cleanCurrentForm()
-
-            const conf = {
-                responseType: 'text'
-            };
-            axios
-                .get("api/hotels", {
-                    params: {
-                        tourDays: tourDays,
-                        adults: this.form.adults,
-                        dateStart: dateStart,
-                        dateEnd: dateEnd,
-                        passPrice: this.form.passCurrentPrice,
-                        skiPassPrice: this.form.skiPassPrice,
-                    }
-                }, conf)
-                .then(response => {
-                    if (response.data) {
-                        this.hotels = Object.values(response.data)
-                    } else {
-                        this.errors = 'Нет доступных отелей на эти даты.';
-                    }
-                })
-                .catch(error => {
-                    console.log("error", error);
-                });
+                const conf = {
+                    responseType: 'text'
+                };
+                axios
+                    .get("api/hotels", {
+                        params: {
+                            tourDays: tourDays,
+                            adults: this.form.adults,
+                            dateStart: dateStart,
+                            dateEnd: dateEnd,
+                            passPrice: this.form.passCurrentPrice,
+                            skiPassPrice: this.form.skiPassPrice,
+                        }
+                    }, conf)
+                    .then(response => {
+                        if (response.data) {
+                            this.hotels = Object.values(response.data)
+                        } else {
+                            this.errors = 'Нет доступных отелей на эти даты.';
+                        }
+                    })
+                    .catch(error => {
+                        console.log("error", error);
+                    });
+            }
         },
         getActiveHotelRooms() {
             let option = {
@@ -1364,7 +1391,7 @@ let vm = new Vue({
             }
         },
         calcTourPrice() {
-            return  this.form.tourPrice - this.form.passDiscount;
+            return this.form.tourPrice - this.form.passDiscount;
         },
         dateTill() {
             if (this.form.pasCurrent.is_hotel === 1) {
