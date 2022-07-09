@@ -145,14 +145,12 @@ let vm = new Vue({
                 'en': 'Book your tour',
             },
             titleP: {
-                'ru': 'Купить Festival Pass',
-                'en': 'Tour Pass',
+                'ru': 'Купить браслет',
+                'en': 'Festival Pass',
             },
             festPass: {
-                'ru': '<p>Если ты просто хочешь приобрести браслет участника фестиваля, это можно сделать в штабе в период с 31.03 по 10.04.2022.</p>' +
-                    '<p>Стоимость браслета участника – 10 000 руб., стоимость VIP браслета – 20 000 руб. Все VIP билеты sold out.</p>',
-                'en': '<p>If you just want to buy a festival pass, you can do it at the festival HQ from 31.03 to 10.04.2022.</p>' +
-                    '<p>The cost of a festival pass (bracelet) is 10,000 rubles, the cost of a VIP pass (bracelet) is 20,000 rubles.  All VIP tickets sold out.</p>',
+                'ru': '<p>Браслет участника дает право доступа на мероприятия фестиваля, но не включает в себя проживание, merch pack и скипасc.</p>',
+                'en': '<p>Браслет участника дает право доступа на мероприятия фестиваля, но не включает в себя проживание, merch pack и скипасс.</p>',
             },
             bannerVisaTitle: {
                 'ru': 'Выиграй сноуборд с VISA!',
@@ -254,6 +252,30 @@ let vm = new Vue({
                 'ru': '15 гостей',
                 'en': '15 guests'
             },
+            guest1fp: {
+                'ru': '1 браслет',
+                'en': '1 guest'
+            },
+            guest2fp: {
+                'ru': '2 браслета',
+                'en': '2 guest'
+            },
+            guest3fp: {
+                'ru': '3 браслета',
+                'en': '3 guest'
+            },
+            guest4fp: {
+                'ru': '4 браслета',
+                'en': '4 guest'
+            },
+            guest5fp: {
+                'ru': '5 браслетов',
+                'en': '5 guest'
+            },
+            guest6fp: {
+                'ru': '6 браслетов',
+                'en': '6 guest'
+            },
             breakfastIncluded: {
                 'ru': 'Завтрак включен в стоимость',
                 'en': 'breakfast included',
@@ -291,8 +313,8 @@ let vm = new Vue({
                 'en': 'More'
             },
             soldOut: {
-                'ru': 'SOLD OUT',
-                'en': 'SOLD OUT'
+                'ru': 'Sold Out',
+                'en': 'Sold Out'
             },
             stepNext: {
                 'ru': 'Далее',
@@ -425,6 +447,14 @@ let vm = new Vue({
             step2: {
                 'ru': 'Выберите отель',
                 'en': 'Please, choose your accommodation'
+            },
+            step2fp: {
+                'ru': 'Выберите количество браслетов',
+                'en': 'Please, choose your accommodation'
+            },
+            step2fpdesc: {
+                'ru': 'Вместе веселей, возможно ваши друзья вас поддержат и вы поедете небольшой компанией. Укажите количество браслетов.',
+                'en': 'Please, choose how many passes you need'
             },
             stepGuests: {
                 'ru': 'Количество гостей',
@@ -788,6 +818,10 @@ let vm = new Vue({
                     this.errors = null
                 }
                 if (this.form.adults && this.errors == null) {
+                    if (this.form.pasCurrent.is_hotel === 0) {
+                        this.step = 3
+                        this.scrollToTop()
+                    }
                     this.step++
                     this.scrollToTop()
                 }
@@ -837,13 +871,26 @@ let vm = new Vue({
             let pasCurrent = this.passes.filter(pass => {
                 return pass.code === passCode
             })
-            this.form.skiPassPrice = this.form.currentEvent.skipass_price
-            this.form.passColor = pasCurrent[0].color
-            this.form.passCurrentPrice = pasCurrent[0].price
-            this.form.pasCurrent = pasCurrent[0]
-            this.getActiveHotels()
-            this.step++
-            this.scrollToTop()
+            console.log('passCode = ' + passCode)
+            console.log(pasCurrent[0].is_hotel)
+
+            if (pasCurrent[0].is_hotel === 1) {
+                this.form.skiPassPrice = this.form.currentEvent.skipass_price
+                this.form.passColor = pasCurrent[0].color
+                this.form.passCurrentPrice = pasCurrent[0].price
+                this.form.pasCurrent = pasCurrent[0]
+                this.getActiveHotels()
+                this.step++
+                this.scrollToTop()
+            } else if (pasCurrent[0].is_hotel === 0) {
+                this.form.skiPassPrice = 0
+                this.form.passCurrentPrice = pasCurrent[0].price
+                this.form.pasCurrent = pasCurrent[0]
+                this.hotels = []
+                this.step ++
+                this.scrollToTop()
+            }
+
         },
         setHotelActive(hotelId) {
             const startDates = [1, 2, 6,];
@@ -1198,7 +1245,7 @@ let vm = new Vue({
                 });
         },
         getActiveHotels() {
-            if (isNaN(this.form.dateTill) === false) {
+            if (this.form.dateTill && this.form.pasCurrent.is_hotel === 1) {
                 let dateStart = this.form.dateFrom
                 let dateEnd = this.form.dateTill
                 let tourDays = this.form.tourDays
@@ -1391,7 +1438,12 @@ let vm = new Vue({
             }
         },
         calcTourPrice() {
-            return this.form.tourPrice - this.form.passDiscount;
+            if (this.form.pasCurrent.is_hotel === 0) {
+                this.form.tourPrice = this.form.pasCurrent.price * this.form.adults
+                return this.form.tourPrice - this.form.passDiscount;
+            } else if (this.form.pasCurrent.is_hotel === 1) {
+                return this.form.tourPrice - this.form.passDiscount;
+            }
         },
         dateTill() {
             if (this.form.pasCurrent.is_hotel === 1) {

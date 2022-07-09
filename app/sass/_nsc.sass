@@ -175,18 +175,24 @@ main
     .nsc-pass-price
       font-size: 20px
       font-weight: 700
+      line-height: 30px
 
   .nsc-button
     background-color: #777fa8
     color: #fff
     border: none
-    text-transform: uppercase
+    //text-transform: uppercase
     cursor: pointer
     border-radius: 0
 
     label
       width: 100%
       height: 80px
+      font-size: 18px
+      cursor: pointer
+
+    label.nsc-sold-out
+      cursor: auto
 
   .nsc-button.disabled
     background-color: #6c757d
@@ -264,7 +270,6 @@ main
 
   .nsc-pass
     text-align: left
-    margin-bottom: 20px
     border: 1px solid
     border-collapse: collapse
 
@@ -279,6 +284,21 @@ main
     h2
       font-size: 24px
       font-weight: 700
+
+  .nsc-pass-card
+    .col-md-6
+      @media (min-width: 726px)
+        max-width: 48%
+
+    .col-md-1
+      @media (min-width: 726px)
+        max-width: 4%
+
+    .card-standard
+      background-color: rgb(135, 214, 190)
+
+    .card-vip
+      background-color: rgb(242, 170, 189)
 
   .nsc-banner-visa
     a, ::after, ::before
