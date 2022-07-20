@@ -33,7 +33,7 @@ let router = new VueRouter({
     routes: []
 });
 
-Vue.config.devtools = true
+Vue.config.devtools = false
 
 function isValidDate(date) {
     return date instanceof Date && !isNaN(date);
@@ -72,7 +72,7 @@ let vm = new Vue({
             dateTill: '2022-09-18',
             tourDays: 3,
             skiPassDays: 0,
-            adults: 2,
+            adults: 1,
             adultsText: null,
             kids: null,
             kidsText: null,
@@ -133,7 +133,8 @@ let vm = new Vue({
             hotelBreakfastTotal: 0,
             arrTourDays: null,
             payed: null,
-            passDiscount: 0
+            passDiscount: 0,
+            passDiscountPercent: 0
         },
         translations: {
             title: {
@@ -361,8 +362,8 @@ let vm = new Vue({
                 'en': 'Name'
             },
             guestsName: {
-                'ru': 'Гости',
-                'en': 'Guests'
+                'ru': 'Браслеты',
+                'en': 'Bracelet'
             },
             guestsMail: {
                 'ru': 'гостя',
@@ -548,8 +549,8 @@ let vm = new Vue({
                 'en': 'offer.'
             },
             buyTour: {
-                'ru': 'Купить тур',
-                'en': 'Buy tour'
+                'ru': 'Купить',
+                'en': 'Buy'
             },
             tourTanks: {
                 'ru': 'Спасибо',
@@ -595,7 +596,7 @@ let vm = new Vue({
                 text: 'text-left',
                 col: 'col',
                 desc: {
-                    'ru': '<p>До путешествия на New Star Weekend осталось всего несколько шагов. Здесь ты можешь подобрать подходящую категорию билета на все дни фестиваля. <br>Выбери один из вариантов, чтобы начать:</p>',
+                    'ru': '<p>До путешествия на NEW STAR WEEKEND осталось всего несколько шагов. Здесь ты можешь подобрать подходящую категорию билета на все дни фестиваля. <br>Выбери один из вариантов, чтобы начать:</p>',
                     'en': '<p>There are a few steps left before traveling to Quiksilver New Star Weekend 2022. Here you can choose a tour and find out what exactly is included in it. Choose one of the options to get started.</p>',
                 },
             },
@@ -977,7 +978,13 @@ let vm = new Vue({
                 .post("api/promo", data, conf)
                 .then(response => {
                     if (response.data !== false) {
-                        this.form.passDiscount = response.data;
+                        if (response.data.percent === 0) {
+                            this.form.passDiscount = response.data.discount;
+                        } else {
+                            this.form.passDiscountPercent = response.data.percent
+                            this.form.passDiscount = response.data.discount
+                        }
+                        this.calcTourPrice()
                     }
                 })
                 .catch(error => {
@@ -1115,6 +1122,7 @@ let vm = new Vue({
                 fdata.append('dateFrom', this.form.dateFrom.toLocaleString("ru", options))
                 fdata.append('dateTill', this.form.dateTill.toLocaleString("ru", options));
                 fdata.append('adults', adultsGuests);
+                fdata.append('adults_num', this.form.adults);
                 this.form.adultsText = adultsGuests
                 fdata.append('adultsNum', this.form.adults);
                 fdata.append('kids', kids);
@@ -1350,12 +1358,19 @@ let vm = new Vue({
         calcTourPrice()
         {
             if (this.form.pasCurrent.is_hotel === 0) {
-                console.log("this.form.adults")
-                console.log(this.form.adults)
                 let price = this.form.adults < 4
-                    ? this.form.pasCurrent.price : this.form.pasCurrent.price_many
+                    ? this.form.pasCurrent.price :
+                    this.form.pasCurrent.price_many == null ?
+                        this.form.pasCurrent.price :
+                        this.form.pasCurrent.price_many
                 this.form.tourPrice = price * this.form.adults
-                return this.form.tourPrice - this.form.passDiscount;
+                if (this.form.passDiscountPercent === 0) {
+                    this.form.tourPrice = this.form.tourPrice - this.form.passDiscount;
+                    return this.form.tourPrice;
+                } else {
+                    this.form.tourPrice = this.form.tourPrice - ((this.form.passDiscount / 100) * this.form.tourPrice)
+                    return this.form.tourPrice
+                }
             } else if (this.form.pasCurrent.is_hotel === 1) {
                 return this.form.tourPrice - this.form.passDiscount;
             }
@@ -1423,9 +1438,9 @@ computed: {
             }
         }
         if (this.form.adults > 1) {
-            adults = this.form.adults + ' взрослых'
+            adults = this.form.adults
         } else {
-            adults = this.form.adults + ' взрослый'
+            adults = this.form.adults
         }
         return adults + kids;
     },

@@ -3,6 +3,8 @@
 $fontsize: 14px // Body Font Size
 $textcolor: #000000 // Text Color
 $bgcolor: #78C0B5
+$fname: 'Verdana'
+$furl: '../fonts/Verdana.ttf'
 // $system: -apple-system, BlinkMacSystemFont, Arial, sans-serif // System Font Family
 
 // Bootstrap compatible gutter variable => $gutter
@@ -25,7 +27,7 @@ $bgcolor: #78C0B5
 		font-style: $fstyle
 		font-weight: $fweight
 		// font-display: swap // Uncomment to initially display system fonts
-		src: local($fname), url($furl) format('woff2')
+		src: local($fname), url($furl) format('ttf')
 
 //@include font('Roboto', normal, 400, '../fonts/roboto-regular-webfont.woff2')
 //@include font('Roboto', normal, 400, '../fonts/roboto-cyrillic.woff2')
@@ -52,7 +54,7 @@ input, textarea
 
 body
 	//font-family: $roboto
-	font-family: Verdana
+	font-family: 'Verdana'
 	font-size: $fontsize
 	min-width: 320px
 	position: relative

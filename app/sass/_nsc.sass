@@ -171,6 +171,9 @@ main
     text-align: left
     margin-bottom: 20px
 
+    .nsw-pass-desc
+      min-height: 133px
+
     .nsw-braslet
       position: absolute
       top: 0
@@ -237,15 +240,16 @@ main
 
   .nsc-button-pre #alfa-payment__button
     display: block
-    background-color: #777fa8
-    color: #fff
+    background-color: #9eff00
+    color: #000
     font-size: 1rem
     font-weight: 400
     line-height: 1.5
-    height: 81px
-    width: 196px
-    border: 1px solid #000
+    height: 80px
+    width: 125px
+    border: 0
     border-radius: 0
+    margin: auto
 
   .nsc-button .alfa-payment__message
     position: absolute
@@ -296,11 +300,15 @@ main
   .select__item
     cursor: pointer
     font-size: 16px
-    line-height: 24px
+    line-height: 16px
     padding: 8px
 
   .select__item span
-      padding-left: 25%
+    width: 100%
+    text-align: right
+
+  .select__item .select__text
+    width: 100px
 
   .select__item:hover
     background-color: #f2f2f2
@@ -309,7 +317,6 @@ main
     background: #FFFFFF url("../images/svg/nsc-select-dropdown.svg") 95% center no-repeat
     border: none
     height: 42px
-    white-space: pre-wrap
     border-radius: 0
 
   .nsc-select option[value=""][disabled]
