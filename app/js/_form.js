@@ -28,9 +28,9 @@ Vue.directive('phone', {
     },
 });
 
-let router = new VueRouter({
+const router = new VueRouter({
+    routes: [],
     mode: 'history',
-    routes: []
 });
 
 Vue.config.devtools = false
@@ -834,6 +834,7 @@ let vm = new Vue({
                 this.getActiveHotels()
                 this.step++
                 this.scrollToTop()
+                this.discountClear()
             } else if (pasCurrent[0].is_hotel === 0) {
                 this.form.skiPassPrice = 0
                 this.form.passCurrentPrice = pasCurrent[0].price
@@ -841,6 +842,7 @@ let vm = new Vue({
                 this.hotels = []
                 this.step++
                 this.scrollToTop()
+                this.discountClear()
             }
 
         },
@@ -972,6 +974,7 @@ let vm = new Vue({
                 promoCode: this.form.promocode,
                 eventCode: this.form.event,
                 tourPass: this.form.pasCurrent.code,
+                tourPassId: this.form.pasCurrent.id,
                 hotelId: hotelId
             };
             axios
@@ -1355,6 +1358,9 @@ let vm = new Vue({
             let text = quantity === 1 ? 'билет' : 'билета'
             currentText.innerText = quantity + " " + text;
         },
+        discountClear() {
+            this.form.passDiscount = null
+        },
         calcTourPrice()
         {
             if (this.form.pasCurrent.is_hotel === 0) {
@@ -1461,4 +1467,4 @@ destroyed()
 {
 
 },
-});
+}).$mount('#orderForm');
