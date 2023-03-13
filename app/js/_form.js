@@ -819,6 +819,10 @@ let vm = new Vue({
             this.form.hotelBreakfast = 0;
         },
         prevStep() {
+            if (this.step === 4 && this.form.pasCurrent.is_hotel === 0) {
+                this.step = 2
+                this.scrollToTop()
+            }
             this.step--;
             this.form.consent = null
             this.scrollToTop()
@@ -834,8 +838,8 @@ let vm = new Vue({
                     this.scrollToTop()
                 }
             } else if (this.step === 2) {
-                const startDates = [30];
-                const endDates = [2,3];
+                const startDates = [27, 30];
+                const endDates = [2, 3];
 
                 let dateStartNan = startDates.includes(new Date(this.form.dateFrom).getDate())
                 let dateEndNan = endDates.includes(new Date(this.form.dateTill).getDate())
@@ -853,7 +857,7 @@ let vm = new Vue({
                     };
                     this.errors = text[this.selectedLocale];
                     return false;
-                } else if ( dateEndNan !== true || dateStartNan !== true) {
+                } else if (dateEndNan !== true || dateStartNan !== true) {
                     let text = {
                         'ru': 'Тур должен начинаться 30 марта и заканчиваться 2 или 3 апреля',
                         'en': 'Тур должен начинаться 30 марта и заканчиваться 2 или 3 апреля'
@@ -905,6 +909,7 @@ let vm = new Vue({
                 } else {
                     this.saveGuest()
                     if (true) {
+                        this.setTourName()
                         this.errors = null;
                         this.step++
                         this.scrollToTop()
@@ -917,9 +922,6 @@ let vm = new Vue({
             let pasCurrent = this.passes.filter(pass => {
                 return pass.code === passCode
             })
-            console.log('passCode = ' + passCode)
-            console.log(pasCurrent[0].is_hotel)
-
             if (pasCurrent[0].is_hotel === 1) {
                 this.form.skiPassPrice = this.form.currentEvent.skipass_price
                 this.form.passColor = pasCurrent[0].color
@@ -933,14 +935,14 @@ let vm = new Vue({
                 this.form.passCurrentPrice = pasCurrent[0].price
                 this.form.pasCurrent = pasCurrent[0]
                 this.hotels = []
-                this.step ++
+                this.setAdults()
+                this.step++
                 this.scrollToTop()
             }
-
         },
         setHotelActive(hotelId) {
-            const startDates = [27,30];
-            const endDates = [2,3];
+            const startDates = [27, 30];
+            const endDates = [2, 3];
 
             let dateStartNan = startDates.includes(new Date(this.form.dateFrom).getDate())
             let dateEndNan = endDates.includes(new Date(this.form.dateTill).getDate())
@@ -952,7 +954,7 @@ let vm = new Vue({
                 };
                 this.errors = text[this.selectedLocale];
                 return false;
-            } else if ( dateEndNan !== true || dateStartNan !== true) {
+            } else if (dateEndNan !== true || dateStartNan !== true) {
                 let text = {
                     'ru': 'Туры должны начинаться 27 или 30 марта и заканчиваться 2 или 3 апреля',
                     'en': 'Туры должны начинаться 27 или 30 марта и заканчиваться 2 или 3 апреля'
@@ -980,6 +982,9 @@ let vm = new Vue({
             this.form.skiPassTotal = roomCurrent[0].total_skiPass
             this.form.hotelTotal = roomCurrent[0].total_hotel
             this.form.passTotal = roomCurrent[0].total_pass
+            this.form.passDiscountPercent = 0
+            this.form.passDiscount = 0
+            this.form.promocode = null
             this.form.tourPrice = (this.form.hotelBreakfast === 1) ? this.form.roomCurrent.total_price + this.form.roomCurrent.total_breakfasts : this.form.roomCurrent.total_price
             this.step++
             this.scrollToTop()
@@ -1086,21 +1091,33 @@ let vm = new Vue({
         },
         applyPromoCode() {
             this.errors = null;
+            let hotelId = this.form.pasCurrent.is_hotel === 0 ? 0 : this.form.hotelCurrent.id
             const conf = {
-                responseType: 'text'
+                responseType: 'json'
             };
             const data = {
                 promoCode: this.form.promocode,
                 eventCode: this.form.event,
                 tourPass: this.form.pasCurrent.code,
                 tourPassId: this.form.pasCurrent.id,
-                hotelId: this.form.hotelCurrent.id
+                hotelId: hotelId
             };
             axios
                 .post("api/promo", data, conf)
                 .then(response => {
                     if (response.data !== false) {
-                        this.form.passDiscount = response.data;
+                        if (response.data.percent === 0) {
+                            if (this.form.passDiscount !== Number(response.data.discount)) {
+                                this.form.passDiscount = Number(response.data.discount)
+                                this.calcTourPrice()
+                            }
+                        } else {
+                            if (this.form.passDiscountPercent !== Number(response.data.percent)) {
+                                this.form.passDiscountPercent = Number(response.data.percent)
+                                this.form.passDiscount = Number(response.data.discount)
+                                this.calcTourPrice()
+                            }
+                        }
                     }
                 })
                 .catch(error => {
@@ -1132,7 +1149,7 @@ let vm = new Vue({
                 });
             this.errors = null;
         },
-        saveApiVoucher() {
+        saveApiVoucher(tournumber) {
             const conf = {
                 responseType: 'text',
                 timeout: 1000
@@ -1143,10 +1160,13 @@ let vm = new Vue({
                 month: 'numeric',
                 day: 'numeric',
             }
+
             this.form.dateFrom = this.form.dateFrom.toLocaleString("ru", options)
             this.form.dateTill = this.form.dateTill.toLocaleString("ru", options)
+            this.form.tourNumber = tournumber;
 
             const data = this.form
+
             axios
                 .post("api/voucher/", data, conf, {timeout: 1000})
                 .then(response => {
@@ -1325,6 +1345,28 @@ let vm = new Vue({
                     });
             }
         },
+        setAdults() {
+            if (this.form.pasCurrent.is_hotel === 0) {
+                if (this.form.pasCurrent.code == 'NSC23PASS1') {
+                    this.form.dateRange = 273
+                    this.form.dateFrom = '2023-03-27'
+                    this.form.dateTill = '2023-04-03'
+                    this.form.tourDays = 7
+                    this.form.skiPassDays = 6
+                } else if (this.form.pasCurrent.code == 'NSC23PASS2') {
+                    this.form.dateRange = 302
+                    this.form.dateFrom = '2023-03-30'
+                    this.form.dateTill = '2023-04-02'
+                    this.form.tourDays = 3
+                    this.form.skiPassDays = 3
+                }
+                if (this.form.pasCurrent.price_total > 0) {
+                    this.form.tourPrice = this.form.pasCurrent.price_total * this.form.adults
+                } else {
+                    this.form.tourPrice = this.form.pasCurrent.price * this.form.adults * this.form.tourDays
+                }
+            }
+        },
         getActiveHotelRooms() {
             let option = {
                 year: 'numeric',
@@ -1455,9 +1497,27 @@ let vm = new Vue({
                     this.errors = 'Ошибка запроса api/quota/.';
                     console.log("error", error);
                 });
-        }
+        },
+        calcTourPrice() {
+            if (this.form.passDiscountPercent === 0) {
+                this.form.tourPrice = this.form.tourPrice - this.form.passDiscount;
+                return this.form.tourPrice;
+            } else {
+                this.form.tourPrice = this.form.tourPrice - ((this.form.passDiscount / 100) * this.form.passTotal)
+                return this.form.tourPrice
+            }
+        },
+        setTourName() {
+            if (this.form.pasCurrent.is_hotel === 1 && this.form.hotel) {
+                this.form.tourName = 'New Star Camp tour, hotel: ' + this.form.hotelCurrent.name;
+            } else {
+                this.form.tourName = 'New Star Camp Festival Pass';
+            }
+            return this.form.tourName;
+        },
     },
     created: function () {
+
     },
     beforeMount() {
         this.getActivePasses()
@@ -1477,19 +1537,14 @@ let vm = new Vue({
 
     },
     computed: {
+        showTourName() {
+            return this.form.tourName;
+        },
         dateFrom() {
             if (this.form.pasCurrent.is_hotel === 1) {
                 return 'дата приезда'
             } else {
                 return 'дата действия браслета с'
-            }
-        },
-        calcTourPrice() {
-            if (this.form.pasCurrent.is_hotel === 0) {
-                this.form.tourPrice = this.form.pasCurrent.price * this.form.adults
-                return this.form.tourPrice - this.form.passDiscount;
-            } else if (this.form.pasCurrent.is_hotel === 1) {
-                return this.form.tourPrice - this.form.passDiscount;
             }
         },
         dateTill() {
@@ -1519,14 +1574,6 @@ let vm = new Vue({
             }
             return adults + kids;
         },
-        setTourName() {
-            if (this.form.pasCurrent.is_hotel === 1 && this.form.hotel) {
-                this.form.tourName = 'New Star Camp tour, hotel: ' + this.form.hotelCurrent.name;
-            } else {
-                this.form.tourName = 'New Star Camp Festival Pass';
-            }
-            return this.form.tourName;
-        },
         activeRooms() {
             return this.hotelRooms.filter(room => {
                 return room.maxGuests >= this.form.adults
@@ -1534,7 +1581,7 @@ let vm = new Vue({
         },
         activeRoomBeds() {
             return this.hotelRoomBeds
-        },
+        }
     },
     watch: {},
     destroyed() {
