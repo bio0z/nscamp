@@ -1106,17 +1106,20 @@ let vm = new Vue({
                 .post("api/promo", data, conf)
                 .then(response => {
                     if (response.data !== false) {
-                        if (response.data.percent === 0) {
+                        if (typeof response.data.percent !== "undefined" && typeof response.data.discount !== "undefined") {
                             if (this.form.passDiscount !== Number(response.data.discount)) {
                                 this.form.passDiscount = Number(response.data.discount)
+                                this.form.passDiscountPercent = Number(response.data.percent)
                                 this.calcTourPrice()
-                            }
-                        } else {
-                            if (this.form.passDiscountPercent !== Number(response.data.percent)) {
+                            } else if (this.form.passDiscountPercent !== Number(response.data.percent)) {
                                 this.form.passDiscountPercent = Number(response.data.percent)
                                 this.form.passDiscount = Number(response.data.discount)
                                 this.calcTourPrice()
+                            } else {
+                                this.errors = 'Купон применен, скидка не изменилась!'
                             }
+                        } else {
+                            this.errors = 'Промокод не корректный'
                         }
                     }
                 })
@@ -1499,7 +1502,7 @@ let vm = new Vue({
                 });
         },
         calcTourPrice() {
-            if (this.form.passDiscountPercent === 0) {
+            if (this.form.passDiscountPercent == 0) {
                 this.form.tourPrice = this.form.tourPrice - this.form.passDiscount;
                 return this.form.tourPrice;
             } else {
