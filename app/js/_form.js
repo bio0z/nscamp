@@ -50,11 +50,11 @@ let vm = new Vue({
             'en': "EN",
         },
         selectedLocale: 'ru',
-        days: [1, 2, 3],
+        days: [1, 2, 3, 4],
         minDays: 3,
-        firstDay: new Date(2022, 9, 15),
+        firstDay: new Date(2023, 9, 21),
         dateClearable: false,
-        innerValue: [new Date('2022-09-15'), new Date('2022-09-18')],
+        innerValue: [new Date('2023-09-21'), new Date('2023-09-24')],
         activePass: null,
         passDetails: null,
         gallery: null,
@@ -62,14 +62,15 @@ let vm = new Vue({
         roomGallery: null,
         currentStep: null,
         form: {
-            event: 'NSW22',
+            event: 'NSW23',
             currentEvent: null,
             passColor: '#777fa8',
+            passColorVoucher: null,
             pasCurrent: null,
             passCurrentPrice: 0,
-            dateRange: [new Date('2022-09-15'), new Date('2022-09-18')],
-            dateFrom: '2022-09-15',
-            dateTill: '2022-09-18',
+            dateRange: [new Date('2023-09-21'), new Date('2023-09-24')],
+            dateFrom: '2023-09-21',
+            dateTill: '2023-09-24',
             tourDays: 3,
             skiPassDays: 0,
             adults: 1,
@@ -174,7 +175,7 @@ let vm = new Vue({
                 'en': 'days'
             },
             tourNights: {
-                'ru': 'ночей',
+                'ru': 'ночи',
                 'en': 'nights'
             },
             tourSum: {
@@ -494,7 +495,7 @@ let vm = new Vue({
                 'en': 'Please, fill correct number of cell phone'
             },
             tourIncludedHeader: {
-                'ru': 'В тур включено:',
+                'ru': 'В пакетное предложение включено:',
                 'en': 'Tour included:'
             },
             tourIncludedHotel: {
@@ -557,7 +558,7 @@ let vm = new Vue({
                 'en': 'Thank you'
             },
             tourSuccess: {
-                'ru': '<p>Благодарим вас за покупку тура на Quiksilver New Star Weekend 2022</p>\n' +
+                'ru': '<p>Благодарим вас за покупку тура на Quiksilver New Star Weekend 2023</p>\n' +
                     '<p>Тур и ваучеры на получение ски-пасса <br>отправлены на указанную вами почту.</p>',
                 'en': '<p>Thank you for your purchase!</p>' +
                     '<p>The tour voucher has been sent to your e-mail.</p>' +
@@ -571,16 +572,20 @@ let vm = new Vue({
             },
             newStarDesc: {
                 'ru': 'ООО «Нью Стар» — организатор спортивно-музыкального фестиваля New Star Weekend,' +
-                    'который пройдёт 16 - 18 сентября 2022 года на всесезонном горном курорте «Роза Хутор» (Сочи)',
+                    'который пройдёт 21 - 25 сентября 2023 года на всесезонном горном курорте «Роза Хутор» (Сочи)',
                 'en': '“New Star” LLC is the organizer of “New Star Weekend” sports and music festival, that will' +
-                    ' be held on March 16 - 18 September, 2022 at Russian ski resort “Rosa Khutor” (Sochi).'
-            }
+                    ' be held on March 21 - 25 September, 2023 at Russian ski resort “Rosa Khutor” (Sochi).'
+            },
+            tourDates2124: {
+                'ru': '21 - 24 cентября',
+                'en': '21 - 24 september',
+            },
         },
         sent: false,
         showModal: false,
         showOffer: false,
         step: 1,
-        totalsteps: 4,
+        totalsteps: 5,
         errors: null,
         guests: 1,
         error: null,
@@ -597,26 +602,37 @@ let vm = new Vue({
                 col: 'col',
                 desc: {
                     'ru': '<p>До путешествия на NEW STAR WEEKEND осталось всего несколько шагов. Здесь ты можешь подобрать подходящую категорию билета на все дни фестиваля. <br>Выбери один из вариантов, чтобы начать:</p>',
-                    'en': '<p>There are a few steps left before traveling to Quiksilver New Star Weekend 2022. Here you can choose a tour and find out what exactly is included in it. Choose one of the options to get started.</p>',
+                    'en': '<p>There are a few steps left before traveling to Quiksilver New Star Weekend 2023. Here you can choose a tour and find out what exactly is included in it. Choose one of the options to get started.</p>',
                 },
             },
             {
                 active: false,
                 id: 2,
                 name: {
-                    'ru': 'Выберите<br> количество <br> билетов',
+                    'ru': 'Выберите<br> отель',
                     'en': 'Hotel'
                 },
                 text: 'text-center',
                 col: 'col-3',
                 desc: {
-                    'ru': 'Вместе в горах веселее! <br>Приглашай друзей и получай скидку при покупке<br> группового билета на четыре человека.',
-                    'en': 'Вместе в горах веселее! <br>Приглашай друзей и получай скидку при покупке<br> группового билета на четыре человека.'
+                    'ru': 'Любой из отелей курорта "Роза Хутор" гарантирует удобную логистику до площадок фестиваля и сэкономит твое время, чтобы ты все успел.',
+                    'en': 'Любой из отелей курорта "Роза Хутор" гарантирует удобную логистику до площадок фестиваля и сэкономит твое время, чтобы ты все успел.'
                 },
             },
             {
                 active: false,
                 id: 3,
+                name: {
+                    'ru': 'Выбор<br> номера',
+                    'en': 'Accomodation'
+                },
+                text: 'text-center',
+                col: 'col-3',
+                desc: 'Во всех отелях курорта есть номера на любой вкус и кошелек. Просто выбери подходящий номер.<br> Рекомендуем добавить завтрак, чтобы начать день в горах полным энергии!'
+            },
+            {
+                active: false,
+                id: 4,
                 name: {
                     'ru': 'Давайте <br>знакомиться',
                     'en': 'Давайте <br>знакомиться'
@@ -691,12 +707,6 @@ let vm = new Vue({
                 })
             }
         },
-        datesCampRange(date) {
-            const firstDay = this.firstDay;
-            firstDay.setHours(0, 0, 0, 0);
-
-            return date < firstDay || date > new Date(firstDay.getTime() + 9 * 24 * 3600 * 1000);
-        },
         getClasses(cellDate, currentDates, classes) {
             if (
                 !/disabled|active|not-current-month/.test(classes) &&
@@ -738,16 +748,24 @@ let vm = new Vue({
             window.scrollTo(0, element.offsetTop)
         },
         calcTourDays() {
-            let tourDays = 0
-            this.form.dateRange = this.innerValue;
-            this.form.dateFrom = this.form.dateRange[0];
-            this.form.dateTill = this.form.dateRange[1];
-
+            if (this.form.dateRange == 2124) {
+                this.form.dateFrom = '2023-09-21'
+                this.form.dateTill = '2023-09-24'
+                this.form.tourDays = 3
+                this.form.skiPassDays = 3
+                this.translations.skipassDays = {
+                    'ru': 'дня',
+                    'en': 'days'
+                }
+                this.translations.tourNights = {
+                    'ru': 'ночи',
+                    'en': 'nights'
+                }
+            }
             if (this.form.dateFrom && this.form.dateTill) {
-                tourDays = ((this.form.dateTill - this.form.dateFrom) / 1000 / 60 / 60 / 24)
-                this.form.tourDays = tourDays
-                this.form.skiPassDays = (tourDays >= 7) ? tourDays - 1 : tourDays
-                this.getActiveHotels()
+                if (this.form.pasCurrent.is_hotel === 1) {
+                    this.getActiveHotels()
+                }
             }
         },
         cleanCurrentForm() {
@@ -757,6 +775,10 @@ let vm = new Vue({
             this.form.hotelBreakfast = 0;
         },
         prevStep() {
+            if (this.step === 4 && this.form.pasCurrent.is_hotel === 0) {
+                this.step = 2
+                this.scrollToTop()
+            }
             this.step--;
             this.form.consent = null
             this.scrollToTop()
@@ -789,10 +811,16 @@ let vm = new Vue({
                     this.errors = null
                 }
                 if (this.form.adults && this.errors == null) {
-                    this.step++
-                    this.scrollToTop()
+                    if (this.form.pasCurrent.is_hotel === 0) {
+                        this.step = this.step + 2
+                        this.scrollToTop()
+                    } else {
+                        this.step++
+                        this.scrollToTop()
+                    }
                 }
-            } else if (this.step === 3) {
+            } else if (this.step === 4) {
+                console.log('this.step 4 ' + this.step)
                 if (!this.form.fname || !this.form.sname) {
                     this.errors = this.translations.errorFillFIO[this.selectedLocale];
                     return false;
@@ -808,6 +836,32 @@ let vm = new Vue({
                 } else if (!this.validPhone(this.form.phone)) {
                     this.errors = this.translations.errorFillCorrectPhone[this.selectedLocale];
                     return false;
+                } else if (this.form.pasCurrent.is_hotel === 1) {
+                    if (this.form.adults >= 2 && (!this.form.gfname || !this.form.gsname)) {
+                        this.errors = this.translations.errorFillFIO2[this.selectedLocale];
+                        return false;
+                    } else if (this.form.adults >= 3 && (!this.form.g3fname || !this.form.g3sname)) {
+                        this.errors = this.translations.errorFillFIO3[this.selectedLocale];
+                        return false;
+                    } else if (this.form.adults >= 4 && (!this.form.g4fname || !this.form.g4sname)) {
+                        this.errors = this.translations.errorFillFIO4[this.selectedLocale];
+                        return false;
+                    } else if (this.form.adults >= 5 && (!this.form.g5fname || !this.form.g5sname)) {
+                        this.errors = this.translations.errorFillFIO5[this.selectedLocale];
+                        return false;
+                    } else if (this.form.adults >= 6 && (!this.form.g6fname || !this.form.g6sname)) {
+                        this.errors = this.translations.errorFillFIO6[this.selectedLocale];
+                        return false;
+                    } else {
+                        this.saveGuest()
+                        if (true) {
+                            this.calcTourPrice()
+                            this.setTourName()
+                            this.errors = null;
+                            this.step++
+                            this.scrollToTop()
+                        }
+                    }
                 } else {
                     this.saveGuest()
                     if (true) {
@@ -829,6 +883,7 @@ let vm = new Vue({
             if (pasCurrent[0].is_hotel === 1) {
                 this.form.skiPassPrice = this.form.currentEvent.skipass_price
                 this.form.passColor = pasCurrent[0].color
+                this.form.passColorVoucher = pasCurrent[0].voucher_color
                 this.form.passCurrentPrice = pasCurrent[0].price
                 this.form.pasCurrent = pasCurrent[0]
                 this.getActiveHotels()
@@ -839,6 +894,7 @@ let vm = new Vue({
                 this.form.skiPassPrice = 0
                 this.form.passCurrentPrice = pasCurrent[0].price
                 this.form.pasCurrent = pasCurrent[0]
+                this.form.passColorVoucher = pasCurrent[0].voucher_color
                 this.hotels = []
                 this.step++
                 this.scrollToTop()
@@ -847,8 +903,8 @@ let vm = new Vue({
 
         },
         setHotelActive(hotelId) {
-            const startDates = [1, 2, 6,];
-            const endDates = [6, 9, 10,];
+            const startDates = [21];
+            const endDates = [24];
 
             let dateStartNan = startDates.includes(new Date(this.form.dateFrom).getDate())
             let dateEndNan = endDates.includes(new Date(this.form.dateTill).getDate())
@@ -937,7 +993,7 @@ let vm = new Vue({
                         this.gallery = Object.values(response.data)
                     } else {
                         this.gallery = [{
-                            "url": this.domain + 'nsw22/images/hotels/take1.width-1200.jpegquality-99.png'
+                            "url": this.domain + 'nsw23/images/hotels/take1.width-1200.jpegquality-99.png'
                         }]
                     }
                 })
@@ -966,28 +1022,34 @@ let vm = new Vue({
         },
         applyPromoCode() {
             this.errors = null;
-            let hotelId = this.form.pasCurrent.is_hotel === 0 ? 0 : this.form.hotelCurrent.id
             const conf = {
-                responseType: 'text'
+                responseType: 'json'
             };
             const data = {
                 promoCode: this.form.promocode,
                 eventCode: this.form.event,
                 tourPass: this.form.pasCurrent.code,
                 tourPassId: this.form.pasCurrent.id,
-                hotelId: hotelId
             };
             axios
                 .post("api/promo", data, conf)
                 .then(response => {
                     if (response.data !== false) {
-                        if (response.data.percent === 0) {
-                            this.form.passDiscount = response.data.discount;
+                        if (typeof response.data.percent !== "undefined" && typeof response.data.discount !== "undefined") {
+                            if (this.form.passDiscount !== Number(response.data.discount)) {
+                                this.form.passDiscount = Number(response.data.discount)
+                                this.form.passDiscountPercent = Number(response.data.percent)
+                                this.calcTourPrice()
+                            } else if (this.form.passDiscountPercent !== Number(response.data.percent)) {
+                                this.form.passDiscountPercent = Number(response.data.percent)
+                                this.form.passDiscount = Number(response.data.discount)
+                                this.calcTourPrice()
+                            } else {
+                                this.errors = 'Купон применен, скидка не изменилась!'
+                            }
                         } else {
-                            this.form.passDiscountPercent = response.data.percent
-                            this.form.passDiscount = response.data.discount
+                            this.errors = 'Промокод не корректный'
                         }
-                        this.calcTourPrice()
                     }
                 })
                 .catch(error => {
@@ -1004,7 +1066,7 @@ let vm = new Vue({
 
             axios({
                 method: 'post',
-                url: 'nsw22/php/send.php',
+                url: 'nsw23/php/send.php',
                 data: sdata,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             })
@@ -1109,6 +1171,7 @@ let vm = new Vue({
                 fdata.append('passname', this.form.pasCurrent.name);
                 fdata.append('passcode', this.form.pasCurrent.code);
                 fdata.append('passColor', this.form.passColor);
+                fdata.append('passColorVoucher', this.form.passColorVoucher);
                 fdata.append('g2fname', this.form.gfname);
                 fdata.append('g2sname', this.form.gsname);
                 fdata.append('g3fname', this.form.g3fname);
@@ -1142,7 +1205,7 @@ let vm = new Vue({
 
                 axios({
                     method: 'post',
-                    url: 'nsw22/php/saveVoucher.php',
+                    url: 'nsw23/php/saveVoucher.php',
                     data: fdata,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 })
@@ -1354,15 +1417,29 @@ let vm = new Vue({
             element.classList.remove('is-active')
 
             let currentText = document.getElementById("customSelectSpan")
-            currentText.innerText = "";
-            let text = quantity === 1 ? 'билет' : 'билета'
-            currentText.innerText = quantity + " " + text;
+            currentText.innerText = ""
+            let text = ""
+            if (quantity === 1) {
+                if (this.form.pasCurrent.is_hotel === 0) {
+                    text = 'билет'
+                } else {
+                    text = 'гость'
+                }
+            } else {
+                if (this.form.pasCurrent.is_hotel === 0) {
+                    text = 'билета'
+                } else {
+                    text = 'гостя'
+                }
+            }
+            currentText.innerText = quantity + " " + text
+
+            this.calcTourDays()
         },
         discountClear() {
             this.form.passDiscount = null
         },
-        calcTourPrice()
-        {
+        calcTourPrice() {
             if (this.form.pasCurrent.is_hotel === 0) {
                 let price = this.form.adults < 4
                     ? this.form.pasCurrent.price :
@@ -1378,11 +1455,16 @@ let vm = new Vue({
                     return this.form.tourPrice
                 }
             } else if (this.form.pasCurrent.is_hotel === 1) {
-                return this.form.tourPrice - this.form.passDiscount;
+                if (this.form.passDiscountPercent === 0) {
+                    this.form.tourPrice = this.form.tourPrice - this.form.passDiscount;
+                    return this.form.tourPrice;
+                } else {
+                    this.form.tourPrice = this.form.tourPrice - ((this.form.passDiscount / 100) * this.form.tourPrice)
+                    return this.form.tourPrice
+                }
             }
         },
-        setTourName()
-        {
+        setTourName() {
             if (this.form.pasCurrent.is_hotel === 1 && this.form.hotel) {
                 this.form.tourName = 'New Star Weekend tour, hotel: ' + this.form.hotelCurrent.name;
             } else {
@@ -1390,81 +1472,71 @@ let vm = new Vue({
             }
             return this.form.tourName;
         },
-},
-created: function () {
-},
-beforeMount()
-{
-    this.getActivePasses()
-    this.getEvent()
-},
-mounted: function () {
-    let get_parameters = this.$route.query
-    if (get_parameters.step === '6' && get_parameters.par !== '0') {
-        this.step = 6
-        this.form.payed = 0
-    } else if (get_parameters.step === '6' && get_parameters.par === '0') {
-        this.step = 6
-        this.form.payed = 1
-    }
-},
-updated()
-{
-},
-computed: {
-    dateFrom()
-    {
-        if (this.form.pasCurrent.is_hotel === 1) {
-            return 'дата приезда'
-        } else {
-            return 'дата действия браслета с'
+    },
+    created: function () {
+    },
+    beforeMount() {
+        this.getActivePasses()
+        this.getEvent()
+    },
+    mounted: function () {
+        let get_parameters = this.$route.query
+        if (get_parameters.step === '6' && get_parameters.par !== '0') {
+            this.step = 6
+            this.form.payed = 0
+        } else if (get_parameters.step === '6' && get_parameters.par === '0') {
+            this.step = 6
+            this.form.payed = 1
         }
     },
-    dateTill()
-    {
-        if (this.form.pasCurrent.is_hotel === 1) {
-            return 'дата выезда'
-        } else {
-            return 'дата действия браслета по'
-        }
+    updated() {
     },
-    userFIO()
-    {
-        return this.form.fname + ' ' + this.form.sname;
-    },
-    guestsNum()
-    {
-        let kids = ''
-        let adults = ''
-        if (this.form.kids) {
-            if (this.form.kids === 1) {
-                kids = ' / ' + this.form.kids + ' ребенок'
-            } else if (this.form.kids > 1) {
-                kids = ' / ' + this.form.kids + ' детей'
+    computed: {
+        dateFrom() {
+            if (this.form.pasCurrent.is_hotel === 1) {
+                return 'дата приезда'
+            } else {
+                return 'дата действия браслета с'
             }
-        }
-        if (this.form.adults > 1) {
-            adults = this.form.adults
-        } else {
-            adults = this.form.adults
-        }
-        return adults + kids;
+        },
+        dateTill() {
+            if (this.form.pasCurrent.is_hotel === 1) {
+                return 'дата выезда'
+            } else {
+                return 'дата действия браслета по'
+            }
+        },
+        userFIO() {
+            return this.form.fname + ' ' + this.form.sname;
+        },
+        guestsNum() {
+            let kids = ''
+            let adults = ''
+            if (this.form.kids) {
+                if (this.form.kids === 1) {
+                    kids = ' / ' + this.form.kids + ' ребенок'
+                } else if (this.form.kids > 1) {
+                    kids = ' / ' + this.form.kids + ' детей'
+                }
+            }
+            if (this.form.adults > 1) {
+                adults = this.form.adults
+            } else {
+                adults = this.form.adults
+            }
+            return adults + kids;
+        },
+        activeRooms() {
+            return this.hotelRooms.filter(room => {
+                return room.maxGuests >= this.form.adults
+            })
+        },
+        activeRoomBeds() {
+            return this.hotelRoomBeds
+        },
     },
-    activeRooms()
-    {
-        return this.hotelRooms.filter(room => {
-            return room.maxGuests >= this.form.adults
-        })
-    },
-    activeRoomBeds()
-    {
-        return this.hotelRoomBeds
-    },
-},
-watch: {
-},
-destroyed()
-{
+    watch: {},
+    destroyed() {
 
-},
+    },
 }).$mount('#orderForm');
