@@ -589,7 +589,10 @@ let vm = new Vue({
         errors: null,
         guests: 1,
         error: null,
-
+        step2: {
+            'ru': "Выберите<br> количество<br> браслетов",
+            'en': "Выберите<br> количество<br> браслетов"
+        },
         steps: [
             {
                 active: true,
@@ -820,7 +823,6 @@ let vm = new Vue({
                     }
                 }
             } else if (this.step === 4) {
-                console.log('this.step 4 ' + this.step)
                 if (!this.form.fname || !this.form.sname) {
                     this.errors = this.translations.errorFillFIO[this.selectedLocale];
                     return false;
@@ -855,7 +857,6 @@ let vm = new Vue({
                     } else {
                         this.saveGuest()
                         if (true) {
-                            this.calcTourPrice()
                             this.setTourName()
                             this.errors = null;
                             this.step++
@@ -865,7 +866,6 @@ let vm = new Vue({
                 } else {
                     this.saveGuest()
                     if (true) {
-                        this.calcTourPrice()
                         this.setTourName()
                         this.errors = null;
                         this.step++
@@ -896,6 +896,7 @@ let vm = new Vue({
                 this.form.pasCurrent = pasCurrent[0]
                 this.form.passColorVoucher = pasCurrent[0].voucher_color
                 this.hotels = []
+                this.calcTourPrice()
                 this.step++
                 this.scrollToTop()
                 this.discountClear()
@@ -944,6 +945,9 @@ let vm = new Vue({
             this.form.skiPassTotal = roomCurrent[0].total_skiPass
             this.form.hotelTotal = roomCurrent[0].total_hotel
             this.form.passTotal = roomCurrent[0].total_pass
+            this.form.passDiscountPercent = 0
+            this.form.passDiscount = 0
+            this.form.promocode = null
             this.form.tourPrice = (this.form.hotelBreakfast === 1) ? this.form.roomCurrent.total_price + this.form.roomCurrent.total_breakfasts : this.form.roomCurrent.total_price
             this.step++
             this.scrollToTop()
@@ -1435,6 +1439,7 @@ let vm = new Vue({
             currentText.innerText = quantity + " " + text
 
             this.calcTourDays()
+            this.calcTourPrice()
         },
         discountClear() {
             this.form.passDiscount = null
@@ -1455,11 +1460,11 @@ let vm = new Vue({
                     return this.form.tourPrice
                 }
             } else if (this.form.pasCurrent.is_hotel === 1) {
-                if (this.form.passDiscountPercent === 0) {
+                if (this.form.passDiscountPercent == 0) {
                     this.form.tourPrice = this.form.tourPrice - this.form.passDiscount;
                     return this.form.tourPrice;
                 } else {
-                    this.form.tourPrice = this.form.tourPrice - ((this.form.passDiscount / 100) * this.form.tourPrice)
+                    this.form.tourPrice = this.form.tourPrice - ((this.form.passDiscount / 100) * this.form.passTotal)
                     return this.form.tourPrice
                 }
             }
