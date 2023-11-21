@@ -491,7 +491,7 @@ let vm = new Vue({
                 'en': 'Please, fill number of cell phone'
             },
             errorFillCorrectPhone: {
-                'ru': 'Укажите корректный телефон',
+                'ru': 'Укажите корректный телефон, минимум 11 цифр',
                 'en': 'Please, fill correct number of cell phone'
             },
             tourIncludedHeader: {
@@ -692,10 +692,6 @@ let vm = new Vue({
         goToNSCsite() {
             window.open('https://newstarcamp.ru/news/visa_snowboards/?utm_source=nswpay&utm_medium=banner&utm_campaign=visa')
         },
-        acceptNumber() {
-            let x = this.form.phone.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,4})/);
-            this.form.phone = x[1] + ' (' + x[2] + ') ' + x[3] + ' ' + x[4];
-        },
         activePasses() {
             if (this.passes) {
                 return this.passes.filter(pass => {
@@ -742,9 +738,11 @@ let vm = new Vue({
             return re.test(email);
         },
         validPhone: function (phone) {
-            // let re = /^\d(\d{3})?\d{7}$/;
-            // return re.test(phone.replace(/\s+/g, ''));
-            return true;
+            if (phone.replace(/[^+\d]/g, '').length < 11) {
+                return false;
+            } else {
+                return true;
+            }
         },
         scrollToTop() {
             let element = document.getElementById("orderForm");
@@ -1026,17 +1024,22 @@ let vm = new Vue({
         },
         applyPromoCode() {
             this.errors = null;
+            let hotelId = null;
+            if (this.form.hotelCurrent) {
+                hotelId = this.form.hotelCurrent.id
+            }
             const conf = {
                 responseType: 'json'
             };
             const data = {
+                hotelId: hotelId,
                 promoCode: this.form.promocode,
                 eventCode: this.form.event,
                 tourPass: this.form.pasCurrent.code,
                 tourPassId: this.form.pasCurrent.id,
             };
             axios
-                .post("api/promo", data, conf)
+                .post("api/promo", data, {headers:{"Content-Type" : "application/json"}})
                 .then(response => {
                     if (response.data !== false) {
                         if (typeof response.data.percent !== "undefined" && typeof response.data.discount !== "undefined") {
@@ -1052,8 +1055,10 @@ let vm = new Vue({
                                 this.errors = 'Купон применен, скидка не изменилась!'
                             }
                         } else {
-                            this.errors = 'Промокод не корректный'
+                            this.errors = 'Промокод не корректный.'
                         }
+                    } else {
+                        this.errors = 'Промокод не подходит.'
                     }
                 })
                 .catch(error => {
